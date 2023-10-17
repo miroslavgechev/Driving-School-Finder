@@ -43,7 +43,7 @@ Driving School Finder
 ## Steps:
 
 1. Create Requirements
-2. Research Industry
+2. ~~ Research Industry ~~
 3. Update Requirements
 4. Develop Basic Architecture
 5. Describe Views
@@ -57,33 +57,37 @@ Driving School Finder
 
 **Driving Schools**
 
-- School Name
-- Logo
-- Address
-- Map Coordinates
-- Region in Sofia
-- Regions Served
-- Phone Number
-- Email Address
+***School Name***
+***Logo***
+***Address***
+***Map Coordinates***
+***Region in Sofia***
+***Regions Served***
+***Phone Number***
+***Email Address***
 
-- Fleet by car - photos, model, year;
-- Instructors (list of instructors) + photos + short bio - years of experience; something worth noting;
-- Photos - gallery;
-- Videos - link to Youtube;
 
-- Types of Courses (filter by category)
-- Duration of courses
-- Types of Special courses - e.g. night driving, highway driving, winter driving, etc.
-- Price per course / program
-- Price per hour
-- Price per hour for special courses
-- Use table with predefined courses + ability to add special courses
-- Max two options per course
+***Fleet by car - photos, model, year;***
+***Instructors (list of instructors) + photos + short bio - years of experience; something worth noting;***
+***Photos - gallery;***
+***Videos - link to Youtube;***
 
-- Reviews - by users. (rating, comment, date, user).
-- Total Rating (average of all ratings) + number of users who rated
 
-- Why us? Up to three things. Five things if paid.
+***Types of Courses (filter by category)***
+***Duration of courses***
+***Types of Special courses - e.g. night driving, highway driving, winter driving, etc.***
+***Price per course / program***
+***Price per hour***
+***Price per hour for special courses***
+***Use table with predefined courses + ability to add special courses***
+***Max two options per course***
+
+
+***Reviews - by users. (rating, comment, date, user).***
+***Total Rating (average of all ratings) + number of users who rated***
+
+
+***Why us? Up to three things. Five things if paid.***
 
 **Paid Subscription**
 
