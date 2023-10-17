@@ -43,7 +43,7 @@ Driving School Finder
 ## Steps:
 
 1. Create Requirements
-2. ~~Research Industry~~
+2. Research Industry [x]
 3. Update Requirements
 4. Develop Basic Architecture
 5. Describe Views
