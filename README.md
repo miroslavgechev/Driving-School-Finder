@@ -42,8 +42,8 @@ Driving School Finder
 
 ## Steps:
 
-1. Create Requirements
-2. Research Industry [x]
+1. Create Requirements ✅
+2. Research Industry ✅
 3. Update Requirements
 4. Develop Basic Architecture
 5. Describe Views
@@ -58,6 +58,7 @@ Driving School Finder
 ### Driving Schools
 
 **Main**
+
 - School Name
 - Logo
 - Address
@@ -68,6 +69,7 @@ Driving School Finder
 - Email Address
 
 **Fleet**
+
 - Fleet by car - photos, model, year;
 - Instructors (list of instructors) + photos + short bio - years of experience; something worth noting;
 - Photos - gallery;
@@ -75,6 +77,7 @@ Driving School Finder
 - Why us? Up to three things. Five things if paid.
 
 **Courses**
+
 - Types of Courses (filter by category)
 - Duration of courses
 - Types of Special courses - e.g. night driving, highway driving, winter driving, etc.
@@ -85,13 +88,14 @@ Driving School Finder
 - Max two options per course
 
 **Reviews**
+
 - Reviews - by users. (rating, comment, date, user).
 - Total Rating (average of all ratings) + number of users who rated
-
 
 ### Paid Subscription
 
 **Options**
+
 - More than 3 things in Why us
 - More than 2 options per course
 - Ability to add special courses
@@ -102,6 +106,7 @@ Driving School Finder
 ## Project Scope
 
 **Coverage**
+
 - Cover categories A, B, B+, M
 
 ## Examples
