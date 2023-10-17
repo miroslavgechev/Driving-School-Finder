@@ -44,14 +44,15 @@ Driving School Finder
 
 1. Create Requirements ✅
 2. Research Industry ✅
-3. Update Requirements
-4. Develop Basic Architecture
-5. Describe Views
+3. Update Requirements ✅
+4. Describe Views ✅
+5. Find a template
 6. Develop UI
-7. Connect to Backend
-8. Test
-9. Deploy
-10. Update Documentation
+7. Develop Basic Architecture
+8. Connect to Backend
+9. Test
+10. Deploy
+11. Update Documentation
 
 ## Requirements
 
