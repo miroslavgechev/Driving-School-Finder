@@ -55,9 +55,9 @@ Driving School Finder
 
 ## Requirements
 
-**Driving Schools**
+### Driving Schools
 
-### Main
+**Main**
 - School Name
 - Logo
 - Address
@@ -67,14 +67,14 @@ Driving School Finder
 - Phone Number
 - Email Address
 
-### Fleet
+**Fleet**
 - Fleet by car - photos, model, year;
 - Instructors (list of instructors) + photos + short bio - years of experience; something worth noting;
 - Photos - gallery;
 - Videos - link to Youtube;
 - Why us? Up to three things. Five things if paid.
 
-### Courses
+**Courses**
 - Types of Courses (filter by category)
 - Duration of courses
 - Types of Special courses - e.g. night driving, highway driving, winter driving, etc.
@@ -84,14 +84,14 @@ Driving School Finder
 - Use table with predefined courses + ability to add special courses
 - Max two options per course
 
-### Reviews
+**Reviews**
 - Reviews - by users. (rating, comment, date, user).
 - Total Rating (average of all ratings) + number of users who rated
 
 
-**Paid Subscription**
+### Paid Subscription
 
-### Options
+**Options**
 - More than 3 things in Why us
 - More than 2 options per course
 - Ability to add special courses
@@ -99,12 +99,12 @@ Driving School Finder
 - Highlighted Reviews: Schools can pin or highlight certain positive reviews that they believe represent them best.
 - Special Badge: A "Premium" or "Featured" badge on their profile and listings which signifies that they are a paid subscriber.
 
-**Project Scope**
+## Project Scope
 
-### Coverage
+**Coverage**
 - Cover categories A, B, B+, M
 
-**Examples**
+## Examples
 
 - Pricing matrix and good explanation -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
 - Types of courses - good example - example - https://www.idrive.bg/ceni.html#2
