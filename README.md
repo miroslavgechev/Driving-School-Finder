@@ -60,14 +60,14 @@ Driving School Finder
 
 **Main**
 
-- School Name
-- Logo
-- Address
-- Map Coordinates
-- Region in Sofia
-- Regions Served
-- Phone Number
-- Email Address
+- School Name ✅
+- Logo ✅
+- Address ✅
+- Map Coordinates ✅
+- Region in Sofia ✅
+- Regions Served ✅
+- Phone Number ✅
+- Email Address ✅
 
 **Fleet**
 
