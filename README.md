@@ -49,10 +49,13 @@ Driving School Finder
 5. Find a template
 6. Develop UI
 7. Develop Basic Architecture
-8. Connect to Backend
-9. Test
-10. Deploy
-11. Update Documentation
+8. Setup database
+9. Setup storage
+10. Setup authentication
+11. Connect to Backend
+12. Test
+13. Deploy
+14. Update Documentation
 
 ## Requirements
 
