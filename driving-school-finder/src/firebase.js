@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
-import { getFirestore, doc, updateDoc } from 'firebase/firestore/lite';
+import { collection, getDocs, doc, getFirestore } from 'firebase/firestore';
+import { updateDoc } from 'firebase/firestore/lite';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBnlKt46khfli-IfrzjGf6tXCxYn3YVhuM",
@@ -14,16 +14,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export async function getDrivingSchools() {
-    const drivingSchoolsCol = collection(db, 'schools');
-    const drivingSchoolsSnapshot = await getDocs(drivingSchoolsCol);
-    const drivingSchoolsList = drivingSchoolsSnapshot.docs.map(doc => doc.data());
-    console.log(drivingSchoolsList);
-}
 
 export async function addDrivingSchool() {
     const object = {
-        "name": "Test School 2",
+        "name": "Test School 3",
         "logoUrl": "someLogo",
         "address": {
             "city": "Sofia",
@@ -36,11 +30,19 @@ export async function addDrivingSchool() {
         }
     }
 
-    const docRef = await addDoc(collection(db, "schools"), object);
+    const docRef = await db.collection('schools').doc('new school').set(object)
     console.log("Document written with ID: ", docRef.id);
     console.log(docRef);
     // getDrivingSchools();
 }
+
+export async function getDrivingSchools() {
+    const drivingSchoolsCol = collection(db, 'schools');
+    const drivingSchoolsSnapshot = await getDocs(drivingSchoolsCol);
+    const drivingSchoolsList = drivingSchoolsSnapshot.docs.map(doc => doc.data());
+    console.log(drivingSchoolsList);
+}
+
 
 export async function updateDrivingSchool() {
     const schoolRef = doc(db, 'schools', 'testSchool2');
