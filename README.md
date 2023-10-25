@@ -9,7 +9,7 @@ Driving School Finder
 - Material UI
 - AJAX
 - Google Maps API - to show on map
-- Responsibe Design
+- Responsive Design
 
 ## SoftUni Requirements:
 
