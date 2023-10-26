@@ -1,13 +1,13 @@
 import { responsiveFontSizes } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import shadows from './shadows';
-import { light, dark } from './palette';
+import { light } from './palette';
 
-const getTheme = (mode, themeToggler) =>
+const getTheme = (themeToggler) =>
   responsiveFontSizes(
     createTheme({
-      palette: mode === 'light' ? light : dark,
-      shadows: shadows(mode),
+      palette: light,
+      shadows: shadows(),
       typography: {
         fontFamily: '"Inter", sans-serif',
         button: {
@@ -28,7 +28,7 @@ const getTheme = (mode, themeToggler) =>
               paddingTop: 10,
               paddingBottom: 10,
             },
-            containedSecondary: mode === 'light' ? { color: 'white' } : {},
+            containedSecondary: { color: 'white' },
           },
         },
         MuiInputBase: {

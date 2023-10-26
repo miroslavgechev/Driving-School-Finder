@@ -1,6 +1,6 @@
 import { alpha } from '@mui/material/styles';
-const shadows = (themeMode = 'light') => {
-  const rgb = themeMode === 'light' ? '#8c98a4' : '#000000';
+const shadows = () => {
+  const rgb = '#8c98a4';
 
   return [
     'none',
