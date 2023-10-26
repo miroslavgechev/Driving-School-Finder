@@ -54,9 +54,10 @@ Driving School Finder
 10. Setup authentication
 11. Connect to Backend
 12. Refactor Code to css modules.
-13. Test
-14. Deploy
-15. Update Documentation
+13. Move Static images to public
+14. Test
+15. Deploy
+16. Update Documentation
 
 ## Requirements
 
@@ -132,15 +133,21 @@ Driving School Finder
      - Featured driving schools (based on user reviews or sponsored listings).
      - Quick links or buttons for primary actions (e.g., "Find a Driving School", "Register as a Driving School", "Register as Driver", "Leave a Review" (one review every 4 months allowed)).
 
-2. **Search Results Page**:
+2. **Catalog Page**:
+
+   - **Description**: Displays all the driving schools in the platform's database.
+   - **Functionalities**:
+     - List of driving schools with photo/logo, basic details like name, average rating, and location.
+     - Pagination or infinite scroll for a large number of results.
+
+3. **Search Results Page**:
 
    - **Description**: Displays the results of a user's search query.
    - **Functionalities**:
-     - List of driving schools with photo/logo, basic details like name, average rating, and location.
+     - Built on top of catalogue page.
      - Filters to narrow down results (e.g., location, services offered, ratings).
-     - Pagination or infinite scroll for a large number of results.
 
-3. **Driving School Profile Page**:
+4. **Driving School Profile Page**:
 
    - **Description**: Detailed view of a specific driving school.
    - **Functionalities**:
@@ -154,7 +161,7 @@ Driving School Finder
      - Booking or inquiry form for lessons.
      - Map integration showing the school's location.
 
-4. **User Review & Rating Page**:
+5. **User Review & Rating Page**:
 
    - **Description**: Allows users to leave reviews and ratings for driving schools they've attended (one review every 4 month allowed).
    - **Functionalities**:
@@ -165,14 +172,14 @@ Driving School Finder
      - Optional: Ability for users to report reviews.
      - Optional: Ability for the author to reply to reviews.
 
-5. **User Account Page**:
+6. **User Account Page**:
 
    - **Description**: Allows users to manage their personal details and view their activity.
    - **Functionalities**:
      - Personal details editing (name, email, password, etc.).
      - History of reviews left.
 
-6. **Driving School Registration Page**:
+7. **Driving School Registration Page**:
 
    - **Description**: Allows driving schools to register and create a profile on the platform.
    - **Functionalities**:
@@ -181,7 +188,7 @@ Driving School Finder
      - Optinal: Verification process to ensure authenticity within 24 hours.
      - Load premium vs free table of features.
 
-7. **Admin Dashboard** (if you plan to have one):
+8. **Admin Dashboard** (if you plan to have one):
 
    - **Description**: Allows administrators to manage and oversee the platform's operations.
    - **Functionalities**:
@@ -189,24 +196,32 @@ Driving School Finder
      - Approve/reject driving school registrations.
      - Manage reviews (e.g., remove inappropriate content).
 
-8. **About Page**:
+9. **About Page**:
 
    - **Description**: Provides information about the platform, the team behind it, and its mission.
    - **Functionalities**: Static content.
 
-9. **FAQ**:
+10. **FAQ**:
 
-   - **Description**: Provides answers to frequently asked questions to users.
-   - **Functionalities**:
-     - FAQs. (e.g. how to choose a driving school. What documents are needed, etc.)
+    - **Description**: Provides answers to frequently asked questions to users.
+    - **Functionalities**:
+      - FAQs. (e.g. how to choose a driving school. What documents are needed, etc.)
 
-10. **Login/Signup Page**:
+11. **Login/Signup Page**:
+
     - **Description**: Allows users and driving schools to create accounts or log into existing ones.
     - **Functionalities**:
       - Form for logging in.
       - Option to sign up.
       - Password reset functionality.
     - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
+
+12. **Compare Schools**
+    - **Description**: Allows users to compare courses from specfici schools side by side in a table.
+    - **Functionalities**:
+      - Select schools to compare.
+      - Select courses to compare.
+      - Compare courses side by side in a table.
 
 ---- TO BE REVISED AFTER PROJECT COMPLETION---
 
