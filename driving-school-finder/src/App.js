@@ -1,21 +1,29 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Page from './components/Page';
 
-import * as React from 'react';
 
-import Button from '@mui/material/Button';
-import WifiIcon from '@mui/icons-material/Wifi';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import 'aos/dist/aos.css';
+import { Main } from 'layouts';
+import HomeView from 'views/HomeView/HomeView';
 
-function App() {
 
+const App = () => {
   return (
-    <div className="App">
-      <h1>Driving School Finder</h1>
-      <Button variant="outlined">Hello world</Button>
-      <WifiIcon color="success" />
+    <Page>
+      <BrowserRouter>
+        <Main>
+          <HomeView />
+          <HomeView />
+          <HomeView />
+          <HomeView />
 
-    </div>
+        </Main>
+      </BrowserRouter>
+    </Page>
   );
-}
+};
 
 export default App;
-
