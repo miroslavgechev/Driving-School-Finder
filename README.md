@@ -65,14 +65,15 @@ Driving School Finder
 
 **Main**
 
-- School Name ✅
-- Logo ✅
-- Address ✅
-- Map Coordinates ✅
-- Region in Sofia ✅
-- Regions Served ✅
-- Phone Number ✅
-- Email Address ✅
+- School Name
+- Logo
+- Address
+- Map Coordinates
+- Region in Sofia
+- Regions Served
+- Phone Number
+- Email Address
+- Description (short)
 
 **Fleet**
 
@@ -163,12 +164,12 @@ Driving School Finder
 
 5. **Login/Signup Page**:
 
-    - **Description**: Allows users and driving schools to create accounts or log into existing ones.
-    - **Functionalities**:
-      - Form for logging in.
-      - Option to sign up.
-      - Password reset functionality.
-    - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
+   - **Description**: Allows users and driving schools to create accounts or log into existing ones.
+   - **Functionalities**:
+     - Form for logging in.
+     - Option to sign up.
+     - Password reset functionality.
+   - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
 
 6. **Driving School Registration/Edit/Delete Page**:
 
@@ -207,8 +208,8 @@ Driving School Finder
 
 10. **About Page**:
 
-   - **Description**: Provides information about the platform, the team behind it, and its mission.
-   - **Functionalities**: Static content.
+- **Description**: Provides information about the platform, the team behind it, and its mission.
+- **Functionalities**: Static content.
 
 11. **FAQ**:
 
