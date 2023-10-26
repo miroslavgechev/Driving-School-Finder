@@ -5,18 +5,8 @@ import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsRounded';
 
-import NavItem from './components/NavItem';
 
-const SidebarNav = ({ pages }) => {
-
-  const {
-    landings: landingPages,
-    secondary: secondaryPages,
-    company: companyPages,
-    account: accountPages,
-    portfolio: portfolioPages,
-    blog: blogPages,
-  } = pages;
+const SidebarNav = () => {
 
   return (
     <Box>
@@ -43,47 +33,59 @@ const SidebarNav = ({ pages }) => {
         </Box>
       </Box>
       <Box paddingX={2} paddingY={2}>
-        <Box>
-          <NavItem title={'Landings'} items={landingPages} />
+        <Box
+          marginLeft={4}
+          href="/"
+          component={'a'}
+          sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
+        >
+          <Typography color={'text.primary'}>Автошколи</Typography>
         </Box>
-        <Box>
-          <NavItem title={'Company'} items={companyPages} />
+
+        <Box
+          marginLeft={4}
+          href="/"
+          component={'a'}
+          sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
+        >
+          <Typography color={'text.primary'}>ЧЗВ</Typography>
         </Box>
-        <Box>
-          <NavItem title={'Pages'} items={secondaryPages} />
+
+        <Box
+          marginLeft={4}
+          href="/"
+          component={'a'}
+          sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
+        >
+          <Typography color={'text.primary'}>За нас</Typography>
         </Box>
-        <Box>
-          <NavItem title={'Account'} items={accountPages} />
-        </Box>
-        <Box>
-          <NavItem title={'Blog'} items={blogPages} />
-        </Box>
-        <Box>
-          <NavItem title={'Portfolio'} items={portfolioPages} />
-        </Box>
+
         <Box marginTop={2}>
           <Button
             size={'large'}
-            variant="outlined"
-            fullWidth
-            component="a"
-            href="https://thefront.maccarianagency.com/docs/introduction"
-            target={'blank'}
-          >
-            Documentation
-          </Button>
-        </Box>
-        <Box marginTop={1}>
-          <Button
-            size={'large'}
             variant="contained"
+            component="a"
+            href="/"
+            target={'blank'}
             color="primary"
             fullWidth
+            
+          >
+            Вход за автошколи
+          </Button>
+        </Box>
+
+        <Box marginTop={1}>
+          <Button
+            variant="contained"
+            color="secondary"
             component="a"
             target="blank"
-            href="https://mui.com/store/items/the-front-landing-page/"
+            href="/"
+            size="large"
+            fullWidth
           >
-            Purchase now
+            Вход за кандидати
           </Button>
         </Box>
       </Box>
