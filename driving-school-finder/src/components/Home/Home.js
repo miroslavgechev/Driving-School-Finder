@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 import Container from 'components/Container';
 
-import FeaturedProperties from './components/FeaturedSchools/FeaturedSchools';
+import FeaturedSchools from './components/FeaturedSchools/FeaturedSchools';
 import HeroHero from './components/Hero/Hero';
 
 const Rental = () => {
@@ -13,7 +13,7 @@ const Rental = () => {
 
       <Box bgcolor={'alternate.main'}>
         <Container>
-          <FeaturedProperties />
+          <FeaturedSchools />
         </Container>
       </Box>
     </>
