@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
@@ -36,7 +35,6 @@ const Topbar = ({ onSidebarOpen = false }) => {
 
           />
         </Typography>
-
       </Box>
 
       <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
@@ -72,7 +70,6 @@ const Topbar = ({ onSidebarOpen = false }) => {
             variant="contained"
             color="primary"
             component="a"
-            target="blank"
             href="/"
             size="large"
           >
@@ -85,7 +82,6 @@ const Topbar = ({ onSidebarOpen = false }) => {
             variant="contained"
             color="secondary"
             component="a"
-            target="blank"
             href="/"
             size="large"
           >
@@ -112,12 +108,6 @@ const Topbar = ({ onSidebarOpen = false }) => {
       </Box>
     </Box >
   );
-};
-
-Topbar.propTypes = {
-  onSidebarOpen: PropTypes.func,
-  pages: PropTypes.object,
-  colorInvert: PropTypes.bool,
 };
 
 export default Topbar;

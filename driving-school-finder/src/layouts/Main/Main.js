@@ -12,8 +12,6 @@ import Topbar from './components/Topbar/Topbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
 
-import pages from '../navigation';
-
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
@@ -50,7 +48,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
         <Container paddingY={1}>
           <Topbar
             onSidebarOpen={handleSidebarOpen}
-            pages={pages}
             colorInvert={trigger ? false : colorInvert}
           />
         </Container>
@@ -59,7 +56,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
         onClose={handleSidebarClose}
         open={open}
         variant="temporary"
-        pages={pages}
       />
       <main>
         {children}
