@@ -6,7 +6,7 @@ import { Typography } from '@mui/material';
 import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsRounded';
 
 
-const SidebarNav = () => {
+const SidebarNavItems = () => {
 
   return (
     <Box>
@@ -69,7 +69,7 @@ const SidebarNav = () => {
             target={'blank'}
             color="primary"
             fullWidth
-            
+
           >
             Вход за автошколи
           </Button>
@@ -93,8 +93,8 @@ const SidebarNav = () => {
   );
 };
 
-SidebarNav.propTypes = {
+SidebarNavItems.propTypes = {
   pages: PropTypes.object.isRequired,
 };
 
-export default SidebarNav;
+export default SidebarNavItems;

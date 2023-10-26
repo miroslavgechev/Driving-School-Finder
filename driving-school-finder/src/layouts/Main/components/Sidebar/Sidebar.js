@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
-import { SidebarNav } from './components';
+import SidebarNavItems from './components/SidebarNav/SidebarNavItems';
 
-const Sidebar = ({ pages, open, variant, onClose }) => {
+const Sidebar = ({ open, variant, onClose }) => {
   return (
     <Drawer
       anchor="left"
@@ -24,7 +24,7 @@ const Sidebar = ({ pages, open, variant, onClose }) => {
           padding: 1,
         }}
       >
-        <SidebarNav pages={pages} />
+        <SidebarNavItems />
       </Box>
     </Drawer>
   );
