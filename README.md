@@ -46,16 +46,17 @@ Driving School Finder
 2. Research Industry ✅
 3. Update Requirements ✅
 4. Describe Views ✅
-5. Find a template
+5. Find a template ✅
 6. Develop UI
 7. Develop Basic Architecture
 8. Setup database
 9. Setup storage
 10. Setup authentication
 11. Connect to Backend
-12. Test
-13. Deploy
-14. Update Documentation
+12. Refactor Code to css modules.
+13. Test
+14. Deploy
+15. Update Documentation
 
 ## Requirements
 
@@ -119,6 +120,7 @@ Driving School Finder
 - Types of courses - good example - example - https://www.idrive.bg/ceni.html#2
 - https://www.bgpoll.net/avtomobili/avtoshkoli.html?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw21X0dl6ZGc8gBlBKJA_B-pqtICIdQo2jGACqDaH2KAUxv5juHSQAaAm_lEALw_wcB
 - FAQ - https://dc.bau.bg/%D1%87%D0%B5%D1%81%D1%82%D0%BE-%D0%B7%D0%B0%D0%B4%D0%B0%D0%B2%D0%B0%D0%BD%D0%B8-%D0%B2%D1%8A%D0%BF%D1%80%D0%BE%D1%81%D0%B8
+- Competition - https://avtoobuchenie.bg/
 
 ## Pages
 

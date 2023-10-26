@@ -7,19 +7,14 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
 import { Main } from 'layouts';
-import HomeView from 'views/HomeView/HomeView';
-
+import Home from 'components/Home/Home';
 
 const App = () => {
   return (
     <Page>
       <BrowserRouter>
         <Main>
-          <HomeView />
-          <HomeView />
-          <HomeView />
-          <HomeView />
-
+          <Home />
         </Main>
       </BrowserRouter>
     </Page>

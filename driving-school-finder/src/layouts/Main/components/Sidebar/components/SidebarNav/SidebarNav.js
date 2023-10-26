@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { useTheme } from '@mui/material/styles';
+import { Typography } from '@mui/material';
+import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsRounded';
 
 import NavItem from './components/NavItem';
 
 const SidebarNav = ({ pages }) => {
-  const theme = useTheme();
-  const { mode } = theme.palette;
 
   const {
     landings: landingPages,
@@ -26,19 +25,21 @@ const SidebarNav = ({ pages }) => {
           display={'flex'}
           component="a"
           href="/"
-          title="theFront"
+          title="Driving School Finder"
           width={{ xs: 100, md: 120 }}
+          sx={{ textDecoration: 'none' }}
         >
-          <Box
-            component={'img'}
-            src={
-              mode === 'light'
-                ? 'https://assets.maccarianagency.com/the-front/logos/logo.svg'
-                : 'https://assets.maccarianagency.com/the-front/logos/logo-negative.svg'
-            }
-            height={1}
-            width={1}
-          />
+
+          <Typography>
+            <SportsMotorsportsRoundedIcon
+              sx={{
+                fontSize: '3em',
+                color: '#000000'
+              }}
+
+            />
+          </Typography>
+
         </Box>
       </Box>
       <Box paddingX={2} paddingY={2}>
