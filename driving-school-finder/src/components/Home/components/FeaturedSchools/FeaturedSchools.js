@@ -97,7 +97,7 @@ const FeaturedSchools = () => {
           color={'text.secondary'}
           data-aos={'fade-up'}
         >
-          Разгледайте автошколите в София и открийте правилната за вас
+          Разгледай автошколите в София и открий правилната за теб
         </Typography>
       </Box>
 
@@ -216,7 +216,7 @@ const FeaturedSchools = () => {
                         />
                       }
                     >
-                      Вижте повече
+                      Виж повече
                     </Button>
                   </CardActions>
                 </CardContent>
@@ -242,7 +242,7 @@ const FeaturedSchools = () => {
               marginLeft={{ sm: 2 }}
               fullWidth={isMd ? false : true}
             >
-              Вижте още...
+              Виж още...
             </Box>
           </Box>
         </Grid>

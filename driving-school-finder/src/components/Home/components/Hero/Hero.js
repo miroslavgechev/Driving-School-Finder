@@ -15,8 +15,8 @@ import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFi
 
 import Container from 'components/Container';
 
-const title = 'Търсите автошкола в София?';
-const subtitle = 'Нека ви помогнем';
+const title = 'Търсиш автошкола в София?';
+const subtitle = 'Нека ти помогнем';
 
 const areas = ['Всички', 'Слатина', 'Средец'];
 const categories = ['Всички', 'A', 'B', 'B+', 'M'];

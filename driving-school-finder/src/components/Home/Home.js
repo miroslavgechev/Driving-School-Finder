@@ -4,12 +4,12 @@ import Box from '@mui/material/Box';
 import Container from 'components/Container';
 
 import FeaturedSchools from './components/FeaturedSchools/FeaturedSchools';
-import HeroHero from './components/Hero/Hero';
+import Hero from './components/Hero/Hero';
 
-const Rental = () => {
+const Home = () => {
   return (
     <>
-      <HeroHero />
+      <Hero />
 
       <Box bgcolor={'alternate.main'}>
         <Container>
@@ -20,4 +20,4 @@ const Rental = () => {
   );
 };
 
-export default Rental;
+export default Home;
