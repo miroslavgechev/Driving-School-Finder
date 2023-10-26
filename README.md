@@ -142,7 +142,7 @@ Driving School Finder
 
 3. **Search Results Page**:
 
-   - **Description**: Displays the results of a user's search query.
+   - **Description**: Displays the results of a user's search query. - search by name, area, category, rating;
    - **Functionalities**:
      - Built on top of catalogue page.
      - Filters to narrow down results (e.g., location, services offered, ratings).
@@ -161,7 +161,25 @@ Driving School Finder
      - Booking or inquiry form for lessons.
      - Map integration showing the school's location.
 
-5. **User Review & Rating Page**:
+5. **Login/Signup Page**:
+
+    - **Description**: Allows users and driving schools to create accounts or log into existing ones.
+    - **Functionalities**:
+      - Form for logging in.
+      - Option to sign up.
+      - Password reset functionality.
+    - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
+
+6. **Driving School Registration/Edit/Delete Page**:
+
+   - **Description**: Allows driving schools to register and create a profile on the platform.
+   - **Functionalities**:
+     - Form to input details like school name, address, services offered, etc. - listed above.
+     - Option to upload photos.
+     - Optinal: Verification process to ensure authenticity within 24 hours.
+     - Load premium vs free table of features.
+
+7. **User Review & Rating Page**:
 
    - **Description**: Allows users to leave reviews and ratings for driving schools they've attended (one review every 4 month allowed).
    - **Functionalities**:
@@ -172,23 +190,14 @@ Driving School Finder
      - Optional: Ability for users to report reviews.
      - Optional: Ability for the author to reply to reviews.
 
-6. **User Account Page**:
+8. **User Account Page**:
 
-   - **Description**: Allows users to manage their personal details and view their activity.
+   - **Description**: Allows users to manage their personal details.
    - **Functionalities**:
      - Personal details editing (name, email, password, etc.).
      - History of reviews left.
 
-7. **Driving School Registration Page**:
-
-   - **Description**: Allows driving schools to register and create a profile on the platform.
-   - **Functionalities**:
-     - Form to input details like school name, address, services offered, etc. - listed above.
-     - Option to upload photos.
-     - Optinal: Verification process to ensure authenticity within 24 hours.
-     - Load premium vs free table of features.
-
-8. **Admin Dashboard** (if you plan to have one):
+9. **Admin Dashboard** (if you plan to have one):
 
    - **Description**: Allows administrators to manage and oversee the platform's operations.
    - **Functionalities**:
@@ -196,25 +205,16 @@ Driving School Finder
      - Approve/reject driving school registrations.
      - Manage reviews (e.g., remove inappropriate content).
 
-9. **About Page**:
+10. **About Page**:
 
    - **Description**: Provides information about the platform, the team behind it, and its mission.
    - **Functionalities**: Static content.
 
-10. **FAQ**:
+11. **FAQ**:
 
     - **Description**: Provides answers to frequently asked questions to users.
     - **Functionalities**:
       - FAQs. (e.g. how to choose a driving school. What documents are needed, etc.)
-
-11. **Login/Signup Page**:
-
-    - **Description**: Allows users and driving schools to create accounts or log into existing ones.
-    - **Functionalities**:
-      - Form for logging in.
-      - Option to sign up.
-      - Password reset functionality.
-    - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
 
 12. **Compare Schools**
     - **Description**: Allows users to compare courses from specfici schools side by side in a table.
