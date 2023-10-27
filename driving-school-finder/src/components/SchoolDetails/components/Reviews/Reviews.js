@@ -10,7 +10,6 @@ import FeedbackForm from './components/FeedbackForm/FeedbackForm';
 
 const Reviews = ({ ratingScore = 0, ratingCount = 0, reviews }) => {
 
-  console.log(reviews);
   const [open, setOpen] = useState(false);
 
   return (

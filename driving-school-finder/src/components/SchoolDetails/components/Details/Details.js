@@ -1,4 +1,3 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Divider from '@mui/material/Divider';
@@ -173,9 +172,8 @@ const Details = ({
         <Box marginTop={1}>
           <ul>
             {whyUs.map((item, i) => (
-              <li>
+              <li key={i}>
                 <Typography
-                  key={i}
                   variant={'body1'}
                   color={'text.secondary'}
                   marginTop={1}
