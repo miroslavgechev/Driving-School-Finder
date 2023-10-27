@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Rating from '@mui/material/Rating';
 import Chip from '@mui/material/Chip';
@@ -105,7 +104,8 @@ const Details = ({
                   <DirectionsCarFilledOutlinedIcon />
                 </Box>
               </ListItemAvatar>
-              <ListItemText
+
+              {/* <ListItemText
                 primary='Категории'
                 secondary={
                   categoriesServed.map((item) => (
@@ -122,7 +122,23 @@ const Details = ({
                 sx={{
                   margin: 0,
                 }}
-              />
+              /> */}
+
+              <div>
+                <Typography variant="body1">Категории</Typography>
+                <div>
+                  {categoriesServed.map((item) => (
+                    <Chip
+                      key={item}
+                      label={item}
+                      size={'small'}
+                      color={'secondary'}
+                      clickable
+                      sx={{ marginBottom: 1, marginTop: 1, marginRight: 1 }}
+                    />
+                  ))}
+                </div>
+              </div>
             </ListItem>
           </Grid>
 
@@ -141,10 +157,10 @@ const Details = ({
                   <PlaceOutlinedIcon />
                 </Box>
               </ListItemAvatar>
-              <ListItemText
-                primary='Обслужвани райони'
-                secondary={
-                  regionsServed.map((item) => (
+              <div>
+                <Typography variant="body1">Обслужвани райони</Typography>
+                <div>
+                  {regionsServed.map((item) => (
                     <Chip
                       key={item}
                       label={item}
@@ -153,12 +169,9 @@ const Details = ({
                       clickable
                       sx={{ marginTop: 1, marginRight: 1 }}
                     />
-                  ))
-                }
-                sx={{
-                  margin: 0,
-                }}
-              />
+                  ))}
+                </div>
+              </div>
             </ListItem>
           </Grid>
         </Grid>
