@@ -44,7 +44,11 @@ const Topbar = ({ onSidebarOpen = false }) => {
           component={'a'}
           sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
         >
-          <Typography color={'text.primary'}>Автошколи</Typography>
+          <Typography color={'text.primary'} sx={{
+            '&:hover': {
+              color: alpha(theme.palette.text.primary, 0.7),
+            }
+          }}>Автошколи</Typography>
         </Box>
 
         <Box
@@ -53,7 +57,11 @@ const Topbar = ({ onSidebarOpen = false }) => {
           component={'a'}
           sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
         >
-          <Typography color={'text.primary'}>ЧЗВ</Typography>
+          <Typography color={'text.primary'} sx={{
+            '&:hover': {
+              color: alpha(theme.palette.text.primary, 0.7),
+            }
+          }}>ЧЗВ</Typography>
         </Box>
 
         <Box
@@ -62,7 +70,11 @@ const Topbar = ({ onSidebarOpen = false }) => {
           component={'a'}
           sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
         >
-          <Typography color={'text.primary'}>За нас</Typography>
+          <Typography color={'text.primary'} sx={{
+            '&:hover': {
+              color: alpha(theme.palette.text.primary, 0.7),
+            }
+          }}>За нас</Typography>
         </Box>
 
         <Box marginLeft={4}>
