@@ -171,7 +171,7 @@ Driving School Finder
      - Password reset functionality.
    - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
 
-6. **Driving School Registration/Edit/Delete Page**:
+6. **Driving School Create/Edit/Delete Page**:
 
    - **Description**: Allows driving schools to register and create a profile on the platform.
    - **Functionalities**:
