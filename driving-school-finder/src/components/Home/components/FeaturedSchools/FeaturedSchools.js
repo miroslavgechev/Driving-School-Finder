@@ -188,6 +188,7 @@ const FeaturedSchools = () => {
                       sx={{
                         fontSize: '1em',
                         marginRight: '0.5em',
+                        color: theme.palette.text.secondary,
                       }}
                     />
                     <Typography variant={'subtitle2'} color="text.secondary">
@@ -199,6 +200,7 @@ const FeaturedSchools = () => {
                       sx={{
                         fontSize: '1em',
                         marginRight: '0.5em',
+                        color: theme.palette.text.secondary,
                       }}
                     />
                     <Typography variant={'subtitle2'} color="text.secondary">
