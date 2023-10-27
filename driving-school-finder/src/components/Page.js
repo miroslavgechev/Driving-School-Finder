@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
 
 import { ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
@@ -33,7 +32,3 @@ export default function Page({ children }) {
     </ThemeProvider>
   );
 }
-
-Page.propTypes = {
-  children: PropTypes.node.isRequired,
-};

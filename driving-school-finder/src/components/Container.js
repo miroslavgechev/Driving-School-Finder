@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 
 const Container = ({ children, ...rest }) => (
@@ -14,9 +13,5 @@ const Container = ({ children, ...rest }) => (
     {children}
   </Box>
 );
-
-Container.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default Container;
