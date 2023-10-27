@@ -97,7 +97,7 @@ const Topbar = ({ onSidebarOpen = false }) => {
             href="/"
             size="large"
           >
-            Вход за кандидати
+            Вход за курсисти
           </Button>
         </Box>
 

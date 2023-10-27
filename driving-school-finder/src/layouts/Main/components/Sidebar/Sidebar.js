@@ -103,7 +103,7 @@ const Sidebar = ({ open, variant, onClose }) => {
                 size="large"
                 fullWidth
               >
-                Вход за кандидати
+                Вход за курсисти
               </Button>
             </Box>
           </Box>
