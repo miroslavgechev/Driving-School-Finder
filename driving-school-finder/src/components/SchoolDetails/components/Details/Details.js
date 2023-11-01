@@ -135,6 +135,8 @@ const Details = ({
                       color={'secondary'}
                       clickable
                       sx={{ marginBottom: 1, marginTop: 1, marginRight: 1 }}
+                      component='a'
+                      href='#table'
                     />
                   ))}
                 </div>

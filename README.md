@@ -114,7 +114,7 @@ Driving School Finder
 
 **Coverage**
 
-- Cover categories A, B, B+, M
+- Cover categories AM, A, A1, A2, B1, B, BA
 
 ## Examples
 
@@ -123,6 +123,7 @@ Driving School Finder
 - https://www.bgpoll.net/avtomobili/avtoshkoli.html?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw21X0dl6ZGc8gBlBKJA_B-pqtICIdQo2jGACqDaH2KAUxv5juHSQAaAm_lEALw_wcB
 - FAQ - https://dc.bau.bg/%D1%87%D0%B5%D1%81%D1%82%D0%BE-%D0%B7%D0%B0%D0%B4%D0%B0%D0%B2%D0%B0%D0%BD%D0%B8-%D0%B2%D1%8A%D0%BF%D1%80%D0%BE%D1%81%D0%B8
 - Competition - https://avtoobuchenie.bg/
+- Type of categories - http://avtoinstruktor.bg/polezno/kategorii_za_mps
 
 ## Pages
 

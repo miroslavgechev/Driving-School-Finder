@@ -7,6 +7,7 @@ import Headline from './components/Headline/Headline';
 import Image from './components/Image/Image';
 import Details from './components/Details/Details';
 import Reviews from './components/Reviews/Reviews';
+import Courses from './components/Courses/Courses';
 
 import Container from 'components/Container';
 
@@ -44,11 +45,32 @@ const mock = {
     { fullName: 'Мирослав Гечев', date: '2023-03-25', reviewScore: 4, review: 'Справиха се добре, но има какво да се желае, най-вече откъм отношението.' },
     { fullName: 'Мирослав Гечев', date: '2023-03-25', reviewScore: 4, review: 'Справиха се добре, но има какво да се желае, най-вече откъм отношението.' },
     { fullName: 'Мирослав Гечев', date: '2023-03-25', reviewScore: 4, review: 'Справиха се добре, но има какво да се желае, най-вече откъм отношението.' },
-  ], //TO DO - add ratings
-  courses: [], //TO DO - add courses
+  ],
+  courses: [{
+    categoryName: 'A',
+    hoursTheory: '4',
+    hoursPractice: '20',
+    examTheoryInternalPrice: 'Безплатен',
+    examPracticeInternalPrice: 'Безплатен',
+    examTheoryExternalPrice: '80',
+    examPracticeExternalPrice: '80',
+    coursePrice: '600',
+  },
+  {
+    categoryName: 'B',
+    hoursTheory: '40',
+    hoursPractice: '36',
+    examTheoryInternalPrice: 'Безплатен',
+    examPracticeInternalPrice: 'Безплатен',
+    examTheoryExternalPrice: '80',
+    examPracticeExternalPrice: '80',
+    coursePrice: '1100',
+  }],
   ratingScore: 4.4,
   ratingCount: 77,
 };
+
+
 const ProductOverview = () => {
   return (
     <>
@@ -81,9 +103,17 @@ const ProductOverview = () => {
           </Grid>
         </Box>
       </Container>
+
+      <Container paddingY={4} id="reviews">
+        <Divider id='table' />
+      </Container>
+
+      <Courses courses={mock.courses} />
+
       <Container paddingY={4} id="reviews">
         <Divider />
       </Container>
+
       <Container>
         <Reviews ratingCount={mock.ratingCount} ratingScore={mock.ratingScore} reviews={mock.reviews} />
       </Container>
