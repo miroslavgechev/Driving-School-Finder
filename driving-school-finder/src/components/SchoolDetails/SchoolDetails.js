@@ -74,12 +74,12 @@ const mock = {
 const ProductOverview = () => {
   return (
     <>
-      <Box bgcolor={'alternate.main'}>
+      <Box bgcolor={'alternate.main'} sx={{ marginBottom: { xs: 2, sm: 2.5 } }}>
         <Container paddingY={{ xs: 2, sm: 2.5 }}>
           <Headline name={mock.name} logoUrl={mock.logoUrl} />
         </Container>
       </Box>
-      <Container>
+      <Container paddingY={{ xs: 2, sm: 2.5 }}>
         <Box>
           <Grid container spacing={{ xs: 2, md: 4 }}>
             <Grid item xs={12} md={7}>
@@ -114,7 +114,7 @@ const ProductOverview = () => {
         <Divider />
       </Container>
 
-      <Container>
+      <Container paddingY={{ xs: 2, sm: 2.5 }}>
         <Reviews ratingCount={mock.ratingCount} ratingScore={mock.ratingScore} reviews={mock.reviews} />
       </Container>
 

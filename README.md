@@ -149,7 +149,7 @@ Driving School Finder
      - Built on top of catalogue page.
      - Filters to narrow down results (e.g., location, services offered, ratings).
 
-4. **Driving School Profile Page**:
+4. **Driving School Details Page**:
 
    - **Description**: Detailed view of a specific driving school.
    - **Functionalities**:

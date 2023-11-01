@@ -22,7 +22,7 @@ const subtitles = {
 const Courses = ({ courses }) => {
 
   return (
-    <Container>
+    <Container paddingY={{ xs: 2, sm: 2.5 }}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 750 }} aria-label="simple table">
           <TableHead sx={{ bgcolor: 'alternate.dark' }}>
