@@ -8,17 +8,20 @@ import 'aos/dist/aos.css';
 import Page from './components/Page';
 import Main from 'layouts/Main/Main';
 // import Home from 'components/Home/Home';
-import SchoolDetails from './components/SchoolDetails/SchoolDetails';
+// import SchoolDetails from './components/SchoolDetails/SchoolDetails';
 // import Catalogue from './components/Catalog/Catalog';
+import Signin from 'components/Signin/Signin';
 
 const App = () => {
   return (
     <Page>
       <BrowserRouter>
         <Main>
-          <SchoolDetails />
+          {/* <SchoolDetails /> */}
           {/* <Home /> */}
           {/* <Catalogue /> */}
+          <Signin />
+
         </Main>
       </BrowserRouter>
     </Page>

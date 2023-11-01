@@ -85,7 +85,7 @@ const Topbar = ({ onSidebarOpen = false }) => {
             href="/"
             size="large"
           >
-            Вход за автошколи
+            Вход за курсисти
           </Button>
         </Box>
 
@@ -97,7 +97,7 @@ const Topbar = ({ onSidebarOpen = false }) => {
             href="/"
             size="large"
           >
-            Вход за курсисти
+            Вход за автошколи
           </Button>
         </Box>
 
