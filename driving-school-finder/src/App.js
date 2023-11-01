@@ -9,6 +9,7 @@ import Page from './components/Page';
 import Main from 'layouts/Main/Main';
 // import Home from 'components/Home/Home';
 import SchoolDetails from './components/SchoolDetails/SchoolDetails';
+// import Catalogue from './components/Catalog/Catalog';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Main>
           <SchoolDetails />
           {/* <Home /> */}
+          {/* <Catalogue /> */}
         </Main>
       </BrowserRouter>
     </Page>

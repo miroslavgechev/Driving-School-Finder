@@ -60,7 +60,7 @@ const mock = [
   },
 ];
 
-const FeaturedSchools = () => {
+const Schools = () => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
@@ -68,38 +68,6 @@ const FeaturedSchools = () => {
 
   return (
     <Box>
-      <Box marginBottom={4}>
-        <Typography
-          sx={{
-            textTransform: 'uppercase',
-            fontWeight: 'medium',
-          }}
-          gutterBottom
-          color={'secondary'}
-          align={'center'}
-        >
-          На фокус
-        </Typography>
-        <Typography
-          variant="h4"
-          align={'center'}
-          data-aos={'fade-up'}
-          gutterBottom
-          sx={{
-            fontWeight: 700,
-          }}
-        >
-          Предпочитани автошколи
-        </Typography>
-        <Typography
-          variant="h6"
-          align={'center'}
-          color={'text.secondary'}
-          data-aos={'fade-up'}
-        >
-          Разгледай автошколите в София и открий правилната за теб
-        </Typography>
-      </Box>
 
       <Grid container spacing={4}>
         {mock.map((item, i) => (
@@ -149,30 +117,7 @@ const FeaturedSchools = () => {
                         <Rating name="read-only" value={item.value} readOnly />
                       </Typography>
                     </Box>
-                    <Box
-                      padding={1}
-                      bgcolor={'background.paper'}
-                      boxShadow={1}
-                      borderRadius={2}
-                    >
-                      <Box
-                        component={'svg'}
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        width={16}
-                        height={16}
-                        color={'primary.main'}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                        />
-                      </Box>
-                    </Box>
+
                   </Box>
                 </CardMedia>
                 <CardContent>
@@ -244,7 +189,7 @@ const FeaturedSchools = () => {
               marginLeft={{ sm: 2 }}
               fullWidth={isMd ? false : true}
             >
-              Виж още...
+              Зареди още...
             </Box>
           </Box>
         </Grid>
@@ -253,4 +198,4 @@ const FeaturedSchools = () => {
   );
 };
 
-export default FeaturedSchools;
+export default Schools;
