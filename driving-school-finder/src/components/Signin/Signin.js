@@ -88,12 +88,9 @@ const Signin = () => {
 
               <TabPanel value={tabInUse} index={1}>
                 <FormSchool />
-
               </TabPanel>
 
-
             </Container>
-
           </Box>
 
           <Box
