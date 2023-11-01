@@ -62,9 +62,7 @@ const mock = [
 
 const Schools = () => {
   const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up('md'), {
-    defaultMatches: true,
-  });
+  const isMd = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Box>

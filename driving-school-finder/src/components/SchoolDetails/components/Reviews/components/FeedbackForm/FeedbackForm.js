@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -15,7 +14,7 @@ const mockFullName = {
   lastName: 'Гечев',
 };
 
-const FeedbackForm = ({ onClose, open }) => {
+const FeedbackList = ({ onClose, open }) => {
   const [currentScore, setCurrentScore] = useState(3);
 
   return (
@@ -92,9 +91,4 @@ const FeedbackForm = ({ onClose, open }) => {
   );
 };
 
-FeedbackForm.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-};
-
-export default FeedbackForm;
+export default FeedbackList;

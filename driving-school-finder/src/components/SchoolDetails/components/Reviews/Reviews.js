@@ -7,10 +7,12 @@ import Typography from '@mui/material/Typography';
 import Rating from '@mui/material/Rating';
 
 import FeedbackForm from './components/FeedbackForm/FeedbackForm';
+import FeedbackList from './components/FeedbackList/FeedbackList';
 
-const Reviews = ({ ratingScore = 0, ratingCount = 0, reviews }) => {
+const Reviews = ({ ratingScore, ratingCount, reviews }) => {
 
-  const [open, setOpen] = useState(false);
+  const [openToReview, setOpenToReview] = useState(false);
+  const [openFeedbackList, setOpenFeedbackList] = useState(false);
 
   return (
     <Box display={'flex'} justifyContent={'center'} alignItems={'center'}>
@@ -40,7 +42,11 @@ const Reviews = ({ ratingScore = 0, ratingCount = 0, reviews }) => {
             </Box>
           </Box>
           <Stack direction={'row'} spacing={2}>
-            <Button size={'large'} variant={'outlined'}>
+            <Button
+              size={'large'}
+              variant={'outlined'}
+              onClick={() => setOpenFeedbackList(true)}
+            >
               Виж всички
             </Button>
             <Button
@@ -49,7 +55,7 @@ const Reviews = ({ ratingScore = 0, ratingCount = 0, reviews }) => {
               sx={{
                 marginTop: { xs: 2, md: 0 },
               }}
-              onClick={() => setOpen(true)}
+              onClick={() => setOpenToReview(true)}
             >
               Дай оценка!
             </Button>
@@ -74,7 +80,9 @@ const Reviews = ({ ratingScore = 0, ratingCount = 0, reviews }) => {
           </Grid>
         ))}
       </Grid>
-      <FeedbackForm open={open} onClose={() => setOpen(false)} />
+      <FeedbackForm open={openToReview} onClose={() => setOpenToReview(false)} />
+      <FeedbackList open={openFeedbackList} onClose={() => setOpenFeedbackList(false)} reviews={reviews} />
+
     </Box>
   );
 };
