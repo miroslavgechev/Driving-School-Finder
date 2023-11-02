@@ -33,7 +33,8 @@ const Hero = () => {
       sx={{
         backgroundColor: theme.palette.alternate.main,
         background:
-          'url(https://images.pexels.com/photos/13861/IMG_3496bfree.jpg) no-repeat center',
+          'url(/hero.jpg) no-repeat center',
+        // 'url(https://images.pexels.com/photos/13861/IMG_3496bfree.jpg) no-repeat center',
         backgroundSize: 'cover',
         marginTop: 0,
         paddingTop: 13,
