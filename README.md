@@ -227,7 +227,11 @@ Driving School Finder
       - Select courses to compare.
       - Compare courses side by side in a table.
 
-13. **Nice to haves**
+13. **Error Page**
+
+    - **Description**: Displays a friendly error message when a user tries to access a page that doesn't exist.
+
+14. **Nice to haves**
     - Use moments.js for dates
     - Add to favorites button
     - Change the theme on sign-in and sign-up pages depending on the user role
