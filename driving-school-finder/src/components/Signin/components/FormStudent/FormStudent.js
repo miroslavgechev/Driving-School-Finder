@@ -15,7 +15,7 @@ const validationSchema = yup.object({
   email: yup
     .string()
     .trim()
-    .email('Необходим е валиден имейл')
+    .email('Въведи валиден имейл')
     .required('Имейлът е задължителнен, за да знаем, че си ти'),
   password: yup
     .string()
