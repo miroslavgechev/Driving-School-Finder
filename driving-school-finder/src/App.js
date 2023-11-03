@@ -10,8 +10,8 @@ import Main from 'layouts/Main/Main';
 // import Home from 'components/Home/Home';
 // import SchoolDetails from './components/SchoolDetails/SchoolDetails';
 // import Catalogue from './components/Catalog/Catalog';
-// import Signin from 'components/Signin/Signin';
-import Signup from 'components/Signup/Signup';
+import Signin from 'components/Signin/Signin';
+// import Signup from 'components/Signup/Signup';
 
 const App = () => {
   return (
@@ -21,8 +21,8 @@ const App = () => {
           {/* <SchoolDetails /> */}
           {/* <Home /> */}
           {/* <Catalogue /> */}
-          {/* <Signin /> */}
-          <Signup />
+          <Signin />
+          {/* <Signup /> */}
 
         </Main>
       </BrowserRouter>

@@ -6,8 +6,8 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 import Container from 'components/Container';
-import FormSchool from './components/FormSchool/FormSchool';
-import FormStudent from './components/FormStudent/FormStudent';
+import SigninFormSchool from './components/FormSchool/SigninFormSchool';
+import SigninFormStudent from './components/FormStudent/SignInFormStudent';
 
 
 
@@ -83,11 +83,11 @@ const Signin = () => {
                 </Tabs>
               </Box>
               <TabPanel value={tabInUse} index={0}>
-                <FormStudent />
+                <SigninFormStudent />
               </TabPanel>
 
               <TabPanel value={tabInUse} index={1}>
-                <FormSchool />
+                <SigninFormSchool />
               </TabPanel>
 
             </Container>

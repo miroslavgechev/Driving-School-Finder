@@ -23,7 +23,7 @@ const validationSchema = yup.object({
     .min(8, 'Паролата е неправилна'),
 });
 
-const FormSchool = () => {
+const SigninFormStudent = () => {
   const initialValues = {
     email: '',
     password: '',
@@ -90,7 +90,7 @@ const FormSchool = () => {
               <Typography variant={'subtitle2'}>
                 <Link
                   component={'a'}
-                  color={'secondary'}
+                  color={'primary'}
                   href={'/password-reset-cover'}
                   underline={'none'}
                 >
@@ -126,7 +126,7 @@ const FormSchool = () => {
                   Нямаш профил?{' '}
                   <Link
                     component={'a'}
-                    color={'secondary'}
+                    color={'primary'}
                     href={'/signup'}
                     underline={'none'}
                   >
@@ -134,8 +134,8 @@ const FormSchool = () => {
                   </Link>
                 </Typography>
               </Box>
-              <Button color='secondary' size={'large'} variant={'contained'} type={'submit'}>
-                Влез като автошкола
+              <Button size={'large'} variant={'contained'} type={'submit'}>
+                Влез като курсист
               </Button>
             </Box>
           </Grid>
@@ -146,4 +146,4 @@ const FormSchool = () => {
   );
 };
 
-export default FormSchool;
+export default SigninFormStudent;
