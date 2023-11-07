@@ -26,3 +26,13 @@ export const REGIONS = [
 ];
 
 export const CATEGORIES = ['AM', 'A', 'A1', 'A2', 'B1', 'B', 'BA'];
+
+export const TABLE_SUBTITLES = {
+  hoursTheory: 'Теория',
+  hoursPractice: 'Практика',
+  examTheoryInternalPrice: 'Изпит теория - вътрешен',
+  examPracticeInternalPrice: 'Изпит практика - вътрешен',
+  examTheoryExternalPrice: 'Изпит теория - ДАИ',
+  examPracticeExternalPrice: 'Изпит практика - ДАИ',
+  coursePrice: 'Цена на курса',
+};
