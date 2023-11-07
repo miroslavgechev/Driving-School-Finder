@@ -61,16 +61,9 @@ const Courses = ({ courses }) => {
                 {courses.map((item, i) => (
                   <TableCell key={i + item} sx={{ textAlign: 'center' }}>
 
-                    {key !== 'coursePrice' ?
-
-                      <Typography color={'text.secondary.contrastText'} variant={'subtitle2'} >
-                        {item[key]} {item[key] == 'Безплатен' ? '' : key.startsWith('hours') ? 'часа' : 'лв.'}
-                      </Typography>
-
-                      :
-                      <Typography color={'text.secondary.contrastText'} variant={'subtitle2'} fontWeight={900} >
-                        {item[key]} {item[key] == 'Безплатен' ? '' : key.startsWith('hours') ? 'часа' : 'лв.'}
-                      </Typography>}
+                    <Typography color={'text.secondary.contrastText'} variant={'subtitle2'} fontWeight={key === 'coursePrice' ? 900 : undefined} >
+                      {item[key]} {item[key] == 'Безплатен' ? '' : key.startsWith('hours') ? 'часа' : 'лв.'}
+                    </Typography>
 
                   </TableCell>
                 ))}
@@ -85,8 +78,6 @@ const Courses = ({ courses }) => {
         </Table>
       </TableContainer>
     </Container>
-
-
 
 
   );
