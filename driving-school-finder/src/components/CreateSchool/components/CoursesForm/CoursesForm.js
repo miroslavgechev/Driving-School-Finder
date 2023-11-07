@@ -7,6 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
@@ -21,11 +22,11 @@ const courses = ['A', 'B'];
 const CoursesForm = () => {
 
   return (
-    <Box>
+    <Container>
       <form>
         <Grid container spacing={4} paddingY={{ xs: 2, sm: 2.5 }}>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 750 }} aria-label="simple table">
+            <Table sx={{ minWidth: 750 }}>
               <TableHead sx={{ bgcolor: 'alternate.dark' }}>
                 <TableRow>
                   <TableCell />
@@ -39,7 +40,6 @@ const CoursesForm = () => {
                       </Typography>
                     </TableCell>
                   ))}
-                  <TableCell />
                 </TableRow>
               </TableHead>
 
@@ -75,12 +75,23 @@ const CoursesForm = () => {
 
                       </TableCell>
                     ))}
-
-                    <TableCell>
-
-                    </TableCell>
                   </TableRow>
                 ))}
+                <TableRow>
+                  <TableCell />
+
+                  {courses.map((item) => (
+                    <TableCell key={item} sx={{ textAlign: 'center' }}>
+                      <Button
+                        color={'primary'}
+                        variant={'text'}
+                        name={item}
+                      >
+                        Редакция на Категория "{item}"
+                      </Button>
+                    </TableCell>
+                  ))}
+                </TableRow>
               </TableBody>
 
             </Table>
@@ -109,7 +120,8 @@ const CoursesForm = () => {
           </Grid>
         </Grid>
       </form>
-    </Box >);
+    </Container>
+  );
 };
 
 export default CoursesForm;

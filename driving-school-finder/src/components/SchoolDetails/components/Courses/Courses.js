@@ -81,14 +81,3 @@ const Courses = ({ courses }) => {
 };
 
 export default Courses;
-
-/* <TableCell>
-                      <Typography
-                        color={'primary'}
-                        variant={'subtitle2'}
-                        fontWeight={700}
-                        sx={{ cursor: 'pointer' }}
-                      >
-                        Edit
-                      </Typography>
-                    </TableCell> */
