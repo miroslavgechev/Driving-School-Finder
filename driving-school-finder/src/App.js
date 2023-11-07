@@ -10,8 +10,9 @@ import Main from 'layouts/Main/Main';
 // import Home from 'components/Home/Home';
 // import SchoolDetails from './components/SchoolDetails/SchoolDetails';
 // import Catalogue from './components/Catalog/Catalog';
-import Signin from 'components/Signin/Signin';
+// import Signin from 'components/Signin/Signin';
 // import Signup from 'components/Signup/Signup';
+import CreateSchool from 'components/CreateSchool/CreateSchool';
 
 const App = () => {
   return (
@@ -21,9 +22,9 @@ const App = () => {
           {/* <SchoolDetails /> */}
           {/* <Home /> */}
           {/* <Catalogue /> */}
-          <Signin />
+          {/* <Signin /> */}
           {/* <Signup /> */}
-
+          <CreateSchool />
         </Main>
       </BrowserRouter>
     </Page>

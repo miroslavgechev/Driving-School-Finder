@@ -154,7 +154,7 @@ const Hero = () => {
                 >
                   <Autocomplete
                     options={areas}
-                    defaultValue={ratings[0]}
+                    defaultValue={areas[0]}
                     renderInput={(params) => (
                       <TextField {...params} label="Район" variant="outlined" fullWidth
                         InputProps={{
