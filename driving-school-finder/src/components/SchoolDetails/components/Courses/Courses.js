@@ -68,9 +68,6 @@ const Courses = ({ courses }) => {
                   </TableCell>
                 ))}
 
-                <TableCell>
-
-                </TableCell>
               </TableRow>
             ))}
           </TableBody>
