@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
@@ -41,14 +40,14 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
         position={'sticky'}
         sx={{
           top: 0,
-          backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
+          backgroundColor: bgcolor,
         }}
         elevation={trigger ? 1 : 0}
       >
         <Container paddingY={1}>
           <Topbar
             onSidebarOpen={handleSidebarOpen}
-            colorInvert={trigger ? false : colorInvert}
+            colorInvert={colorInvert}
           />
         </Container>
       </AppBar>
@@ -66,12 +65,6 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
       </Container>
     </Box>
   );
-};
-
-Main.propTypes = {
-  children: PropTypes.node,
-  colorInvert: PropTypes.bool,
-  bgcolor: PropTypes.string,
 };
 
 export default Main;
