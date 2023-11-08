@@ -47,8 +47,8 @@ Driving School Finder
 3. Update Requirements ✅
 4. Describe Views ✅
 5. Find a template ✅
-6. Develop UI
-7. Develop Basic Architecture
+6. Develop UI ✅
+7. Develop App
 8. Setup database
 9. Setup storage
 10. Setup authentication
@@ -219,7 +219,7 @@ Driving School Finder
     - **Functionalities**:
       - FAQs. (e.g. how to choose a driving school. What documents are needed, etc.)
 
-12. **Compare Schools**
+12. **Compare Schools** (optional)
 
     - **Description**: Allows users to compare courses from specfic schools side by side in a table.
     - **Functionalities**:
