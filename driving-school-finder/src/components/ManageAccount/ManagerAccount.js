@@ -5,11 +5,11 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
 import Container from 'components/Container';
-import Headline from './Headline/Headline';
-import EditPersonalDataForm from './EditPersonalDataForm/EditPersonalDataForm';
-import ChangePasswordForm from './ChangePasswordForm/ChangePasswordForm';
-import ManageReviews from './ManageReviews/ManageReviews';
-import ManageSchools from './ManageSchools/ManageSchools';
+import Headline from './components/Headline/Headline';
+import EditPersonalDataForm from './components/EditPersonalDataForm/EditPersonalDataForm';
+import ChangePasswordForm from './components/ChangePasswordForm/ChangePasswordForm';
+import ManageReviews from './components/ManageReviews/ManageReviews';
+import ManageSchools from './components/ManageSchools/ManageSchools';
 
 //TODO Add validation
 

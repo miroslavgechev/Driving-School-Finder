@@ -13,7 +13,8 @@ import Main from 'layouts/Main/Main';
 // import Signin from 'components/Signin/Signin';
 // import Signup from 'components/Signup/Signup';
 // import CreateSchool from 'components/CreateSchool/CreateSchool';
-import ManageAccount from 'components/ManageAccount/ManagerAccount';
+// import ManageAccount from 'components/ManageAccount/ManagerAccount';
+import Faq from 'components/Faq/Faq';
 
 const App = () => {
   return (
@@ -26,7 +27,8 @@ const App = () => {
           {/* <Signin /> */}
           {/* <Signup /> */}
           {/* <CreateSchool /> */}
-          <ManageAccount />
+          {/* <ManageAccount /> */}
+          <Faq />
         </Main>
       </BrowserRouter>
     </Page>
