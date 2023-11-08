@@ -96,6 +96,7 @@ const CoursesForm = () => {
 
             </Table>
           </TableContainer>
+
           <Grid item container xs={12}>
             <Box
               display="flex"
@@ -118,6 +119,7 @@ const CoursesForm = () => {
               </Button>
             </Box>
           </Grid>
+
         </Grid>
       </form>
     </Container>
