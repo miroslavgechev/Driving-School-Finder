@@ -70,7 +70,7 @@ const NotFound = () => {
               </Box>
             </Container>
           </Box>
-          
+
           <Box
             sx={{
               flex: { xs: '0 0 100%', md: '0 0 50%' },
@@ -123,7 +123,7 @@ const NotFound = () => {
                       component={'img'}
                       loading="lazy"
                       src={
-                        '/notfound.jpg'
+                        'notfound.avif'
                       }
                       height={{ xs: 'auto', md: 1 }}
                       maxHeight={{ xs: 300, md: 1 }}
