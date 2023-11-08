@@ -235,6 +235,7 @@ Driving School Finder
     - Use moments.js for dates
     - Add to favorites button
     - Change the theme on sign-in and sign-up pages depending on the user role
+    - Add paralax effect to the home page and the about page
 
 ---- TO BE REVISED AFTER PROJECT COMPLETION---
 
