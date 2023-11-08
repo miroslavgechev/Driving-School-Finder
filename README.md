@@ -210,8 +210,8 @@ Driving School Finder
 
 10. **About Page**:
 
-- **Description**: Provides information about the platform, the team behind it, and its mission.
-- **Functionalities**: Static content.
+    - **Description**: Provides information about the platform, the team behind it, and its mission.
+    - **Functionalities**: Static content.
 
 11. **FAQ**:
 
