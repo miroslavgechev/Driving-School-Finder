@@ -12,7 +12,8 @@ import Main from 'layouts/Main/Main';
 // import Catalogue from './components/Catalog/Catalog';
 // import Signin from 'components/Signin/Signin';
 // import Signup from 'components/Signup/Signup';
-import CreateSchool from 'components/CreateSchool/CreateSchool';
+// import CreateSchool from 'components/CreateSchool/CreateSchool';
+import ManageAccount from 'components/ManageAccount/ManagerAccount';
 
 const App = () => {
   return (
@@ -24,7 +25,8 @@ const App = () => {
           {/* <Catalogue /> */}
           {/* <Signin /> */}
           {/* <Signup /> */}
-          <CreateSchool />
+          {/* <CreateSchool /> */}
+          <ManageAccount />
         </Main>
       </BrowserRouter>
     </Page>
