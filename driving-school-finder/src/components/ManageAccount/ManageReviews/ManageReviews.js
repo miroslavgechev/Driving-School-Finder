@@ -147,7 +147,15 @@ const ManageReviews = () => {
             </Table>
           </TableContainer>
         </Grid>
+        <Grid
+          item
+          container
+          xs={12}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
 
+        </Grid>
       </Grid>
 
       <EditFeedbackForm open={openToReview} onClose={() => setOpenToReview(false)} />

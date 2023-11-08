@@ -104,7 +104,6 @@ const ManageSchools = () => {
               </Table>
             </TableContainer>
           </Grid>
-
         </Grid>
       </form>
     </Container>
