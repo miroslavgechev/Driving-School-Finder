@@ -14,7 +14,7 @@ const mockFullName = {
   lastName: 'Гечев',
 };
 
-const FeedbackList = ({ onClose, open }) => {
+const FeedbackForm = ({ onClose, open }) => {
   const [currentScore, setCurrentScore] = useState(3);
 
   return (
@@ -91,4 +91,4 @@ const FeedbackList = ({ onClose, open }) => {
   );
 };
 
-export default FeedbackList;
+export default FeedbackForm;
