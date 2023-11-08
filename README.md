@@ -221,7 +221,7 @@ Driving School Finder
 
 12. **Compare Schools**
 
-    - **Description**: Allows users to compare courses from specfici schools side by side in a table.
+    - **Description**: Allows users to compare courses from specfic schools side by side in a table.
     - **Functionalities**:
       - Select schools to compare.
       - Select courses to compare.
