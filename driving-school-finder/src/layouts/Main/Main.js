@@ -35,7 +35,7 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   });
 
   return (
-    <Box>
+    <Box style={{ overflowY: 'scroll', height: '100vh' }}>
       <AppBar
         position={'sticky'}
         sx={{
