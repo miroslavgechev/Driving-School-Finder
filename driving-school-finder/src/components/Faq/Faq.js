@@ -11,7 +11,7 @@ import { useTheme } from '@mui/material/styles';
 
 import Headline from './components/Headline/Headline';
 
-import { FAQ } from '../../CONSTANTS';
+import { FAQ } from '../../dbTemp';
 
 const Faq = () => {
 

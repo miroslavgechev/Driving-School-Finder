@@ -9,14 +9,14 @@ import Page from './components/Page';
 import Main from 'layouts/Main/Main';
 // import Home from 'components/Home/Home';
 // import SchoolDetails from './components/SchoolDetails/SchoolDetails';
-// import Catalogue from './components/Catalog/Catalog';
+import Catalogue from './components/Catalog/Catalog';
 // import Signin from 'components/Signin/Signin';
 // import Signup from 'components/Signup/Signup';
 // import CreateSchool from 'components/CreateSchool/CreateSchool';
 // import ManageAccount from 'components/ManageAccount/ManagerAccount';
 // import Faq from 'components/Faq/Faq';
 // import NotFound from 'components/NotFound/NotFound';
-import About from 'components/About/About';
+// import About from 'components/About/About';
 
 const App = () => {
   return (
@@ -25,14 +25,14 @@ const App = () => {
         <Main>
           {/* <SchoolDetails /> */}
           {/* <Home /> */}
-          {/* <Catalogue /> */}
+          <Catalogue />
           {/* <Signin /> */}
           {/* <Signup /> */}
           {/* <CreateSchool /> */}
           {/* <ManageAccount /> */}
           {/* <Faq /> */}
           {/* <NotFound /> */}
-          <About />
+          {/* <About /> */}
         </Main>
       </BrowserRouter>
     </Page>
