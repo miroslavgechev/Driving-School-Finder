@@ -48,10 +48,10 @@ Driving School Finder
 4. Describe Views ✅
 5. Find a template ✅
 6. Develop UI ✅
-7. Develop App
-8. Setup database
-9. Setup storage
-10. Setup authentication
+7. Setup database ✅
+8. Setup storage ✅
+9. Setup authentication ✅
+10. Develop App
 11. Connect to Backend
 12. Refactor Code to css modules.
 13. Move Static images to public
