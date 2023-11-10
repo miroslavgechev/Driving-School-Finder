@@ -6,8 +6,8 @@ import Container from 'components/Container';
 import FeaturedSchools from './components/FeaturedSchools/Schools';
 import Hero from './components/FilterBar/FilterBar';
 
-// import { getSchools, getSpecificFieldOfAllSchools, getSchoolByName } from 'services/firestoreTest';/
-// import { addSchool } from 'services/firestoreTest';
+// import { getSchools, getSpecificFieldOfAllSchools, getSchoolByName } from 'services/firebaseFirestoreTest';/
+// import { addSchool } from 'services/firebaseFirestoreTest';
 
 const Catalogue = () => {
   //TODO Temp Code to test fetching data from the database
