@@ -62,7 +62,7 @@ const SchoolForm = () => {
   return (
     <Box>
       {console.log(user)}
-      {console.log(user.uid)}
+      {console.log(user?.uid)}
 
       <form>
         <Grid container spacing={4}>

@@ -13,7 +13,7 @@ import { initializeApp } from 'firebase/app';
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-function useAuth() {
+const useAuth = () => {
   const [user, setUser] = useState(null);
   // const [loading, setLoading] = useState(true);
 
@@ -49,10 +49,11 @@ function useAuth() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, setUser);
+
     return unsubscribe;
   }, []);
 
   return { user, register, login, logout };
-}
+};
 
 export default useAuth;
