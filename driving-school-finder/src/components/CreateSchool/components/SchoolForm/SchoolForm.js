@@ -19,6 +19,8 @@ import { useTheme } from '@mui/material/styles';
 
 import { REGIONS, CATEGORIES } from 'CONSTANTS';
 
+import { downloadFile, uploadSchoolLogo } from 'services/firebaseStorageTest';
+
 const SchoolForm = () => {
   const [image, setImage] = useState(null);
 
@@ -27,9 +29,14 @@ const SchoolForm = () => {
   const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
   const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-  const handleFileChange = (event) => {
-    setImage(event.target.files[0]);
+  //!Test upload of files
+  const handleFileChange = async (event) => {
+    // setImage(event.target.files[0]);
+    await uploadSchoolLogo(event.target.files[0]);
+    const url = await downloadFile('school/id-num/logo');
+    setImage(url);
   };
+  //!Test upoad of files end
 
   const handleDelete = () => {
     setImage(null);
@@ -76,7 +83,7 @@ const SchoolForm = () => {
                   justifyContent={'center'}
                   alignSelf={'center'}
                 >
-                  <img src={URL.createObjectURL(image)} alt="Main" style={{ width: '100px', height: '100px', borderRadius: '8px' }} />
+                  <img src={image} alt="Main" style={{ width: '100px', height: '100px', borderRadius: '8px' }} />
                   <Button onClick={() => handleDelete()}>Изтрий</Button>
                 </Box>
                 :
