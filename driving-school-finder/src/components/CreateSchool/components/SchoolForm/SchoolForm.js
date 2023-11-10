@@ -20,6 +20,7 @@ import { useTheme } from '@mui/material/styles';
 import { REGIONS, CATEGORIES } from 'CONSTANTS';
 
 import { downloadFile, uploadSchoolLogo } from 'services/firebaseStorageTest';
+import { useAuthContext } from 'contexts/authContext';
 
 const SchoolForm = () => {
   const [image, setImage] = useState(null);
@@ -38,12 +39,31 @@ const SchoolForm = () => {
   };
   //!Test upoad of files end
 
+  //!Test authentication
+  const { user, register, login, logout } = useAuthContext();
+
+  const registerUserTemp = async () => {
+    await register();
+  };
+
+  const loginUserTemp = async () => {
+    await login();
+  };
+
+  const logoutUserTemp = async () => {
+    await logout();
+  };
+  //!Test authentication end
+
   const handleDelete = () => {
     setImage(null);
   };
 
   return (
     <Box>
+      {console.log(user)}
+      {console.log(user.uid)}
+
       <form>
         <Grid container spacing={4}>
 
@@ -107,6 +127,53 @@ const SchoolForm = () => {
             </Box>
 
           </Grid>
+
+          {/* //!Test registration */}
+          <Grid item container xs={12} sm={12} display={'flex'} justifyContent={'center'}>
+            <Box
+              display="flex"
+              flexDirection={{ xs: 'column', sm: 'row' }}
+              alignItems={{ xs: 'stretched', sm: 'flex-end' }}
+              alignContent={{ sm: 'center' }}
+              justifyContent={'center'}
+              width={1}
+              marginBottom={{ xs: 0, sm: 0.5 }}
+              gap={2}
+            >
+              <Button
+                variant="contained"
+                color='success'
+                component="label"
+                size={'large'}
+                fullWidth
+                onClick={() => registerUserTemp()}
+              >
+                Регистрация - test button
+              </Button>
+              <Button
+                variant="contained"
+                color='warning'
+                component="label"
+                size={'large'}
+                fullWidth
+                onClick={() => loginUserTemp()}
+              >
+                Вход - test button
+              </Button>
+              <Button
+                variant="contained"
+                color='error'
+                component="label"
+                size={'large'}
+                fullWidth
+                onClick={() => logoutUserTemp()}
+              >
+                Изход - test button
+              </Button>
+            </Box>
+          </Grid>
+          {/* //!Test registration end */}
+
 
           <Grid item xs={12}>
             <Typography

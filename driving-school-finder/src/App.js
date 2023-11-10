@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from 'contexts/authContext';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -22,18 +23,20 @@ const App = () => {
   return (
     <Page>
       <BrowserRouter>
-        <Main>
-          {/* <SchoolDetails /> */}
-          {/* <Home /> */}
-          {/* <Catalogue /> */}
-          {/* <Signin /> */}
-          {/* <Signup /> */}
-          <CreateSchool />
-          {/* <ManageAccount /> */}
-          {/* <Faq /> */}
-          {/* <NotFound /> */}
-          {/* <About /> */}
-        </Main>
+        <AuthProvider>
+          <Main>
+            {/* <SchoolDetails /> */}
+            {/* <Home /> */}
+            {/* <Catalogue /> */}
+            {/* <Signin /> */}
+            {/* <Signup /> */}
+            <CreateSchool />
+            {/* <ManageAccount /> */}
+            {/* <Faq /> */}
+            {/* <NotFound /> */}
+            {/* <About /> */}
+          </Main>
+        </AuthProvider>
       </BrowserRouter>
     </Page>
   );
