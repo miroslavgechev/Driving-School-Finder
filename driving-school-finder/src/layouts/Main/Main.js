@@ -11,6 +11,8 @@ import Topbar from './components/Topbar/Topbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
 
+import styles from './Main.module.css';
+
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
@@ -37,9 +39,8 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   return (
     <Box>
       <AppBar
-        position={'sticky'}
+        className={styles.appBar}
         sx={{
-          top: 0,
           backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
         }}
         elevation={trigger ? 1 : 0}
