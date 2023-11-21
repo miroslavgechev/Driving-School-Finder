@@ -1,88 +1,74 @@
 import React from 'react';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-
 import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsRounded';
+
+import { Link } from 'react-router-dom';
+
+import styles from './Topbar.module.css';
 
 const Topbar = ({ onSidebarOpen = false }) => {
   const theme = useTheme();
 
   return (
-    <Box
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
-      width={1}
-    >
-      <Box
-        display={'flex'}
-        component="a"
-        href="/"
-        title="Driving School Finder"
-        width={{ xs: 100, md: 120 }}
-        sx={{ textDecoration: 'none' }}
-      >
-
-        <Typography>
-          <SportsMotorsportsRoundedIcon
-            sx={{
-              fontSize: '3em',
-              color: '#000000'
-            }}
-
-          />
-        </Typography>
+    <Box className={styles.box}>
+      <Box width={{ xs: 100, md: 120 }}>
+        <Link to='/' className={styles.link}>
+          <Typography>
+            <SportsMotorsportsRoundedIcon
+              className={styles.headerIcon}
+            />
+          </Typography>
+        </Link>
       </Box>
 
-      <Box sx={{ display: { xs: 'none', md: 'flex' } }} alignItems={'center'}>
-        <Box
-          marginLeft={4}
-          href="/"
-          component={'a'}
-          sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
-        >
-          <Typography color={'text.primary'} sx={{
-            '&:hover': {
-              color: alpha(theme.palette.text.primary, 0.7),
-            }
-          }}>Автошколи</Typography>
+      <Box
+        sx={{ display: { xs: 'none', md: 'flex' } }}
+        className={styles.alignCenter}>
+        <Box marginLeft={4}>
+          <Link to='/school/all' className={styles.link}>
+            <Typography
+              color={'text.primary'}
+              sx={{
+                '&:hover': {
+                  color: alpha(theme.palette.text.primary, 0.7),
+                }
+              }}>Автошколи</Typography>
+          </Link>
         </Box>
 
-        <Box
-          marginLeft={4}
-          href="/"
-          component={'a'}
-          sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
-        >
-          <Typography color={'text.primary'} sx={{
-            '&:hover': {
-              color: alpha(theme.palette.text.primary, 0.7),
-            }
-          }}>ЧЗВ</Typography>
+        <Box marginLeft={4}>
+          <Link to='/faq' className={styles.link}>
+            <Typography
+              color={'text.primary'}
+              sx={{
+                '&:hover': {
+                  color: alpha(theme.palette.text.primary, 0.7),
+                }
+              }}>ЧЗВ</Typography>
+          </Link>
         </Box>
 
-        <Box
-          marginLeft={4}
-          href="/"
-          component={'a'}
-          sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
-        >
-          <Typography color={'text.primary'} sx={{
-            '&:hover': {
-              color: alpha(theme.palette.text.primary, 0.7),
-            }
-          }}>За нас</Typography>
+        <Box marginLeft={4}>
+          <Link to='/about' className={styles.link}>
+            <Typography color={'text.primary'} sx={{
+              '&:hover': {
+                color: alpha(theme.palette.text.primary, 0.7),
+              }
+            }}>За нас</Typography>
+          </Link>
         </Box>
 
         <Box marginLeft={4}>
           <Button
             variant="contained"
             color="primary"
-            component="a"
-            href="/"
+            component={Link}
+            to='/signin'
             size="large"
           >
             Вход за курсисти
@@ -93,8 +79,8 @@ const Topbar = ({ onSidebarOpen = false }) => {
           <Button
             variant="contained"
             color="secondary"
-            component="a"
-            href="/"
+            component={Link}
+            to='/signup'
             size="large"
           >
             Вход за автошколи
@@ -103,10 +89,11 @@ const Topbar = ({ onSidebarOpen = false }) => {
 
       </Box>
 
-      <Box sx={{ display: { xs: 'block', md: 'none' } }} alignItems={'center'}>
+      <Box
+        sx={{ display: { xs: 'block', md: 'none' } }}
+        className={styles.alignCenter}>
         <Button
           onClick={() => onSidebarOpen()}
-          aria-label="Menu"
           variant={'outlined'}
           sx={{
             borderRadius: 2,

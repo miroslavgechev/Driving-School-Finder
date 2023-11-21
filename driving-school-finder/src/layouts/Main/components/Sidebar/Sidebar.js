@@ -5,6 +5,9 @@ import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsRounded';
 
+import { Link } from 'react-router-dom';
+
+import styles from './Sidebar.module.css';
 
 const Sidebar = ({ open, variant, onClose }) => {
   return (
@@ -22,70 +25,51 @@ const Sidebar = ({ open, variant, onClose }) => {
     >
       <Box
         sx={{
-          height: '100%',
           padding: 1,
         }}
+        className={styles.maxHeight}
       >
 
         <Box>
           <Box width={1} paddingX={2} paddingY={1}>
-            <Box
-              display={'flex'}
-              component="a"
-              href="/"
-              title="Driving School Finder"
-              width={{ xs: 100, md: 120 }}
-              sx={{ textDecoration: 'none' }}
-            >
-
-              <Typography>
-                <SportsMotorsportsRoundedIcon
-                  sx={{
-                    fontSize: '3em',
-                    color: '#000000'
-                  }}
-
-                />
-              </Typography>
-
+            <Box width={{ xs: 100, md: 120 }}>
+              <Link to='/' className={styles.link}>
+                <Typography>
+                  <SportsMotorsportsRoundedIcon
+                    className={styles.headerIcon}
+                  />
+                </Typography>
+              </Link>
             </Box>
           </Box>
+
           <Box paddingX={2} paddingY={2}>
-            <Box
-              marginLeft={4}
-              href="/"
-              component={'a'}
-              sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
-            >
-              <Typography color={'text.primary'}>Автошколи</Typography>
+
+            <Box paddingY={2}>
+              <Link to='/school/all' className={styles.link}>
+                <Typography color={'text.primary'}>Автошколи</Typography>
+              </Link>
             </Box>
 
-            <Box
-              marginLeft={4}
-              href="/"
-              component={'a'}
-              sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
-            >
-              <Typography color={'text.primary'}>ЧЗВ</Typography>
+            <Box paddingY={2}>
+              <Link to='/faq' className={styles.link}>
+                <Typography color={'text.primary'}>ЧЗВ</Typography>
+              </Link>
             </Box>
 
-            <Box
-              marginLeft={4}
-              href="/"
-              component={'a'}
-              sx={{ cursor: 'pointer', textDecoration: 'none !important' }}
-            >
-              <Typography color={'text.primary'}>За нас</Typography>
+            <Box paddingY={2}>
+              <Link to='/about' className={styles.link}>
+                <Typography color={'text.primary'}>За нас</Typography>
+              </Link>
             </Box>
 
             <Box marginTop={2}>
               <Button
-                size={'large'}
                 variant="contained"
-                component="a"
-                href="/"
-                target={'blank'}
                 color="primary"
+                component={Link}
+                to='/signin'
+                size="large"
                 fullWidth
 
               >
@@ -97,9 +81,8 @@ const Sidebar = ({ open, variant, onClose }) => {
               <Button
                 variant="contained"
                 color="secondary"
-                component="a"
-                target="blank"
-                href="/"
+                component={Link}
+                to='/signup'
                 size="large"
                 fullWidth
               >
@@ -108,7 +91,6 @@ const Sidebar = ({ open, variant, onClose }) => {
             </Box>
           </Box>
         </Box>
-
       </Box>
     </Drawer>
   );

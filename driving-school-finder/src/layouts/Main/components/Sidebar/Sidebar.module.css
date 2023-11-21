@@ -1,0 +1,13 @@
+.link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.headerIcon {
+    font-size: 3em !important;
+    color: #000000;
+}
+
+.maxHeight {
+    height: 100%;
+}
