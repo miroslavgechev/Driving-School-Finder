@@ -11,7 +11,7 @@ import Topbar from './components/Topbar/Topbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
 
-import styles from './Main.module.css';
+import styles from './main.module.css';
 
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const theme = useTheme();

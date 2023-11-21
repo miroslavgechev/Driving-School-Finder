@@ -9,7 +9,7 @@ import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsR
 
 import { Link } from 'react-router-dom';
 
-import styles from './Topbar.module.css';
+import styles from './topbar.module.css';
 
 const Topbar = ({ onSidebarOpen = false }) => {
   const theme = useTheme();

@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
-import styles from './Footer.module.css';
+import styles from './footer.module.css';
 
 const Footer = () => {
   return (

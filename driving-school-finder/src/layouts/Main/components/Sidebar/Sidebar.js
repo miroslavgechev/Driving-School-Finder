@@ -7,7 +7,7 @@ import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsR
 
 import { Link } from 'react-router-dom';
 
-import styles from './Sidebar.module.css';
+import styles from './sidebar.module.css';
 
 const Sidebar = ({ open, variant, onClose }) => {
   return (
