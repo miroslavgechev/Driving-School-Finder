@@ -6,18 +6,29 @@ import {
   getFirestore,
   collection,
   getDocs,
+  setDoc,
   addDoc,
+  doc,
   query,
   where,
 } from 'firebase/firestore';
-
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
 
 import { schoolMock } from 'dbTemp';
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+export const addUserData = async (uid, { role, firstName, lastName }) => {
+  try {
+    await setDoc(doc(db, 'users', uid), {
+      role,
+      firstName,
+      lastName,
+    });
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
 // Get a list of schools from the database
 export const getSchools = async () => {
