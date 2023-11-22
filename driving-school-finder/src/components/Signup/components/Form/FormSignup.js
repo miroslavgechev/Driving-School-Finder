@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -15,13 +16,10 @@ import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Alert from '@mui/material/Alert';
-
-import { Link } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { useAuthContext } from '../../../../contexts/authContext';
-
 import { ERROR_MESSAGES } from 'CONSTANTS';
-
 import styles from './formSignup.module.css';
 
 const validationSchema = yup.object({
@@ -63,10 +61,11 @@ const roles = {
 
 const SignupForm = () => {
   const [color, setColor] = useState('primary');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
   const { register } = useAuthContext();
   const navigate = useNavigate();
-
-  //! Add loading or suspense!
 
   const initialValues = {
     firstName: '',
@@ -79,14 +78,24 @@ const SignupForm = () => {
 
   const onSubmit = async (values) => {
     try {
+      formik.setStatus(null);
+      setIsLoading(true);
       await register(values);
-      navigate('/school/all');
+      setIsSuccess(true);
+
+      setTimeout(() => {
+        navigate('/school/all');
+        setIsLoading(false);
+      }, 2000);
+
     } catch (error) {
       if (error.message === ERROR_MESSAGES.emailTaken) {
         formik.setErrors({ email: error.message });
       } else {
         formik.setStatus(ERROR_MESSAGES.defaultError);
       }
+      setIsLoading(false);
+      setIsSuccess(false);
     }
   };
 
@@ -247,15 +256,24 @@ const SignupForm = () => {
             />
           </Grid>
 
-          <Grid
+          {formik.status &&
+            <Grid
+              item
+              container
+              xs={12}
+              className={styles.centeredGridContainer}
+            >
+              <Alert className={styles.fullWidth} severity="error">{formik.status}</Alert>
+            </Grid>}
+
+          {isSuccess && <Grid
             item
             container
             xs={12}
-            justifyContent={'center'}
-            alignItems={'center'}
+            className={styles.centeredGridContainer}
           >
-            {formik.status && <Alert severity="error">{formik.status}</Alert>}
-          </Grid>
+            <Alert className={styles.fullWidth} severity="success">Успя! Пренасочваме те...</Alert>
+          </Grid>}
 
           <Grid item container xs={12}>
             <Box className={styles.bottomBox}>
@@ -273,7 +291,8 @@ const SignupForm = () => {
                 </Typography>
               </Box>
 
-              <Button size='large' variant='contained' color={color} type='submit'>
+              <Button size='large' variant='contained' color={color} type='submit' disabled={isLoading}>
+                {isLoading && <CircularProgress size={24} />}
                 Регистрация като {formik.values.role === roles.student ? 'курсист' : 'автошкола'}
               </Button>
 

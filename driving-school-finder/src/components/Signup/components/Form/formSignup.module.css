@@ -17,6 +17,15 @@
     text-decoration: none;
 }
 
+.centeredGridContainer {
+    justify-content: center;
+    align-items: center;
+}
+
+.fullWidth{
+    width: 100%;
+}
+
 @media screen and (min-width: 600px) {
     .bottomBox {
         flex-direction: row;
