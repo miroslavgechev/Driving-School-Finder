@@ -37,3 +37,8 @@ export const TABLE_SUBTITLES = {
   coursePrice: 'Цена на курса',
 };
 
+export const ERROR_MESSAGES = {
+  emailTaken: 'Този имейл вече е регистриран',
+  defaultError: 'Нещо се обърка, опитай отново!'
+};
+
