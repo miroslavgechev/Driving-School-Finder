@@ -5,32 +5,17 @@ import Container from 'components/Container';
 import SignupForm from './components/Form/FormSignup';
 import RightSidePhotoCover from '../shared/RightSidePhotoCover/RightSidePhotoCover';
 
+import styles from './signup.module.css';
+
 const Signup = () => {
   return (
-    <Box
-      sx={{
-        width: 1,
-        height: 1,
-        overflow: 'hidden',
-      }}
-    >
+    <Box className={styles.mainBox}>
       <Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
-        <Box
-          display={'flex'}
-          flexDirection={{ xs: 'column', md: 'row' }}
-          position={'relative'}
-        >
-          <Box
-            width={1}
-            order={{ xs: 2, md: 1 }}
-            display={'flex'}
-            alignItems={'center'}
-          >
-
+        <Box className={styles.mainContainerBox}>
+          <Box className={styles.formContainer}>
             <Container>
               <SignupForm />
             </Container>
-
           </Box>
 
           <RightSidePhotoCover imgSrc={'/signup.jpg'} />
