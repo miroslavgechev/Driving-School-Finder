@@ -1,4 +1,4 @@
 .appBar {
-    position: sticky;
+    position: sticky !important;
     top: 0;
 }
