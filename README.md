@@ -77,11 +77,11 @@ Driving School Finder
 
 **Fleet**
 
-- Fleet by car - photos, model, year;
-- Instructors (list of instructors) + photos + short bio - years of experience; something worth noting;
+- Fleet by car - photos, model, year; ❌
+- Instructors (list of instructors) + photos + short bio - years of experience; something worth noting; ❌
 - Photos - gallery;
-- Videos - link to Youtube;
-- Why us? Up to three things. Five things if paid.
+- Videos - link to Youtube; ❌
+- Why us? Up to three things. Five things if paid. ❌
 
 **Courses**
 
@@ -99,16 +99,16 @@ Driving School Finder
 - Reviews - by users. (rating, comment, date, user).
 - Total Rating (average of all ratings) + number of users who rated
 
-### Paid Subscription
+### Paid Subscription ❌
 
 **Options**
 
-- More than 3 things in Why us
-- More than 2 options per course
-- Ability to add special courses
-- Video Introduction: Allow schools to embed or upload a short video introducing their institution, facilities, instructors, or showcasing testimonies from successful students.
-- Highlighted Reviews: Schools can pin or highlight certain positive reviews that they believe represent them best.
-- Special Badge: A "Premium" or "Featured" badge on their profile and listings which signifies that they are a paid subscriber.
+- More than 3 things in Why us ❌
+- More than 2 options per course ❌
+- Ability to add special courses ❌
+- Video Introduction: Allow schools to embed or upload a short video introducing their institution, facilities, instructors, or showcasing testimonies from successful students. ❌
+- Highlighted Reviews: Schools can pin or highlight certain positive reviews that they believe represent them best. ❌
+- Special Badge: A "Premium" or "Featured" badge on their profile and listings which signifies that they are a paid subscriber. ❌
 
 ## Project Scope
 
@@ -158,9 +158,9 @@ Driving School Finder
      - User reviews and ratings.
      - List of courses/services offered with pricing in a table.
      - Photo gallery / videos.
-     - Fleet of cars - basic information about a car.
-     - Instructors - photos and short bio.
-     - Booking or inquiry form for lessons.
+     - Fleet of cars - basic information about a car. ❌
+     - Instructors - photos and short bio. ❌
+     - Booking or inquiry form for lessons. ❌
      - Map integration showing the school's location.
 
 5. **Login/Signup Page**:
@@ -168,9 +168,8 @@ Driving School Finder
    - **Description**: Allows users and driving schools to create accounts or log into existing ones.
    - **Functionalities**:
      - Form for logging in.
-     - Option to sign up.
+     - Option to sign up.✅
      - Password reset functionality.
-   - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
 
 6. **Driving School Create/Edit/Delete Page**:
 
@@ -180,6 +179,7 @@ Driving School Finder
      - Option to upload photos.
      - Optinal: Verification process to ensure authenticity within 24 hours.
      - Load premium vs free table of features.
+   - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
 
 7. **User Review & Rating Page**:
 
@@ -188,10 +188,10 @@ Driving School Finder
      - Rating - 5 stars.
      - Text input for detailed reviews.
      - View All Page - list of all reviews for specific school.
-     - Optional: Ability for users to upload images (e.g., of their driving license or the school's facility).
-     - Optional: Ability for users to upvote/downvote reviews.
-     - Optional: Ability for users to report reviews.
-     - Optional: Ability for the author to reply to reviews.
+     - Optional: Ability for users to upload images (e.g., of their driving license or the school's facility). ❌
+     - Optional: Ability for users to upvote/downvote reviews. ❌
+     - Optional: Ability for users to report reviews. ❌
+     - Optional: Ability for the author to reply to reviews. ❌
 
 8. **User Account Page**:
 
