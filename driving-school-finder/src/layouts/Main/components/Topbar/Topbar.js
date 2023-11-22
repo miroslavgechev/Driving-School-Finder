@@ -80,7 +80,7 @@ const Topbar = ({ onSidebarOpen = false }) => {
             variant="contained"
             color="secondary"
             component={Link}
-            to='/signup'
+            to='/signin'
             size="large"
           >
             Вход за автошколи

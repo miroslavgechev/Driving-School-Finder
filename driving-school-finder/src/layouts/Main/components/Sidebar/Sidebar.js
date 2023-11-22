@@ -82,7 +82,7 @@ const Sidebar = ({ open, variant, onClose }) => {
                 variant="contained"
                 color="secondary"
                 component={Link}
-                to='/signup'
+                to='/signin'
                 size="large"
                 fullWidth
               >
