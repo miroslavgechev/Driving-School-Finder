@@ -1,17 +1,28 @@
 /* eslint-disable react/no-unescaped-entities */
+import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import Alert from '@mui/material/Alert';
+
+import { Link } from 'react-router-dom';
+
+import { useAuthContext } from '../../../../contexts/authContext';
+
+import { ERROR_MESSAGES } from 'CONSTANTS';
+
+import styles from './formSignup.module.css';
 
 const validationSchema = yup.object({
   role: yup
@@ -45,11 +56,17 @@ const validationSchema = yup.object({
     .oneOf([yup.ref('password')], 'Паролите трябва да съвпадат'),
 });
 
+const roles = {
+  student: 'student',
+  school: 'school',
+};
+
 const SignupForm = () => {
-  const roles = {
-    student: 1,
-    school: 2,
-  };
+  const [color, setColor] = useState('primary');
+  const { register } = useAuthContext();
+  const navigate = useNavigate();
+
+  //! Add loading or suspense!
 
   const initialValues = {
     firstName: '',
@@ -60,8 +77,17 @@ const SignupForm = () => {
     role: roles.student,
   };
 
-  const onSubmit = (values) => {
-    return values;
+  const onSubmit = async (values) => {
+    try {
+      await register(values);
+      navigate('/school/all');
+    } catch (error) {
+      if (error.message === ERROR_MESSAGES.emailTaken) {
+        formik.setErrors({ email: error.message });
+      } else {
+        formik.setStatus(ERROR_MESSAGES.defaultError);
+      }
+    }
   };
 
   const formik = useFormik({
@@ -70,14 +96,20 @@ const SignupForm = () => {
     onSubmit,
   });
 
+  useEffect(() => {
+    if (formik.values.role === 'student') {
+      setColor('primary');
+    } else {
+      setColor('secondary');
+    }
+  }, [formik.values.role]);
+
   return (
     <Box>
       <Box marginBottom={4}>
         <Typography
           variant="h4"
-          sx={{
-            fontWeight: 700,
-          }}
+          className={styles.headerText}
         >
           Създай профил!
         </Typography>
@@ -96,6 +128,7 @@ const SignupForm = () => {
               fullWidth
               error={formik.touched.role && Boolean(formik.errors.role)}
               variant="outlined"
+              color={color}
             >
               <InputLabel id="role-select-label">Роля *</InputLabel>
 
@@ -109,7 +142,6 @@ const SignupForm = () => {
                 error={
                   formik.touched.role && Boolean(formik.errors.role)
                 }
-                displayEmpty
               >
                 <MenuItem value={roles.student}>Курсист</MenuItem>
                 <MenuItem value={roles.school}>Автошкола</MenuItem>
@@ -133,6 +165,7 @@ const SignupForm = () => {
             <TextField
               label="Име *"
               variant="outlined"
+              color={color}
               name={'firstName'}
               fullWidth
               value={formik.values.firstName}
@@ -143,6 +176,7 @@ const SignupForm = () => {
               helperText={formik.touched.firstName && formik.errors.firstName}
             />
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <Typography variant={'subtitle2'} sx={{ marginBottom: 2 }}>
               Въведи фамилията си
@@ -150,6 +184,7 @@ const SignupForm = () => {
             <TextField
               label="Фамилия *"
               variant="outlined"
+              color={color}
               name={'lastName'}
               fullWidth
               value={formik.values.lastName}
@@ -158,6 +193,7 @@ const SignupForm = () => {
               helperText={formik.touched.lastName && formik.errors.lastName}
             />
           </Grid>
+
           <Grid item xs={12}>
             <Typography variant={'subtitle2'} sx={{ marginBottom: 2 }}>
               Въведи своя имейл
@@ -165,6 +201,7 @@ const SignupForm = () => {
             <TextField
               label="Имейл *"
               variant="outlined"
+              color={color}
               name={'email'}
               fullWidth
               value={formik.values.email}
@@ -173,6 +210,7 @@ const SignupForm = () => {
               helperText={formik.touched.email && formik.errors.email}
             />
           </Grid>
+
           <Grid item xs={12}>
             <Typography variant={'subtitle2'} sx={{ marginBottom: 2 }}>
               Въведи своята парола
@@ -180,6 +218,7 @@ const SignupForm = () => {
             <TextField
               label="Парола *"
               variant="outlined"
+              color={color}
               name={'password'}
               type={'password'}
               fullWidth
@@ -197,6 +236,7 @@ const SignupForm = () => {
             <TextField
               label="Потвърди парола *"
               variant="outlined"
+              color={color}
               name={'rePassword'}
               type={'password'}
               fullWidth
@@ -207,42 +247,6 @@ const SignupForm = () => {
             />
           </Grid>
 
-          <Grid item container xs={12}>
-            <Box
-              display="flex"
-              flexDirection={{ xs: 'column', sm: 'row' }}
-              alignItems={{ xs: 'stretched', sm: 'center' }}
-              justifyContent={'space-between'}
-              width={1}
-              maxWidth={600}
-              margin={'0 auto'}
-            >
-              <Box marginBottom={{ xs: 1, sm: 0 }}>
-                <Typography variant={'subtitle2'}>
-                  Имаш профил?{' '}
-                  <Link
-                    component={'a'}
-                    color={formik.values.role === roles.student ? 'primary' : 'secondary'}
-                    href={'/signin'}
-                    underline={'none'}
-                  >
-                    Влез тук.
-                  </Link>
-                </Typography>
-              </Box>
-
-              {formik.values.role === roles.student ?
-                <Button size='large' variant='contained' color='primary' type='submit'>
-                  Регистрация като курсист
-                </Button>
-                :
-                <Button size='large' variant='contained' color='secondary' type='submit'>
-                  Регистрация като автошкола
-                </Button>
-              }
-
-            </Box>
-          </Grid>
           <Grid
             item
             container
@@ -250,22 +254,30 @@ const SignupForm = () => {
             justifyContent={'center'}
             alignItems={'center'}
           >
+            {formik.status && <Alert severity="error">{formik.status}</Alert>}
+          </Grid>
 
-            {/* <Typography
-              variant={'subtitle2'}
-              color={'text.secondary'}
-              align={'center'}
-            >
-              С натискането на бутона "Регистрация" съгласяваш с нашите{' '}
-              <Link
-                component={'a'}
-                color={'primary'}
-                href={'/company-terms'}
-                underline={'none'}
-              >
-                условия за ползване.
-              </Link>
-            </Typography> */}
+          <Grid item container xs={12}>
+            <Box className={styles.bottomBox}>
+              <Box marginBottom={{ xs: 1, sm: 0 }}>
+                <Typography variant={'subtitle2'}>
+                  Имаш профил?{' '}
+                  <Link to='/signin' className={styles.link}>
+                    <Typography
+                      variant={'text'}
+                      color={color}
+                    >
+                      Влез тук.
+                    </Typography>
+                  </Link>
+                </Typography>
+              </Box>
+
+              <Button size='large' variant='contained' color={color} type='submit'>
+                Регистрация като {formik.values.role === roles.student ? 'курсист' : 'автошкола'}
+              </Button>
+
+            </Box>
           </Grid>
         </Grid>
       </form>

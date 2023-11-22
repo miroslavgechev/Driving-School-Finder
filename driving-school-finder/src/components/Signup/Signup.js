@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 
 import Container from 'components/Container';
 import SignupForm from './components/Form/FormSignup';
+import RightSidePhotoCover from '../shared/RightSidePhotoCover/RightSidePhotoCover';
 
 const Signup = () => {
   return (
@@ -31,70 +32,9 @@ const Signup = () => {
             </Container>
 
           </Box>
-          <Box
-            sx={{
-              flex: { xs: '0 0 100%', md: '0 0 50%' },
-              position: 'relative',
-              maxWidth: { xs: '100%', md: '50%' },
-              order: { xs: 1, md: 2 },
-              minHeight: { xs: 'auto', md: 'calc(100vh - 58px)' },
-            }}
-          >
-            <Box
-              sx={{
-                width: { xs: 1, md: '50vw' },
-                height: '100%',
-                position: 'relative',
-              }}
-            >
-              <Box
-                sx={{
-                  width: '100%',
-                  height: '100%',
-                  overflow: 'hidden',
-                }}
-              >
-                <Box
-                  sx={{
-                    overflow: 'hidden',
-                    left: '0%',
-                    width: 1,
-                    height: 1,
-                    position: { xs: 'relative', md: 'absolute' },
-                    clipPath: {
-                      xs: 'none',
-                      md: 'polygon(10% 0%, 100% 0, 100% 100%, 0% 100%)',
-                    },
-                    shapeOutside: {
-                      xs: 'none',
-                      md: 'polygon(10% 0%, 100% 0, 100% 100%, 0% 100%)',
-                    },
-                  }}
-                >
-                  <Box
-                    sx={{
-                      height: { xs: 'auto', md: 1 },
-                      '& img': {
-                        objectFit: 'cover',
-                      },
-                    }}
-                  >
-                    <Box
-                      component={'img'}
-                      loading="lazy"
-                      src={
-                        '/signup.jpg'
-                      }
-                      height={{ xs: 'auto', md: 1 }}
-                      maxHeight={{ xs: 300, md: 1 }}
-                      width={1}
-                      maxWidth={1}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-          </Box>
+
+          <RightSidePhotoCover imgSrc={'/signup.jpg'} />
+
         </Box>
       </Container>
     </Box>
