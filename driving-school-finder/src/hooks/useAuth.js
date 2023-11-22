@@ -9,6 +9,9 @@ import {
 import firebaseConfig from '../config/firebaseConfig';
 import { initializeApp } from 'firebase/app';
 
+import { ERROR_MESSAGES } from 'CONSTANTS';
+import { addUserData } from 'services/firestoreService';
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -17,15 +20,20 @@ const useAuth = () => {
   const [user, setUser] = useState(null);
   // const [loading, setLoading] = useState(true);
 
-  const register = async (email = 'miroslav.gechev@gmail.com', password = 'password123') => {
+  const register = async ({ email, password, role, firstName, lastName }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
-      console.log('User registered: ', userCredential.user);
+
+      await addUserData(userCredential.user.uid, { role, firstName, lastName });
+      
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error('Error registering user:', errorCode, errorMessage);
+
+      if (error.code === 'auth/email-already-in-use') {
+        throw new Error(ERROR_MESSAGES.emailTaken);
+      } else {
+        throw new Error(error.message);
+      }
     }
   };
 
