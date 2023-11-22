@@ -18,7 +18,7 @@ import { schoolMock } from 'dbTemp';
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export const addUserData = async (uid, { role, firstName, lastName }) => {
+export const addCustomUserData = async (uid, { role, firstName, lastName }) => {
   try {
     await setDoc(doc(db, 'users', uid), {
       role,

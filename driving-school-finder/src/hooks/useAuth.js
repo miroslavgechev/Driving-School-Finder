@@ -10,7 +10,7 @@ import firebaseConfig from '../config/firebaseConfig';
 import { initializeApp } from 'firebase/app';
 
 import { ERROR_MESSAGES } from 'CONSTANTS';
-import { addUserData } from 'services/firestoreService';
+import { addCustomUserData } from 'services/firestoreService';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -25,8 +25,8 @@ const useAuth = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
 
-      await addUserData(userCredential.user.uid, { role, firstName, lastName });
-      
+      await addCustomUserData(userCredential.user.uid, { role, firstName, lastName });
+
     } catch (error) {
 
       if (error.code === 'auth/email-already-in-use') {
