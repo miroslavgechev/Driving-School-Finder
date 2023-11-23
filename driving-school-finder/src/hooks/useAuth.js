@@ -10,7 +10,7 @@ import firebaseConfig from '../config/firebaseConfig';
 import { initializeApp } from 'firebase/app';
 
 import { ERROR_MESSAGES } from 'CONSTANTS';
-import { addCustomUserData } from 'services/firestoreService';
+import { addCustomUserData, getCustomUserData } from 'services/firestoreService';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -23,10 +23,10 @@ const useAuth = () => {
   const register = async ({ email, password, role, firstName, lastName }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      setUser(userCredential.user);
 
       await addCustomUserData(userCredential.user.uid, { role, firstName, lastName });
 
+      setUser({ ...userCredential.user, role });
     } catch (error) {
 
       if (error.code === 'auth/email-already-in-use') {
@@ -56,7 +56,14 @@ const useAuth = () => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, setUser);
+    const unsubscribe = onAuthStateChanged(auth,
+      async (user) => {
+        if (user) {
+          const customUserData = user && await getCustomUserData(user.uid);
+          setUser({ ...user, ...customUserData });
+        }
+      }
+    );
 
     return unsubscribe;
   }, []);

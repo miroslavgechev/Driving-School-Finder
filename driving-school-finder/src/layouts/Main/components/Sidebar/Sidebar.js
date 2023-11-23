@@ -8,8 +8,12 @@ import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsR
 import { Link } from 'react-router-dom';
 
 import styles from './sidebar.module.css';
+import useAuth from 'hooks/useAuth';
 
 const Sidebar = ({ open, variant, onClose }) => {
+  const { user } = useAuth();
+  const color = user?.role === 'student' ? 'primary.main' : 'secondary.main';
+
   return (
     <Drawer
       anchor="left"
@@ -62,34 +66,46 @@ const Sidebar = ({ open, variant, onClose }) => {
                 <Typography color={'text.primary'}>За нас</Typography>
               </Link>
             </Box>
+            {!user &&
+              <>
+                <Box marginTop={2}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    component={Link}
+                    to='/signin'
+                    size="large"
+                    fullWidth
 
-            <Box marginTop={2}>
-              <Button
-                variant="contained"
-                color="primary"
-                component={Link}
-                to='/signin'
-                size="large"
-                fullWidth
+                  >
+                    Вход за курсисти
+                  </Button>
+                </Box>
 
-              >
-                Вход за курсисти
-              </Button>
-            </Box>
+                <Box marginTop={1}>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    component={Link}
+                    to='/signin'
+                    size="large"
+                    fullWidth
+                  >
+                    Вход за автошколи
+                  </Button>
+                </Box>
+              </>
+            }
+            {user &&
+              <Box paddingY={2}>
+                <Link to='/account' className={styles.link}>
+                  <Typography color={color}>Профил</Typography>
+                </Link>
+              </Box>
+            }
 
-            <Box marginTop={1}>
-              <Button
-                variant="contained"
-                color="secondary"
-                component={Link}
-                to='/signin'
-                size="large"
-                fullWidth
-              >
-                Вход за автошколи
-              </Button>
-            </Box>
           </Box>
+
         </Box>
       </Box>
     </Drawer>

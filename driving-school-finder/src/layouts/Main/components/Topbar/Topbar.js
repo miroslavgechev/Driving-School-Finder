@@ -10,9 +10,13 @@ import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsR
 import { Link } from 'react-router-dom';
 
 import styles from './topbar.module.css';
+import UserAvatar from 'components/shared/UserAvatar/UserAvatar';
+import useAuth from 'hooks/useAuth';
+
 
 const Topbar = ({ onSidebarOpen = false }) => {
   const theme = useTheme();
+  const { user } = useAuth();
 
   return (
     <Box className={styles.box}>
@@ -63,29 +67,34 @@ const Topbar = ({ onSidebarOpen = false }) => {
           </Link>
         </Box>
 
-        <Box marginLeft={4}>
-          <Button
-            variant="contained"
-            color="primary"
-            component={Link}
-            to='/signin'
-            size="large"
-          >
-            Вход за курсисти
-          </Button>
-        </Box>
+        {!user &&
+          <>
+            <Box marginLeft={4}>
+              <Button
+                variant="contained"
+                color="primary"
+                component={Link}
+                to='/signin'
+                size="large"
+              >
+                Вход за курсисти
+              </Button>
+            </Box>
 
-        <Box marginLeft={4}>
-          <Button
-            variant="contained"
-            color="secondary"
-            component={Link}
-            to='/signin'
-            size="large"
-          >
-            Вход за автошколи
-          </Button>
-        </Box>
+            <Box marginLeft={4}>
+              <Button
+                variant="contained"
+                color="secondary"
+                component={Link}
+                to='/signin'
+                size="large"
+              >
+                Вход за автошколи
+              </Button>
+            </Box>
+          </>
+        }
+        {user && <UserAvatar firstName={user.firstName} lastName={user.lastName} role={user.role} />}
 
       </Box>
 

@@ -8,6 +8,7 @@ import {
   getDocs,
   setDoc,
   addDoc,
+  getDoc,
   doc,
   query,
   where,
@@ -30,6 +31,19 @@ export const addCustomUserData = async (uid, { role, firstName, lastName }) => {
   }
 };
 
+export const getCustomUserData = async (uid) => {
+
+  try {
+    const docRef = doc(db, 'users', uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data();
+    }
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 // Get a list of schools from the database
 export const getSchools = async () => {
   const schoolsCol = collection(db, 'schools');
