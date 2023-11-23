@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 
 import Container from 'components/Container';
-import SignupForm from './components/Form/FormSignup';
+import SignupForm from './components/FormSignup/FormSignup';
 import RightSidePhotoCover from '../shared/RightSidePhotoCover/RightSidePhotoCover';
 
 import styles from './signup.module.css';
