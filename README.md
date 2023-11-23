@@ -167,7 +167,7 @@ Driving School Finder
 
    - **Description**: Allows users and driving schools to create accounts or log into existing ones.
    - **Functionalities**:
-     - Form for logging in.
+     - Form for logging in.✅
      - Option to sign up.✅
      - Password reset functionality.
 
@@ -232,10 +232,14 @@ Driving School Finder
     - **Description**: Displays a friendly error message when a user tries to access a page that doesn't exist.
 
 14. **Nice to haves**
+
     - Use moments.js for dates
     - Add to favorites button
     - Change the theme on sign-in and sign-up pages depending on the user role
     - Add paralax effect to the home page and the about page
+
+15. **Global Error Handling**
+    - Add a global error handler to catch all errors and display a friendly error message to the user.
 
 ---- TO BE REVISED AFTER PROJECT COMPLETION---
 
