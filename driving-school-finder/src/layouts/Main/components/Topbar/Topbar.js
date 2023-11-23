@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './topbar.module.css';
 import UserAvatar from 'components/shared/UserAvatar/UserAvatar';
+import LogoutButton from 'components/shared/LogoutButton/LogoutButton';
 import useAuth from 'hooks/useAuth';
 
 
@@ -94,7 +95,21 @@ const Topbar = ({ onSidebarOpen = false }) => {
             </Box>
           </>
         }
-        {user && <UserAvatar firstName={user.firstName} lastName={user.lastName} role={user.role} />}
+
+
+        {user &&
+          <>
+            <Box marginLeft={4}>
+              <UserAvatar firstName={user.firstName} lastName={user.lastName} role={user.role} />
+            </Box>
+            <Box marginLeft={4}>
+              <LogoutButton />
+            </Box>
+          </>
+        }
+
+
+
 
       </Box>
 

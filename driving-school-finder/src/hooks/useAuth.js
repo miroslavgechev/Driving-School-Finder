@@ -10,7 +10,7 @@ import firebaseConfig from '../config/firebaseConfig';
 import { initializeApp } from 'firebase/app';
 
 import { ERROR_MESSAGES } from 'CONSTANTS';
-import { addCustomUserData, getCustomUserData } from 'services/firestoreService';
+import { setCustomUserData, getCustomUserData } from 'services/firestoreService';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -18,14 +18,11 @@ const auth = getAuth(app);
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
-  // const [loading, setLoading] = useState(true);
 
   const register = async ({ email, password, role, firstName, lastName }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
-      await addCustomUserData(userCredential.user.uid, { role, firstName, lastName });
-
+      await setCustomUserData(userCredential.user.uid, { role, firstName, lastName });
       setUser({ ...userCredential.user, role });
     } catch (error) {
 
@@ -51,7 +48,7 @@ const useAuth = () => {
       await signOut(auth);
       setUser(null);
     } catch (error) {
-      console.error('Error signing out:', error);
+      throw new Error(error);
     }
   };
 
@@ -61,6 +58,8 @@ const useAuth = () => {
         if (user) {
           const customUserData = user && await getCustomUserData(user.uid);
           setUser({ ...user, ...customUserData });
+        } else {
+          setUser(null);
         }
       }
     );

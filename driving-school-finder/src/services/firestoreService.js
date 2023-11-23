@@ -19,7 +19,7 @@ import { schoolMock } from 'dbTemp';
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export const addCustomUserData = async (uid, { role, firstName, lastName }) => {
+export const setCustomUserData = async (uid, { role, firstName, lastName }) => {
   try {
     await setDoc(doc(db, 'users', uid), {
       role,
@@ -32,7 +32,6 @@ export const addCustomUserData = async (uid, { role, firstName, lastName }) => {
 };
 
 export const getCustomUserData = async (uid) => {
-
   try {
     const docRef = doc(db, 'users', uid);
     const docSnap = await getDoc(docRef);
@@ -44,6 +43,7 @@ export const getCustomUserData = async (uid) => {
     throw new Error(error.message);
   }
 };
+
 // Get a list of schools from the database
 export const getSchools = async () => {
   const schoolsCol = collection(db, 'schools');

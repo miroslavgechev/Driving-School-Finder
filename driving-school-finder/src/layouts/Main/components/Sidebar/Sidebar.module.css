@@ -11,3 +11,8 @@
 .maxHeight {
     height: 100%;
 }
+
+.paddingLeftNone {
+    padding: 0 !important;
+    margin: 0 !important;
+}

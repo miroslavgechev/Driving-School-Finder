@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 
 import styles from './sidebar.module.css';
 import useAuth from 'hooks/useAuth';
+import LogoutButton from 'components/shared/LogoutButton/LogoutButton';
+import Divider from '@mui/material/Divider';
 
 const Sidebar = ({ open, variant, onClose }) => {
   const { user } = useAuth();
@@ -76,7 +78,6 @@ const Sidebar = ({ open, variant, onClose }) => {
                     to='/signin'
                     size="large"
                     fullWidth
-
                   >
                     Вход за курсисти
                   </Button>
@@ -96,19 +97,32 @@ const Sidebar = ({ open, variant, onClose }) => {
                 </Box>
               </>
             }
+
             {user &&
-              <Box paddingY={2}>
-                <Link to='/account' className={styles.link}>
-                  <Typography color={color}>Профил</Typography>
-                </Link>
-              </Box>
+              <>
+                <Divider sx={{ marginY: 1 }} />
+                <Box paddingY={2}>
+                  <Link to='/account' className={styles.link}>
+                    <Typography color={color}>Профил</Typography>
+                  </Link>
+                </Box>
+              </>
+            }
+
+            {user &&
+              <>
+                <Divider sx={{ marginY: 1 }} />
+                <Box>
+                  <LogoutButton />
+                </Box>
+              </>
             }
 
           </Box>
 
         </Box>
       </Box>
-    </Drawer>
+    </Drawer >
   );
 };
 
