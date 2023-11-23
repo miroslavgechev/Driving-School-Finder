@@ -1,0 +1,28 @@
+.mainBox {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.mainContainerBox {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.formContainerBox {
+    width: 100%;
+    order: 2;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (min-width: 900px) {
+    .mainContainerBox {
+        flex-direction: row;
+    }
+
+    .formContainerBox {
+        order: 1;
+    }
+}

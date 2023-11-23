@@ -9,7 +9,7 @@ import {
 import firebaseConfig from '../config/firebaseConfig';
 import { initializeApp } from 'firebase/app';
 
-import { ERROR_MESSAGES } from 'CONSTANTS';
+import { ERROR_MESSAGES, ERROR_CODES } from 'CONSTANTS';
 import { setCustomUserData, getCustomUserData } from 'services/firestoreService';
 
 // Initialize Firebase
@@ -23,10 +23,9 @@ const useAuth = () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       await setCustomUserData(userCredential.user.uid, { role, firstName, lastName });
-      setUser({ ...userCredential.user, role });
+      setUser({ ...userCredential.user, role, firstName, lastName });
     } catch (error) {
-
-      if (error.code === 'auth/email-already-in-use') {
+      if (error.code === ERROR_CODES.emailTaken) {
         throw new Error(ERROR_MESSAGES.emailTaken);
       } else {
         throw new Error(error.message);
@@ -34,12 +33,17 @@ const useAuth = () => {
     }
   };
 
-  const login = async (email = 'miroslav.gechev@gmail.com', password = 'password123') => {
+  const login = async ({ email, password }) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      setUser(userCredential.user);
+      const customUserData = await getCustomUserData(userCredential.user.uid);
+      setUser({ ...userCredential.user, ...customUserData });
     } catch (error) {
-      console.error('Error signing in user:', error.code, error.message);
+      if (error.code === ERROR_CODES.invalidCredentials) {
+        throw new Error(ERROR_MESSAGES.invalidCredentials);
+      } else {
+        throw new Error(error.message);
+      }
     }
   };
 

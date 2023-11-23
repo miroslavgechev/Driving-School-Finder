@@ -39,6 +39,13 @@ export const TABLE_SUBTITLES = {
 
 export const ERROR_MESSAGES = {
   emailTaken: 'Този имейл вече е регистриран',
+  invalidCredentials: 'Данните за вход не са правилни',
   defaultError: 'Нещо се обърка, опитай отново!'
 };
+
+export const ERROR_CODES = {
+  emailTaken: 'auth/email-already-in-use',
+  invalidCredentials: 'auth/invalid-login-credentials',
+};
+
 
