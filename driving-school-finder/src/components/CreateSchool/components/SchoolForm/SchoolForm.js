@@ -25,7 +25,7 @@ import styles from './schoolForm.module.css';
 // import { downloadFile, uploadSchoolLogo } from 'services/firebaseStorageTest';
 import fileMapper from 'utils/fileMapper';
 
-// import { useSetSchoolContext } from 'contexts/setSchoolContext';
+import { useSetSchoolContext } from 'contexts/setSchoolContext';
 
 const validationSchema = yup.object({
   name: yup
@@ -82,7 +82,7 @@ const SchoolForm = () => {
   const [logoUrl, setLogoUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(successStates.none);
-  // const { setSchoolDescription } = useSetSchoolContext();
+  const { setSchoolDescription, school } = useSetSchoolContext();
 
   const theme = useTheme();
 
@@ -103,19 +103,12 @@ const SchoolForm = () => {
       setIsLoading(true);
 
       const updatedObject = { ...values, logoUrl };
-      console.log(updatedObject);
-
+      setSchoolDescription(updatedObject);
       setSuccessState(successStates.success);
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
     } catch (error) {
-      //!Error handling here
-      // if (error.message === ERROR_MESSAGES.invalidCredentials) {
-      //   formik.setStatus(ERROR_MESSAGES.invalidCredentials);
-      // } else {
-      //   formik.setStatus(ERROR_MESSAGES.defaultError);
-      // }
       setSuccessState(successStates.error);
       setTimeout(() => {
         setIsLoading(false);
@@ -162,6 +155,7 @@ const SchoolForm = () => {
 
   return (
     <Box>
+      {console.log(school)}
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={4}>
 
