@@ -78,7 +78,7 @@ const Topbar = ({ onSidebarOpen = false }) => {
                 to='/signin'
                 size="large"
               >
-                Вход за курсисти
+                Влез
               </Button>
             </Box>
 
@@ -87,15 +87,14 @@ const Topbar = ({ onSidebarOpen = false }) => {
                 variant="contained"
                 color="secondary"
                 component={Link}
-                to='/signin'
+                to='/signup'
                 size="large"
               >
-                Вход за автошколи
+                Регистрация
               </Button>
             </Box>
           </>
         }
-
 
         {user &&
           <>
@@ -107,9 +106,6 @@ const Topbar = ({ onSidebarOpen = false }) => {
             </Box>
           </>
         }
-
-
-
 
       </Box>
 

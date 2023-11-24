@@ -79,7 +79,7 @@ const Sidebar = ({ open, variant, onClose }) => {
                     size="large"
                     fullWidth
                   >
-                    Вход за курсисти
+                    Влез
                   </Button>
                 </Box>
 
@@ -92,7 +92,7 @@ const Sidebar = ({ open, variant, onClose }) => {
                     size="large"
                     fullWidth
                   >
-                    Вход за автошколи
+                    Регистрация
                   </Button>
                 </Box>
               </>
