@@ -11,9 +11,13 @@ import ChangePasswordForm from './components/ChangePasswordForm/ChangePasswordFo
 import ManageReviews from './components/ManageReviews/ManageReviews';
 import ManageSchools from './components/ManageSchools/ManageSchools';
 
+import { useAuthContext } from 'contexts/authContext';
+
 //TODO Add validation
 
 const ManageAccount = () => {
+
+  const { user } = useAuthContext();
 
   return (
     <>
@@ -60,38 +64,44 @@ const ManageAccount = () => {
 
           <Divider sx={{ marginY: 4 }} />
 
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom fontWeight={700}>
-                Твоите отзиви
-              </Typography>
-              <Typography variant={'subtitle2'} color={'text.secondary'}>
-                Отзивите, които си оставил
-              </Typography>
+          {user?.role === 'student' &&
+            <>
+              <Grid container spacing={4}>
+                <Grid item xs={12} md={4}>
+                  <Typography variant="h6" gutterBottom fontWeight={700}>
+                    Твоите отзиви
+                  </Typography>
+                  <Typography variant={'subtitle2'} color={'text.secondary'}>
+                    Отзивите, които си оставил
+                  </Typography>
+                </Grid>
+
+                <Grid item xs={12} md={12}>
+                  <ManageReviews />
+                </Grid>
+              </Grid>
+
+              <Divider sx={{ marginY: 4 }} />
+            </>
+          }
+
+          {user?.role === 'school' &&
+            <Grid container spacing={4}>
+              <Grid item xs={12} md={4}>
+                <Typography variant="h6" gutterBottom fontWeight={700}>
+                  Твоите автошколи
+                </Typography>
+                <Typography variant={'subtitle2'} color={'text.secondary'}>
+                  Управявай автошколите, които си създал
+                </Typography>
+              </Grid>
+
+              <Grid item xs={12} md={8}>
+                <ManageSchools />
+              </Grid>
             </Grid>
-
-            <Grid item xs={12} md={12}>
-              <ManageReviews />
-            </Grid>
-          </Grid>
-
-          <Divider sx={{ marginY: 4 }} />
-
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom fontWeight={700}>
-                Твоите автошколи
-              </Typography>
-              <Typography variant={'subtitle2'} color={'text.secondary'}>
-                Управявай автошколите, които си създал
-              </Typography>
-            </Grid>
-
-            <Grid item xs={12} md={8}>
-              <ManageSchools />
-            </Grid>
-          </Grid>
-
+          }
+          
         </Box>
       </Container>
     </>
