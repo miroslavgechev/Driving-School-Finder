@@ -8,12 +8,12 @@ import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsR
 import { Link } from 'react-router-dom';
 
 import styles from './sidebar.module.css';
-import useAuth from 'hooks/useAuth';
+import { useAuthContext } from 'contexts/authContext';
 import LogoutButton from 'components/shared/LogoutButton/LogoutButton';
 import Divider from '@mui/material/Divider';
 
 const Sidebar = ({ open, variant, onClose }) => {
-  const { user } = useAuth();
+  const { user } = useAuthContext();
   const color = user?.role === 'student' ? 'primary.main' : 'secondary.main';
 
   return (

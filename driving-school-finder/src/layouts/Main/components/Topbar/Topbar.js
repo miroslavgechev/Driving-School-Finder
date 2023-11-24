@@ -12,12 +12,11 @@ import { Link } from 'react-router-dom';
 import styles from './topbar.module.css';
 import UserAvatar from 'components/shared/UserAvatar/UserAvatar';
 import LogoutButton from 'components/shared/LogoutButton/LogoutButton';
-import useAuth from 'hooks/useAuth';
-
+import { useAuthContext } from 'contexts/authContext';
 
 const Topbar = ({ onSidebarOpen = false }) => {
   const theme = useTheme();
-  const { user } = useAuth();
+  const { user } = useAuthContext();
 
   return (
     <Box className={styles.box}>
