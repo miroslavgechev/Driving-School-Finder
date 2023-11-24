@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -12,11 +11,13 @@ import ContactsForm from './components/ContactsForm/ContactsForm';
 import ImgForm from './components/ImgForm/ImgForm';
 import CoursesForm from './components/CoursesForm/CoursesForm';
 
-//TODO Add validation
+import { SetSchoolProvider } from 'contexts/setSchoolContext';
+
 
 const CreateSchool = () => {
+
   return (
-    <>
+    <SetSchoolProvider>
       <Box bgcolor={'alternate.main'} >
         <Container paddingY={{ xs: 2, sm: 2.5 }}>
           <Headline />
@@ -92,7 +93,7 @@ const CreateSchool = () => {
           </Grid>
         </Box>
       </Container>
-    </>
+    </SetSchoolProvider>
   );
 };
 

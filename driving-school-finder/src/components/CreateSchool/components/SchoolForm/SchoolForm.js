@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
@@ -8,221 +6,290 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import Chip from '@mui/material/Chip';
-
+import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
 
+import { useState } from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 import { useTheme } from '@mui/material/styles';
 
 import { REGIONS, CATEGORIES } from 'CONSTANTS';
+import styles from './schoolForm.module.css';
+// import { downloadFile, uploadSchoolLogo } from 'services/firebaseStorageTest';
+import fileMapper from 'utils/fileMapper';
 
-import { downloadFile, uploadSchoolLogo } from 'services/firebaseStorageTest';
-import { useAuthContext } from 'contexts/authContext';
+// import { useSetSchoolContext } from 'contexts/setSchoolContext';
+
+const validationSchema = yup.object({
+  name: yup
+    .string()
+    .trim()
+    .required('Добавяне на името е задължително')
+    .min(1, 'Името следва да е поне 1 символ')
+    .max(50, 'Името не може да е повече от 50 символа'),
+  logoUrl: yup
+    .mixed()
+    .required('Добавяне на логo е задължително')
+    .test('type', 'Логото трябва да бъде картинка', value => {
+      return value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
+    }),
+  description: yup
+    .string()
+    .trim()
+    .required('Добавяне на описанието е задължително')
+    .min(1, 'Името следва да е поне един символ')
+    .max(500, 'Името не може да е повече от 500 символа'),
+  whyUs1: yup
+    .string()
+    .trim()
+    .required('Добавяне на поне една причина е задължително')
+    .min(1, 'Името следва да е поне 1 символ')
+    .max(150, 'Името не може да е повече от 150 символа'),
+  whyUs2: yup
+    .string()
+    .trim()
+    .max(150, 'Името не може да е повече от 150 символа'),
+  whyUs3: yup
+    .string()
+    .trim()
+    .max(150, 'Името не може да е повече от 150 символа'),
+  regionsServed: yup
+    .array()
+    .of(yup.string())
+    .required('Поне един район трябва да бъде избран')
+    .min(1, 'Поне един район трябва да бъде избран'),
+  categoriesServed: yup
+    .array()
+    .of(yup.string())
+    .required('Поне една категория трябва да бъде избрана')
+    .min(1, 'Поне една категория трябва да бъде избрана')
+});
 
 const SchoolForm = () => {
-  const [image, setImage] = useState(null);
+  const successStates = {
+    success: 'success',
+    error: 'error',
+    none: 'none',
+  };
+
+  const [logoUrl, setLogoUrl] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [successState, setSuccessState] = useState(successStates.none);
+  // const { setSchoolDescription } = useSetSchoolContext();
 
   const theme = useTheme();
+
+  const initialValues = {
+    name: '',
+    logoUrl: '',
+    description: '',
+    whyUs1: '',
+    whyUs2: '',
+    whyUs3: '',
+    regionsServed: [],
+    categoriesServed: [],
+  };
+
+  const handleSubmit = async (values) => {
+    try {
+      formik.setStatus(null);
+      setIsLoading(true);
+
+      const updatedObject = { ...values, logoUrl };
+      console.log(updatedObject);
+
+      setSuccessState(successStates.success);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    } catch (error) {
+      //!Error handling here
+      // if (error.message === ERROR_MESSAGES.invalidCredentials) {
+      //   formik.setStatus(ERROR_MESSAGES.invalidCredentials);
+      // } else {
+      //   formik.setStatus(ERROR_MESSAGES.defaultError);
+      // }
+      setSuccessState(successStates.error);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    }
+  };
+
+  const handleFileChange = async (event) => {
+    const url = await fileMapper([event.target.files[0]]);
+    setLogoUrl(url[0]);
+  };
+
+  const handleChange = (event) => {
+    setSuccessState(successStates.error);
+    formik.handleChange(event);
+  };
+
+  const handleLogoChange = (event, name) => {
+    setSuccessState(successStates.error);
+    formik.setFieldValue(name, event.target.files[0]);
+    handleFileChange(event);
+  };
+
+  const handleAutocompleteChange = (name, value) => {
+    setSuccessState(successStates.error);
+    formik.setFieldValue(name, value);
+  };
+
+  const handleLogoDelete = () => {
+    setLogoUrl(null);
+    formik.setFieldValue('logoUrl', '');
+    setSuccessState(successStates.error);
+  };
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema: validationSchema,
+    onSubmit: handleSubmit,
+  });
 
   const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
   const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-  //!Test upload of files
-  const handleFileChange = async (event) => {
-    // setImage(event.target.files[0]);
-    await uploadSchoolLogo(event.target.files[0]);
-    const url = await downloadFile('school/id-num/logo');
-    setImage(url);
-  };
-  //!Test upoad of files end
-
-  //!Test authentication
-  const { user, register, login, logout } = useAuthContext();
-
-  const registerUserTemp = async () => {
-    await register();
-  };
-
-  const loginUserTemp = async () => {
-    await login();
-  };
-
-  const logoutUserTemp = async () => {
-    await logout();
-  };
-  //!Test authentication end
-
-  const handleDelete = () => {
-    setImage(null);
-  };
 
   return (
     <Box>
-      {console.log(user)}
-      {console.log(user?.uid)}
-
-      <form>
+      <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={4}>
 
           <Grid item xs={12} sm={8}>
             <Typography
-              variant={'subtitle2'}
+              variant='subtitle2'
               sx={{ marginBottom: 2 }}
-              fontWeight={700}
+              className={styles.headerText}
             >
               Въведи името
             </Typography>
             <TextField
-              label="Име на автошколата *"
-              variant="outlined"
-              name={'name'}
+              label='Име на автошколата *'
+              variant='outlined'
+              name='name'
               fullWidth
+              value={formik.values.name}
+              onChange={handleChange}
+              error={formik.touched.name && Boolean(formik.errors.name)}
+              helperText={formik.touched.name && formik.errors.name}
             />
           </Grid>
 
-          <Grid item container xs={12} sm={4} display={'flex'} justifyContent={'center'}>
+          <Grid item container xs={12} sm={4} className={styles.gridContainer}
+          >
             <Box
-              display="flex"
-              flexDirection={{ xs: 'column', sm: 'row' }}
-              alignItems={{ xs: 'stretched', sm: 'flex-end' }}
-              alignContent={{ sm: 'center' }}
-              justifyContent={'center'}
-              width={1}
+              className={styles.boxContainer}
               marginBottom={{ xs: 0, sm: 0.5 }}
             >
 
-              {image
+              {logoUrl
                 ?
-                <Box
-                  display={'flex'}
-                  flexDirection={'column'}
-                  alignItems={'center'}
-                  justifyContent={'center'}
-                  alignSelf={'center'}
-                >
-                  <img src={image} alt="Main" style={{ width: '100px', height: '100px', borderRadius: '8px' }} />
-                  <Button onClick={() => handleDelete()}>Изтрий</Button>
+                <Box className={styles.imageBoxContainer}>
+                  <img src={logoUrl} alt="Main" className={styles.image} />
+                  <Button onClick={() => handleLogoDelete()}>Изтрий</Button>
                 </Box>
                 :
-                <Button
-                  variant="contained"
-                  component="label"
-                  size={'large'}
-                  startIcon={<AddPhotoAlternateOutlinedIcon />}
-                  fullWidth
-                  onChange={handleFileChange}
-                >
-                  Избери лого
-                  <input
-                    type="file"
-                    hidden
-                    name='logo'
-                    accept="image/*"
-                  />
-                </Button>
+                <Grid item xs={12} sm={12}>
+                  <Button
+                    variant="contained"
+                    component="label"
+                    size='large'
+                    startIcon={<AddPhotoAlternateOutlinedIcon />}
+                    fullWidth
+                    value={formik.values.logoUrl}
+                    onChange={(event) => handleLogoChange(event, 'logoUrl')}
+                  >
+                    Избери лого
+                    <input
+                      type="file"
+                      hidden
+                      name='logoUrl'
+                      accept="image/*"
+                    />
+                  </Button>
+                  {formik.errors.logoUrl ? (
+                    <FormHelperText error>{formik.touched.logoUrl && formik.errors.logoUrl}</FormHelperText>
+                  ) : null}
+                </Grid>
               }
             </Box>
 
           </Grid>
 
-          {/* //!Test registration */}
-          <Grid item container xs={12} sm={12} display={'flex'} justifyContent={'center'}>
-            <Box
-              display="flex"
-              flexDirection={{ xs: 'column', sm: 'row' }}
-              alignItems={{ xs: 'stretched', sm: 'flex-end' }}
-              alignContent={{ sm: 'center' }}
-              justifyContent={'center'}
-              width={1}
-              marginBottom={{ xs: 0, sm: 0.5 }}
-              gap={2}
-            >
-              <Button
-                variant="contained"
-                color='success'
-                component="label"
-                size={'large'}
-                fullWidth
-                onClick={() => registerUserTemp()}
-              >
-                Регистрация - test button
-              </Button>
-              <Button
-                variant="contained"
-                color='warning'
-                component="label"
-                size={'large'}
-                fullWidth
-                onClick={() => loginUserTemp()}
-              >
-                Вход - test button
-              </Button>
-              <Button
-                variant="contained"
-                color='error'
-                component="label"
-                size={'large'}
-                fullWidth
-                onClick={() => logoutUserTemp()}
-              >
-                Изход - test button
-              </Button>
-            </Box>
-          </Grid>
-          {/* //!Test registration end */}
-
-
           <Grid item xs={12}>
             <Typography
-              variant={'subtitle2'}
+              variant='subtitle2'
               sx={{ marginBottom: 2 }}
-              fontWeight={700}
+              className={styles.headerText}
             >
               Напишете кратко описание на автошколата
             </Typography>
             <TextField
-              label="Описание *"
-              variant="outlined"
-              name={'description'}
+              label='Описание *'
+              variant='outlined'
+              name='description'
               multiline
               rows={3}
               fullWidth
+              value={formik.values.description}
+              onChange={handleChange}
+              error={formik.touched.description && Boolean(formik.errors.description)}
+              helperText={formik.touched.description && formik.errors.description}
             />
           </Grid>
 
           <Grid item xs={12}>
             <Typography
-              variant={'subtitle2'}
+              variant='subtitle2'
               sx={{ marginBottom: 2 }}
-              fontWeight={700}
+              className={styles.headerText}
             >
               Въведи до три причини да изберат твоята автошкола
             </Typography>
             <TextField
-              label="Първа причина"
-              variant="outlined"
-              name={'whyUs1'}
+              label='Първа причина'
+              variant='outlined'
+              name='whyUs1'
               multiline
               fullWidth
               sx={{ marginBottom: 2 }}
+              value={formik.values.whyUs1}
+              onChange={handleChange}
+              error={formik.touched.whyUs1 && Boolean(formik.errors.whyUs1)}
+              helperText={formik.touched.whyUs1 && formik.errors.whyUs1}
             />
             <TextField
-              label="Втора причина"
-              variant="outlined"
-              name={'whyUs2'}
+              label='Втора причина'
+              variant='outlined'
+              name='whyUs2'
               multiline
               fullWidth
               sx={{ marginBottom: 2 }}
+              value={formik.values.whyUs2}
+              onChange={handleChange}
+              error={Boolean(formik.touched.whyUs2 && formik.errors.whyUs2)}
+              helperText={formik.touched.whyUs2 && formik.errors.whyUs2}
             />
             <TextField
-              label="Трета причина"
-              variant="outlined"
-              name={'whyUs3'}
+              label='Трета причина'
+              variant='outlined'
+              name='whyUs3'
               multiline
               fullWidth
+              value={formik.values.whyUs3}
+              onChange={handleChange}
+              error={formik.touched.whyUs3 && Boolean(formik.errors.whyUs3)}
+              helperText={formik.touched.whyUs3 && formik.errors.whyUs3}
             />
           </Grid>
 
@@ -232,9 +299,9 @@ const SchoolForm = () => {
 
           <Grid item xs={12}>
             <Typography
-              variant={'subtitle2'}
+              variant='subtitle2'
               sx={{ marginBottom: 2 }}
-              fontWeight={700}
+              className={styles.headerText}
             >
               Избери районите, които обслужва автошколата
             </Typography>
@@ -243,6 +310,8 @@ const SchoolForm = () => {
               disableCloseOnSelect
               color='primary'
               options={['Всички', ...REGIONS]}
+              value={formik.values.regionsServed}
+              onChange={(event, value) => handleAutocompleteChange('regionsServed', value)}
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => (
                   <Chip
@@ -263,16 +332,21 @@ const SchoolForm = () => {
                 </li>
               )}
               renderInput={(params) => (
-                <TextField {...params} name='regionsServed' label="Райони *" />
+                <TextField
+                  {...params}
+                  name='regionsServed'
+                  label='Райони *'
+                  error={formik.touched.regionsServed && Boolean(formik.errors.regionsServed)}
+                  helperText={formik.touched.regionsServed && formik.errors.regionsServed} />
               )}
             />
           </Grid>
 
           <Grid item xs={12}>
             <Typography
-              variant={'subtitle2'}
+              variant='subtitle2'
               sx={{ marginBottom: 2 }}
-              fontWeight={700}
+              className={styles.headerText}
             >
               Избери категориите, които предлага автошколата
             </Typography>
@@ -280,6 +354,8 @@ const SchoolForm = () => {
               multiple
               disableCloseOnSelect
               options={CATEGORIES}
+              value={formik.values.categoriesServed}
+              onChange={(event, value) => handleAutocompleteChange('categoriesServed', value)}
               color='secondary'
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => (
@@ -303,35 +379,42 @@ const SchoolForm = () => {
                 </li>
               )}
               renderInput={(params) => (
-                <TextField {...params} name='categoriesServed' label="Категории *" />
+                <TextField
+                  {...params}
+                  name='categoriesServed'
+                  label='Категории *'
+                  error={formik.touched.categoriesServed && Boolean(formik.errors.categoriesServed)}
+                  helperText={formik.touched.categoriesServed && formik.errors.categoriesServed}
+                />
               )}
             />
           </Grid>
 
           <Grid item container xs={12}>
-            <Box
-              display="flex"
-              flexDirection={{ xs: 'column', sm: 'row' }}
-              alignItems={{ xs: 'stretched', sm: 'center' }}
-              justifyContent={'space-between'}
-              width={1}
-              margin={'0 auto'}
-            >
+            <Box className={styles.buttonBoxContainer} >
               <Box marginBottom={{ xs: 1, sm: 0 }}>
-
+                {successState === successStates.success &&
+                  <Alert className={styles.fullWidth} severity="success">Промените са запазени локално</Alert>
+                }
+                {successState === successStates.error &&
+                  <Alert className={styles.fullWidth} severity="error">Промените не са запазени</Alert>
+                }
               </Box>
               <Button
-                size={'large'}
-                variant={'contained'}
-                type={'submit'}
-                startIcon={<CloudUploadOutlinedIcon />}
+                size='large'
+                variant='contained'
+                type='submit'
+                startIcon={isLoading ? <CircularProgress size={22} /> : <CloudUploadOutlinedIcon />}
+                disabled={isLoading}
               >
                 Запази промените
               </Button>
             </Box>
           </Grid>
+
+
         </Grid>
-      </form>
+      </form >
     </Box >
   );
 };
