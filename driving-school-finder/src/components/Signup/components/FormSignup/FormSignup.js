@@ -17,6 +17,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
+import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
 import { useAuthContext } from '../../../../contexts/authContext';
 import { ERROR_MESSAGES } from 'CONSTANTS';
@@ -291,8 +292,9 @@ const SignupForm = () => {
                 </Typography>
               </Box>
 
-              <Button size='large' variant='contained' color={color} type='submit' disabled={isLoading}>
-                {isLoading && <CircularProgress size={24} />}
+              <Button size='large' variant='contained' color={color} type='submit' disabled={isLoading}
+                startIcon={isLoading ? <CircularProgress size={22} color={color} /> : <PersonAddAlt1OutlinedIcon />}
+              >
                 Регистрация като {formik.values.role === roles.student ? 'курсист' : 'автошкола'}
               </Button>
 
