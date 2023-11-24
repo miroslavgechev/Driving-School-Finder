@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -170,8 +171,9 @@ const SigninForm = () => {
                   </Link>
                 </Typography>
               </Box>
-              <Button size='large' variant='contained' type='submit' disabled={isLoading}>
-                {isLoading && <CircularProgress size={24} />}
+              <Button size='large' variant='contained' type='submit' disabled={isLoading}
+                startIcon={isLoading ? <CircularProgress size={22} /> : <PersonOutlineOutlinedIcon />}
+              >
                 Влез
               </Button>
             </Box>
