@@ -6,6 +6,8 @@ import { Typography } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsRounded';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
 import { Link } from 'react-router-dom';
 
@@ -76,6 +78,7 @@ const Topbar = ({ onSidebarOpen = false }) => {
                 component={Link}
                 to='/signin'
                 size="large"
+                startIcon={<PersonOutlineOutlinedIcon />}
               >
                 Влез
               </Button>
@@ -88,6 +91,7 @@ const Topbar = ({ onSidebarOpen = false }) => {
                 component={Link}
                 to='/signup'
                 size="large"
+                startIcon={<PersonAddAlt1OutlinedIcon />}
               >
                 Регистрация
               </Button>

@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsRounded';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
 import { Link } from 'react-router-dom';
 
@@ -78,6 +80,7 @@ const Sidebar = ({ open, variant, onClose }) => {
                     to='/signin'
                     size="large"
                     fullWidth
+                    startIcon={<PersonOutlineOutlinedIcon />}
                   >
                     Влез
                   </Button>
@@ -88,9 +91,10 @@ const Sidebar = ({ open, variant, onClose }) => {
                     variant="contained"
                     color="secondary"
                     component={Link}
-                    to='/signin'
+                    to='/signup'
                     size="large"
                     fullWidth
+                    startIcon={<PersonAddAlt1OutlinedIcon />}
                   >
                     Регистрация
                   </Button>
