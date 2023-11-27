@@ -75,7 +75,7 @@ const SchoolForm = () => {
   const [logoUrl, setLogoUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
-  const { setSchoolDescription, school } = useSetSchoolContext();
+  const { setSchoolDescription } = useSetSchoolContext();
 
   const theme = useTheme();
 
@@ -145,10 +145,8 @@ const SchoolForm = () => {
   const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
   const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-
   return (
     <Box>
-      {console.log(school)}
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={4}>
 
