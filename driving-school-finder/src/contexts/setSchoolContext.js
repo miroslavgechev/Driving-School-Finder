@@ -13,7 +13,7 @@ export const SetSchoolProvider = ({ children }) => {
           ...data,
           name,
           description,
-          logoUrl: logoUrl[0],
+          logoUrl,
           whyUs: [whyUs1, whyUs2, whyUs3],
           regionsServed: [...regionsServed],
           categoriesServed: [...categoriesServed],
@@ -34,9 +34,20 @@ export const SetSchoolProvider = ({ children }) => {
     });
   };
 
+  const setSchoolImages = async ({ mainImage, supportImages }) => {
+    setSchool(data => {
+      return {
+        ...data,
+        mainImage,
+        supportImages,
+      };
+    });
+  };
+
   const contextValues = {
     setSchoolDescription,
     setSchoolContacts,
+    setSchoolImages,
     school,
   };
 
