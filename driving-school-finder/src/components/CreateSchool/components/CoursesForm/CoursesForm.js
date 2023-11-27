@@ -13,28 +13,32 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 
+import styles from './courseForm.module.css';
 import { TABLE_SUBTITLES } from 'CONSTANTS';
+import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
+
+import { useSetSchoolContext } from 'contexts/setSchoolContext';
 
 const subtitles = TABLE_SUBTITLES;
 
-const courses = ['A', 'B'];
-
 const CoursesForm = () => {
+
+  const { school } = useSetSchoolContext();
 
   return (
     <Container>
       <form>
         <Grid container spacing={4} paddingY={{ xs: 2, sm: 2.5 }}>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 750 }}>
+            <Table className={styles.minWidth}>
               <TableHead sx={{ bgcolor: 'alternate.dark' }}>
                 <TableRow>
                   <TableCell />
-                  {courses.map((item, i) => (
-                    <TableCell key={i} sx={{ textAlign: 'center' }}>
+                  {school.categoriesServed?.map((item, i) => (
+                    <TableCell key={i} className={styles.tableHead}>
                       <Typography
-                        variant={'subtitle2'}
-                        fontWeight={700}
+                        variant='subtitle2'
+                        className={styles.headerText}
                       >
                         Категория "{item}"
                       </Typography>
@@ -52,23 +56,23 @@ const CoursesForm = () => {
                       '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
                     }}
                   >
-                    <TableCell sx={{ width: '20%' }} component="th" scope="row">
-                      <Typography variant={'subtitle2'} fontWeight={700}>
+                    <TableCell className={style.cellWidth} component="th" scope="row">
+                      <Typography variant='subtitle2' className={styles.headerText}>
                         {value}
                       </Typography>
                     </TableCell>
 
-                    {courses.map((item, i) => (
-                      <TableCell key={i + item} sx={{ textAlign: 'center' }}>
+                    {school.categoriesServed?.map((item, i) => (
+                      <TableCell key={i + item} className={styles.tableHead}>
 
-                        <Box display={'flex'} justifyContent={'center'} alignItems={'center'} gap={'1em'}>
+                        <Box className={styles.tableCellContainer}>
                           <TextField
-                            variant="outlined"
+                            variant='outlined'
                             name={item + '_' + key}
-                            sx={{ width: '50%' }}
-                            inputProps={{ style: { textAlign: 'center' } }}
+                            className={styles.cellWidthContent}
+                            inputProps={{ className: styles.tableHead }}
                           />
-                          <Typography color={'text.secondary.contrastText'} variant={'subtitle2'} fontWeight={key === 'coursePrice' ? 900 : undefined} >
+                          <Typography color='text.secondary.contrastText' variant='subtitle2' fontWeight={key === 'coursePrice' ? 900 : undefined} >
                             {item[key]} {item[key] == 'Безплатен' ? '' : key.startsWith('hours') ? 'часа' : 'лева'}
                           </Typography>
                         </Box>
@@ -77,35 +81,14 @@ const CoursesForm = () => {
                     ))}
                   </TableRow>
                 ))}
-                <TableRow>
-                  <TableCell />
-
-                  {courses.map((item) => (
-                    <TableCell key={item} sx={{ textAlign: 'center' }}>
-                      <Button
-                        color={'primary'}
-                        variant={'text'}
-                        name={item}
-                      >
-                        Редакция на Категория "{item}"
-                      </Button>
-                    </TableCell>
-                  ))}
-                </TableRow>
               </TableBody>
 
             </Table>
           </TableContainer>
 
           <Grid item container xs={12}>
-            <Box
-              display="flex"
-              flexDirection={{ xs: 'column', sm: 'row' }}
-              alignItems={{ xs: 'stretched', sm: 'center' }}
-              justifyContent={'space-between'}
-              width={1}
-              margin={'0 auto'}
-            >
+            <Box className={styles.buttonBoxContainer} >
+
               <Box marginBottom={{ xs: 1, sm: 0 }}>
 
               </Box>
