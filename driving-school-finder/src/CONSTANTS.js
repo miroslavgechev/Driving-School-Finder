@@ -48,4 +48,9 @@ export const ERROR_CODES = {
   invalidCredentials: 'auth/invalid-login-credentials',
 };
 
+export const SUCCESS_STATES = {
+  success: 'success',
+  error: 'error',
+  none: 'none',
+};
 

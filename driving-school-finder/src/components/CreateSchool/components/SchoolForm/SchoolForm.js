@@ -14,17 +14,15 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
+import { useTheme } from '@mui/material/styles';
 
 import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { useTheme } from '@mui/material/styles';
 
-import { REGIONS, CATEGORIES } from 'CONSTANTS';
+import { REGIONS, CATEGORIES, SUCCESS_STATES } from 'CONSTANTS';
 import styles from './schoolForm.module.css';
-// import { downloadFile, uploadSchoolLogo } from 'services/firebaseStorageTest';
 import fileMapper from 'utils/fileMapper';
-
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
 
 const validationSchema = yup.object({
@@ -73,15 +71,10 @@ const validationSchema = yup.object({
 });
 
 const SchoolForm = () => {
-  const successStates = {
-    success: 'success',
-    error: 'error',
-    none: 'none',
-  };
 
   const [logoUrl, setLogoUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [successState, setSuccessState] = useState(successStates.none);
+  const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
   const { setSchoolDescription, school } = useSetSchoolContext();
 
   const theme = useTheme();
@@ -104,14 +97,14 @@ const SchoolForm = () => {
 
       const updatedObject = { ...values, logoUrl };
       setSchoolDescription(updatedObject);
-      setSuccessState(successStates.success);
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+        setSuccessState(SUCCESS_STATES.success);
+      }, 500);
     } catch (error) {
-      setSuccessState(successStates.error);
       setTimeout(() => {
         setIsLoading(false);
+        setSuccessState(SUCCESS_STATES.error);
       }, 1000);
     }
   };
@@ -122,25 +115,25 @@ const SchoolForm = () => {
   };
 
   const handleChange = (event) => {
-    setSuccessState(successStates.error);
+    setSuccessState(SUCCESS_STATES.error);
     formik.handleChange(event);
   };
 
   const handleLogoChange = (event, name) => {
-    setSuccessState(successStates.error);
+    setSuccessState(SUCCESS_STATES.error);
     formik.setFieldValue(name, event.target.files[0]);
     handleFileChange(event);
   };
 
   const handleAutocompleteChange = (name, value) => {
-    setSuccessState(successStates.error);
+    setSuccessState(SUCCESS_STATES.error);
     formik.setFieldValue(name, value);
   };
 
   const handleLogoDelete = () => {
     setLogoUrl(null);
     formik.setFieldValue('logoUrl', '');
-    setSuccessState(successStates.error);
+    setSuccessState(SUCCESS_STATES.error);
   };
 
   const formik = useFormik({
@@ -387,10 +380,10 @@ const SchoolForm = () => {
           <Grid item container xs={12}>
             <Box className={styles.buttonBoxContainer} >
               <Box marginBottom={{ xs: 1, sm: 0 }}>
-                {successState === successStates.success &&
+                {successState === SUCCESS_STATES.success &&
                   <Alert className={styles.fullWidth} severity="success">Промените са запазени локално</Alert>
                 }
-                {successState === successStates.error &&
+                {successState === SUCCESS_STATES.error &&
                   <Alert className={styles.fullWidth} severity="error">Промените не са запазени</Alert>
                 }
               </Box>
