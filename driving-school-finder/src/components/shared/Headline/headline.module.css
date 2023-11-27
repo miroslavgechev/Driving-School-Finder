@@ -1,0 +1,22 @@
+.headline {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.textBox {
+    text-align: center;
+
+}
+
+@media screen and (min-width: 600px) {
+    .headline {
+        flex-direction: row;
+    }
+
+    .textBox {
+        text-align: left;
+    }
+}

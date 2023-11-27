@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
 import Container from 'components/Container';
-import Headline from './components/Headline/Headline';
+import Headline from '../shared/Headline/Headline';
 import SchoolForm from './components/SchoolForm/SchoolForm';
 import ContactsForm from './components/ContactsForm/ContactsForm';
 import ImgForm from './components/ImgForm/ImgForm';
@@ -20,7 +20,7 @@ const CreateSchool = () => {
     <SetSchoolProvider>
       <Box bgcolor={'alternate.main'} >
         <Container paddingY={{ xs: 2, sm: 2.5 }}>
-          <Headline />
+          <Headline text={'Създай автошкола'} />
         </Container>
       </Box>
       <Container>
