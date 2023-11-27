@@ -227,7 +227,7 @@ Driving School Finder
       - Select courses to compare.
       - Compare courses side by side in a table.
 
-13. **Error Page**
+13. **Error Page** 
 
     - **Description**: Displays a friendly error message when a user tries to access a page that doesn't exist.
 
