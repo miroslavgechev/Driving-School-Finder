@@ -4,7 +4,8 @@ const SetSchoolContext = createContext();
 
 export const SetSchoolProvider = ({ children }) => {
 
-  const [school, setSchool] = useState({});
+  //! Fix initial state to {}
+  const [school, setSchool] = useState({ categoriesServed: ['A', 'B', 'B2'] });
 
   const setSchoolDescription =
     async ({ name, description, logoUrl, whyUs1, whyUs2, whyUs3, regionsServed, categoriesServed }) => {
