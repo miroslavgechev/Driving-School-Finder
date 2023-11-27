@@ -1,0 +1,49 @@
+.headerText {
+    font-weight: 700 !important;
+}
+
+.boxContainer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.outerBox {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.textBoxContainer {
+    width: 100%;
+    order: 2;
+    display: flex;
+    align-items: center;
+}
+
+.textBox {
+    text-align: center;
+}
+
+.buttonBoxContainer {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (min-width: 900px) {
+    .outerBox {
+        flex-direction: row;
+    }
+
+    .textBoxContainer {
+        order: 1;
+    }
+
+    .textBox {
+        text-align: left;
+    }
+
+    .buttonBoxContainer {
+        justify-content: flex-start;
+    }
+}
