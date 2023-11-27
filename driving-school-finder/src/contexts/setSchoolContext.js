@@ -21,8 +21,22 @@ export const SetSchoolProvider = ({ children }) => {
       });
     };
 
+  const setSchoolContacts = async ({ city, region, street, email, phone }) => {
+    setSchool(data => {
+      return {
+        ...data,
+        city,
+        region,
+        street,
+        email,
+        phone,
+      };
+    });
+  };
+
   const contextValues = {
     setSchoolDescription,
+    setSchoolContacts,
     school,
   };
 
