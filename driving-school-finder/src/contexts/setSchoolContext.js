@@ -7,7 +7,7 @@ export const SetSchoolProvider = ({ children }) => {
   const [school, setSchool] = useState();
 
   const setSchoolDescription =
-    async ({ name, description, logoUrl, whyUs1, whyUs2, whyUs3, regionsServed, categoriesServed }) => {
+    ({ name, description, logoUrl, whyUs1, whyUs2, whyUs3, regionsServed, categoriesServed }) => {
       setSchool(data => {
         return {
           ...data,
@@ -21,7 +21,7 @@ export const SetSchoolProvider = ({ children }) => {
       });
     };
 
-  const setSchoolContacts = async ({ city, region, street, email, phone }) => {
+  const setSchoolContacts = ({ city, region, street, email, phone }) => {
     setSchool(data => {
       return {
         ...data,
@@ -34,7 +34,7 @@ export const SetSchoolProvider = ({ children }) => {
     });
   };
 
-  const setSchoolImages = async ({ mainImage, supportImages }) => {
+  const setSchoolImages = ({ mainImage, supportImages }) => {
     setSchool(data => {
       return {
         ...data,
@@ -44,7 +44,7 @@ export const SetSchoolProvider = ({ children }) => {
     });
   };
 
-  const setSchoolCourses = async (newCourses) => {
+  const setSchoolCourses = (newCourses) => {
     setSchool(data => {
       return {
         ...data,
