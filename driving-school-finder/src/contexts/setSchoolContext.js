@@ -45,11 +45,11 @@ export const SetSchoolProvider = ({ children }) => {
     });
   };
 
-  const setSchoolCourses = async (courses) => {
+  const setSchoolCourses = async (newCourses) => {
     setSchool(data => {
       return {
         ...data,
-        courses,
+        courses: newCourses,
       };
     });
   };
