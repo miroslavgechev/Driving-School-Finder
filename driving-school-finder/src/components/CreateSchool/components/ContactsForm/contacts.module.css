@@ -11,6 +11,10 @@
     margin: 0 auto;
 }
 
+.fullWidth {
+    width: 100%;
+}
+
 @media screen and (min-width: 600px) {
     .buttonBoxContainer {
         flex-direction: row;
