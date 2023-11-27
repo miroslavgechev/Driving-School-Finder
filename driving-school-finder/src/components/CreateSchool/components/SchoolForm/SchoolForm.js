@@ -138,7 +138,7 @@ const SchoolForm = () => {
 
   const formik = useFormik({
     initialValues,
-    validationSchema: validationSchema,
+    validationSchema,
     onSubmit: handleSubmit,
   });
 
