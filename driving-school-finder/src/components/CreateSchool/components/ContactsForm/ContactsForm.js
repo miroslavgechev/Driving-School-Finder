@@ -86,7 +86,6 @@ const ContactsForm = () => {
 
   const handleAutocompleteChange = (name, value) => {
     setSuccessState(SUCCESS_STATES.error);
-    console.log(name, value);
     formik.setFieldValue(name, value);
   };
 
