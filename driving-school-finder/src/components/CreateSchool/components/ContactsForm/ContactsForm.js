@@ -212,18 +212,30 @@ const ContactsForm = () => {
             <Box className={styles.buttonBoxContainer}>
               <Box marginBottom={{ xs: 1, sm: 0 }}>
                 {successState === SUCCESS_STATES.success &&
-                  <Alert className={styles.fullWidth} severity="success">Промените са запазени локално</Alert>
+                  <Alert
+                    className={styles.fullWidth}
+                    severity="success">
+                    Промените са запазени локално
+                  </Alert>
                 }
                 {successState === SUCCESS_STATES.error &&
-                  <Alert className={styles.fullWidth} severity="error">Промените не са запазени</Alert>
+                  <Alert
+                    className={styles.fullWidth}
+                    severity="error">
+                    Промените не са запазени
+                  </Alert>
                 }
               </Box>
               <Button
                 size='large'
                 variant='contained'
                 type='submit'
-                startIcon={isLoading ? <CircularProgress size={22} /> : <CloudUploadOutlinedIcon />}
                 disabled={isLoading}
+                startIcon={isLoading
+                  ?
+                  <CircularProgress size={22} />
+                  :
+                  <CloudUploadOutlinedIcon />}
               >
                 Запази промените
               </Button>
