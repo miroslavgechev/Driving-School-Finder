@@ -9,7 +9,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTheme } from '@mui/material/styles';
 
-import Headline from './components/Headline/Headline';
+import Headline from '../shared/Headline/Headline';
 
 import { FAQ } from '../../dbTemp';
 
@@ -23,7 +23,7 @@ const Faq = () => {
     <>
       <Box bgcolor={'alternate.main'} >
         <Container paddingY={{ xs: 2, sm: 2.5 }}>
-          <Headline />
+          <Headline text='Често задавани въпроси' />
         </Container>
       </Box>
       <Container>
