@@ -11,8 +11,9 @@ import ContactsForm from './components/ContactsForm/ContactsForm';
 import ImgForm from './components/ImgForm/ImgForm';
 import CoursesForm from './components/CoursesForm/CoursesForm';
 
-import { SetSchoolProvider } from 'contexts/setSchoolContext';
+import styles from './createSchool.module.css';
 
+import { SetSchoolProvider } from 'contexts/setSchoolContext';
 
 const CreateSchool = () => {
 
@@ -28,7 +29,7 @@ const CreateSchool = () => {
         <Box>
           <Grid container spacing={4}>
             <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom fontWeight={700}>
+              <Typography variant="h6" gutterBottom className={styles.headerText}>
                 Данни за автошколата
               </Typography>
               <Typography variant={'subtitle2'} color={'text.secondary'}>
@@ -46,7 +47,7 @@ const CreateSchool = () => {
 
           <Grid container spacing={4}>
             <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom fontWeight={700}>
+              <Typography variant="h6" gutterBottom className={styles.headerText}>
                 Данни за контакт
               </Typography>
               <Typography variant={'subtitle2'} color={'text.secondary'}>
@@ -62,7 +63,7 @@ const CreateSchool = () => {
           <Divider sx={{ marginY: 4 }} />
           <Grid container spacing={4}>
             <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom fontWeight={700}>
+              <Typography variant="h6" gutterBottom className={styles.headerText}>
                 Снимки
               </Typography>
               <Typography variant={'subtitle2'} color={'text.secondary'}>
@@ -79,7 +80,7 @@ const CreateSchool = () => {
 
           <Grid container spacing={4}>
             <Grid item xs={12} md={4}>
-              <Typography variant="h6" gutterBottom fontWeight={700}>
+              <Typography variant="h6" gutterBottom className={styles.headerText}>
                 Курсове
               </Typography>
               <Typography variant={'subtitle2'} color={'text.secondary'}>
