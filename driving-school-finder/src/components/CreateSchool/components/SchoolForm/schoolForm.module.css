@@ -38,6 +38,10 @@
     border-radius: 8px;
 }
 
+.fullWidth {
+    width: 100%;
+}
+
 @media screen and (min-width: 600px) {
     .boxContainer {
         flex-direction: row;
