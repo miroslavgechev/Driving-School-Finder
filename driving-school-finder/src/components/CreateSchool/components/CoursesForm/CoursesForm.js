@@ -32,7 +32,7 @@ const CoursesForm = () => {
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
   const { setSchoolCourses, school } = useSetSchoolContext();
 
-  school.categoriesServed?.forEach((item) => {
+  school?.categoriesServed?.forEach((item) => {
     Object.entries(subtitles).forEach(([key]) => {
       validationSchema = validationSchema.shape({
         [item + '_' + key]: yup.number().typeError('Въведи валидно число').min(0).required('Полето е задължително'),
@@ -93,7 +93,7 @@ const CoursesForm = () => {
               <TableHead sx={{ bgcolor: 'alternate.dark' }}>
                 <TableRow>
                   <TableCell />
-                  {school.categoriesServed?.map((item, i) => (
+                  {school?.categoriesServed?.map((item, i) => (
                     <TableCell key={i} className={styles.tableHead}>
                       <Typography
                         variant='subtitle2'
@@ -121,7 +121,7 @@ const CoursesForm = () => {
                       </Typography>
                     </TableCell>
 
-                    {school.categoriesServed?.map((item, i) => (
+                    {school?.categoriesServed?.map((item, i) => (
                       <TableCell key={i + item} className={styles.tableHead}>
 
                         <Box className={styles.tableCellContainer}>

@@ -10,6 +10,7 @@ import SchoolForm from './components/SchoolForm/SchoolForm';
 import ContactsForm from './components/ContactsForm/ContactsForm';
 import ImgForm from './components/ImgForm/ImgForm';
 import CoursesForm from './components/CoursesForm/CoursesForm';
+import ConfirmForm from './components/ConfirmForm/ConfirmForm';
 
 import styles from './createSchool.module.css';
 
@@ -87,11 +88,19 @@ const CreateSchool = () => {
                 Опиши курсовете с тяхната продължителност и цени
               </Typography>
             </Grid>
-
             <Grid item xs={12} md={12}>
               <CoursesForm />
             </Grid>
           </Grid>
+
+          <Divider sx={{ marginY: 4 }} />
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={12}>
+              <ConfirmForm />
+            </Grid>
+          </Grid>
+
+
         </Box>
       </Container>
     </SetSchoolProvider>
