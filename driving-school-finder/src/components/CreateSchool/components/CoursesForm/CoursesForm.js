@@ -35,7 +35,12 @@ const CoursesForm = () => {
   school?.categoriesServed?.forEach((item) => {
     Object.entries(subtitles).forEach(([key]) => {
       validationSchema = validationSchema.shape({
-        [item + '_' + key]: yup.number().typeError('Въведи валидно число').min(0).required('Полето е задължително'),
+        [item + '_' + key]:
+          yup
+            .number()
+            .typeError('Въведи валидно число')
+            .min(0)
+            .required('Полето е задължително'),
       });
     });
   });
