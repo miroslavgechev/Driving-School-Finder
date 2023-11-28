@@ -72,23 +72,27 @@ export const SetSchoolProvider = ({ children }) => {
       await uploadImage('logoUrl', files.logoUrl);
       await uploadImage('mainImage', files.mainImage);
       await uploadImage('supportImages', files.supportImages);
+      console.log(school);
       await addSchool(school);
       setFiles(null);
     } catch (error) {
+      console.log(error.message);
       throw new Error(error);
     }
   };
 
   const uploadImage = async (filename, filepath) => {
     try {
-      if (Array.isArray(filepath)) {
+      if (!filepath) {
+        school[filename] = null;
+      } else if (Array.isArray(filepath)) {
         const fileLinks = await Promise.all(
           filepath.map(async (file, index) => {
             const fileLink = await uploadFile(`${school.ownerUid}/${filename}/${index}`, file);
             return fileLink;
           }));
         school[filename] = fileLinks;
-      } else {
+      } else if (!Array.isArray(filepath)) {
         const fileLink = await uploadFile(`${school.ownerUid}/${filename}`, filepath);
         school[filename] = fileLink;
       }
