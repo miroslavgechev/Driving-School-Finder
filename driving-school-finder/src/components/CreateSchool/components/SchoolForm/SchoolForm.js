@@ -76,7 +76,7 @@ const SchoolForm = () => {
   const [logoUrl, setLogoUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
-  const { setSchoolDescription } = useSetSchoolContext();
+  const { setSchoolDescription, setSchoolFiles } = useSetSchoolContext();
   const { user } = useAuthContext();
 
   const theme = useTheme();
@@ -98,6 +98,7 @@ const SchoolForm = () => {
       setIsLoading(true);
 
       const updatedObject = { ...values, logoUrl, ownerUid: user.uid };
+
       setSchoolDescription(updatedObject);
       setTimeout(() => {
         setIsLoading(false);
@@ -111,20 +112,19 @@ const SchoolForm = () => {
     }
   };
 
-  const handleFileChange = async (event) => {
-    const url = await fileMapper([event.target.files[0]]);
-    setLogoUrl(url[0]);
-  };
-
   const handleChange = (event) => {
     setSuccessState(SUCCESS_STATES.error);
     formik.handleChange(event);
   };
 
-  const handleLogoChange = (event, name) => {
+  const handleLogoChange = async (event, name) => {
     setSuccessState(SUCCESS_STATES.error);
+    const url = await fileMapper([event.target.files[0]]);
+
+    setLogoUrl(url[0]);
+
+    setSchoolFiles(name, event.target.files[0]);
     formik.setFieldValue(name, event.target.files[0]);
-    handleFileChange(event);
   };
 
   const handleAutocompleteChange = (name, value) => {

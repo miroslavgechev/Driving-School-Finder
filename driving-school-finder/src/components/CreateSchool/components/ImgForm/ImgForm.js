@@ -40,7 +40,7 @@ export const ImgForm = () => {
   const [images, setImages] = useState({ mainImage: null, images: [] });
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
-  const { setSchoolImages } = useSetSchoolContext();
+  const { setSchoolImages, setSchoolFiles } = useSetSchoolContext();
 
   const initialValues = {
     mainImage: '',
@@ -68,11 +68,13 @@ export const ImgForm = () => {
     setSuccessState(SUCCESS_STATES.error);
 
     if (name === 'mainImage') {
+      setSchoolFiles(name, event.target.files[0]);
       formik.setFieldValue(name, event.target.files[0]);
       const url = await fileMapper([event.target.files[0]]);
       setImages(data => ({ ...data, mainImage: url[0] }));
     } else {
       const firstFourImages = Array.from(event.target.files).slice(0, 4);
+      setSchoolFiles(name, firstFourImages);
       formik.setFieldValue(name, firstFourImages);
       const urlsArray = await fileMapper(firstFourImages);
       setImages(data => ({ ...data, supportImages: urlsArray }));
