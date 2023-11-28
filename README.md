@@ -177,9 +177,10 @@ Driving School Finder
    - **Functionalities**:
      - Form to input details like school name, address, services offered, etc. - listed above.
      - Option to upload photos.
-     - Optinal: Verification process to ensure authenticity within 24 hours.
-     - Load premium vs free table of features.
+     - Optinal: Verification process to ensure authenticity within 24 hours. ❌
+     - Load premium vs free table of features. ❌
    - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
+   - **Others** - setSchoolContext -> add reducers into context
 
 7. **User Review & Rating Page**:
 
