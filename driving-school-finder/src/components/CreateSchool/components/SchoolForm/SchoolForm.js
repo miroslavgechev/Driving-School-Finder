@@ -76,7 +76,7 @@ const SchoolForm = () => {
   const [logoUrl, setLogoUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
-  const { setSchoolDescription, school } = useSetSchoolContext();
+  const { setSchoolDescription } = useSetSchoolContext();
   const { user } = useAuthContext();
 
   const theme = useTheme();
@@ -149,7 +149,6 @@ const SchoolForm = () => {
 
   return (
     <Box>
-      {console.log(school)}
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={4}>
 
