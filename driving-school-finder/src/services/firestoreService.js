@@ -7,7 +7,6 @@ import {
   collection,
   getDocs,
   setDoc,
-  addDoc,
   getDoc,
   doc,
   query,
@@ -78,4 +77,4 @@ export const getSchoolByName = async (name) => {
   return school;
 };
 
-export const addSchool = async (school) => await addDoc(collection(db, 'schools'), school);
+export const addSchool = async (school) => await setDoc(doc(db, 'schools', school.ownerUid), school);
