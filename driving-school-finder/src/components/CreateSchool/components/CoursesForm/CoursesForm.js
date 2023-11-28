@@ -41,7 +41,7 @@ const CoursesForm = () => {
   });
 
   let initialValues = {};
-  school.categoriesServed?.forEach((item) => {
+  school?.categoriesServed?.forEach((item) => {
     Object.entries(subtitles).forEach(([key]) => {
       initialValues[item + '_' + key] = '';
     });
