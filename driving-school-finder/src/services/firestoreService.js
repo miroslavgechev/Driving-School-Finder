@@ -14,8 +14,6 @@ import {
   where,
 } from 'firebase/firestore';
 
-import { schoolMock } from 'dbTemp';
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -80,4 +78,4 @@ export const getSchoolByName = async (name) => {
   return school;
 };
 
-export const addSchool = async () => await addDoc(collection(db, 'schools'), schoolMock);
+export const addSchool = async (school) => await addDoc(collection(db, 'schools'), school);

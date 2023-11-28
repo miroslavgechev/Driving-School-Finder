@@ -1,14 +1,16 @@
 import { useState, createContext, useContext } from 'react';
+import { uploadFile } from 'services/firebaseStorageService';
+import { addSchool } from 'services/firestoreService';
 
 const SetSchoolContext = createContext();
 
 export const SetSchoolProvider = ({ children }) => {
 
   const [school, setSchool] = useState();
+  const [files, setFiles] = useState();
 
   const setSchoolDescription =
     ({ name, description, logoUrl, whyUs1, whyUs2, whyUs3, regionsServed, categoriesServed, ownerUid }) => {
-      console.log(ownerUid);
       setSchool(data => {
         return {
           ...data,
@@ -55,8 +57,44 @@ export const SetSchoolProvider = ({ children }) => {
     });
   };
 
+  const setSchoolFiles = (name, newData) => {
+    setFiles(data => {
+      return {
+        ...data,
+        [name]: newData
+      };
+    });
+
+  };
+
   const uploadSchool = async () => {
-    console.log('school', school);
+    try {
+      await uploadImage('logoUrl', files.logoUrl);
+      await uploadImage('mainImage', files.mainImage);
+      await uploadImage('supportImages', files.supportImages);
+      await addSchool(school);
+      setFiles(null);
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+  const uploadImage = async (filename, filepath) => {
+    try {
+      if (Array.isArray(filepath)) {
+        const fileLinks = await Promise.all(
+          filepath.map(async (file, index) => {
+            const fileLink = await uploadFile(`${school.ownerUid}/${filename}/${index}`, file);
+            return fileLink;
+          }));
+        school[filename] = fileLinks;
+      } else {
+        const fileLink = await uploadFile(`${school.ownerUid}/${filename}`, filepath);
+        school[filename] = fileLink;
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
   };
 
   const contextValues = {
@@ -65,7 +103,9 @@ export const SetSchoolProvider = ({ children }) => {
     setSchoolImages,
     setSchoolCourses,
     uploadSchool,
+    setSchoolFiles,
     school,
+    files
   };
 
   return (

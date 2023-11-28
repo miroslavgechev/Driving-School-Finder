@@ -8,15 +8,20 @@ const app = initializeApp(firebaseConfig);
 // Get a reference to the storage service
 const storage = getStorage(app);
 
-export const uploadSchoolLogo = async (file) => {
+export const uploadFile = async (path, file) => {
+  try {
+    // Create a storage reference
+    const storageRef = ref(storage, `school/${path}`);
 
-  // Create a storage reference
-  const storageRef = ref(storage, 'school/id-num/logo');
+    // Upload the file
+    const snapshot = await uploadBytes(storageRef, file);
 
-  // Upload the file
-  const snapshot = await uploadBytes(storageRef, file);
-  console.log('Uploaded a blob or file!');
-  console.log(snapshot.ref);
+    // Get the download URL
+    const downloadURL = await getDownloadURL(snapshot.ref);
+    return downloadURL;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 export const downloadFile = async (filePath) => {
@@ -24,9 +29,8 @@ export const downloadFile = async (filePath) => {
 
   try {
     const url = await getDownloadURL(storageRef);
-    console.log('File available at', url);
     return url;
   } catch (error) {
-    console.error('Error downloading file:', error);
+    throw new Error(error);
   }
 };
