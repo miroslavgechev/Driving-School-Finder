@@ -24,6 +24,7 @@ import { REGIONS, CATEGORIES, SUCCESS_STATES } from 'CONSTANTS';
 import styles from './schoolForm.module.css';
 import fileMapper from 'utils/fileMapper';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
+import { useAuthContext } from 'contexts/authContext';
 
 const validationSchema = yup.object({
   name: yup
@@ -75,7 +76,8 @@ const SchoolForm = () => {
   const [logoUrl, setLogoUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
-  const { setSchoolDescription } = useSetSchoolContext();
+  const { setSchoolDescription, school } = useSetSchoolContext();
+  const { user } = useAuthContext();
 
   const theme = useTheme();
 
@@ -95,7 +97,7 @@ const SchoolForm = () => {
       formik.setStatus(null);
       setIsLoading(true);
 
-      const updatedObject = { ...values, logoUrl };
+      const updatedObject = { ...values, logoUrl, ownerUid: user.uid };
       setSchoolDescription(updatedObject);
       setTimeout(() => {
         setIsLoading(false);
@@ -147,6 +149,7 @@ const SchoolForm = () => {
 
   return (
     <Box>
+      {console.log(school)}
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={4}>
 

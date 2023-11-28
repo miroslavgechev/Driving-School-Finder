@@ -7,7 +7,8 @@ export const SetSchoolProvider = ({ children }) => {
   const [school, setSchool] = useState();
 
   const setSchoolDescription =
-    ({ name, description, logoUrl, whyUs1, whyUs2, whyUs3, regionsServed, categoriesServed }) => {
+    ({ name, description, logoUrl, whyUs1, whyUs2, whyUs3, regionsServed, categoriesServed, ownerUid }) => {
+      console.log(ownerUid);
       setSchool(data => {
         return {
           ...data,
@@ -17,6 +18,7 @@ export const SetSchoolProvider = ({ children }) => {
           whyUs: [whyUs1, whyUs2, whyUs3],
           regionsServed: [...regionsServed],
           categoriesServed: [...categoriesServed],
+          ownerUid,
         };
       });
     };
@@ -53,11 +55,16 @@ export const SetSchoolProvider = ({ children }) => {
     });
   };
 
+  const uploadSchool = async () => {
+    console.log('school', school);
+  };
+
   const contextValues = {
     setSchoolDescription,
     setSchoolContacts,
     setSchoolImages,
     setSchoolCourses,
+    uploadSchool,
     school,
   };
 
