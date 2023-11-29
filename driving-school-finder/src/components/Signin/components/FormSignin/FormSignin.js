@@ -16,7 +16,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuthContext } from '../../../../contexts/authContext';
-import { ERROR_MESSAGES } from 'CONSTANTS';
+import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES } from 'CONSTANTS';
 import styles from './formSignin.module.css';
 
 
@@ -34,7 +34,7 @@ const validationSchema = yup.object({
 
 const SigninForm = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
 
   const { login } = useAuthContext();
   const navigate = useNavigate();
@@ -49,21 +49,21 @@ const SigninForm = () => {
       formik.setStatus(null);
       setIsLoading(true);
       await login(values);
-      setIsSuccess(true);
+      setSuccessState(SUCCESS_STATES.success);
 
       setTimeout(() => {
         navigate('/school/all');
         setIsLoading(false);
-      }, 2000);
+      }, 1000);
 
     } catch (error) {
-      if (error.message === ERROR_MESSAGES.invalidCredentials) {
+      if (error.message.includes(ERROR_CODES.invalidCredential)) {
         formik.setStatus(ERROR_MESSAGES.invalidCredentials);
       } else {
         formik.setStatus(ERROR_MESSAGES.defaultError);
       }
       setIsLoading(false);
-      setIsSuccess(false);
+      setSuccessState(SUCCESS_STATES.error);
     }
   };
 
@@ -147,14 +147,15 @@ const SigninForm = () => {
               <Alert className={styles.fullWidth} severity="error">{formik.status}</Alert>
             </Grid>}
 
-          {isSuccess && <Grid
-            item
-            container
-            xs={12}
-            className={styles.centeredGridContainer}
-          >
-            <Alert className={styles.fullWidth} severity="success">Успя! Пренасочваме те...</Alert>
-          </Grid>}
+          {successState === SUCCESS_STATES.success &&
+            <Grid
+              item
+              container
+              xs={12}
+              className={styles.centeredGridContainer}
+            >
+              <Alert className={styles.fullWidth} severity="success">Успя! Пренасочваме те...</Alert>
+            </Grid>}
 
           <Grid item container xs={12}>
             <Box className={styles.bottomBox}>
