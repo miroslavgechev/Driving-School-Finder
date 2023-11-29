@@ -10,12 +10,17 @@ import TableBody from '@mui/material/TableBody';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 
-const ManageSchools = () => {
+import { Link } from 'react-router-dom';
 
-  const schoolsMock = [
-    { name: 'Училище 1 Училище 1 Училище 1 Училище 1 Училище 1 Училище 1 Училище 1' },
-    { name: 'Училище 2' },
-  ];
+import styles from './manageSchools.module.css';
+// import { useSetSchoolContext } from 'contexts/setSchoolContext';
+
+const ManageSchools = () => {
+  const school = {
+    id: 15,
+    name: 'Test Driving School Mock'
+  };
+  // const { school } = useSetSchoolContext();
 
   const headCells = [
     {
@@ -47,59 +52,49 @@ const ManageSchools = () => {
                     {headCells.map((headCell) =>
                       <TableCell
                         key={headCell.id}
-                        sx={{ textAlign: 'center', fontWeight: 700 }}
+                        className={styles.tableCell}
                       >
-
                         {headCell.label}
-
                       </TableCell>
                     )}
                   </TableRow>
                 </TableHead>
 
                 <TableBody>
+                  <TableRow
+                    hover
+                    sx={{
+                      '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
+                      '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
+                      cursor: 'pointer'
+                    }}
+                  >
+                    <TableCell className={styles.centerText} component="td" scope="row">
+                      <Typography variant='subtitle2'>
+                        {school?.name}
+                      </Typography>
+                    </TableCell>
 
-                  {schoolsMock.map((school, index) => (
-                    <TableRow
-                      hover
-                      key={index}
-                      sx={{
-                        '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
-                        '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
-                        cursor: 'pointer'
-                      }}
-                    >
+                    <TableCell className={styles.centerText}>
+                      <Button
+                        component={Link}
+                        to={`/school/${school?.id}/edit`}
+                        color='warning'
+                        variant='text'
+                      >
+                        Редактирай
+                      </Button>
+                    </TableCell>
 
-
-                      <TableCell key={index + school.name} sx={{ textAlign: 'center' }} component="td" scope="row">
-                        <Typography variant={'subtitle2'}>
-                          {school.name}
-                        </Typography>
-                      </TableCell>
-
-                      <TableCell key={index + 'editButton'} sx={{ textAlign: 'center' }}>
-                        <Button
-                          color={'primary'}
-                          variant={'text'}
-                          name={index}
-                        >
-                          Редактирай
-                        </Button>
-                      </TableCell>
-
-                      <TableCell key={index + 'deleteButton'} variant='warning' sx={{ textAlign: 'center' }}>
-                        <Button
-                          color={'error'}
-                          variant={'text'}
-                          name={index}
-                        >
-                          Изтрий
-                        </Button>
-                      </TableCell>
-
-                    </TableRow>
-                  )
-                  )}
+                    <TableCell className={styles.centerText}>
+                      <Button
+                        color='error'
+                        variant={'text'}
+                      >
+                        Изтрий
+                      </Button>
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>
