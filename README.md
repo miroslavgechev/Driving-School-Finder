@@ -54,10 +54,11 @@ Driving School Finder
 10. Develop App
 11. Connect to Backend
 12. Refactor Code to css modules.
-13. Move Static images to public
-14. Test
-15. Deploy
-16. Update Documentation
+13. Optimize Code
+14. Move Static images to public ✅
+15. Test
+16. Deploy
+17. Update Documentation
 
 ## Requirements
 
@@ -241,6 +242,7 @@ Driving School Finder
 
 15. **Global Error Handling**
     - Add a global error handler to catch all errors and display a friendly error message to the user.
+    - Add routeGuard to protect routes that require authentication.
 
 ---- TO BE REVISED AFTER PROJECT COMPLETION---
 
