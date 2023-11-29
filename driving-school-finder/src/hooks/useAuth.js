@@ -4,7 +4,10 @@ import {
   onAuthStateChanged,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
+  updatePassword,
 } from 'firebase/auth';
 import firebaseConfig from '../config/firebaseConfig';
 import { initializeApp } from 'firebase/app';
@@ -25,11 +28,13 @@ const useAuth = () => {
       await setCustomUserData(userCredential.user.uid, { role, firstName, lastName });
       setUser({ ...userCredential.user, role, firstName, lastName });
     } catch (error) {
-      if (error.code === ERROR_CODES.emailTaken) {
-        throw new Error(ERROR_MESSAGES.emailTaken);
-      } else {
-        throw new Error(error.message);
-      }
+      // if (error.code === ERROR_CODES.emailTaken) {
+      //   throw new Error(ERROR_MESSAGES.emailTaken);
+      // } else {
+      //   throw new Error(error.message);
+      // }
+      throw new Error(error.message);
+
     }
   };
 
@@ -56,6 +61,22 @@ const useAuth = () => {
     }
   };
 
+  const updateCredentials = async ({ oldPassword, password }) => {
+    try {
+      const user = auth.currentUser;
+
+      // Re-authenticate the user
+      const credential = EmailAuthProvider.credential(user.email, oldPassword);
+      await reauthenticateWithCredential(user, credential);
+
+      // If re-authentication is successful, update the password
+      await updatePassword(user, password);
+    } catch (error) {
+      console.error('Error updating password:', error);
+      throw new Error(error);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth,
       async (user) => {
@@ -71,7 +92,7 @@ const useAuth = () => {
     return unsubscribe;
   }, []);
 
-  return { user, register, login, logout };
+  return { user, register, login, logout, updateCredentials };
 };
 
 export default useAuth;
