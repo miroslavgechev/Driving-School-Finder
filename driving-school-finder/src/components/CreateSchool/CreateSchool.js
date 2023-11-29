@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -14,13 +13,15 @@ import ConfirmForm from './components/ConfirmForm/ConfirmForm';
 
 import styles from './createSchool.module.css';
 
-import { SetSchoolProvider } from 'contexts/setSchoolContext';
+import { useSetSchoolContext } from 'contexts/setSchoolContext';
 
 const CreateSchool = () => {
 
+  let { school } = useSetSchoolContext();
+
   return (
-    <SetSchoolProvider>
-      <Box bgcolor={'alternate.main'} >
+    <>
+      <Box bgcolor={'alternate.main'}>
         <Container paddingY={{ xs: 2, sm: 2.5 }}>
           <Headline text={'Създай автошкола'} />
         </Container>
@@ -89,7 +90,15 @@ const CreateSchool = () => {
               </Typography>
             </Grid>
             <Grid item xs={12} md={12}>
-              <CoursesForm />
+              {
+                school?.categoriesServed?.length > 0
+                  ?
+                  <CoursesForm key={school?.categoriesServed?.length} />
+                  :
+                  <Typography variant="h6" gutterBottom className={`${styles.headerText} ${styles.centerText}`}>
+                    Все още не си избрал категории, които предлага автошколата
+                  </Typography>
+              }
             </Grid>
           </Grid>
 
@@ -103,7 +112,7 @@ const CreateSchool = () => {
 
         </Box>
       </Container>
-    </SetSchoolProvider>
+    </>
   );
 };
 
