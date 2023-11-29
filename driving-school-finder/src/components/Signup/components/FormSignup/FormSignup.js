@@ -20,7 +20,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
 import { useAuthContext } from '../../../../contexts/authContext';
-import { ERROR_MESSAGES } from 'CONSTANTS';
+import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES } from 'CONSTANTS';
 import styles from './formSignup.module.css';
 
 const validationSchema = yup.object({
@@ -63,7 +63,7 @@ const roles = {
 const SignupForm = () => {
   const [color, setColor] = useState('primary');
   const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
 
   const { register } = useAuthContext();
   const navigate = useNavigate();
@@ -82,21 +82,21 @@ const SignupForm = () => {
       formik.setStatus(null);
       setIsLoading(true);
       await register(values);
-      setIsSuccess(true);
+      setSuccessState(SUCCESS_STATES.success);
 
       setTimeout(() => {
         navigate('/school/all');
         setIsLoading(false);
-      }, 2000);
+      }, 1000);
 
     } catch (error) {
-      if (error.message === ERROR_MESSAGES.emailTaken) {
-        formik.setErrors({ email: error.message });
+      if (error.message.includes(ERROR_CODES.emailTaken)) {
+        formik.setErrors({ email: ERROR_MESSAGES.emailTaken });
       } else {
         formik.setStatus(ERROR_MESSAGES.defaultError);
       }
       setIsLoading(false);
-      setIsSuccess(false);
+      setSuccessState(SUCCESS_STATES.error);
     }
   };
 
@@ -267,14 +267,15 @@ const SignupForm = () => {
               <Alert className={styles.fullWidth} severity="error">{formik.status}</Alert>
             </Grid>}
 
-          {isSuccess && <Grid
-            item
-            container
-            xs={12}
-            className={styles.centeredGridContainer}
-          >
-            <Alert className={styles.fullWidth} severity="success">Успя! Пренасочваме те...</Alert>
-          </Grid>}
+          {successState === SUCCESS_STATES.success &&
+            <Grid
+              item
+              container
+              xs={12}
+              className={styles.centeredGridContainer}
+            >
+              <Alert className={styles.fullWidth} severity="success">Успя! Пренасочваме те...</Alert>
+            </Grid>}
 
           <Grid item container xs={12}>
             <Box className={styles.bottomBox}>
