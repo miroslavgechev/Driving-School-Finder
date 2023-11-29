@@ -1,12 +1,20 @@
-/* eslint-disable react/no-unescaped-entities */
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
+
+import { useAuthContext } from 'contexts/authContext';
+import { SUCCESS_STATES } from 'CONSTANTS';
+import styles from './editPersonalDataForm.module.css';
+import { updateCustomUserData } from 'services/firestoreService';
 
 const validationSchema = yup.object({
   firstName: yup
@@ -29,26 +37,48 @@ const validationSchema = yup.object({
 });
 
 const EditPersonalDataForm = () => {
-  const roles = {
-    student: 1,
-    school: 2,
-  };
+  const { user } = useAuthContext();
 
   const initialValues = {
-    firstName: 'Мирослав',
-    lastName: 'Гечев',
-    email: 'miroslav@gmail.com',
-    role: roles.student,
+    firstName: user?.firstName,
+    lastName: user?.lastName,
+    email: user?.email,
+    role: user?.role,
   };
 
-  const onSubmit = (values) => {
-    return values;
+  const [isLoading, setIsLoading] = useState(false);
+  const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
+
+  //! Probably not needed anymore
+  useEffect(() => {
+    formik.setFieldValue('firstName', user?.firstName);
+    formik.setFieldValue('lastName', user?.lastName);
+    formik.setFieldValue('email', user?.email);
+  }, [user]);
+
+  const handleSubmit = async (values) => {
+    try {
+      formik.setStatus(null);
+      setIsLoading(true);
+      await updateCustomUserData(user.uid, values);
+
+      setIsLoading(false);
+      setSuccessState(SUCCESS_STATES.success);
+    } catch (error) {
+      setIsLoading(false);
+      setSuccessState(SUCCESS_STATES.error);
+    }
+  };
+
+  const handleChange = (event) => {
+    setSuccessState(SUCCESS_STATES.error);
+    formik.handleChange(event);
   };
 
   const formik = useFormik({
     initialValues,
-    validationSchema: validationSchema,
-    onSubmit,
+    validationSchema,
+    onSubmit: handleSubmit,
   });
 
   return (
@@ -56,16 +86,16 @@ const EditPersonalDataForm = () => {
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
-            <Typography variant={'subtitle2'} sx={{ marginBottom: 2 }}>
+            <Typography variant='subtitle2' sx={{ marginBottom: 2 }}>
               Име
             </Typography>
             <TextField
-              label="Име *"
-              variant="outlined"
+              label='Име *'
+              variant='outlined'
               name={'firstName'}
               fullWidth
               value={formik.values.firstName}
-              onChange={formik.handleChange}
+              onChange={handleChange}
               error={
                 formik.touched.firstName && Boolean(formik.errors.firstName)
               }
@@ -73,59 +103,71 @@ const EditPersonalDataForm = () => {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Typography variant={'subtitle2'} sx={{ marginBottom: 2 }}>
+            <Typography variant='subtitle2' sx={{ marginBottom: 2 }}>
               Фамилия
             </Typography>
             <TextField
-              label="Фамилия *"
-              variant="outlined"
+              label='Фамилия *'
+              variant='outlined'
               name={'lastName'}
               fullWidth
               value={formik.values.lastName}
-              onChange={formik.handleChange}
+              onChange={handleChange}
               error={formik.touched.lastName && Boolean(formik.errors.lastName)}
               helperText={formik.touched.lastName && formik.errors.lastName}
             />
           </Grid>
           <Grid item xs={12}>
-            <Typography variant={'subtitle2'} sx={{ marginBottom: 2 }}>
+            <Typography variant='subtitle2' sx={{ marginBottom: 2 }}>
               Имейл
             </Typography>
             <TextField
               disabled
-              label="Имейл *"
-              variant="outlined"
+              label='Имейл *'
+              variant='outlined'
               name={'email'}
               fullWidth
               value={formik.values.email}
-              onChange={formik.handleChange}
+              onChange={handleChange}
               error={formik.touched.email && Boolean(formik.errors.email)}
               helperText={formik.touched.email && formik.errors.email}
             />
           </Grid>
 
           <Grid item container xs={12}>
-            <Box
-              display="flex"
-              flexDirection={{ xs: 'column', sm: 'row' }}
-              alignItems={{ xs: 'stretched', sm: 'center' }}
-              justifyContent={'space-between'}
-              width={1}
-              margin={'0 auto'}
-            >
+            <Box className={styles.buttonBoxContainer} >
               <Box marginBottom={{ xs: 1, sm: 0 }}>
-
+                {successState === SUCCESS_STATES.success &&
+                  <Alert
+                    className={styles.fullWidth}
+                    severity="success">
+                    Промените са запазени в системата
+                  </Alert>
+                }
+                {successState === SUCCESS_STATES.error &&
+                  <Alert
+                    className={styles.fullWidth}
+                    severity="error">
+                    Промените не са запазени
+                  </Alert>
+                }
               </Box>
               <Button
-                size={'large'}
-                variant={'contained'}
-                type={'submit'}
-                startIcon={<CloudUploadOutlinedIcon />}
+                size='large'
+                variant='contained'
+                type='submit'
+                disabled={isLoading}
+                startIcon={isLoading
+                  ?
+                  <CircularProgress size={22} />
+                  :
+                  <CloudUploadOutlinedIcon />}
               >
                 Запази промените
               </Button>
             </Box>
           </Grid>
+
 
           <Grid
             item
