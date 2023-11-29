@@ -72,7 +72,6 @@ export const SetSchoolProvider = ({ children }) => {
       await uploadImage('logoUrl', files.logoUrl);
       await uploadImage('mainImage', files.mainImage);
       await uploadImage('supportImages', files.supportImages);
-      console.log(school);
       await addSchool(school);
       setFiles(null);
     } catch (error) {
