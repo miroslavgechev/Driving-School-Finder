@@ -8,6 +8,7 @@ import {
   getDocs,
   setDoc,
   getDoc,
+  updateDoc,
   doc,
   query,
   where,
@@ -38,6 +39,16 @@ export const getCustomUserData = async (uid) => {
     }
   } catch (error) {
     throw new Error(error.message);
+  }
+};
+
+export const updateCustomUserData = async (uid, { firstName, lastName }) => {
+  const docRef = doc(db, 'users', uid);
+
+  try {
+    await updateDoc(docRef, { firstName, lastName });
+  } catch (error) {
+    throw new Error(error);
   }
 };
 
@@ -78,3 +89,4 @@ export const getSchoolByName = async (name) => {
 };
 
 export const addSchool = async (school) => await setDoc(doc(db, 'schools', school.ownerUid), school);
+
