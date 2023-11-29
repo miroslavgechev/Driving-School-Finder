@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
-import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsRounded';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
@@ -14,6 +13,7 @@ import { Link } from 'react-router-dom';
 import styles from './topbar.module.css';
 import UserAvatar from 'components/shared/UserAvatar/UserAvatar';
 import LogoutButton from 'components/shared/LogoutButton/LogoutButton';
+import Logo from 'components/shared/Logo/Logo';
 import { useAuthContext } from 'contexts/authContext';
 
 const Topbar = ({ onSidebarOpen = false }) => {
@@ -24,11 +24,7 @@ const Topbar = ({ onSidebarOpen = false }) => {
     <Box className={styles.box}>
       <Box width={{ xs: 100, md: 120 }}>
         <Link to='/' className={styles.link}>
-          <Typography>
-            <SportsMotorsportsRoundedIcon
-              className={styles.headerIcon}
-            />
-          </Typography>
+          <Logo />
         </Link>
       </Box>
 

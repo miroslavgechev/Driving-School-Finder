@@ -3,7 +3,6 @@ import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
-import SportsMotorsportsRoundedIcon from '@mui/icons-material/SportsMotorsportsRounded';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
@@ -13,6 +12,7 @@ import styles from './sidebar.module.css';
 import { useAuthContext } from 'contexts/authContext';
 import LogoutButton from 'components/shared/LogoutButton/LogoutButton';
 import Divider from '@mui/material/Divider';
+import Logo from 'components/shared/Logo/Logo';
 
 const Sidebar = ({ open, variant, onClose }) => {
   const { user } = useAuthContext();
@@ -42,11 +42,7 @@ const Sidebar = ({ open, variant, onClose }) => {
           <Box width={1} paddingX={2} paddingY={1}>
             <Box width={{ xs: 100, md: 120 }}>
               <Link to='/' className={styles.link}>
-                <Typography>
-                  <SportsMotorsportsRoundedIcon
-                    className={styles.headerIcon}
-                  />
-                </Typography>
+                <Logo />
               </Link>
             </Box>
           </Box>
