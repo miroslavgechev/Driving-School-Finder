@@ -38,10 +38,10 @@ const NotFound = () => {
                 >
                   <Button
                     component={Link}
+                    to='/'
                     variant='contained'
                     color='primary'
                     size='large'
-                    to='/'
                   >
                     Начална страница
                   </Button>
