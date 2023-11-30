@@ -28,19 +28,19 @@ const App = () => {
           <SetSchoolProvider>
             <Main>
               <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/school/all" element={<Catalogue />} />
-                <Route path="/school/create" element={<CreateSchool />} />
+                <Route path='/' element={<Home />} />
+                <Route path='/school/all' element={<Catalogue />} />
+                <Route path='/school/create' element={<CreateSchool />} />
 
               //! Add edit school component
 
-                <Route path="/school/:id" element={<SchoolDetails />} />
-                <Route path="/account" element={<ManageAccount />} />
-                <Route path="/signin" element={<Signin />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/faq" element={<Faq />} />
-                <Route path="/about" element={<About />} />
-                <Route path="*" element={<NotFound />} />
+                <Route path='/school/:id' element={<SchoolDetails />} />
+                <Route path='/account' element={<ManageAccount />} />
+                <Route path='/signin' element={<Signin />} />
+                <Route path='/signup' element={<Signup />} />
+                <Route path='/faq' element={<Faq />} />
+                <Route path='/about' element={<About />} />
+                <Route path='*' element={<NotFound />} />
               </Routes>
             </Main>
           </SetSchoolProvider>
