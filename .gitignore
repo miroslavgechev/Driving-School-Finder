@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 # config file
-src/config/config.js
+src/config
