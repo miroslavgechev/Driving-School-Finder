@@ -69,7 +69,7 @@ const ManageSchools = () => {
                       cursor: 'pointer'
                     }}
                   >
-                    <TableCell className={styles.centerText} component="td" scope="row">
+                    <TableCell className={styles.centerText} component='td' scope='row'>
                       <Typography variant='subtitle2'>
                         {school?.name}
                       </Typography>
@@ -89,7 +89,7 @@ const ManageSchools = () => {
                     <TableCell className={styles.centerText}>
                       <Button
                         color='error'
-                        variant={'text'}
+                        variant='text'
                       >
                         Изтрий
                       </Button>
