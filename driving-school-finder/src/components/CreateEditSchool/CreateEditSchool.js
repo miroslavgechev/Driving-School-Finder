@@ -66,7 +66,13 @@ const CreateEditSchool = () => {
         <>
           <Box bgcolor={'alternate.main'}>
             <Container paddingY={{ xs: 2, sm: 2.5 }}>
-              <Headline text={'Създай автошкола'} />
+              <Headline text={
+                currentLocation === '/school/create'
+                  ?
+                  'Създай автошкола'
+                  :
+                  'Редактиране на автошкола'
+              } />
             </Container>
           </Box>
           <Container>

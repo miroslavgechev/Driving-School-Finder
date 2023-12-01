@@ -11,7 +11,7 @@ import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
@@ -46,9 +46,16 @@ const CoursesForm = () => {
   });
 
   let initialValues = {};
-  school?.categoriesServed?.forEach((item) => {
-    Object.entries(subtitles).forEach(([key]) => {
-      initialValues[item + '_' + key] = '';
+  school?.categoriesServed?.forEach((key) => {
+    Object.entries(subtitles).forEach(([item]) => {
+      let combinedKey = key + '_' + item;
+      initialValues[combinedKey] = '';
+
+      school?.courses?.forEach(course => {
+        if (combinedKey in course) {
+          initialValues[combinedKey] = course[combinedKey];
+        }
+      });
     });
   });
 
@@ -185,7 +192,7 @@ const CoursesForm = () => {
                   ?
                   <CircularProgress size={22} />
                   :
-                  <CloudUploadOutlinedIcon />}
+                  <SaveOutlinedIcon />}
               >
                 Запази промените
               </Button>

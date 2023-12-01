@@ -2,13 +2,13 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import FormHelperText from '@mui/material/FormHelperText';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import styles from './imgForm.module.css';
@@ -21,33 +21,52 @@ const validationSchema = yup.object({
   mainImage: yup
     .mixed()
     .required('Добавяне на основна снимка е задължително')
-    .test('type', 'Изображението трябва да бъде снимка', value => {
-      return value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
+    .test('type', 'Логото трябва да бъде картинка', value => {
+      if (typeof value === 'string') {
+        return true;
+      } else if (value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)) {
+        return true;
+      } else {
+        return false;
+      }
     }),
   supportImages: yup.array().of(
     yup
       .mixed()
-      .test('type', 'Изображението трябва да бъде снимка', value => {
-        return value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
-      })
+      .test('type', 'Логото трябва да бъде картинка', value => {
+        if (typeof value === 'string') {
+          return true;
+        } else if (value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)) {
+          return true;
+        } else {
+          return false;
+        }
+      }),
     // .required('Добавяне на поне една допълнителна снимка е задължително')
   )
   // .min(1, 'Добавяне на поне една допълнителна снимка е задължително'),
 });
 
 export const ImgForm = () => {
-
   const [images, setImages] = useState({ mainImage: null, images: [] });
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
-  const { setSchoolImages, setSchoolFiles } = useSetSchoolContext();
+  const { setSchoolImages, setSchoolFiles, school } = useSetSchoolContext();
 
   const initialValues = {
-    mainImage: '',
-    supportImages: [],
+    mainImage: school?.mainImage || '',
+    supportImages: school?.supportImages || [],
   };
 
+  useEffect(() => {
+    setImages({
+      mainImage: school?.mainImage || null,
+      supportImages: school?.supportImages || []
+    });
+  }, [school]);
+
   const handleSubmit = () => {
+    setSuccessState(SUCCESS_STATES.error);
     try {
       formik.setStatus(null);
       setIsLoading(true);
@@ -66,7 +85,6 @@ export const ImgForm = () => {
 
   const handleImageChange = async (event, name) => {
     setSuccessState(SUCCESS_STATES.error);
-
     if (name === 'mainImage') {
       setSchoolFiles(name, event.target.files[0]);
       formik.setFieldValue(name, event.target.files[0]);
@@ -213,7 +231,7 @@ export const ImgForm = () => {
                   ?
                   <CircularProgress size={22} />
                   :
-                  <CloudUploadOutlinedIcon />}
+                  <SaveOutlinedIcon />}
               >
                 Запази промените
               </Button>

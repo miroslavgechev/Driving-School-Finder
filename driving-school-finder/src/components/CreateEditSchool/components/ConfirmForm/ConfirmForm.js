@@ -7,19 +7,26 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from './confirmForm.module.css';
 
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
 import { SUCCESS_STATES } from 'CONSTANTS';
 
-//!TO DO - add redirection to catalogue or Manage Account!
+//!TO DO - add redirection to details!
 
 const ConfirmForm = () => {
+  const [currentLocation, setCurrentLocation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSchoolObjectCompleted, setIsSchoolObjectCompleted] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
 
   const { school, uploadSchool } = useSetSchoolContext();
+  const location = useLocation();
+
+  useEffect(() => {
+    setCurrentLocation(location.pathname);
+  }, [location]);
 
   useEffect(() => {
     if (school &&
@@ -61,7 +68,11 @@ const ConfirmForm = () => {
               :
               <CloudUploadOutlinedIcon />}
           >
-            Създай автошколата
+            {currentLocation === '/school/create'
+              ?
+              'Създай автошколата'
+              :
+              'Обнови автошколата'}
           </Button>
           <Box marginBottom={{ xs: 1, sm: 0 }}>
             {successState === SUCCESS_STATES.success &&

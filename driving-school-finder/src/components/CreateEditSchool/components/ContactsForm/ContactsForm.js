@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
@@ -48,17 +48,16 @@ const validationSchema = yup.object({
 });
 
 const ContactsForm = () => {
-
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
-  const { setSchoolContacts } = useSetSchoolContext();
+  const { setSchoolContacts, school } = useSetSchoolContext();
 
   const initialValues = {
-    city: 'София',
-    region: '',
-    street: '',
-    email: '',
-    phone: '',
+    city: school?.city || 'София',
+    region: school?.region || '',
+    street: school?.street || '',
+    email: school?.email || '',
+    phone: school?.phone || '',
   };
 
   const handleSubmit = async (values) => {
@@ -234,7 +233,7 @@ const ContactsForm = () => {
                   ?
                   <CircularProgress size={22} />
                   :
-                  <CloudUploadOutlinedIcon />}
+                  <SaveOutlinedIcon />}
               >
                 Запази промените
               </Button>

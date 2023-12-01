@@ -67,9 +67,9 @@ export const SetSchoolProvider = ({ children }) => {
 
   const uploadSchool = async () => {
     try {
-      await uploadImage('logoUrl', files.logoUrl);
-      await uploadImage('mainImage', files.mainImage);
-      await uploadImage('supportImages', files.supportImages);
+      await uploadImage('logoUrl', files?.logoUrl);
+      await uploadImage('mainImage', files?.mainImage);
+      await uploadImage('supportImages', files?.supportImages);
       await addSchool(school);
       setFiles(null);
     } catch (error) {
@@ -79,18 +79,25 @@ export const SetSchoolProvider = ({ children }) => {
 
   const uploadImage = async (filename, filepath) => {
     try {
-      if (!filepath) {
-        school[filename] = null;
-      } else if (Array.isArray(filepath)) {
+      if (!filepath && !Array.isArray(school[filename]) && school[filename].startsWith('https')) {
+        return;
+      } else if (filepath && Array.isArray(filepath)) {
         const fileLinks = await Promise.all(
           filepath.map(async (file, index) => {
             const fileLink = await uploadFile(`${school.ownerUid}/${filename}/${index}`, file);
             return fileLink;
           }));
         school[filename] = fileLinks;
-      } else if (!Array.isArray(filepath)) {
+
+      } else if (filepath && !Array.isArray(filepath)) {
         const fileLink = await uploadFile(`${school.ownerUid}/${filename}`, filepath);
         school[filename] = fileLink;
+      } else if (!filepath) {
+        if (Array.isArray(school[filename]) && school[filename].length > 0) {
+          return;
+        }
+
+        school[filename] = null;
       }
     } catch (error) {
       throw new Error(error);

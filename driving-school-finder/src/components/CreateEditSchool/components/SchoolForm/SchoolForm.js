@@ -10,7 +10,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
@@ -423,7 +423,7 @@ const SchoolForm = () => {
                   ?
                   <CircularProgress size={22} />
                   :
-                  <CloudUploadOutlinedIcon />}
+                  <SaveOutlinedIcon />}
               >
                 Запази промените
               </Button>
