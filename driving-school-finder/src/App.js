@@ -13,6 +13,7 @@ import Home from 'components/Home/Home';
 import Catalogue from './components/Catalog/Catalog';
 import SchoolDetails from './components/SchoolDetails/SchoolDetails';
 import CreateSchool from 'components/CreateSchool/CreateSchool';
+import EditSchool from 'components/EditSchool/EditSchool';
 import Signin from 'components/Signin/Signin';
 import Signup from 'components/Signup/Signup';
 import ManageAccount from 'components/ManageAccount/ManagerAccount';
@@ -31,15 +32,14 @@ const App = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/school/all' element={<Catalogue />} />
                 <Route path='/school/create' element={<CreateSchool />} />
-
-              //! Add edit school component
-
+                <Route path='/school/:id/edit' element={<EditSchool />} />
                 <Route path='/school/:id' element={<SchoolDetails />} />
                 <Route path='/account' element={<ManageAccount />} />
                 <Route path='/signin' element={<Signin />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/faq' element={<Faq />} />
                 <Route path='/about' element={<About />} />
+                <Route path='/notfound' element={<NotFound />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </Main>
