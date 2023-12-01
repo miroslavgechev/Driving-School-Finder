@@ -44,7 +44,6 @@ export const getCustomUserData = async (uid) => {
 
 export const updateCustomUserData = async (uid, { firstName, lastName }) => {
   const docRef = doc(db, 'users', uid);
-
   try {
     await updateDoc(docRef, { firstName, lastName });
   } catch (error) {
@@ -90,7 +89,21 @@ export const getSchoolByOwnerUid = async (ownerUid) => {
   } catch (error) {
     throw new Error(error.message);
   }
+};
 
+export const getSchoolByOwnerUidAndSchoolId = async (ownerUid, schoolId) => {
+  try {
+    const school = await getSchoolByOwnerUid(ownerUid);
+
+    if (school && school.id === schoolId) {
+      return school;
+    } else {
+      return undefined;
+    }
+
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 export const addSchool = async (school) => await setDoc(doc(db, 'schools', school.ownerUid), school);
