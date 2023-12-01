@@ -239,6 +239,7 @@ Driving School Finder
     - Add to favorites button
     - Change the theme on sign-in and sign-up pages depending on the user role
     - Add paralax effect to the home page and the about page
+    - Add theme - update colors globally based on user type
 
 15. **Global Error Handling**
     - Add a global error handler to catch all errors and display a friendly error message to the user.
