@@ -34,7 +34,7 @@ const CreateSchool = () => {
               <Typography variant="h6" gutterBottom className={styles.headerText}>
                 Данни за автошколата
               </Typography>
-              <Typography variant={'subtitle2'} color={'text.secondary'}>
+              <Typography variant='subtitle2' color='text.secondary'>
                 Опиши своята автошкола, така че курсистите да разберат защо е най-подходяща за тях
               </Typography>
             </Grid>
@@ -52,7 +52,7 @@ const CreateSchool = () => {
               <Typography variant="h6" gutterBottom className={styles.headerText}>
                 Данни за контакт
               </Typography>
-              <Typography variant={'subtitle2'} color={'text.secondary'}>
+              <Typography variant='subtitle2' color='text.secondary'>
                 Въведи контактните данни на твоята автошкола
               </Typography>
             </Grid>
