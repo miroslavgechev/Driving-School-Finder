@@ -164,20 +164,20 @@ Driving School Finder
      - Booking or inquiry form for lessons. ❌
      - Map integration showing the school's location.
 
-5. **Login/Signup Page**:
+5. **Login/Signup Page**✅
 
-   - **Description**: Allows users and driving schools to create accounts or log into existing ones.
+   - **Description**: Allows users and driving schools to create accounts or log into existing ones.✅
    - **Functionalities**:
      - Form for logging in.✅
      - Option to sign up.✅
-     - Password reset functionality.
+     - Password reset functionality.✅
 
 6. **Driving School Create/Edit/Delete Page**:
 
-   - **Description**: Allows driving schools to register and create a profile on the platform.
+   - **Description**: Allows driving schools to register and create a profile on the platform.✅
    - **Functionalities**:
-     - Form to input details like school name, address, services offered, etc. - listed above.
-     - Option to upload photos.
+     - Form to input details like school name, address, services offered, etc. - listed above.✅
+     - Option to upload photos.✅
      - Optinal: Verification process to ensure authenticity within 24 hours. ❌
      - Load premium vs free table of features. ❌
    - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
@@ -197,18 +197,18 @@ Driving School Finder
 
 8. **User Account Page**:
 
-   - **Description**: Allows users to manage their personal details.
+   - **Description**: Allows users to manage their personal details.✅
    - **Functionalities**:
-     - Personal details editing (name, email, password, etc.).
-     - History of reviews left.
+     - Personal details editing (name, email, password, etc.).✅
+     - History of reviews left.✅
 
-9. **Admin Dashboard** (if you plan to have one):
+9. **Admin Dashboard** (if you plan to have one):❌
 
-   - **Description**: Allows administrators to manage and oversee the platform's operations.
+   - **Description**: Allows administrators to manage and oversee the platform's operations.❌
    - **Functionalities**:
-     - Manage user accounts.
-     - Approve/reject driving school registrations.
-     - Manage reviews (e.g., remove inappropriate content).
+     - Manage user accounts.❌
+     - Approve/reject driving school registrations.❌
+     - Manage reviews (e.g., remove inappropriate content).❌
 
 10. **About Page**:
 
