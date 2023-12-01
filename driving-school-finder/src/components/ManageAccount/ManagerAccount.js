@@ -70,6 +70,15 @@ const ManageAccount = () => {
 
           <Divider sx={{ marginY: 4 }} />
 
+          {!user &&
+            <Grid item xs={12} md={8}>
+
+              <Box className={styles.skeletonUserSpecificForm}>
+                <Skeleton variant="rectangular" className={styles.skeletonHeight} animation="wave" />
+              </Box>
+            </Grid>
+          }
+
           {user?.role === 'student' &&
             <>
               <Grid container spacing={4}>

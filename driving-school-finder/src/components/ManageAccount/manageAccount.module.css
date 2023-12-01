@@ -7,6 +7,10 @@
 
 }
 
+.skeletonUserSpecificForm {
+    height: 175px;
+}
+
 .skeletonHeight {
     height: 100% !important;
 }
@@ -14,5 +18,9 @@
 @media screen and (min-width: 900px) {
     .skeletonEditPersonalDataForm {
         height: 330px;
+    }
+
+    .skeletonUserSpecificForm {
+        height: 200px;
     }
 }
