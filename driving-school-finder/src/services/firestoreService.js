@@ -76,16 +76,21 @@ export const getSpecificFieldOfAllSchools = async () => {
   return schoolsList;
 };
 
-export const getSchoolByName = async (name) => {
-  const q = query(collection(db, 'schools'), where('name', '==', name));
+export const getSchoolByOwnerUid = async (ownerUid) => {
+  try {
+    const q = query(collection(db, 'schools'), where('ownerUid', '==', ownerUid));
 
-  const querySnapshot = await getDocs(q);
-  const school = querySnapshot.docs.map(doc => ({
-    ...doc.data(),
-    id: doc.id,
-  }))[0];
+    const querySnapshot = await getDocs(q);
+    const school = querySnapshot.docs.map(doc => ({
+      ...doc.data(),
+      id: doc.id,
+    }))[0];
 
-  return school;
+    return school;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+
 };
 
 export const addSchool = async (school) => await setDoc(doc(db, 'schools', school.ownerUid), school);
