@@ -1,0 +1,47 @@
+.headerText {
+    font-weight: 700 !important;
+}
+
+.minWidth {
+    min-width: 750px;
+}
+
+.tableHead {
+    text-align: center !important;
+}
+
+.cellWidth {
+    width: 20%;
+}
+
+.cellWidthContent {
+    width: 50%;
+
+}
+
+.tableCellContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.buttonBoxContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+    .buttonBoxContainer {
+        flex-direction: row;
+        align-items: center;
+    }
+}
