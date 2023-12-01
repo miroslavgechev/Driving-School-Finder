@@ -5,8 +5,7 @@ import { addSchool } from 'services/firestoreService';
 const SetSchoolContext = createContext();
 
 export const SetSchoolProvider = ({ children }) => {
-
-  const [school, setSchool] = useState();
+  const [school, setSchool] = useState(null);
   const [files, setFiles] = useState();
 
   const setSchoolDescription =
@@ -105,8 +104,9 @@ export const SetSchoolProvider = ({ children }) => {
     setSchoolCourses,
     uploadSchool,
     setSchoolFiles,
+    setSchool,
     school,
-    files
+    files,
   };
 
   return (

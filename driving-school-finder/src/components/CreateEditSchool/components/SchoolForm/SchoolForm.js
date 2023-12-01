@@ -16,7 +16,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
@@ -37,7 +37,13 @@ const validationSchema = yup.object({
     .mixed()
     .required('Добавяне на логo е задължително')
     .test('type', 'Логото трябва да бъде картинка', value => {
-      return value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
+      if (typeof value === 'string') {
+        return true;
+      } else if (value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type)) {
+        return true;
+      } else {
+        return false;
+      }
     }),
   description: yup
     .string()
@@ -72,25 +78,28 @@ const validationSchema = yup.object({
 });
 
 const SchoolForm = () => {
-
   const [logoUrl, setLogoUrl] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
-  const { setSchoolDescription, setSchoolFiles } = useSetSchoolContext();
+  const { setSchoolDescription, setSchoolFiles, school } = useSetSchoolContext();
   const { user } = useAuthContext();
 
   const theme = useTheme();
 
   const initialValues = {
-    name: '',
-    logoUrl: '',
-    description: '',
-    whyUs1: '',
-    whyUs2: '',
-    whyUs3: '',
-    regionsServed: [],
-    categoriesServed: [],
+    name: school?.name || '',
+    logoUrl: school?.logoUrl || '',
+    description: school?.description || '',
+    whyUs1: school?.whyUs[0] || '',
+    whyUs2: school?.whyUs[1] || '',
+    whyUs3: school?.whyUs[2] || '',
+    regionsServed: school?.regionsServed || [],
+    categoriesServed: school?.categoriesServed || [],
   };
+
+  useEffect(() => {
+    setLogoUrl(school?.logoUrl || null);
+  }, []);
 
   const handleSubmit = async (values) => {
     try {

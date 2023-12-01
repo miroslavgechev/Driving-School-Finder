@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-// import Skeleton from '@mui/material/Skeleton';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import Container from 'components/Container';
@@ -13,28 +12,36 @@ import ImgForm from './components/ImgForm/ImgForm';
 import CoursesForm from './components/CoursesForm/CoursesForm';
 import ConfirmForm from './components/ConfirmForm/ConfirmForm';
 
-import styles from './editSchool.module.css';
+import styles from './createEditSchool.module.css';
 
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthContext } from 'contexts/authContext';
+import { useSetSchoolContext } from 'contexts/setSchoolContext';
 
 import { getSchoolByOwnerUidAndSchoolId } from 'services/firestoreService';
 
-const EditSchool = () => {
-
-  const [school, setSchool] = useState(null);
+const CreateEditSchool = () => {
+  const [currentLocation, setCurrentLocation] = useState(null);
+  const { school, setSchool } = useSetSchoolContext();
   const { user } = useAuthContext();
   const schoolUid = useParams().id;
   const navigate = useNavigate();
 
+  const location = useLocation();
+
+  useEffect(() => {
+    setCurrentLocation(location.pathname);
+  }, [location]);
+
   useEffect(() => {
     const fetchSchool = async () => {
       try {
-        const school = await getSchoolByOwnerUidAndSchoolId(user.uid, schoolUid);
-        setSchool(school);
 
-        if (!school) {
+        const fetchedSchool = await getSchoolByOwnerUidAndSchoolId(user.uid, schoolUid);
+        setSchool(fetchedSchool);
+
+        if (!fetchedSchool) {
           throw new Error('School not found or you are not the owner');
         }
 
@@ -42,24 +49,24 @@ const EditSchool = () => {
         navigate('/notfound', { replace: true });
       }
     };
-    if (user) fetchSchool();
+    if (user && schoolUid) fetchSchool();
 
   }, [user]);
 
   return (
-
     <>
-      {!school &&
+      {!school && currentLocation !== '/school/create' &&
         <Box className={styles.fullPage}>
           <CircularProgress />
         </Box>
       }
 
-      {school &&
+      {
+        ((!school && currentLocation === '/school/create') || (school)) &&
         <>
-          <Box bgcolor='alternate.main'>
+          <Box bgcolor={'alternate.main'}>
             <Container paddingY={{ xs: 2, sm: 2.5 }}>
-              <Headline text={'Редакция на автошкола'} />
+              <Headline text={'Създай автошкола'} />
             </Container>
           </Box>
           <Container>
@@ -150,9 +157,10 @@ const EditSchool = () => {
           </Container>
         </>
       }
+
     </>
 
   );
 };
 
-export default EditSchool;
+export default CreateEditSchool;
