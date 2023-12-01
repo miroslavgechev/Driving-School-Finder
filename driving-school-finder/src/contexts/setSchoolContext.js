@@ -64,7 +64,6 @@ export const SetSchoolProvider = ({ children }) => {
         [name]: newData
       };
     });
-
   };
 
   const uploadSchool = async () => {
@@ -75,7 +74,6 @@ export const SetSchoolProvider = ({ children }) => {
       await addSchool(school);
       setFiles(null);
     } catch (error) {
-      console.log(error.message);
       throw new Error(error);
     }
   };
