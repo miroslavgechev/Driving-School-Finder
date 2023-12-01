@@ -1,107 +1,76 @@
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import TableContainer from '@mui/material/TableContainer';
-import Table from '@mui/material/Table';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';
-import TableBody from '@mui/material/TableBody';
-import Button from '@mui/material/Button';
+
 import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
+import Skeleton from '@mui/material/Skeleton';
+
+import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
+import { getSchoolByOwnerUid } from '../../../../services/firestoreService';
+import { useAuthContext } from 'contexts/authContext';
+import SchoolTableContainer from './components/SchoolTableContainer';
+
 import styles from './manageSchools.module.css';
-// import { useSetSchoolContext } from 'contexts/setSchoolContext';
 
 const ManageSchools = () => {
-  const school = {
-    id: 15,
-    name: 'Test Driving School Mock'
-  };
-  // const { school } = useSetSchoolContext();
 
-  const headCells = [
-    {
-      id: 'name',
-      numeric: true,
-      label: 'Име на автошколата'
-    },
-    {
-      id: 'editButton',
-      numeric: false,
-      label: ''
-    },
-    {
-      id: 'deleteButton',
-      numeric: false,
-      label: ''
-    }
-  ];
+  const { user } = useAuthContext();
+  const [school, setSchool] = useState(null);
+
+  useEffect(() => {
+
+    const fetchSchool = async () => {
+      try {
+        const fetchedSchool = await getSchoolByOwnerUid(user.uid);
+        setSchool(fetchedSchool);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    if (user) fetchSchool();
+
+  }, [user]);
+
 
   return (
     <Container>
       <form>
         <Grid container spacing={4}>
           <Grid item xs={12}>
-            <TableContainer component={Paper}>
-              <Table>
-                <TableHead sx={{ bgcolor: 'alternate.dark' }}>
-                  <TableRow>
-                    {headCells.map((headCell) =>
-                      <TableCell
-                        key={headCell.id}
-                        className={styles.tableCell}
-                      >
-                        {headCell.label}
-                      </TableCell>
-                    )}
-                  </TableRow>
-                </TableHead>
 
-                <TableBody>
-                  <TableRow
-                    hover
-                    sx={{
-                      '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
-                      '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <TableCell className={styles.centerText} component='td' scope='row'>
-                      <Typography variant='subtitle2'>
-                        {school?.name}
-                      </Typography>
-                    </TableCell>
+            {school === null &&
+              <Box className={styles.skeletonForm}>
+                <Skeleton variant="rectangular" className={styles.skeletonHeight} animation="wave" />
+              </Box>
+            }
 
-                    <TableCell className={styles.centerText}>
-                      <Button
-                        component={Link}
-                        to={`/school/${school?.id}/edit`}
-                        color='warning'
-                        variant='text'
-                      >
-                        Редактирай
-                      </Button>
-                    </TableCell>
+            {school === undefined &&
+              <Box marginBottom={{ xs: 1, sm: 0 }} className={styles.buttonBoxContainer}>
+                <Button
+                  component={Link}
+                  to='/school/create'
+                  size='large'
+                  variant='contained'
+                  startIcon={<AddOutlinedIcon />}
+                >
+                  Създай автошкола
+                </Button>
+              </Box>
+            }
 
-                    <TableCell className={styles.centerText}>
-                      <Button
-                        color='error'
-                        variant='text'
-                      >
-                        Изтрий
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
+            {school &&
+              <SchoolTableContainer school={school} />
+
+            }
           </Grid>
         </Grid>
       </form>
-    </Container>
+    </Container >
   );
 };
 
