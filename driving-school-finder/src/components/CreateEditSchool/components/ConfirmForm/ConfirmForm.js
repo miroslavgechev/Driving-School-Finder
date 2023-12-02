@@ -14,6 +14,7 @@ import { useSetSchoolContext } from 'contexts/setSchoolContext';
 import { SUCCESS_STATES } from 'CONSTANTS';
 
 //!TO DO - add redirection to details!
+//!TO DO - fix alert texts based on edit/create
 
 const ConfirmForm = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
