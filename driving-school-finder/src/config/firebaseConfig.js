@@ -1,10 +1,10 @@
 const firebaseConfig = {
-  apiKey: 'AIzaSyBnlKt46khfli-IfrzjGf6tXCxYn3YVhuM',
-  authDomain: 'driving-school-finder.firebaseapp.com',
-  projectId: 'driving-school-finder',
-  storageBucket: 'driving-school-finder.appspot.com',
-  messagingSenderId: '777170324804',
-  appId: '1:777170324804:web:039ae9240594f4402e1b11'
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
 
 export default firebaseConfig;
