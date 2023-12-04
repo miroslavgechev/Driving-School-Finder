@@ -1,15 +1,21 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 
-import Headline from './components/Headline/Headline';
+import Headline from 'components/shared/Headline/Headline';
 import Image from './components/Image/Image';
 import Details from './components/Details/Details';
 import Reviews from './components/Reviews/Reviews';
 import Courses from './components/Courses/Courses';
+import SpinnerFullPage from 'components/shared/SpinnerFullPage/SpinnerFullPage';
 
 import Container from 'components/Container';
+
+import styles from './schoolDetails.module.css';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { getSchoolById } from 'services/firestoreService';
+
 
 const mock = {
   id: 1,
@@ -71,55 +77,74 @@ const mock = {
 };
 
 
-const ProductOverview = () => {
+const SchoolDetails = () => {
+  const [school, setSchool] = useState(null);
+  const schoolUid = useParams().id;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchSchool = async () => {
+      try {
+        const fetchedSchool = await getSchoolById(schoolUid);
+        if (!fetchedSchool) {
+          throw new Error('School not found');
+        }
+        setSchool(fetchedSchool);
+
+      } catch (error) {
+        navigate('/notfound', { replace: true });
+      }
+    };
+    fetchSchool();
+  }, []);
+
+
   return (
     <>
-      <Box bgcolor={'alternate.main'} sx={{ marginBottom: { xs: 2, sm: 2.5 } }}>
-        <Container paddingY={{ xs: 2, sm: 2.5 }}>
-          <Headline name={mock.name} logoUrl={mock.logoUrl} />
-        </Container>
-      </Box>
-      <Container paddingY={{ xs: 2, sm: 2.5 }}>
-        <Box>
-          <Grid container spacing={{ xs: 2, md: 4 }}>
-            <Grid item xs={12} md={7}>
-              <Image images={mock.images} name={mock.name} />
-            </Grid>
-            <Grid item xs={12} md={5}>
-              <Details
-                name={mock.name}
-                description={mock.description}
-                ratingScore={mock.ratingScore}
-                ratingCount={mock.ratingCount}
-                address={mock.address}
-                email={mock.email}
-                phone={mock.phone}
-                whyUs={mock.whyUs}
-                regionsServed={mock.regionsServed}
-                categoriesServed={mock.categoriesServed}
-                ratings={mock.ratings}
-              />
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
 
-      <Container paddingY={4} id="reviews">
-        <Divider id='table' />
-      </Container>
+      {!school &&
+        <SpinnerFullPage />
+      }
 
-      <Courses courses={mock.courses} />
+      {school &&
+        <>
+          <Box bgcolor='alternate.main' sx={{ marginBottom: { xs: 2, sm: 2.5 } }}>
+            <Container paddingY={{ xs: 2, sm: 2.5 }}>
+              <Headline logoUrl={school.logoUrl} />
+            </Container>
+          </Box>
+          <Container paddingY={{ xs: 2, sm: 2.5 }}>
+            <Box>
+              <Grid container spacing={{ xs: 2, md: 4 }}>
+                <Grid item xs={12} md={7}>
+                  <Image
+                    mainImage={school.mainImage}
+                    supportImages={school.supportImages}
+                    name={school.name} />
+                </Grid>
+                <Grid item xs={12} md={5}>
+                  <Details school={school} />
+                </Grid>
+              </Grid>
+            </Box>
+          </Container>
 
-      <Container paddingY={4} id="reviews">
-        <Divider />
-      </Container>
+          <Container paddingY={4} id="reviews">
+            <Divider className={styles.divider} id='table' />
+          </Container>
 
-      <Container paddingY={{ xs: 2, sm: 2.5 }}>
-        <Reviews ratingCount={mock.ratingCount} ratingScore={mock.ratingScore} reviews={mock.reviews} />
-      </Container>
+          <Courses courses={mock.courses} />
 
+          <Container paddingY={4} id="reviews">
+            <Divider />
+          </Container>
+
+          <Container paddingY={{ xs: 2, sm: 2.5 }}>
+            <Reviews ratingCount={mock.ratingCount} ratingScore={mock.ratingScore} reviews={mock.reviews} />
+          </Container>
+        </>}
     </>
   );
 };
 
-export default ProductOverview;
+export default SchoolDetails;

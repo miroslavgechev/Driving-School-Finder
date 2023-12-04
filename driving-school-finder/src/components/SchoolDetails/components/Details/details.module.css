@@ -1,0 +1,47 @@
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.ratingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ratingBox {
+    display: flex;
+    justify-content: center;
+}
+
+.headerText {
+    font-weight: 700 !important;
+}
+
+.link {
+    text-decoration: none !important;
+}
+
+.link:hover {
+    text-decoration: underline !important;
+}
+
+.listItemAvatar {
+    min-width: 0 !important;
+}
+
+.listItem {
+    align-items: flex-start;
+    padding: 0;
+}
+
+
+@media screen and (min-width: 600px) {
+    .headerContainer {
+        flex-direction: row;
+        align-items: center;
+    }
+}

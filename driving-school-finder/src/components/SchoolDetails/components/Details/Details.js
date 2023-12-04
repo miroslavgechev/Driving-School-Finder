@@ -16,57 +16,47 @@ import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 
-const Details = ({
-  name,
-  description,
-  ratingScore,
-  ratingCount,
-  address,
-  phone,
-  email,
-  whyUs,
-  regionsServed,
-  categoriesServed,
-}) => {
+import styles from './details.module.css';
+
+
+const Details = ({ school }) => {
+
   return (
     <Box>
-      <Box
-        display={'flex'}
-        flexDirection={{ xs: 'column', sm: 'row' }}
-        justifyContent={'space-between'}
-        alignItems={{ sm: 'center' }}
-        textAlign={{ xs: 'center', sm: 'center' }}
-      >
-        <Typography variant="h4" marginBottom={{ xs: 1, sm: 0 }} fontWeight={700}>{name}</Typography>
+      <Box className={styles.headerContainer}>
+        <Typography
+          variant='h4'
+          marginBottom={{ xs: 1, sm: 0 }}
+          className={styles.headerText}>
+          {school.name}
+        </Typography>
       </Box>
 
       <Divider sx={{ marginTop: 2 }} />
 
       {/* Rating */}
-      <Box display={'flex'}
-        flexDirection={{ xs: 'column', sm: 'column' }}
-        alignItems={'center'}
-        justifyContent={'center'}
+      <Box
+        className={styles.ratingContainer}
         marginTop={1}
         marginBottom={1}>
 
-        <Box display={'flex'}
-          justifyContent={'center'}
+        <Box className={styles.ratingBox}
           paddingBottom={1}
         >
           <Rating
-            name="text-feedback"
-            value={ratingScore}
+            name='text-feedback'
+            //!!TO DO Replace with actual variable
+            value={school.ratingScore}
             readOnly
             precision={0.5}
-            fontSize="inherit"
-            size="large"
+            fontSize='inherit'
+            size='large'
           />
         </Box>
 
-        <Link href={'#reviews'} underline={'hover'} variant={'subtitle1'}
-        >
-          {ratingScore} от {ratingCount} оценки
+        <Link href={'#reviews'} className={styles.link} variant='subtitle1'>
+          {/* //!!TO DO Replace with actual variable */}
+          {school.ratingScore} от {school.ratingCount} оценки
         </Link>
       </Box>
 
@@ -76,11 +66,11 @@ const Details = ({
       <Box marginTop={4}>
         <Typography>Описание</Typography>
         <Typography
-          variant={'body1'}
-          color={'text.secondary'}
+          variant='body1'
+          color='text.secondary'
           marginTop={1}
         >
-          {description}
+          {school.description}
         </Typography>
       </Box>
 
@@ -94,45 +84,23 @@ const Details = ({
             <ListItem
               component="div"
               disableGutters
-              sx={{
-                alignItems: 'flex-start',
-                padding: 0,
-              }}
+              className={styles.listItem}
             >
-              <ListItemAvatar sx={{ minWidth: 0, mr: 1 }}>
-                <Box color={'text.secondary'}>
+              <ListItemAvatar sx={{ mr: 1 }} className={styles.listItemAvatar}>
+                <Box color='text.secondary'>
                   <DirectionsCarFilledOutlinedIcon />
                 </Box>
               </ListItemAvatar>
 
-              {/* <ListItemText
-                primary='Категории'
-                secondary={
-                  categoriesServed.map((item) => (
-                    <Chip
-                      key={item}
-                      label={item}
-                      size={'small'}
-                      color={'secondary'}
-                      clickable
-                      sx={{ marginBottom: 1, marginTop: 1, marginRight: 1 }}
-                    />
-                  ))
-                }
-                sx={{
-                  margin: 0,
-                }}
-              /> */}
-
               <div>
-                <Typography variant="body1">Категории</Typography>
+                <Typography variant='body1'>Категории</Typography>
                 <div>
-                  {categoriesServed.map((item) => (
+                  {school.categoriesServed.map((item) => (
                     <Chip
                       key={item}
                       label={item}
-                      size={'small'}
-                      color={'secondary'}
+                      size='small'
+                      color='secondary'
                       clickable
                       sx={{ marginBottom: 1, marginTop: 1, marginRight: 1 }}
                       component='a'
@@ -149,25 +117,22 @@ const Details = ({
             <ListItem
               component="div"
               disableGutters
-              sx={{
-                alignItems: 'flex-start',
-                padding: 0,
-              }}
+              className={styles.listItem}
             >
-              <ListItemAvatar sx={{ minWidth: 0, mr: 1 }}>
-                <Box color={'text.secondary'}>
+              <ListItemAvatar sx={{ mr: 1 }} className={styles.listItemAvatar}>
+                <Box color='text.secondary'>
                   <PlaceOutlinedIcon />
                 </Box>
               </ListItemAvatar>
               <div>
-                <Typography variant="body1">Обслужвани райони</Typography>
+                <Typography variant='body1'>Обслужвани райони</Typography>
                 <div>
-                  {regionsServed.map((item) => (
+                  {school.regionsServed.map((item) => (
                     <Chip
                       key={item}
                       label={item}
-                      size={'small'}
-                      color={'primary'}
+                      size='small'
+                      color='primary'
                       clickable
                       sx={{ marginTop: 1, marginRight: 1 }}
                     />
@@ -186,11 +151,11 @@ const Details = ({
         <Typography>Защо да избереш нас?</Typography>
         <Box marginTop={1}>
           <ul>
-            {whyUs.map((item, i) => (
+            {school.whyUs.map((item, i) => (
               <li key={i}>
                 <Typography
-                  variant={'body1'}
-                  color={'text.secondary'}
+                  variant='body1'
+                  color='text.secondary'
                   marginTop={1}
                 >
                   {item}
@@ -213,12 +178,12 @@ const Details = ({
       <Box marginTop={4}>
         <Typography>Връзка с нас:</Typography>
 
-        <Stack direction={'row'} spacing={2} marginTop={0.5}>
+        <Stack direction='row' spacing={2} marginTop={0.5}>
           <Button
             sx={{
               color: 'text.secondary',
             }}
-            href={`tel:${phone}`}
+            href={`tel:${school.phone}`}
             startIcon={
               <LocalPhoneRoundedIcon />
             }
@@ -230,7 +195,7 @@ const Details = ({
             sx={{
               color: 'text.secondary',
             }}
-            href={`mailto:${email}`}
+            href={`mailto:${school.email}`}
             startIcon={
               <EmailRoundedIcon />
             }
@@ -243,7 +208,7 @@ const Details = ({
               color: 'text.secondary',
             }}
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-              `${address.city}, ${address.region}, ${address.street}`
+              `${school.city}, ${school.region}, ${school.street}`
             )}`}
             target='_blank'
             startIcon={
