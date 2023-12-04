@@ -34,7 +34,7 @@ const Courses = ({ school }) => {
   return (
     <Container paddingY={{ xs: 2, sm: 2.5 }}>
       <TableContainer component={Paper}>
-        <Table className={styles.table}>
+        <Table id='courses' className={styles.table}>
           <TableHead sx={{ bgcolor: 'alternate.dark' }}>
             <TableRow>
               <TableCell />
