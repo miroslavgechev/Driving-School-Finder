@@ -2,7 +2,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import Container from 'components/Container';
 import Headline from '../shared/Headline/Headline';
@@ -11,6 +10,7 @@ import ContactsForm from './components/ContactsForm/ContactsForm';
 import ImgForm from './components/ImgForm/ImgForm';
 import CoursesForm from './components/CoursesForm/CoursesForm';
 import ConfirmForm from './components/ConfirmForm/ConfirmForm';
+import SpinnerFullPage from 'components/shared/SpinnerFullPage/SpinnerFullPage';
 
 import styles from './schoolCreateEdit.module.css';
 
@@ -39,12 +39,12 @@ const SchoolCreateEdit = () => {
       try {
 
         const fetchedSchool = await getSchoolByOwnerUidAndSchoolId(user.uid, schoolUid);
-        setSchool(fetchedSchool);
 
         if (!fetchedSchool) {
           throw new Error('School not found or you are not the owner');
         }
 
+        setSchool(fetchedSchool);
       } catch (error) {
         navigate('/notfound', { replace: true });
       }
@@ -56,9 +56,7 @@ const SchoolCreateEdit = () => {
   return (
     <>
       {!school && currentLocation !== '/school/create' &&
-        <Box className={styles.fullPage}>
-          <CircularProgress />
-        </Box>
+        <SpinnerFullPage />
       }
 
       {
