@@ -57,7 +57,7 @@ const FeedbackForm = ({ onClose, open, schoolUid }) => {
         setIsLoading(false);
         setSuccessState(SUCCESS_STATES.success);
         onClose();
-      }, 500);
+      }, 1000);
 
     } catch (error) {
       setIsLoading(false);
