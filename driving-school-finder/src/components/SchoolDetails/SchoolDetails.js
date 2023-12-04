@@ -82,6 +82,9 @@ const SchoolDetails = () => {
   const schoolUid = useParams().id;
   const navigate = useNavigate();
 
+  //TODO: Build a school object with reviews, avg rating, and reviewsCount
+
+
   useEffect(() => {
     const fetchSchool = async () => {
       try {
@@ -97,7 +100,6 @@ const SchoolDetails = () => {
     };
     fetchSchool();
   }, []);
-
 
   return (
     <>

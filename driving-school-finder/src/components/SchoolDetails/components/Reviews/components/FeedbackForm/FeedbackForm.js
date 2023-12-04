@@ -48,9 +48,17 @@ const FeedbackForm = ({ onClose, open, schoolUid }) => {
     try {
       formik.setStatus(null);
       setIsLoading(true);
+
+      //TODO: ADD FULL NAME AND DATE TO REVIEW!
+
       await addReviewToSchool(schoolUid, user.uid, values);
-      setIsLoading(false);
-      setSuccessState(SUCCESS_STATES.success);
+
+      setTimeout(() => {
+        setIsLoading(false);
+        setSuccessState(SUCCESS_STATES.success);
+        onClose();
+      }, 500);
+
     } catch (error) {
       setIsLoading(false);
       setSuccessState(SUCCESS_STATES.error);
