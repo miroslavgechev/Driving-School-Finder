@@ -114,10 +114,8 @@ export const addReviewToSchool = async (schoolUid, userUid, review) => {
     const existingReviews = await getReviewsBySchoolUid(schoolUid);
 
     await updateDoc(docRef, {
-      reviews: {
-        ...existingReviews,
-        [userUid]: review,
-      },
+      ...existingReviews,
+      [userUid]: review,
     }, { merge: true });
   } catch (error) {
     throw Error(error);
