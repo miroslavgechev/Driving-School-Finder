@@ -12,7 +12,7 @@ import Main from 'layouts/Main/Main';
 import Home from 'components/Home/Home';
 import Catalogue from './components/Catalog/Catalog';
 import SchoolDetails from './components/SchoolDetails/SchoolDetails';
-import CreateEditSchool from './components/CreateEditSchool/CreateEditSchool';
+import SchoolCreateEdit from './components/SchoolCreateEdit/SchoolCreateEdit';
 import Signin from 'components/Signin/Signin';
 import Signup from 'components/Signup/Signup';
 import ManageAccount from 'components/ManageAccount/ManagerAccount';
@@ -30,8 +30,8 @@ const App = () => {
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/school/all' element={<Catalogue />} />
-                <Route path='/school/create' element={<CreateEditSchool />} />
-                <Route path='/school/:id/edit' element={<CreateEditSchool />} />
+                <Route path='/school/create' element={<SchoolCreateEdit />} />
+                <Route path='/school/:id/edit' element={<SchoolCreateEdit />} />
                 <Route path='/school/:id' element={<SchoolDetails />} />
                 <Route path='/account' element={<ManageAccount />} />
                 <Route path='/signin' element={<Signin />} />

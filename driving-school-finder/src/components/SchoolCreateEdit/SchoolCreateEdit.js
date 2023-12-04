@@ -12,7 +12,7 @@ import ImgForm from './components/ImgForm/ImgForm';
 import CoursesForm from './components/CoursesForm/CoursesForm';
 import ConfirmForm from './components/ConfirmForm/ConfirmForm';
 
-import styles from './createEditSchool.module.css';
+import styles from './schoolCreateEdit.module.css';
 
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
@@ -21,7 +21,7 @@ import { useSetSchoolContext } from 'contexts/setSchoolContext';
 
 import { getSchoolByOwnerUidAndSchoolId } from 'services/firestoreService';
 
-const CreateEditSchool = () => {
+const SchoolCreateEdit = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
   const { school, setSchool } = useSetSchoolContext();
   const { user } = useAuthContext();
@@ -169,4 +169,4 @@ const CreateEditSchool = () => {
   );
 };
 
-export default CreateEditSchool;
+export default SchoolCreateEdit;
