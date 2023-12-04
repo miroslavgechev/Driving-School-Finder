@@ -140,7 +140,7 @@ const SchoolDetails = () => {
           </Container>
 
           <Container paddingY={{ xs: 2, sm: 2.5 }}>
-            <Reviews ratingCount={mock.ratingCount} ratingScore={mock.ratingScore} reviews={mock.reviews} />
+            <Reviews schoolUid={schoolUid} ratingCount={mock.ratingCount} ratingScore={mock.ratingScore} reviews={mock.reviews} />
           </Container>
         </>}
     </>
