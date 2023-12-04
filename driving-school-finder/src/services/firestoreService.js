@@ -106,5 +106,19 @@ export const getSchoolByOwnerUidAndSchoolId = async (ownerUid, schoolId) => {
   }
 };
 
+export const getSchoolById = async (schoolId) => {
+  try {
+    const docRef = doc(db, 'schools', schoolId);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data();
+    }
+
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const addSchool = async (school) => await setDoc(doc(db, 'schools', school.ownerUid), school);
 
