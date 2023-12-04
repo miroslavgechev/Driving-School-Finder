@@ -9,37 +9,45 @@ import Typography from '@mui/material/Typography';
 
 import Container from 'components/Container';
 
-const subtitles = {
-  hoursTheory: 'Теория',
-  hoursPractice: 'Практика',
-  examTheoryInternalPrice: 'Изпит теория - вътрешен',
-  examPracticeInternalPrice: 'Изпит практика - вътрешен',
-  examTheoryExternalPrice: 'Изпит теория - ДАИ',
-  examPracticeExternalPrice: 'Изпит практика - ДАИ',
-  coursePrice: 'Цена на курса',
-};
+import { TABLE_SUBTITLES } from 'CONSTANTS';
+import styles from './courses.module.css';
 
-const Courses = ({ courses }) => {
+const Courses = ({ school }) => {
+
+  const subtitles = TABLE_SUBTITLES;
+
+  const tableValues = {};
+
+  school?.categoriesServed?.forEach((key) => {
+    Object.entries(subtitles).forEach(([item]) => {
+      let combinedKey = key + '_' + item;
+      tableValues[combinedKey] = '';
+
+      school?.courses?.forEach(course => {
+        if (combinedKey in course) {
+          tableValues[combinedKey] = course[combinedKey];
+        }
+      });
+    });
+  });
 
   return (
     <Container paddingY={{ xs: 2, sm: 2.5 }}>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 750 }} aria-label="simple table">
+        <Table className={styles.table}>
           <TableHead sx={{ bgcolor: 'alternate.dark' }}>
             <TableRow>
               <TableCell />
-              {courses.map((item, i) => (
-                <TableCell key={i} sx={{ textAlign: 'center' }}>
+              {school?.categoriesServed.map((item, i) => (
+                <TableCell key={i} className={styles.centerText}>
                   <Typography
-                    variant={'subtitle2'}
-                    fontWeight={700}
+                    variant='subtitle2'
+                    className={styles.headerText}
                   >
-                    Категория "{item.categoryName}"
+                    Категория "{item}"
                   </Typography>
                 </TableCell>
               ))}
-
-              <TableCell />
             </TableRow>
           </TableHead>
 
@@ -52,17 +60,19 @@ const Courses = ({ courses }) => {
                   '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
                 }}
               >
-                <TableCell sx={{ width: '20%' }} component="th" scope="row">
-                  <Typography variant={'subtitle2'} fontWeight={700}>
+                <TableCell className={styles.cellWidth} component="th" scope="row">
+                  <Typography variant='subtitle2' className={styles.headerText}>
                     {value}
                   </Typography>
                 </TableCell>
 
-                {courses.map((item, i) => (
-                  <TableCell key={i + item} sx={{ textAlign: 'center' }}>
+                {school.categoriesServed.map((item, i) => (
+                  <TableCell key={i + item} className={styles.centerText}>
 
-                    <Typography color={'text.secondary.contrastText'} variant={'subtitle2'} fontWeight={key === 'coursePrice' ? 900 : undefined} >
-                      {item[key]} {item[key] == 'Безплатен' ? '' : key.startsWith('hours') ? 'часа' : 'лв.'}
+                    <Typography color='text.secondary.contrastText' variant='subtitle2' fontWeight={key === 'coursePrice' ? 900 : undefined} >
+                      {tableValues[`${item + '_' + key}`] == 0 ? 'Безплатен' : tableValues[`${item + '_' + key}`]}
+                      {' '}
+                      {tableValues[`${item + '_' + key}`] != 0 ? (key.startsWith('hours') ? 'часа' : 'лв.') : ''}
                     </Typography>
 
                   </TableCell>

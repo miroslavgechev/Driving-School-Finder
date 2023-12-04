@@ -133,7 +133,7 @@ const SchoolDetails = () => {
             <Divider className={styles.divider} id='table' />
           </Container>
 
-          <Courses courses={mock.courses} />
+          <Courses school={school} />
 
           <Container paddingY={4} id="reviews">
             <Divider />
