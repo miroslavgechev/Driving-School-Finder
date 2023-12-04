@@ -5,7 +5,13 @@ import Grid from '@mui/material/Grid';
 import styles from './image.module.css';
 
 const Image = ({ mainImage, supportImages, name }) => {
-  const images = [mainImage, ...supportImages];
+  let images = [];
+
+  if (supportImages) {
+    images = [mainImage, ...supportImages];
+  } else {
+    images = [mainImage];
+  }
 
   return (
     <Grid container spacing={2} className={styles.mainContainer}>
