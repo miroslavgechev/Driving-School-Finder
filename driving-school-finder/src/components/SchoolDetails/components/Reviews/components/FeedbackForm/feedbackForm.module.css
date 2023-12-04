@@ -1,0 +1,33 @@
+.headerText {
+    font-weight: 700 !important;
+}
+
+.containerBox {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.buttonBoxContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 1em;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 600px) {
+    .buttonBoxContainer {
+        align-items: center;
+        flex-direction: row;
+    }
+}
