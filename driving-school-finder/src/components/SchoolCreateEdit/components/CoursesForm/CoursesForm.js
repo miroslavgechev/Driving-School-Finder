@@ -152,7 +152,7 @@ const CoursesForm = () => {
                             variant='subtitle2'
                             fontWeight={key === 'coursePrice' ? 900 : undefined}
                           >
-                            {item[key]} {item[key] == 'Безплатен' ? '' : key.startsWith('hours') ? 'часа' : 'лева'}
+                            {key.startsWith('hours') ? 'часа' : 'лева'}
                           </Typography>
                         </Box>
 
