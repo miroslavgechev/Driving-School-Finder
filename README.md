@@ -185,10 +185,10 @@ Driving School Finder
 
 7. **User Review & Rating Page**:
 
-   - **Description**: Allows users to leave reviews and ratings for driving schools they've attended (one review every 4 month allowed).
+   - **Description**: Allows users to leave reviews and ratings for driving schools they've attended (one review every 4 month allowed). ✅
    - **Functionalities**:
      - Rating - 5 stars.
-     - Text input for detailed reviews.
+     - Text input for detailed reviews. ✅
      - View All Page - list of all reviews for specific school.
      - Optional: Ability for users to upload images (e.g., of their driving license or the school's facility). ❌
      - Optional: Ability for users to upvote/downvote reviews. ❌
