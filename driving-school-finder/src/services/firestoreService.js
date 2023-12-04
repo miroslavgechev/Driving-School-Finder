@@ -51,30 +51,6 @@ export const updateCustomUserData = async (uid, { firstName, lastName }) => {
   }
 };
 
-// Get a list of schools from the database
-export const getSchools = async () => {
-  const schoolsCol = collection(db, 'schools');
-  const schoolsSnapshot = await getDocs(schoolsCol);
-  const schoolsList = schoolsSnapshot.docs.map(doc => ({
-    ...doc.data(),
-    id: doc.id,
-  }));
-  return schoolsList;
-};
-
-export const getSpecificFieldOfAllSchools = async () => {
-  const schoolsCol = collection(db, 'schools');
-  const schoolsSnapshot = await getDocs(schoolsCol);
-  const schoolsList = schoolsSnapshot.docs.map(doc => {
-    const data = doc.data();
-    return {
-      name: data.name,
-      description: data.description,
-    };
-  });
-  return schoolsList;
-};
-
 export const getSchoolByOwnerUid = async (ownerUid) => {
   try {
     const q = query(collection(db, 'schools'), where('ownerUid', '==', ownerUid));
@@ -120,5 +96,71 @@ export const getSchoolById = async (schoolId) => {
   }
 };
 
+export const addEmptyReviewDirectory = async (schoolUid) => {
+  const docRef = doc(db, 'reviews', schoolUid);
+  try {
+    await setDoc(docRef, { reviews: {} });
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const addSchool = async (school) => await setDoc(doc(db, 'schools', school.ownerUid), school);
 
+export const addReviewToSchool = async (schoolUid, userUid, review) => {
+  const docRef = doc(db, 'reviews', schoolUid);
+
+  try {
+    const existingReviews = await getReviewsBySchoolUid(schoolUid);
+
+    await updateDoc(docRef, {
+      reviews: {
+        ...existingReviews,
+        [userUid]: review,
+      },
+    }, { merge: true });
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const getReviewsBySchoolUid = async (schoolUid) => {
+  const docRef = doc(db, 'reviews', schoolUid);
+  console.log(docRef);
+  try {
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data().reviews || {};
+    } else {
+      throw new Error('Не е намерена директория за отзиви за тази автошкола');
+    }
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+//TODO NEEDS FIX
+export const getSchools = async () => {
+  const schoolsCol = collection(db, 'schools');
+  const schoolsSnapshot = await getDocs(schoolsCol);
+  const schoolsList = schoolsSnapshot.docs.map(doc => ({
+    ...doc.data(),
+    id: doc.id,
+  }));
+  return schoolsList;
+};
+
+//TODO NEEDS FIX
+export const getSpecificFieldOfAllSchools = async () => {
+  const schoolsCol = collection(db, 'schools');
+  const schoolsSnapshot = await getDocs(schoolsCol);
+  const schoolsList = schoolsSnapshot.docs.map(doc => {
+    const data = doc.data();
+    return {
+      name: data.name,
+      description: data.description,
+    };
+  });
+  return schoolsList;
+};
