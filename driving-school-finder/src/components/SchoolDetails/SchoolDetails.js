@@ -83,7 +83,8 @@ const SchoolDetails = () => {
   const navigate = useNavigate();
 
   //TODO: Build a school object with reviews, avg rating, and reviewsCount
-
+  //TODO: Can user edit?
+  //TODO: Reload page after review added?
 
   useEffect(() => {
     const fetchSchool = async () => {
