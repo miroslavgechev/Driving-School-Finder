@@ -4,18 +4,26 @@ import Typography from '@mui/material/Typography';
 
 import styles from './headline.module.css';
 
-const Headline = ({ text }) => {
+const Headline = ({ text, logoUrl }) => {
+
   return (
     <Box className={styles.headline}>
 
-      <Box className={styles.textBox}>
-        <Typography
-          variant={'h4'}
-          marginY={2}
-        >
-          {text}
-        </Typography>
-      </Box>
+      {logoUrl
+        ?
+        <Box className={styles.imageBox}>
+          <img src={logoUrl} alt="Logo" className={styles.image} />
+        </Box>
+        :
+        <Box className={styles.textBox}>
+          <Typography
+            variant='h4'
+            marginY={2}
+          >
+            {text}
+          </Typography>
+        </Box>
+      }
 
     </Box>
   );

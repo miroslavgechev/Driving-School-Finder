@@ -11,12 +11,24 @@
 
 }
 
+.imageBox {
+    text-align: center;
+}
+
+.image {
+    max-height: 4em;
+}
+
 @media screen and (min-width: 600px) {
     .headline {
         flex-direction: row;
     }
 
     .textBox {
+        text-align: left;
+    }
+
+    .imageBox {
         text-align: left;
     }
 }
