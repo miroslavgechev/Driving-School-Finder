@@ -1,0 +1,14 @@
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerText {
+    font-weight: 700 !important;
+}
+
+.ratingBox {
+    display: flex;
+    align-items: center;
+}
