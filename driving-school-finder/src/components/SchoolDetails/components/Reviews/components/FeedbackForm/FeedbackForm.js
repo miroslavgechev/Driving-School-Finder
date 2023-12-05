@@ -152,7 +152,6 @@ const FeedbackForm = ({ onClose, open, schoolUid, setUserCanEdit }) => {
               </Grid>
               <Grid item container xs={12}>
                 <Box className={styles.buttonBoxContainer}>
-
                   <Button
                     size='large'
                     variant='contained'
