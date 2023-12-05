@@ -80,7 +80,7 @@ Driving School Finder
 
 - Fleet by car - photos, model, year; ❌
 - Instructors (list of instructors) + photos + short bio - years of experience; something worth noting; ❌
-- Photos - gallery;
+- Photos - gallery; ✅
 - Videos - link to Youtube; ❌
 - Why us? Up to three things. Five things if paid. ❌
 
@@ -195,7 +195,7 @@ Driving School Finder
      - Optional: Ability for users to report reviews. ❌
      - Optional: Ability for the author to reply to reviews. ❌
 
-8. **User Account Page**:
+8. **User Account Page**: ✅
 
    - **Description**: Allows users to manage their personal details.✅
    - **Functionalities**:
