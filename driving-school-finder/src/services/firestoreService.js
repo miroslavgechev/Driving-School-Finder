@@ -9,6 +9,7 @@ import {
   setDoc,
   getDoc,
   updateDoc,
+  deleteDoc,
   doc,
   query,
   where,
@@ -200,7 +201,9 @@ export const getReviewsByUserId = async (userUid) => {
     const querySnapshot = await getDocs(q);
     let reviews = [];
     querySnapshot.forEach((doc) => {
-      reviews.push(doc.data());
+      const review = doc.data();
+      review.id = doc.id;
+      reviews.push(review);
     });
 
     reviews = await Promise.all(
@@ -214,6 +217,32 @@ export const getReviewsByUserId = async (userUid) => {
     return reviews;
   } catch (error) {
     throw new Error(error);
+  }
+};
+
+export const updateReviewByReviewId = async (reviewId, updatedReview) => {
+  const reviewDoc = doc(db, 'allReviews', reviewId);
+
+  try {
+    await updateDoc(reviewDoc, updatedReview);
+
+    await updateSchoolRating(updatedReview.schoolId);
+
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const deleteReviewByReviewId = async (reviewId, schoolId) => {
+  const reviewDoc = doc(db, 'allReviews', reviewId);
+
+  try {
+    await deleteDoc(reviewDoc);
+
+    await updateSchoolRating(schoolId);
+
+  } catch (error) {
+    throw Error(error);
   }
 };
 
