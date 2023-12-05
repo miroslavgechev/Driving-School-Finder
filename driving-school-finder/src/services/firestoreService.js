@@ -12,6 +12,7 @@ import {
   doc,
   query,
   where,
+  addDoc,
 } from 'firebase/firestore';
 
 const app = initializeApp(firebaseConfig);
@@ -118,6 +119,8 @@ export const addSchool = async (school) => await setDoc(doc(db, 'schools', schoo
 
 export const addReviewToSchool = async (schoolUid, userUid, review) => {
   const docRef = doc(db, 'reviews', schoolUid);
+  //! TO DO - CHECK IF FLAT STRUCTURE IS BETTER
+  const allReviewsCollection = collection(db, 'allReviews');
 
   try {
     const existingReviews = await getReviewsBySchoolUid(schoolUid);
@@ -128,6 +131,9 @@ export const addReviewToSchool = async (schoolUid, userUid, review) => {
         [userUid]: review,
       },
     }, { merge: true });
+
+    //! TO DO - CHECK IF FLAT STRUCTURE IS BETTER
+    await addDoc(allReviewsCollection, review);
 
     await updateSchoolRating(schoolUid);
 
@@ -204,6 +210,30 @@ export const checkIfUserCanEdit = async (userUid, schoolUid) => {
     throw new Error(error);
   }
 
+};
+
+export const getReviewsByUserId = async (userUid) => {
+  try {
+
+    const q = query(collection(db, 'allReviews'), where('userId', '==', userUid));
+    const querySnapshot = await getDocs(q);
+    let reviews = [];
+    querySnapshot.forEach((doc) => {
+      reviews.push(doc.data());
+    });
+
+    reviews = await Promise.all(
+      reviews.map(
+        async review => {
+          const school = await getSchoolById(review.schoolId);
+          review.schoolName = school.name;
+          return review;
+        }));
+
+    return reviews;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 //TODO NEEDS FIX
