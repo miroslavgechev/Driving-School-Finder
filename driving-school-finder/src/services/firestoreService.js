@@ -105,6 +105,15 @@ export const addEmptyReviewDirectory = async (schoolUid) => {
   }
 };
 
+export const addEmptyRatingsDirectory = async (schoolUid) => {
+  const docRef = doc(db, 'ratings', schoolUid);
+  try {
+    await setDoc(docRef, {});
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const addSchool = async (school) => await setDoc(doc(db, 'schools', school.ownerUid), school);
 
 export const addReviewToSchool = async (schoolUid, userUid, review) => {
@@ -114,9 +123,33 @@ export const addReviewToSchool = async (schoolUid, userUid, review) => {
     const existingReviews = await getReviewsBySchoolUid(schoolUid);
 
     await updateDoc(docRef, {
-      ...existingReviews,
-      [userUid]: review,
+      reviews: {
+        ...existingReviews,
+        [userUid]: review,
+      },
     }, { merge: true });
+
+    await updateSchoolRating(schoolUid);
+
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const updateSchoolRating = async (schoolUid) => {
+  const docRef = doc(db, 'ratings', schoolUid);
+
+  try {
+    const existingReviews = await getReviewsBySchoolUid(schoolUid);
+
+    const reviewsCount = Object.keys(existingReviews).length;
+    const ratingScore = Object.values(existingReviews).reduce((acc, cur) => acc + Number(cur.rating), 0) / reviewsCount;
+
+    await updateDoc(docRef, {
+      ratingScore,
+      reviewsCount,
+    }, { merge: true });
+
   } catch (error) {
     throw Error(error);
   }
@@ -124,7 +157,6 @@ export const addReviewToSchool = async (schoolUid, userUid, review) => {
 
 export const getReviewsBySchoolUid = async (schoolUid) => {
   const docRef = doc(db, 'reviews', schoolUid);
-  console.log(docRef);
   try {
     const docSnap = await getDoc(docRef);
 
@@ -132,6 +164,21 @@ export const getReviewsBySchoolUid = async (schoolUid) => {
       return docSnap.data().reviews || {};
     } else {
       throw new Error('Не е намерена директория за отзиви за тази автошкола');
+    }
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const getRatingsBySchoolUid = async (schoolUid) => {
+  const docRef = doc(db, 'ratings', schoolUid);
+  try {
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      return docSnap.data();
+    } else {
+      throw new Error('Не е намерена директория за рейтинги за тази автошкола');
     }
   } catch (error) {
     throw Error(error);
