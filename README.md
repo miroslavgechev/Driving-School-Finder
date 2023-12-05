@@ -52,7 +52,7 @@ Driving School Finder
 8. Setup storage ✅
 9. Setup authentication ✅
 10. Develop App
-11. Connect to Backend
+11. Connect to Backend ✅
 12. Refactor Code to css modules.
 13. Optimize Code
 14. Move Static images to public ✅
@@ -154,15 +154,15 @@ Driving School Finder
 
    - **Description**: Detailed view of a specific driving school.
    - **Functionalities**:
-     - School name, logo, address, contact details, ratings.
-     - Description and history of the school.
+     - School name, logo, address, contact details, ratings. ✅
+     - Description and history of the school. ✅
      - User reviews and ratings.
-     - List of courses/services offered with pricing in a table.
-     - Photo gallery / videos.
+     - List of courses/services offered with pricing in a table. ✅
+     - Photo gallery / videos. ✅
      - Fleet of cars - basic information about a car. ❌
      - Instructors - photos and short bio. ❌
      - Booking or inquiry form for lessons. ❌
-     - Map integration showing the school's location.
+     - Map integration showing the school's location. ❌
 
 5. **Login/Signup Page**✅
 
@@ -183,13 +183,13 @@ Driving School Finder
    - **Driving Schools** - predefined categories example -> https://y-sokolovi.com/?gclid=Cj0KCQjw4bipBhCyARIsAFsieCw3eGiAe5E-Uyi3UHhcW8O_Tu9eUFJVcOJgTk-LurytBrzvNHSptk0aAiwrEALw_wcB
    - **Others** - setSchoolContext -> add reducers into context
 
-7. **User Review & Rating Page**:
+7. **User Review & Rating Page**: ✅
 
    - **Description**: Allows users to leave reviews and ratings for driving schools they've attended (one review every 4 month allowed). ✅
    - **Functionalities**:
      - Rating - 5 stars.
      - Text input for detailed reviews. ✅
-     - View All Page - list of all reviews for specific school.
+     - View All Page - list of all reviews for specific school. ✅
      - Optional: Ability for users to upload images (e.g., of their driving license or the school's facility). ❌
      - Optional: Ability for users to upvote/downvote reviews. ❌
      - Optional: Ability for users to report reviews. ❌
@@ -237,7 +237,7 @@ Driving School Finder
 
     - Use moments.js for dates
     - Add to favorites button
-    - Change the theme on sign-in and sign-up pages depending on the user role
+    - Change the theme on sign-in and sign-up pages depending on the user role ❌
     - Add paralax effect to the home page and the about page
     - Add theme - update colors globally based on user type
     - Add animation transition between pages / on start of page
