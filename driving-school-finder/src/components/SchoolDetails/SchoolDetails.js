@@ -14,78 +14,19 @@ import Container from 'components/Container';
 import styles from './schoolDetails.module.css';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getSchoolById, getRatingsBySchoolUid, getReviewsBySchoolUid } from 'services/firestoreService';
-
-const mock = {
-  id: 1,
-  logoUrl: 'https://drive-school.eu/wp-content/uploads/2022/01/logo_OK.png',
-  name: 'Автошкола Driving School - Граматикови',
-  images: [
-    'https://drive-school.eu/wp-content/uploads/2017/10/img-03.jpg',
-    'https://drive-school.eu/wp-content/uploads/2023/02/01.jpg',
-    'https://drive-school.eu/wp-content/uploads/2023/02/06.jpg',
-    'https://drive-school.eu/wp-content/uploads/2023/02/07.jpg',
-    'https://drive-school.eu/wp-content/uploads/2023/02/09.jpg',
-  ],
-  address: {
-    city: 'София',
-    region: 'Витоша',
-    street: 'бул. “Цар Борис III” 365',
-  },
-  description:
-    'Автошкола Driving School - Граматикови e създадена преди повече от 25 години. Сформиралият се с времето екип от висококвалифицирани преподаватели с дългогодишен професионален опит гарантира качествено и отлично обучение. Ние намираме индивидуален подход към всеки от клиентите си, с цел по–лесно и бързо изучаване на материала.',
-  whyUs: [
-    'Съвременнен кабинет със система за видео наблюдение и мултимедийно обучение, с което отговаря на всички европейски изисквания за теоретична подготовка.',
-    'Eкип от висококвалифицирани преподаватели с дългогодишен професионален опит гарантира качествено и отлично обучение',
-    'Автомобили  отлично техническо състояние, за което се грижат механиците в собствения ни сервиз'
-  ],
-  regionsServed: ['Витоша', 'Младост', 'Студентски'],
-  categoriesServed: ['A', 'B'],
-  email: 'info@drive-school.eu',
-  phone: '+359888237935',
-  reviews: [
-    { fullName: 'Мирослав Гечев', date: '2023-03-25', reviewScore: 4, review: 'Справиха се добре, но има какво да се желае, най-вече откъм отношението.' },
-    { fullName: 'Елена Иванова', date: '2023-01-25', reviewScore: 5, review: 'Най-добрите!' },
-    { fullName: 'Елена Иванова', date: '2023-01-25', reviewScore: 5, review: 'Най-добрите!' },
-    { fullName: 'Мирослав Гечев', date: '2023-03-25', reviewScore: 4, review: 'Справиха се добре, но има какво да се желае, най-вече откъм отношението.' },
-    { fullName: 'Мирослав Гечев', date: '2023-03-25', reviewScore: 4, review: 'Справиха се добре, но има какво да се желае, най-вече откъм отношението.' },
-    { fullName: 'Мирослав Гечев', date: '2023-03-25', reviewScore: 3, review: 'Справиха се добре, но има какво да се желае, най-вече откъм отношението.' },
-  ],
-  courses: [{
-    categoryName: 'A',
-    hoursTheory: '4',
-    hoursPractice: '20',
-    examTheoryInternalPrice: 'Безплатен',
-    examPracticeInternalPrice: 'Безплатен',
-    examTheoryExternalPrice: '80',
-    examPracticeExternalPrice: '80',
-    coursePrice: '600',
-  },
-  {
-    categoryName: 'B',
-    hoursTheory: '40',
-    hoursPractice: '36',
-    examTheoryInternalPrice: 'Безплатен',
-    examPracticeInternalPrice: 'Безплатен',
-    examTheoryExternalPrice: '80',
-    examPracticeExternalPrice: '80',
-    coursePrice: '1100',
-  }],
-  ratingScore: 4.4,
-  ratingCount: 77,
-};
-
+import { getSchoolById, getRatingsBySchoolUid, getReviewsBySchoolUid, checkIfUserCanEdit } from 'services/firestoreService';
+import { useAuthContext } from 'contexts/authContext';
+import { USER_ROLES } from 'CONSTANTS';
 
 const SchoolDetails = () => {
   const [school, setSchool] = useState(null);
   const [rating, setRating] = useState(null);
   const [reviews, setReviews] = useState(null);
+  const [userCanEdit, setUserCanEdit] = useState(false);
+  const { user } = useAuthContext();
 
   const schoolUid = useParams().id;
   const navigate = useNavigate();
-
-  //TODO: Can user edit?
-  //TODO: Reload page after review added?
 
   useEffect(() => {
     const fetchSchool = async () => {
@@ -101,8 +42,7 @@ const SchoolDetails = () => {
       }
     };
     fetchSchool();
-  }, [schoolUid]);
-
+  }, [schoolUid, userCanEdit, user]);
 
   useEffect(() => {
     const fetchRating = async () => {
@@ -115,7 +55,7 @@ const SchoolDetails = () => {
     };
 
     fetchRating();
-  }, [schoolUid]);
+  }, [schoolUid, userCanEdit, user]);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -128,15 +68,33 @@ const SchoolDetails = () => {
     };
 
     fetchReviews();
-  }, [schoolUid]);
+  }, [schoolUid, userCanEdit, user]);
+
+  useEffect(() => {
+    const fetchCanEdit = async () => {
+      try {
+        const fetchCanEdit = await checkIfUserCanEdit(user.uid, schoolUid);
+        setUserCanEdit(fetchCanEdit);
+      } catch (error) {
+        throw new Error(error);
+      }
+    };
+
+    if (school &&
+      user &&
+      school.ownerUid !== user.uid &&
+      user.role !== USER_ROLES.school) {
+      fetchCanEdit();
+    }
+
+  }, [schoolUid, userCanEdit, user]);
 
   return (
     <>
-
       {(!school || !rating || !reviews) &&
         <SpinnerFullPage />
       }
-      {console.log(reviews)}
+
       {school &&
         <>
           <Box bgcolor='alternate.main' sx={{ marginBottom: { xs: 2, sm: 2.5 } }}>
@@ -171,7 +129,13 @@ const SchoolDetails = () => {
           </Container>
 
           <Container paddingY={{ xs: 2, sm: 2.5 }}>
-            <Reviews schoolUid={schoolUid} ratingCount={mock.ratingCount} ratingScore={mock.ratingScore} reviews={mock.reviews} />
+            <Reviews
+              schoolUid={schoolUid}
+              userCanEdit={userCanEdit}
+              setUserCanEdit={setUserCanEdit}
+              reviews={reviews}
+              rating={rating}
+            />
           </Container>
         </>}
     </>
