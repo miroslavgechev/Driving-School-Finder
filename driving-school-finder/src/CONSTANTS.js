@@ -56,3 +56,8 @@ export const SUCCESS_STATES = {
   none: 'none',
 };
 
+export const USER_ROLES = {
+  student: 'student',
+  school: 'school',
+};
+
