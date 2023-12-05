@@ -13,14 +13,19 @@ import TableBody from '@mui/material/TableBody';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 
-import EditFeedbackForm from './EditFeedbackForm/EditFeedBackForm';
+import EditFeedbackForm from './EditFeedbackForm/EditFeedbackForm';
+import DeleteFeedbackForm from './DeleteFeedbackForm/DeleteFeedbackForm';
+
 import styles from './manageReviews.module.css';
 import { useAuthContext } from 'contexts/authContext';
 import { getReviewsByUserId } from 'services/firestoreService';
 
 const ManageReviews = () => {
   const [openToReview, setOpenToReview] = useState(false);
+  const [openToDelete, setOpenToDelete] = useState(false);
   const [userReviews, setUserReviews] = useState([]);
+  const [reviewToEdit, setReviewToEdit] = useState(null);
+  const [reviewToDelete, setReviewToDelete] = useState(null);
   const { user } = useAuthContext();
 
   useEffect(() => {
@@ -33,7 +38,7 @@ const ManageReviews = () => {
       }
     };
     user && fetchReviews();
-  }, [user]);
+  }, [user, reviewToEdit, reviewToDelete]);
 
   const headCells = [
     {
@@ -70,7 +75,6 @@ const ManageReviews = () => {
 
   return (
     <Container>
-      {console.log(userReviews)}
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <TableContainer component={Paper}>
@@ -136,7 +140,10 @@ const ManageReviews = () => {
                         color='primary'
                         variant='text'
                         name={index}
-                        onClick={() => setOpenToReview(true)}
+                        onClick={() => {
+                          setOpenToReview(true);
+                          setReviewToEdit(review);
+                        }}
                       >
                         Редактирай
                       </Button>
@@ -147,6 +154,10 @@ const ManageReviews = () => {
                         color='error'
                         variant='text'
                         name={index}
+                        onClick={() => {
+                          setOpenToDelete(true);
+                          setReviewToDelete(review);
+                        }}
                       >
                         Изтрий
                       </Button>
@@ -169,8 +180,19 @@ const ManageReviews = () => {
         </Grid>
       </Grid>
 
-      <EditFeedbackForm open={openToReview} onClose={() => setOpenToReview(false)} />
+      {reviewToEdit && <EditFeedbackForm
+        reviewToEdit={reviewToEdit}
+        setReviewToEdit={setReviewToEdit}
+        open={openToReview}
+        onClose={() => setOpenToReview(false)} />
+      }
 
+      {reviewToDelete && <DeleteFeedbackForm
+        reviewToDelete={reviewToDelete}
+        setReviewToDelete={setReviewToDelete}
+        open={openToDelete}
+        onClose={() => setOpenToDelete(false)} />
+      }
     </Container >
   );
 };
