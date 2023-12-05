@@ -17,9 +17,9 @@ import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFi
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 
 import styles from './details.module.css';
+import { REGIONS } from 'CONSTANTS';
 
-
-const Details = ({ school }) => {
+const Details = ({ school, rating }) => {
 
   return (
     <Box>
@@ -32,32 +32,35 @@ const Details = ({ school }) => {
         </Typography>
       </Box>
 
-      <Divider sx={{ marginTop: 2 }} />
+      <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
 
       {/* Rating */}
       <Box
         className={styles.ratingContainer}
         marginTop={1}
         marginBottom={1}>
-
         <Box className={styles.ratingBox}
           paddingBottom={1}
         >
           <Rating
             name='text-feedback'
-            //!!TO DO Replace with actual variable
-            value={school.ratingScore}
+            value={rating?.ratingScore || 0}
             readOnly
             precision={0.5}
             fontSize='inherit'
             size='large'
           />
         </Box>
-
         <Link href={'#reviews'} className={styles.link} variant='subtitle1'>
-          {/* //!!TO DO Replace with actual variable */}
-          {school.ratingScore} от {school.ratingCount} оценки
+          {
+            (rating && Object.keys(rating).length === 0)
+              ?
+              'Дай първи отзив тук!'
+              :
+              `${rating.ratingScore} от ${rating.reviewsCount} оценки`
+          }
         </Link>
+
       </Box>
 
       <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
@@ -127,16 +130,27 @@ const Details = ({ school }) => {
               <div>
                 <Typography variant='body1'>Обслужвани райони</Typography>
                 <div>
-                  {school.regionsServed.map((item) => (
+                  {school.regionsServed.length < REGIONS.length
+                    ?
+                    school.regionsServed.map((item) => (
+                      <Chip
+                        key={item}
+                        label={item}
+                        size='small'
+                        color='primary'
+                        clickable
+                        sx={{ marginTop: 1, marginRight: 1 }}
+                      />
+                    ))
+                    :
                     <Chip
-                      key={item}
-                      label={item}
+                      label={'Всички'}
                       size='small'
                       color='primary'
                       clickable
                       sx={{ marginTop: 1, marginRight: 1 }}
                     />
-                  ))}
+                  }
                 </div>
               </div>
             </ListItem>
