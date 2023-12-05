@@ -18,16 +18,19 @@ import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 
 import styles from './details.module.css';
 import { REGIONS } from 'CONSTANTS';
+import { useAuthContext } from 'contexts/authContext';
 
 const Details = ({ school, rating }) => {
 
+  const { user } = useAuthContext();
+
   return (
     <Box>
-      <Box className={styles.headerContainer}>
+      <Box>
         <Typography
           variant='h4'
           marginBottom={{ xs: 1, sm: 0 }}
-          className={styles.headerText}>
+          className={`${styles.headerText} ${styles.centerText}`}>
           {school.name}
         </Typography>
       </Box>
@@ -55,9 +58,9 @@ const Details = ({ school, rating }) => {
           {
             (rating && Object.keys(rating).length === 0)
               ?
-              'Дай първи отзив тук!'
+              user ? 'Дай първи отзив тук!' : 'Все още няма отзиви'
               :
-              `${rating.ratingScore} от ${rating.reviewsCount} оценки`
+              `${rating?.ratingScore?.toFixed(1)} от ${rating?.reviewsCount} оценки`
           }
         </Link>
 
@@ -166,6 +169,9 @@ const Details = ({ school, rating }) => {
         <Box marginTop={1}>
           <ul>
             {school.whyUs.map((item, i) => (
+
+              item.length > 0
+              &&
               <li key={i}>
                 <Typography
                   variant='body1'
@@ -175,6 +181,7 @@ const Details = ({ school, rating }) => {
                   {item}
                 </Typography>
               </li>
+
             ))}
           </ul>
         </Box>
