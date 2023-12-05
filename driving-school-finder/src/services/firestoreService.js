@@ -97,15 +97,6 @@ export const getSchoolById = async (schoolId) => {
   }
 };
 
-export const addEmptyReviewDirectory = async (schoolUid) => {
-  const docRef = doc(db, 'reviews', schoolUid);
-  try {
-    await setDoc(docRef, { reviews: {} });
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
 export const addEmptyRatingsDirectory = async (schoolUid) => {
   const docRef = doc(db, 'ratings', schoolUid);
   try {
@@ -116,31 +107,6 @@ export const addEmptyRatingsDirectory = async (schoolUid) => {
 };
 
 export const addSchool = async (school) => await setDoc(doc(db, 'schools', school.ownerUid), school);
-
-export const addReviewToSchool = async (schoolUid, userUid, review) => {
-  const docRef = doc(db, 'reviews', schoolUid);
-  //! TO DO - CHECK IF FLAT STRUCTURE IS BETTER
-  const allReviewsCollection = collection(db, 'allReviews');
-
-  try {
-    const existingReviews = await getReviewsBySchoolUid(schoolUid);
-
-    await updateDoc(docRef, {
-      reviews: {
-        ...existingReviews,
-        [userUid]: review,
-      },
-    }, { merge: true });
-
-    //! TO DO - CHECK IF FLAT STRUCTURE IS BETTER
-    await addDoc(allReviewsCollection, review);
-
-    await updateSchoolRating(schoolUid);
-
-  } catch (error) {
-    throw Error(error);
-  }
-};
 
 export const updateSchoolRating = async (schoolUid) => {
   const docRef = doc(db, 'ratings', schoolUid);
@@ -162,21 +128,22 @@ export const updateSchoolRating = async (schoolUid) => {
 };
 
 export const getReviewsBySchoolUid = async (schoolUid) => {
-  const docRef = doc(db, 'reviews', schoolUid);
   try {
-    const docSnap = await getDoc(docRef);
+    const q = query(collection(db, 'allReviews'), where('schoolId', '==', schoolUid));
+    const querySnapshot = await getDocs(q);
+    let reviews = [];
+    querySnapshot.forEach((doc) => {
+      reviews.push(doc.data());
+    });
 
-    if (docSnap.exists()) {
-      return docSnap.data().reviews || {};
-    } else {
-      throw new Error('Не е намерена директория за отзиви за тази автошкола');
-    }
+    return reviews;
   } catch (error) {
     throw Error(error);
   }
 };
 
 export const getRatingsBySchoolUid = async (schoolUid) => {
+
   const docRef = doc(db, 'ratings', schoolUid);
   try {
     const docSnap = await getDoc(docRef);
@@ -191,19 +158,34 @@ export const getRatingsBySchoolUid = async (schoolUid) => {
   }
 };
 
-export const checkIfUserCanEdit = async (userUid, schoolUid) => {
-  const firestore = getFirestore();
+export const addReviewToSchool = async (schoolUid, userUid, review) => {
+  const allReviewsCollection = collection(db, 'allReviews');
+
   try {
-    const docRef = doc(firestore, `reviews/${schoolUid}/`);
-    const docSnap = await getDoc(docRef);
+    await addDoc(allReviewsCollection, review);
 
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-      const reviews = data.reviews || {};
+    await updateSchoolRating(schoolUid);
 
-      return !Object.prototype.hasOwnProperty.call(reviews, userUid);
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const checkIfUserCanEdit = async (userUid, schoolUid) => {
+
+  try {
+    const q = query(
+      collection(db, 'allReviews'),
+      where('userId', '==', userUid),
+      where('schoolId', '==', schoolUid)
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      return true;
     } else {
-      throw new Error('Не е намерена директория за отзиви за тази автошкола');
+      return false;
     }
 
   } catch (error) {
@@ -214,7 +196,6 @@ export const checkIfUserCanEdit = async (userUid, schoolUid) => {
 
 export const getReviewsByUserId = async (userUid) => {
   try {
-
     const q = query(collection(db, 'allReviews'), where('userId', '==', userUid));
     const querySnapshot = await getDocs(q);
     let reviews = [];

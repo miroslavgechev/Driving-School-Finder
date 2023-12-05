@@ -1,6 +1,6 @@
 import { useState, createContext, useContext } from 'react';
 import { uploadFile } from 'services/firebaseStorageService';
-import { addEmptyRatingsDirectory, addEmptyReviewDirectory, addSchool } from 'services/firestoreService';
+import { addEmptyRatingsDirectory, addSchool } from 'services/firestoreService';
 
 const SetSchoolContext = createContext();
 
@@ -71,7 +71,6 @@ export const SetSchoolProvider = ({ children }) => {
       await uploadImage('mainImage', files?.mainImage);
       await uploadImage('supportImages', files?.supportImages);
       await addSchool(school);
-      await addEmptyReviewDirectory(school.ownerUid);
       await addEmptyRatingsDirectory(school.ownerUid);
       setFiles(null);
     } catch (error) {
