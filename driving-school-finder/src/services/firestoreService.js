@@ -185,6 +185,27 @@ export const getRatingsBySchoolUid = async (schoolUid) => {
   }
 };
 
+export const checkIfUserCanEdit = async (userUid, schoolUid) => {
+  const firestore = getFirestore();
+  try {
+    const docRef = doc(firestore, `reviews/${schoolUid}/`);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      const reviews = data.reviews || {};
+
+      return !Object.prototype.hasOwnProperty.call(reviews, userUid);
+    } else {
+      throw new Error('Не е намерена директория за отзиви за тази автошкола');
+    }
+
+  } catch (error) {
+    throw new Error(error);
+  }
+
+};
+
 //TODO NEEDS FIX
 export const getSchools = async () => {
   const schoolsCol = collection(db, 'schools');
