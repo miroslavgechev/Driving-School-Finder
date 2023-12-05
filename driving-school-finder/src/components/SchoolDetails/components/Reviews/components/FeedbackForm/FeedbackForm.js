@@ -36,8 +36,8 @@ const validationSchema = yup.object({
 
 const FeedbackForm = ({ onClose, open, schoolUid }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { user } = useAuthContext();
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
+  const { user } = useAuthContext();
 
   const initialValues = {
     rating: 3,
@@ -49,13 +49,18 @@ const FeedbackForm = ({ onClose, open, schoolUid }) => {
       formik.setStatus(null);
       setIsLoading(true);
 
-      //TODO: ADD FULL NAME AND DATE TO REVIEW!
+      const review = {
+        ...values,
+        fullName: `${user.firstName} ${user.lastName}`,
+        date: new Date().toISOString(),
+      };
 
-      await addReviewToSchool(schoolUid, user.uid, values);
+      await addReviewToSchool(schoolUid, user.uid, review);
+
+      setSuccessState(SUCCESS_STATES.success);
 
       setTimeout(() => {
         setIsLoading(false);
-        setSuccessState(SUCCESS_STATES.success);
         onClose();
       }, 1000);
 
