@@ -14,8 +14,7 @@ import Container from 'components/Container';
 import styles from './schoolDetails.module.css';
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getSchoolById } from 'services/firestoreService';
-
+import { getSchoolById, getRatingsBySchoolUid, getReviewsBySchoolUid } from 'services/firestoreService';
 
 const mock = {
   id: 1,
@@ -79,10 +78,12 @@ const mock = {
 
 const SchoolDetails = () => {
   const [school, setSchool] = useState(null);
+  const [rating, setRating] = useState(null);
+  const [reviews, setReviews] = useState(null);
+
   const schoolUid = useParams().id;
   const navigate = useNavigate();
 
-  //TODO: Build a school object with reviews, avg rating, and reviewsCount
   //TODO: Can user edit?
   //TODO: Reload page after review added?
 
@@ -100,15 +101,42 @@ const SchoolDetails = () => {
       }
     };
     fetchSchool();
-  }, []);
+  }, [schoolUid]);
+
+
+  useEffect(() => {
+    const fetchRating = async () => {
+      try {
+        const fetchedRating = await getRatingsBySchoolUid(schoolUid);
+        setRating(fetchedRating);
+      } catch (error) {
+        throw new Error(error);
+      }
+    };
+
+    fetchRating();
+  }, [schoolUid]);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const fetchedReviews = await getReviewsBySchoolUid(schoolUid);
+        setReviews(fetchedReviews);
+      } catch (error) {
+        throw new Error(error);
+      }
+    };
+
+    fetchReviews();
+  }, [schoolUid]);
 
   return (
     <>
 
-      {!school &&
+      {(!school || !rating || !reviews) &&
         <SpinnerFullPage />
       }
-
+      {console.log(reviews)}
       {school &&
         <>
           <Box bgcolor='alternate.main' sx={{ marginBottom: { xs: 2, sm: 2.5 } }}>
@@ -126,19 +154,19 @@ const SchoolDetails = () => {
                     name={school.name} />
                 </Grid>
                 <Grid item xs={12} md={5}>
-                  <Details school={school} />
+                  <Details school={school} rating={rating} />
                 </Grid>
               </Grid>
             </Box>
           </Container>
 
-          <Container paddingY={4} id="reviews">
-            <Divider className={styles.divider} id='table' />
+          <Container paddingY={4} id='table'>
+            <Divider className={styles.divider} />
           </Container>
 
           <Courses school={school} />
 
-          <Container paddingY={4} id="reviews">
+          <Container paddingY={4} id='reviews'>
             <Divider />
           </Container>
 
