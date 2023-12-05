@@ -15,6 +15,8 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { useTheme } from '@mui/material/styles';
+import styles from './feedbackList.module.css';
+import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -46,12 +48,12 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'reviewScore',
+    id: 'rating',
     numeric: true,
     label: 'Оценка'
   },
   {
-    id: 'review',
+    id: 'feedback',
     numeric: false,
     label: 'Отзив'
   },
@@ -78,18 +80,17 @@ function EnhancedTableHead({ order, orderBy, onRequestSort }) {
         {headCells.map((headCell) =>
           <TableCell
             key={headCell.id}
-            sx={{ textAlign: 'center' }}
+            className={styles.centerText}
             sortDirection={orderBy === headCell.id ? order : false}
           >
-
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
               <Typography
-                variant={'subtitle2'}
-                fontWeight={700}
+                variant='subtitle2'
+                className={styles.headerText}
               >
                 {headCell.label}
               </Typography>
@@ -107,7 +108,6 @@ const FeedbackList = ({ onClose, open, reviews }) => {
   const [orderBy, setOrderBy] = useState('date');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -128,10 +128,10 @@ const FeedbackList = ({ onClose, open, reviews }) => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - reviews.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - Object.values(reviews).length) : 0;
   const visibleRows = useMemo(
     () =>
-      stableSort(reviews, getComparator(order, orderBy)).slice(
+      stableSort(Object.values(reviews), getComparator(order, orderBy)).slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       ),
@@ -142,7 +142,7 @@ const FeedbackList = ({ onClose, open, reviews }) => {
     <Dialog
       onClose={onClose}
       open={open}
-      maxWidth={'lg'}
+      maxWidth='lg'
       sx={{
         '& .MuiPaper-root': {
           borderRadius: 2,
@@ -152,13 +152,13 @@ const FeedbackList = ({ onClose, open, reviews }) => {
 
       <TableContainer component={Paper}>
         <Table style={isMd ? { width: '10% !important' } : {}}
-          aria-label="simple table">
+          aria-label='simple table'>
 
           <EnhancedTableHead
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
-            rowCount={reviews.length}
+            rowCount={Object.values(reviews).length}
           />
 
           <TableBody>
@@ -172,35 +172,35 @@ const FeedbackList = ({ onClose, open, reviews }) => {
                   sx={{
                     '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
                     '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
-                    cursor: 'pointer'
                   }}
+                  className={styles.tableRow}
                 >
-                  <TableCell key={index + row.reviewScore} sx={{ textAlign: 'center' }} component="td" scope="row">
+                  <TableCell key={index + row.rating} className={style.centerText} component='td' scope='row'>
                     <Rating
-                      name="text-feedback"
-                      value={row.reviewScore}
+                      name='text-feedback'
+                      value={Number(row.rating)}
                       readOnly
                       precision={0.5}
-                      fontSize="inherit"
-                      size="small"
+                      fontSize='inherit'
+                      size='small'
                     />
                   </TableCell>
 
-                  <TableCell key={index + row.review} component="td" scope="row">
-                    <Typography variant={'subtitle2'}>
-                      {row.review}
+                  <TableCell key={index + row.feedback} component='td' scope='row'>
+                    <Typography variant='subtitle2'>
+                      {row.feedback}
                     </Typography>
                   </TableCell>
 
-                  <TableCell key={index + row.fullName} sx={{ textAlign: 'center' }} component="td" scope="row">
-                    <Typography variant={'subtitle2'}>
+                  <TableCell key={index + row.fullName} className={style.centerText} component='td' scope='row'>
+                    <Typography variant='subtitle2'>
                       {row.fullName}
                     </Typography>
                   </TableCell>
 
-                  <TableCell key={index + row.date} sx={{ textAlign: 'center' }} component="td" scope="row">
-                    <Typography variant={'subtitle2'}>
-                      {row.date}
+                  <TableCell key={index + row.date} className={style.centerText} component='td' scope='row'>
+                    <Typography variant='subtitle2'>
+                      {row.date.slice(0, 10)}
                     </Typography>
                   </TableCell>
 
@@ -221,8 +221,8 @@ const FeedbackList = ({ onClose, open, reviews }) => {
       </TableContainer>
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
-        component="div"
-        count={reviews.length}
+        component='div'
+        count={Object.values(reviews).length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
