@@ -150,13 +150,13 @@ Driving School Finder
      - Built on top of catalogue page.
      - Filters to narrow down results (e.g., location, services offered, ratings).
 
-4. **Driving School Details Page**:
+4. **Driving School Details Page**:✅
 
    - **Description**: Detailed view of a specific driving school.
    - **Functionalities**:
      - School name, logo, address, contact details, ratings. ✅
      - Description and history of the school. ✅
-     - User reviews and ratings.
+     - User reviews and ratings.✅
      - List of courses/services offered with pricing in a table. ✅
      - Photo gallery / videos. ✅
      - Fleet of cars - basic information about a car. ❌
@@ -239,7 +239,6 @@ Driving School Finder
     - Add to favorites button
     - Change the theme on sign-in and sign-up pages depending on the user role ❌
     - Add paralax effect to the home page and the about page
-    - Add theme - update colors globally based on user type
     - Add animation transition between pages / on start of page
 
 15. **Global Error Handling**
