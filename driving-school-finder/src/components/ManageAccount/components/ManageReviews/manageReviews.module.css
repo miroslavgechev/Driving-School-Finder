@@ -1,0 +1,17 @@
+.tableCell {
+    font-weight: 700 !important;
+    text-align: center !important;
+}
+
+.tableRow {
+    cursor: default;
+}
+
+.centerText {
+    text-align: center !important;
+}
+
+.gridItem {
+    justify-content: center;
+    align-items: center;
+}

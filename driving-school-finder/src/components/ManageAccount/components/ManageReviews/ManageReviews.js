@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -14,14 +14,26 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 
 import EditFeedbackForm from './EditFeedbackForm/EditFeedBackForm';
+import styles from './manageReviews.module.css';
+import { useAuthContext } from 'contexts/authContext';
+import { getReviewsByUserId } from 'services/firestoreService';
 
 const ManageReviews = () => {
   const [openToReview, setOpenToReview] = useState(false);
+  const [userReviews, setUserReviews] = useState([]);
+  const { user } = useAuthContext();
 
-  const reviewsMock = [
-    { school: 'Училище 1', date: '2023-03-25', reviewScore: 4, review: 'Справиха се добре, но има какво да се желае, най-вече откъм отношението.' },
-    { school: 'Училище 2', date: '2023-01-26', reviewScore: 5, review: 'Най-добрите!' },
-  ];
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const reviews = await getReviewsByUserId(user.uid);
+        setUserReviews(reviews);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    user && fetchReviews();
+  }, [user]);
 
   const headCells = [
     {
@@ -58,6 +70,7 @@ const ManageReviews = () => {
 
   return (
     <Container>
+      {console.log(userReviews)}
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <TableContainer component={Paper}>
@@ -67,7 +80,7 @@ const ManageReviews = () => {
                   {headCells.map((headCell) =>
                     <TableCell
                       key={headCell.id}
-                      sx={{ textAlign: 'center', fontWeight: 700 }}
+                      className={styles.tableCell}
                     >
 
                       {headCell.label}
@@ -79,61 +92,60 @@ const ManageReviews = () => {
 
               <TableBody>
 
-                {reviewsMock.map((review, index) => (
+                {userReviews.map((review, index) => (
                   <TableRow
                     hover
                     key={index}
                     sx={{
                       '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
                       '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
-                      cursor: 'pointer'
                     }}
+                    className={styles.cursor}
                   >
-                    <TableCell key={index + review.reviewScore} sx={{ textAlign: 'center' }} component="td" scope="row">
+                    <TableCell key={index + review.rating} className={styles.centerText} component='td' scope='row'>
                       <Rating
-                        name="text-feedback"
-                        value={review.reviewScore}
+                        name='text-feedback'
+                        value={Number(review.rating)}
                         readOnly
                         precision={0.5}
-                        fontSize="inherit"
-                        size="small"
+                        fontSize='inherit'
+                        size='small'
                       />
                     </TableCell>
 
-                    <TableCell key={index + review.review} component="td" scope="row">
-                      <Typography variant={'subtitle2'}>
-                        {review.review}
+                    <TableCell key={index + review.feedback} component='td' scope='row'>
+                      <Typography variant='subtitle2'>
+                        {review.feedback}
                       </Typography>
                     </TableCell>
 
-                    <TableCell key={index + review.school} sx={{ textAlign: 'center' }} component="td" scope="row">
-                      <Typography variant={'subtitle2'}>
-                        {review.school}
+                    <TableCell key={index + review.schoolName} className={styles.centerText} component='td' scope='row'>
+                      <Typography variant='subtitle2'>
+                        {review.schoolName}
                       </Typography>
                     </TableCell>
 
-                    <TableCell key={index + review.date} sx={{ textAlign: 'center' }} component="td" scope="row">
-                      <Typography variant={'subtitle2'}>
-                        {review.date}
+                    <TableCell key={index + review.date} className={styles.centerText} component='td' scope='row'>
+                      <Typography variant='subtitle2'>
+                        {review?.date?.slice(0, 10)}
                       </Typography>
                     </TableCell>
 
-                    <TableCell key={index + 'button'} sx={{ textAlign: 'center' }}>
+                    <TableCell key={index + 'button'} className={styles.centerText}>
                       <Button
-                        color={'primary'}
-                        variant={'text'}
+                        color='primary'
+                        variant='text'
                         name={index}
                         onClick={() => setOpenToReview(true)}
-
                       >
                         Редактирай
                       </Button>
                     </TableCell>
 
-                    <TableCell key={index + 'deleteButton'} variant='warning' sx={{ textAlign: 'center' }}>
+                    <TableCell key={index + 'deleteButton'} variant='warning' className={styles.centerText}>
                       <Button
-                        color={'error'}
-                        variant={'text'}
+                        color='error'
+                        variant='text'
                         name={index}
                       >
                         Изтрий
@@ -151,8 +163,7 @@ const ManageReviews = () => {
           item
           container
           xs={12}
-          justifyContent={'center'}
-          alignItems={'center'}
+          className={styles.gridItem}
         >
 
         </Grid>
@@ -160,7 +171,7 @@ const ManageReviews = () => {
 
       <EditFeedbackForm open={openToReview} onClose={() => setOpenToReview(false)} />
 
-    </Container>
+    </Container >
   );
 };
 
