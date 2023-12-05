@@ -53,6 +53,7 @@ const FeedbackForm = ({ onClose, open, schoolUid, setUserCanEdit }) => {
         ...values,
         fullName: `${user.firstName} ${user.lastName}`,
         date: new Date().toISOString(),
+        schoolId: schoolUid,
       };
 
       await addReviewToSchool(schoolUid, user.uid, review);
