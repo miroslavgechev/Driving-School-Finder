@@ -17,9 +17,6 @@ import styles from './manageAccount.module.css';
 
 const ManageAccount = () => {
 
-  //!TODO: Delete modal/dialog
-  //!TODO: User reviews
-
   const { user } = useAuthContext();
 
   return (
@@ -98,8 +95,6 @@ const ManageAccount = () => {
                   <ManageReviews />
                 </Grid>
               </Grid>
-
-              <Divider sx={{ marginY: 4 }} />
             </>
           }
 
