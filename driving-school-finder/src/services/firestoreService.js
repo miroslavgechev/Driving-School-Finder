@@ -98,9 +98,16 @@ export const getSchoolById = async (schoolId) => {
   }
 };
 
-export const addEmptyRatingsDirectory = async (schoolUid) => {
+export const addEmptyRatingsDirectoryIfNotExist = async (schoolUid) => {
+  //Intentionally leaving out existing reviews and ratings, 
+  //so user cannor just reenter the school and delete all reviews
+
   const docRef = doc(db, 'ratings', schoolUid);
+  const docSnap = await getDoc(docRef);
+
   try {
+
+    if (docSnap.exists()) return;
     await setDoc(docRef, {});
   } catch (error) {
     throw new Error(error);
@@ -196,6 +203,7 @@ export const checkIfUserCanEdit = async (userUid, schoolUid) => {
 };
 
 export const getReviewsByUserId = async (userUid) => {
+
   try {
     const q = query(collection(db, 'allReviews'), where('userId', '==', userUid));
     const querySnapshot = await getDocs(q);
@@ -210,7 +218,11 @@ export const getReviewsByUserId = async (userUid) => {
       reviews.map(
         async review => {
           const school = await getSchoolById(review.schoolId);
-          review.schoolName = school.name;
+          review.schoolName = school?.name
+            ||
+            (review.schoolName && `${review.schoolName} (неактивна)`)
+            || 'Автошколата е неактивна';
+
           return review;
         }));
 
@@ -241,6 +253,15 @@ export const deleteReviewByReviewId = async (reviewId, schoolId) => {
 
     await updateSchoolRating(schoolId);
 
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
+export const deleteSchoolBySchoolId = async (schoolId) => {
+  const schoolDoc = doc(db, 'schools', schoolId);
+  try {
+    await deleteDoc(schoolDoc);
   } catch (error) {
     throw Error(error);
   }
