@@ -7,14 +7,11 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './confirmForm.module.css';
 
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
 import { SUCCESS_STATES } from 'CONSTANTS';
-
-//!TO DO - add redirection to details!
-//!TO DO - fix alert texts based on edit/create
 
 const ConfirmForm = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -24,6 +21,7 @@ const ConfirmForm = () => {
 
   const { school, uploadSchool } = useSetSchoolContext();
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setCurrentLocation(location.pathname);
@@ -46,6 +44,9 @@ const ConfirmForm = () => {
       setIsLoading(true);
       await uploadSchool();
       setSuccessState(SUCCESS_STATES.success);
+      setTimeout(() => {
+        navigate('/account');
+      }, 500);
 
     } catch (error) {
       setSuccessState(SUCCESS_STATES.error);
@@ -80,14 +81,22 @@ const ConfirmForm = () => {
               <Alert
                 className={styles.fullWidth}
                 severity="success">
-                Автошколата е създадена успешно, пренасочваме те...
+                {currentLocation === '/school/create'
+                  ?
+                  'Автошколата е създадена успешно, пренасочваме те...'
+                  :
+                  'Автошколата е обновена успешно, пренасочваме те...'}
               </Alert>
             }
             {successState === SUCCESS_STATES.error &&
               <Alert
                 className={styles.fullWidth}
                 severity="error">
-                Нещо се счупи. Автошколата не е създадена...
+                {currentLocation === '/school/create'
+                  ?
+                  'Нещо се счупи. Автошколата не е създадена...'
+                  :
+                  'Нещо се счупи. Автошколата не е обновена...'}
               </Alert>
             }
           </Box>
