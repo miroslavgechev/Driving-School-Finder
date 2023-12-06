@@ -12,14 +12,18 @@ import { Link } from 'react-router-dom';
 
 import { getSchoolByOwnerUid } from '../../../../services/firestoreService';
 import { useAuthContext } from 'contexts/authContext';
-import SchoolTableContainer from './components/SchoolTableContainer';
+import SchoolTableContainer from './components/SchoolTableContainer/SchoolTableContainer';
+
 
 import styles from './manageSchools.module.css';
+import DeleteSchoolForm from './components/DeleteSchoolForm/DeleteSchoolForm';
 
 const ManageSchools = () => {
 
   const { user } = useAuthContext();
   const [school, setSchool] = useState(null);
+  const [openToDelete, setOpenToDelete] = useState(false);
+
 
   useEffect(() => {
 
@@ -34,7 +38,7 @@ const ManageSchools = () => {
 
     if (user) fetchSchool();
 
-  }, [user]);
+  }, [user, openToDelete]);
 
 
   return (
@@ -64,9 +68,19 @@ const ManageSchools = () => {
             }
 
             {school &&
-              <SchoolTableContainer school={school} />
-
+              <SchoolTableContainer
+                school={school}
+                setOpenToDelete={setOpenToDelete}
+              />
             }
+
+            {school &&
+              <DeleteSchoolForm
+                school={school}
+                open={openToDelete}
+                onClose={() => setOpenToDelete(false)} />
+            }
+
           </Grid>
         </Grid>
       </form>
