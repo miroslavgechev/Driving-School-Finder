@@ -50,6 +50,7 @@ const EditFeedbackForm = ({ onClose, open, reviewToEdit, setReviewToEdit }) => {
       const review = {
         fullName: reviewToEdit.fullName,
         schoolId: reviewToEdit.schoolId,
+        schoolName: reviewToEdit.schoolName,
         userId: reviewToEdit.userId,
         date: new Date().toISOString(),
         ...values,
