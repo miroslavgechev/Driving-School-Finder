@@ -131,6 +131,7 @@ const SchoolDetails = () => {
           <Container paddingY={{ xs: 2, sm: 2.5 }}>
             <Reviews
               schoolUid={schoolUid}
+              schoolName={school.name}
               userCanEdit={userCanEdit}
               setUserCanEdit={setUserCanEdit}
               reviews={reviews}

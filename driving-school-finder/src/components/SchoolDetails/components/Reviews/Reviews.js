@@ -11,7 +11,7 @@ import FeedbackList from './components/FeedbackList/FeedbackList';
 
 import styles from './reviews.module.css';
 
-const Reviews = ({ schoolUid, userCanEdit, rating, reviews, setUserCanEdit }) => {
+const Reviews = ({ schoolUid, schoolName, userCanEdit, rating, reviews, setUserCanEdit }) => {
 
   const [openToReview, setOpenToReview] = useState(false);
   const [openFeedbackList, setOpenFeedbackList] = useState(false);
@@ -99,6 +99,7 @@ const Reviews = ({ schoolUid, userCanEdit, rating, reviews, setUserCanEdit }) =>
 
       <FeedbackForm
         schoolUid={schoolUid}
+        schoolName={schoolName}
         open={openToReview}
         setUserCanEdit={setUserCanEdit}
         onClose={() => setOpenToReview(false)}

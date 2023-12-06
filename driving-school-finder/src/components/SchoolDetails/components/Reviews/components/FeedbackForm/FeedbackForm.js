@@ -34,7 +34,7 @@ const validationSchema = yup.object({
     .max(500, 'Отзива не може да е повече от 500 символа'),
 });
 
-const FeedbackForm = ({ onClose, open, schoolUid, setUserCanEdit }) => {
+const FeedbackForm = ({ onClose, open, schoolUid, schoolName, setUserCanEdit }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
   const { user } = useAuthContext();
@@ -54,6 +54,7 @@ const FeedbackForm = ({ onClose, open, schoolUid, setUserCanEdit }) => {
         fullName: `${user.firstName} ${user.lastName}`,
         date: new Date().toISOString(),
         schoolId: schoolUid,
+        schoolName,
         userId: user.uid,
       };
 
