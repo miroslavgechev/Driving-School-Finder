@@ -21,6 +21,11 @@ const SchoolTableContainer = ({ school, setOpenToDelete }) => {
       label: 'Име на автошколата'
     },
     {
+      id: 'detailsButton',
+      numeric: false,
+      label: ''
+    },
+    {
       id: 'editButton',
       numeric: false,
       label: ''
@@ -65,6 +70,18 @@ const SchoolTableContainer = ({ school, setOpenToDelete }) => {
             <TableCell className={styles.centerText}>
               <Button
                 component={Link}
+                to={`/school/${school?.id}`}
+                color='primary'
+                variant='text'
+                className={styles.cursorPointer}
+              >
+                Към страница
+              </Button>
+            </TableCell>
+
+            <TableCell className={styles.centerText}>
+              <Button
+                component={Link}
                 to={`/school/${school?.id}/edit`}
                 color='warning'
                 variant='text'
@@ -86,6 +103,7 @@ const SchoolTableContainer = ({ school, setOpenToDelete }) => {
                 Изтрий
               </Button>
             </TableCell>
+
           </TableRow>
         </TableBody>
       </Table>
