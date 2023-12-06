@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './schoolTableContainer.module.css';
 
-const SchoolTableContainer = ({ school }) => {
+const SchoolTableContainer = ({ school, setOpenToDelete }) => {
 
   const headCells = [
     {
@@ -68,6 +68,7 @@ const SchoolTableContainer = ({ school }) => {
                 to={`/school/${school?.id}/edit`}
                 color='warning'
                 variant='text'
+                className={styles.cursorPointer}
               >
                 Редактирай
               </Button>
@@ -77,6 +78,10 @@ const SchoolTableContainer = ({ school }) => {
               <Button
                 color='error'
                 variant='text'
+                className={styles.cursorPointer}
+                onClick={() => {
+                  setOpenToDelete(true);
+                }}
               >
                 Изтрий
               </Button>

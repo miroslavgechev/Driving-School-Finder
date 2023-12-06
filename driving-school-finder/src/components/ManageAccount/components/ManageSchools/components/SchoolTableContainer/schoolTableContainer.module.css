@@ -1,0 +1,12 @@
+.tableCell {
+    text-align: center !important;
+    font-weight: 700 !important;
+}
+
+.centerText {
+    text-align: center !important;
+}
+
+.cursorPointer:hover {
+    cursor: pointer !important;
+}
