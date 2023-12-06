@@ -74,126 +74,132 @@ const ManageReviews = () => {
   ];
 
   return (
-    <Container>
-      <Grid container spacing={4}>
-        <Grid item xs={12}>
-          <TableContainer component={Paper}>
-            <Table>
-              <TableHead sx={{ bgcolor: 'alternate.dark' }}>
-                <TableRow>
-                  {headCells.map((headCell) =>
-                    <TableCell
-                      key={headCell.id}
-                      className={styles.tableCell}
-                    >
-
-                      {headCell.label}
-
-                    </TableCell>
-                  )}
-                </TableRow>
-              </TableHead>
-
-              <TableBody>
-
-                {userReviews.map((review, index) => (
-                  <TableRow
-                    hover
-                    key={index}
-                    sx={{
-                      '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
-                      '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
-                    }}
-                    className={styles.cursor}
-                  >
-                    <TableCell key={index + review.rating} className={styles.centerText} component='td' scope='row'>
-                      <Rating
-                        name='text-feedback'
-                        value={Number(review.rating)}
-                        readOnly
-                        precision={0.5}
-                        fontSize='inherit'
-                        size='small'
-                      />
-                    </TableCell>
-
-                    <TableCell key={index + review.feedback} component='td' scope='row'>
-                      <Typography variant='subtitle2'>
-                        {review.feedback}
-                      </Typography>
-                    </TableCell>
-
-                    <TableCell key={index + review.schoolName} className={styles.centerText} component='td' scope='row'>
-                      <Typography variant='subtitle2'>
-                        {review.schoolName}
-                      </Typography>
-                    </TableCell>
-
-                    <TableCell key={index + review.date} className={styles.centerText} component='td' scope='row'>
-                      <Typography variant='subtitle2'>
-                        {review?.date?.slice(0, 10)}
-                      </Typography>
-                    </TableCell>
-
-                    <TableCell key={index + 'button'} className={styles.centerText}>
-                      <Button
-                        color='primary'
-                        variant='text'
-                        name={index}
-                        onClick={() => {
-                          setOpenToReview(true);
-                          setReviewToEdit(review);
-                        }}
+    <>
+      <Container>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <TableContainer component={Paper}>
+              <Table>
+                <TableHead sx={{ bgcolor: 'alternate.dark' }}>
+                  <TableRow>
+                    {headCells.map((headCell) =>
+                      <TableCell
+                        key={headCell.id}
+                        className={styles.tableCell}
                       >
-                        Редактирай
-                      </Button>
-                    </TableCell>
 
-                    <TableCell key={index + 'deleteButton'} variant='warning' className={styles.centerText}>
-                      <Button
-                        color='error'
-                        variant='text'
-                        name={index}
-                        onClick={() => {
-                          setOpenToDelete(true);
-                          setReviewToDelete(review);
-                        }}
-                      >
-                        Изтрий
-                      </Button>
-                    </TableCell>
+                        {headCell.label}
 
+                      </TableCell>
+                    )}
                   </TableRow>
-                )
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Grid>
-        <Grid
-          item
-          container
-          xs={12}
-          className={styles.gridItem}
-        >
+                </TableHead>
 
-        </Grid>
-      </Grid>
+                <TableBody>
 
-      {reviewToEdit && <EditFeedbackForm
-        reviewToEdit={reviewToEdit}
-        setReviewToEdit={setReviewToEdit}
-        open={openToReview}
-        onClose={() => setOpenToReview(false)} />
+                  {userReviews.map((review, index) => (
+                    <TableRow
+                      hover
+                      key={index}
+                      sx={{
+                        '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
+                        '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
+                      }}
+                      className={styles.cursor}
+                    >
+                      <TableCell key={index + review.rating} className={styles.centerText} component='td' scope='row'>
+                        <Rating
+                          name='text-feedback'
+                          value={Number(review.rating)}
+                          readOnly
+                          precision={0.5}
+                          fontSize='inherit'
+                          size='small'
+                        />
+                      </TableCell>
+
+                      <TableCell key={index + review.feedback} component='td' scope='row'>
+                        <Typography variant='subtitle2'>
+                          {review.feedback}
+                        </Typography>
+                      </TableCell>
+
+                      <TableCell key={index + review.schoolName} className={styles.centerText} component='td' scope='row'>
+                        <Typography variant='subtitle2'>
+                          {review.schoolName}
+                        </Typography>
+                      </TableCell>
+
+                      <TableCell key={index + review.date} className={styles.centerText} component='td' scope='row'>
+                        <Typography variant='subtitle2'>
+                          {review?.date?.slice(0, 10)}
+                        </Typography>
+                      </TableCell>
+
+                      <TableCell key={index + 'button'} className={styles.centerText}>
+                        <Button
+                          color='primary'
+                          variant='text'
+                          name={index}
+                          onClick={() => {
+                            setOpenToReview(true);
+                            setReviewToEdit(review);
+                          }}
+                        >
+                          Редактирай
+                        </Button>
+                      </TableCell>
+
+                      <TableCell key={index + 'deleteButton'} variant='warning' className={styles.centerText}>
+                        <Button
+                          color='error'
+                          variant='text'
+                          name={index}
+                          onClick={() => {
+                            setOpenToDelete(true);
+                            setReviewToDelete(review);
+                          }}
+                        >
+                          Изтрий
+                        </Button>
+                      </TableCell>
+
+                    </TableRow>
+                  )
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
+          <Grid
+            item
+            container
+            xs={12}
+            className={styles.gridItem}
+          >
+
+          </Grid>
+        </Grid>
+
+
+      </Container >
+
+      {
+        reviewToEdit && <EditFeedbackForm
+          reviewToEdit={reviewToEdit}
+          setReviewToEdit={setReviewToEdit}
+          open={openToReview}
+          onClose={() => setOpenToReview(false)} />
       }
 
-      {reviewToDelete && <DeleteFeedbackForm
-        reviewToDelete={reviewToDelete}
-        setReviewToDelete={setReviewToDelete}
-        open={openToDelete}
-        onClose={() => setOpenToDelete(false)} />
+      {
+        reviewToDelete && <DeleteFeedbackForm
+          reviewToDelete={reviewToDelete}
+          setReviewToDelete={setReviewToDelete}
+          open={openToDelete}
+          onClose={() => setOpenToDelete(false)} />
       }
-    </Container >
+    </>
   );
 };
 
