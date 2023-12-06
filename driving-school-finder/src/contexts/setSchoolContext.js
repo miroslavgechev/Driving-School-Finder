@@ -67,6 +67,7 @@ export const SetSchoolProvider = ({ children }) => {
 
   const uploadSchool = async () => {
     try {
+
       await uploadImage('logoUrl', files?.logoUrl);
       await uploadImage('mainImage', files?.mainImage);
       await uploadImage('supportImages', files?.supportImages);
@@ -79,8 +80,9 @@ export const SetSchoolProvider = ({ children }) => {
   };
 
   const uploadImage = async (filename, filepath) => {
+
     try {
-      if (!filepath && !Array.isArray(school[filename]) && school[filename].startsWith('https')) {
+      if (!filepath && !Array.isArray(school[filename]) && school[filename]?.startsWith('https')) {
         return;
       } else if (filepath && Array.isArray(filepath)) {
         const fileLinks = await Promise.all(
