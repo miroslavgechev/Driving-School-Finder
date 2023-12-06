@@ -1,0 +1,32 @@
+.headerText {
+    font-weight: 700 !important;
+}
+
+.dialogActions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center !important;
+    gap: 1.5em;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 1em;
+}
+
+.button {
+    margin: 0 !important;
+    width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+    .dialogActions {
+        align-items: center;
+        flex-direction: row;
+        padding-bottom: 1em;
+    }
+
+    .button {
+        margin: 0 !important;
+        width: 25%;
+    }
+}

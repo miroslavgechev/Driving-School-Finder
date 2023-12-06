@@ -8,10 +8,10 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 
 import { useState } from 'react';
 
-import styles from './deleteFeedbackForm.module.css';
-import { deleteReviewByReviewId } from 'services/firestoreService';
+import styles from './deleteSchool.module.css';
+import { deleteSchoolBySchoolId } from 'services/firestoreService';
 
-const DeleteFeedbackForm = ({ reviewToDelete, setReviewToDelete, open, onClose }) => {
+const DeleteSchoolForm = ({ school, open, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClose = () => {
@@ -21,9 +21,10 @@ const DeleteFeedbackForm = ({ reviewToDelete, setReviewToDelete, open, onClose }
   const handleDeleteReview = async () => {
     try {
       setIsLoading(true);
-      await deleteReviewByReviewId(reviewToDelete.id, reviewToDelete.schoolId);
-      setReviewToDelete(null);
+      await deleteSchoolBySchoolId(school.id);
       setIsLoading(false);
+      console.log('success');
+      onClose();
     } catch (error) {
       setIsLoading(false);
     }
@@ -66,7 +67,7 @@ const DeleteFeedbackForm = ({ reviewToDelete, setReviewToDelete, open, onClose }
             <CircularProgress size={22} />
             :
             <CloudUploadOutlinedIcon />}
-          onClick={() => handleDeleteReview()}>
+          onClick={async () => await handleDeleteReview()}>
           Да
         </Button>
       </DialogActions>
@@ -74,4 +75,4 @@ const DeleteFeedbackForm = ({ reviewToDelete, setReviewToDelete, open, onClose }
   );
 };
 
-export default DeleteFeedbackForm;
+export default DeleteSchoolForm;
