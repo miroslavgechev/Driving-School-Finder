@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -10,6 +8,7 @@ import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
 
+import styles from './filterBar.module.css';
 
 const areas = ['Всички', 'Слатина', 'Средец'];
 const categories = ['Всички', 'AM', 'A', 'A1', 'A2', 'B1', 'B', 'BA'];
@@ -19,36 +18,34 @@ const FilterBar = () => {
 
   return (
     <Box
+      className={styles.mainContainer}
       sx={{
-        position: 'sticky',
-        top: 70,
-        zIndex: 99,
         backgroundColor: 'background.paper',
       }}
       boxShadow={1}
+      borderRadius={2}
     >
 
       <Box
+        className={styles.formContainer}
         padding={{ xs: 3, sm: 6 }}
-        width={0.7}
-        margin="auto"
         data-aos="fade-up"
       >
 
-        <form noValidate autoComplete="off">
-          <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }}>
+        <form noValidate autoComplete='off'>
+          <Box className={styles.formFieldsContainer}>
 
             {/* Filter by Name*/}
             <Box
-              width={1}
+              className={styles.fieldContainer}
               marginRight={{ xs: 0, md: 2 }}
               marginBottom={{ xs: 2, md: 0 }}
             >
-              <TextField label="Име" variant="outlined" fullWidth
+              <TextField label='Име' variant='outlined' className={styles.textField}
                 InputProps={{
                   startAdornment: (
                     <>
-                      <InputAdornment position="start">
+                      <InputAdornment position='start'>
                         <DriveFileRenameOutlineRoundedIcon color='primary' />
                       </InputAdornment>
                     </>
@@ -57,9 +54,9 @@ const FilterBar = () => {
               />
             </Box>
 
-            {/* Choose Category Autocomplete */}
+            {/* Filter by Category*/}
             <Box
-              width={1}
+              className={styles.fieldContainer}
               marginRight={{ xs: 0, md: 2 }}
               marginBottom={{ xs: 2, md: 0 }}
             >
@@ -67,12 +64,12 @@ const FilterBar = () => {
                 options={categories}
                 defaultValue={categories[0]}
                 renderInput={(params) => (
-                  <TextField {...params} label="Категория" variant="outlined" fullWidth
+                  <TextField {...params} label='Категория' variant='outlined' className={styles.textField}
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
                         <>
-                          <InputAdornment position="start">
+                          <InputAdornment position='start'>
                             <DirectionsCarFilledOutlinedIcon color='primary' />
                           </InputAdornment>
                           {params.InputProps.startAdornment}
@@ -84,9 +81,9 @@ const FilterBar = () => {
               />
             </Box>
 
-            {/* Choose Rating Autocomplete */}
+            {/* Filter by Rating*/}
             <Box
-              width={1}
+              className={styles.fieldContainer}
               marginRight={{ xs: 0, md: 2 }}
               marginBottom={{ xs: 2, md: 0 }}
             >
@@ -94,12 +91,12 @@ const FilterBar = () => {
                 options={ratings}
                 defaultValue={ratings[0]}
                 renderInput={(params) => (
-                  <TextField {...params} label="Оценка" variant="outlined" fullWidth
+                  <TextField {...params} label='Оценка' variant='outlined' className={styles.textField}
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
                         <>
-                          <InputAdornment position="start">
+                          <InputAdornment position='start'>
                             <StarBorderRoundedIcon color='primary' />
 
                           </InputAdornment>
@@ -112,9 +109,9 @@ const FilterBar = () => {
               />
             </Box>
 
-            {/* Choose Area Autocomplete */}
+            {/* Filter by Service Area*/}
             <Box
-              width={1}
+              className={styles.fieldContainer}
               marginRight={{ xs: 0, md: 2 }}
               marginBottom={{ xs: 2, md: 0 }}
             >
@@ -122,12 +119,12 @@ const FilterBar = () => {
                 options={areas}
                 defaultValue={ratings[0]}
                 renderInput={(params) => (
-                  <TextField {...params} label="Район" variant="outlined" fullWidth
+                  <TextField {...params} label='Район' variant='outlined' className={styles.textField}
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
                         <>
-                          <InputAdornment position="start">
+                          <InputAdornment position='start'>
                             <PlaceOutlinedIcon color='primary' />
                           </InputAdornment>
                           {params.InputProps.startAdornment}
@@ -139,14 +136,13 @@ const FilterBar = () => {
               />
             </Box>
 
-            {/* Search Button */}
+            {/* Filter Button */}
             <Box>
               <Button
-                sx={{ height: 54, whiteSpace: 'nowrap' }}
+                className={styles.filterButton}
                 variant="contained"
                 color="primary"
                 size="medium"
-                fullWidth
               >
                 Търси!
               </Button>
@@ -160,5 +156,3 @@ const FilterBar = () => {
 };
 
 export default FilterBar;
-
-

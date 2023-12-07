@@ -1,0 +1,41 @@
+.mainContainer {
+    position: sticky;
+    top: 65px;
+    z-index: 99;
+    margin: auto;
+    width: 100%;
+}
+
+.formContainer {
+    width: 100%;
+    margin: auto;
+}
+
+.formFieldsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.fieldContainer {
+    width: 100%;
+}
+
+.textField {
+    width: 100%;
+}
+
+.filterButton {
+    height: 54px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+@media screen and (min-width: 900px) {
+    .mainContainer {
+        width: 90%;
+    }
+
+    .formFieldsContainer {
+        flex-direction: row;
+    }
+}
