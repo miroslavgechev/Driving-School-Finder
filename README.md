@@ -172,7 +172,7 @@ Driving School Finder
      - Option to sign up.✅
      - Password reset functionality.✅
 
-6. **Driving School Create/Edit/Delete Page**:
+6. **Driving School Create/Edit/Delete Page**: ✅
 
    - **Description**: Allows driving schools to register and create a profile on the platform.✅
    - **Functionalities**:
