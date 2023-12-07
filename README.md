@@ -57,8 +57,9 @@ Driving School Finder
 13. Optimize Code
 14. Move Static images to public ✅
 15. Test
-16. Deploy
-17. Update Documentation
+16. Populate with real data
+17. Deploy
+18. Update Documentation
 
 ## Requirements
 
