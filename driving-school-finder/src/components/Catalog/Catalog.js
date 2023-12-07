@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Container from 'components/Container';
 import { alpha, useTheme } from '@mui/material/styles';
 
-import FeaturedSchools from './components/FeaturedSchools/Schools';
+import SchoolsList from './components/SchoolsList/SchoolsList';
 import FilterBar from './components/FilterBar/FilterBar';
 import Header from './components/Header/Header';
 
@@ -38,7 +38,7 @@ const Catalogue = () => {
         }}
       >
         <Container>
-          <FeaturedSchools />
+          <SchoolsList />
         </Container>
       </Box>
     </>

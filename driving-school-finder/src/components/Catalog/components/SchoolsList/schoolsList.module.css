@@ -1,0 +1,75 @@
+.cardContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardMedia {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+}
+
+.overMediaItemsContainer {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.ratingContainer {}
+
+.favouritesContainer {}
+
+.schoolTitle {
+    font-weight: 700 !important;
+    text-align: left;
+}
+
+.schoolItemsContainer {
+    display: flex;
+    align-items: center;
+}
+
+.itemIcon {
+    font-size: 1em !important;
+    margin-right: 0.5em !important;
+}
+
+.cardActions {
+    justify-content: flex-end;
+}
+
+.loadMoreBtnContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.loadMoreButton {
+    width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+    .cardMedia {
+        height: 340px;
+    }
+
+    .loadMoreBtnContainer {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .cardMedia {
+        height: 280px;
+    }
+
+    .loadMoreButton {
+        width: auto;
+    }
+}
