@@ -1,0 +1,32 @@
+.container {
+    min-height: 400px;
+    height: auto;
+    position: relative !important;
+    background: url('/public/about.jpeg') no-repeat center;
+    background-size: cover;
+    margin-top: 0;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.textContainer {
+    position: relative;
+    z-index: 2;
+}
+
+.mainHeader {
+    font-weight: 900 !important;
+}
+
+.subHeader {
+    font-weight: 400 !important;
+}

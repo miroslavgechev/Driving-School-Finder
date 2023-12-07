@@ -1,0 +1,51 @@
+.headerText {
+    font-weight: 700 !important;
+}
+
+.container {
+    flex-direction: column;
+}
+
+.story {
+    align-items: center;
+}
+
+.contacts {
+    justify-content: center;
+    align-items: center;
+}
+
+.cardContainer {
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+}
+
+.listItem {
+    padding: 0;
+}
+
+.avatar {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.listItemText {
+    margin: 0;
+}
+
+.typographySubheading {
+    font-weight: 700 !important;
+    padding-top: 1em;
+}
+
+.whiteSpace {
+    display: inline;
+    margin: 0 10px;
+}
+
+@media screen and (min-width: 900px) {
+    .container {
+        flex-direction: row;
+    }
+}
