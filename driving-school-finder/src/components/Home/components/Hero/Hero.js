@@ -55,6 +55,7 @@ const Hero = () => {
       />
       <Container position={'relative'} zIndex={2}>
         <Box>
+          {/* Hero */}
           <Box marginBottom={4} data-aos="fade-up">
             <Typography
               variant="h3"
@@ -81,6 +82,7 @@ const Hero = () => {
 
           </Box>
 
+          {/* Search Bar */}
           <Box
             padding={{ xs: 3, sm: 6 }}
             width={1}
