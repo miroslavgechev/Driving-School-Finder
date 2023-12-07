@@ -237,9 +237,9 @@ Driving School Finder
 14. **Nice to haves**
 
     - Use moments.js for dates
-    - Add to favorites button
+    - Add to favorites button ❌
     - Change the theme on sign-in and sign-up pages depending on the user role ❌
-    - Add paralax effect to the home page and the about page
+    - Add paralax effect to the home page and the about page ✅
     - Add animation transition between pages / on start of page
 
 15. **Global Error Handling**
