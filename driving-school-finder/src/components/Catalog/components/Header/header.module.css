@@ -1,0 +1,13 @@
+.mainContainer {
+    position: relative !important;
+    z-index: 2 !important;
+    padding-bottom: 2em !important;
+}
+
+.mainHeader {
+    font-weight: 900 !important;
+}
+
+.subHeader {
+    font-weight: 400 !important;
+}
