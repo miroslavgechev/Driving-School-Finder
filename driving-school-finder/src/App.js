@@ -9,7 +9,6 @@ import 'aos/dist/aos.css';
 
 import Page from './components/Page';
 import Main from 'layouts/Main/Main';
-import Home from 'components/Home/Home';
 import Catalogue from './components/Catalog/Catalog';
 import SchoolDetails from './components/SchoolDetails/SchoolDetails';
 import SchoolCreateEdit from './components/SchoolCreateEdit/SchoolCreateEdit';
@@ -28,7 +27,7 @@ const App = () => {
           <SetSchoolProvider>
             <Main>
               <Routes>
-                <Route path='/' element={<Home />} />
+                <Route path='/' element={<Catalogue />} />
                 <Route path='/school/all' element={<Catalogue />} />
                 <Route path='/school/create' element={<SchoolCreateEdit />} />
                 <Route path='/school/:id/edit' element={<SchoolCreateEdit />} />
