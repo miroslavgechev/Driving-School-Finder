@@ -211,10 +211,10 @@ Driving School Finder
      - Approve/reject driving school registrations.❌
      - Manage reviews (e.g., remove inappropriate content).❌
 
-10. **About Page**:
+10. **About Page**: ✅
 
-    - **Description**: Provides information about the platform, the team behind it, and its mission.
-    - **Functionalities**: Static content.
+    - **Description**: Provides information about the platform, the team behind it, and its mission. ✅
+    - **Functionalities**: Static content. ✅
 
 11. **FAQ**:
 
@@ -222,13 +222,13 @@ Driving School Finder
     - **Functionalities**:
       - FAQs. (e.g. how to choose a driving school. What documents are needed, etc.)
 
-12. **Compare Schools** (optional)
+12. **Compare Schools** (optional) ❌
 
-    - **Description**: Allows users to compare courses from specfic schools side by side in a table.
+    - **Description**: Allows users to compare courses from specfic schools side by side in a table. ❌
     - **Functionalities**:
-      - Select schools to compare.
-      - Select courses to compare.
-      - Compare courses side by side in a table.
+      - Select schools to compare. ❌
+      - Select courses to compare. ❌
+      - Compare courses side by side in a table. ❌
 
 13. **Error Page** ✅
 
