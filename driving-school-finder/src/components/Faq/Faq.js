@@ -13,6 +13,8 @@ import Headline from '../shared/Headline/Headline';
 
 import { FAQ } from '../../dbTemp';
 
+import styles from './faq.module.css';
+
 const Faq = () => {
 
   const mockContent = FAQ;
@@ -21,7 +23,7 @@ const Faq = () => {
 
   return (
     <>
-      <Box bgcolor={'alternate.main'} >
+      <Box bgcolor='alternate.main' >
         <Container paddingY={{ xs: 2, sm: 2.5 }}>
           <Headline text='Често задавани въпроси' />
         </Container>
@@ -30,7 +32,7 @@ const Faq = () => {
         {mockContent.map((faq, index) => (
           <Fragment key={index}>
             <Box marginBottom={2}>
-              <Typography fontWeight={700} variant={'h5'}>
+              <Typography className={styles.headerText} variant='h5'>
                 {faq.title}
               </Typography>
             </Box>
@@ -43,20 +45,16 @@ const Faq = () => {
                   padding={1}
                   marginBottom={i === item.length - 1 ? 0 : 2}
                   borderRadius={`${theme.spacing(1)} !important`}
-                  sx={{
-                    '&::before': {
-                      display: 'none',
-                    },
-                  }}
+                  className={styles.accordion}
                 >
                   <Box
                     component={AccordionSummary}
                     expandIcon={<ExpandMoreIcon />}
                   >
-                    <Typography fontWeight={600}>{item.title}</Typography>
+                    <Typography className={styles.accordionHeader}>{item.title}</Typography>
                   </Box>
                   <AccordionDetails>
-                    <Typography color="text.secondary">{item.subtitle}</Typography>
+                    <Typography className={styles.accordionText} color="text.secondary">{item.subtitle}</Typography>
                   </AccordionDetails>
                 </Box>
               ))}

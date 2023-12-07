@@ -1,0 +1,13 @@
+.headerText {
+    font-weight: 700 !important;
+}
+
+.accordion::before {
+    display: none;
+}
+
+.accordionHeader {
+    font-weight: 600 !important;
+}
+
+.accordionText {}
