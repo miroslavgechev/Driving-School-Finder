@@ -58,7 +58,7 @@ export const filterSchools = (schools, filter) => {
     if (!region || region === 'Всички') {
       isRegionMatch = true;
     } else {
-      isRegionMatch = school.regionsServed.includes[region] || school.regionsServed.includes('Всички');
+      isRegionMatch = school.regionsServed.includes(region) || school.regionsServed.includes('Всички');
     }
 
     return isNameMatch && isCategoryMatch && isRatingMatch && isRegionMatch;
