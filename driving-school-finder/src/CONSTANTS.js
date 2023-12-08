@@ -25,7 +25,7 @@ export const REGIONS = [
   'Триадица'
 ];
 
-export const CATEGORIES = ['AM', 'A', 'A1', 'A2', 'B1', 'B', 'BA'];
+export const CATEGORIES = ['A', 'A1', 'A2', 'AM', 'B', 'B1', 'BA'];
 
 export const TABLE_SUBTITLES = {
   hoursTheory: 'Теория',
