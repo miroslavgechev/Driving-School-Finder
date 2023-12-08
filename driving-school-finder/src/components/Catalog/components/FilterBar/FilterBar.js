@@ -7,11 +7,16 @@ import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Rating from '@mui/material/Rating';
 
 import styles from './filterBar.module.css';
 import { CATEGORIES, REGIONS } from 'CONSTANTS';
-import { useState } from 'react';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import { useEffect } from 'react';
+
+const validationSchema = yup.object({});
 
 const regions = ['Всички', ...REGIONS];
 const categories = ['Всички', ...CATEGORIES];
@@ -24,8 +29,43 @@ const ratings = [
   { label: '5 звезди ', rating: 5 }
 ];
 
-const FilterBar = () => {
-  const [formRating, setFormRating] = useState(ratings[0]);
+const FilterBar = ({ setFilter }) => {
+
+  const initialValues = {
+    name: '',
+    category: categories[0],
+    rating: ratings[0],
+    region: regions[0],
+  };
+
+  useEffect(() => {
+    setFilter(initialValues);
+  }, []);
+
+  const handleSubmit = async (values) => {
+    try {
+      setFilter(values);
+      console.log(values);
+      formik.setStatus(null);
+    } catch (error) {
+      console.log(error);
+      formik.setStatus(error.message);
+    }
+  };
+
+  const handleChange = (event) => {
+    formik.handleChange(event);
+  };
+
+  const handleAutocompleteChange = (name, value) => {
+    formik.setFieldValue(name, value);
+  };
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: handleSubmit,
+  });
 
   return (
     <Box
@@ -36,14 +76,12 @@ const FilterBar = () => {
       boxShadow={1}
       borderRadius={2}
     >
-
       <Box
         className={styles.formContainer}
         padding={{ xs: 3, sm: 6 }}
         data-aos="fade-up"
       >
-
-        <form noValidate autoComplete='off'>
+        <form onSubmit={formik.handleSubmit} noValidate autoComplete='off'>
           <Box className={styles.formFieldsContainer}>
 
             {/* Filter by Name*/}
@@ -52,7 +90,15 @@ const FilterBar = () => {
               marginRight={{ xs: 0, md: 2 }}
               marginBottom={{ xs: 2, md: 0 }}
             >
-              <TextField label='Име' variant='outlined' className={styles.textField}
+              <TextField
+                name='name'
+                label='Име'
+                variant='outlined'
+                className={styles.textField}
+                value={formik.values.name}
+                onChange={handleChange}
+                error={formik.touched.name && Boolean(formik.errors.name)}
+                helperText={formik.touched.name && formik.errors.name}
                 InputProps={{
                   startAdornment: (
                     <>
@@ -73,9 +119,18 @@ const FilterBar = () => {
             >
               <Autocomplete
                 options={categories}
-                defaultValue={categories[0]}
+                value={formik.values.category}
+                onChange={(event, value) =>
+                  handleAutocompleteChange('category', value)}
                 renderInput={(params) => (
-                  <TextField {...params} label='Категория' variant='outlined' className={styles.textField}
+                  <TextField
+                    {...params}
+                    name='category'
+                    label='Категория'
+                    variant='outlined'
+                    className={styles.textField}
+                    error={formik.touched.category && Boolean(formik.errors.category)}
+                    helperText={formik.touched.category && formik.errors.category}
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
@@ -101,21 +156,27 @@ const FilterBar = () => {
               <Autocomplete
                 options={ratings}
                 getOptionLabel={(rating) => rating.label}
-                value={formRating}
-                onChange={(event, newValue) => {
-                  setFormRating(newValue);
-                }}
+                value={formik.values.rating}
+                onChange={(event, value) =>
+                  handleAutocompleteChange('rating', value)}
                 renderOption={(props, option) => (
                   <li {...props}>
                     <Rating
-                      name="read-only"
+                      name='ratingGauge'
                       value={option.rating}
                       readOnly
                     />
                   </li>
                 )}
                 renderInput={(params) => (
-                  <TextField {...params} label='Оценка' variant='outlined' className={styles.textField}
+                  <TextField
+                    name='rating'
+                    {...params}
+                    label='Оценка'
+                    variant='outlined'
+                    className={styles.textField}
+                    error={formik.touched.rating && Boolean(formik.errors.rating)}
+                    helperText={formik.touched.rating && formik.errors.rating}
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
@@ -141,9 +202,18 @@ const FilterBar = () => {
             >
               <Autocomplete
                 options={regions}
-                defaultValue={ratings[0]}
+                value={formik.values.region}
+                onChange={(event, value) =>
+                  handleAutocompleteChange('region', value)}
                 renderInput={(params) => (
-                  <TextField {...params} label='Район' variant='outlined' className={styles.textField}
+                  <TextField
+                    name='region'
+                    {...params}
+                    label='Район'
+                    variant='outlined'
+                    className={styles.textField}
+                    error={formik.touched.region && Boolean(formik.errors.region)}
+                    helperText={formik.touched.region && formik.errors.region}
                     InputProps={{
                       ...params.InputProps,
                       startAdornment: (
@@ -164,9 +234,11 @@ const FilterBar = () => {
             <Box>
               <Button
                 className={styles.filterButton}
-                variant="contained"
-                color="primary"
-                size="medium"
+                variant='contained'
+                color='primary'
+                size='medium'
+                type='submit'
+                startIcon={<SearchOutlinedIcon />}
               >
                 Търси!
               </Button>
