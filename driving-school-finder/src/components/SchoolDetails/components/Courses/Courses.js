@@ -70,9 +70,13 @@ const Courses = ({ school }) => {
                   <TableCell key={i + item} className={styles.centerText}>
 
                     <Typography color='text.secondary.contrastText' variant='subtitle2' fontWeight={key === 'coursePrice' ? 900 : undefined} >
-                      {tableValues[`${item + '_' + key}`] == 0 ? 'Безплатен' : tableValues[`${item + '_' + key}`]}
+                      {(tableValues[`${item + '_' + key}`] == 0 && !key.startsWith('hours')) ?
+                        'Безплатен' :
+                        tableValues[`${item + '_' + key}`]}
                       {' '}
-                      {tableValues[`${item + '_' + key}`] != 0 ? (key.startsWith('hours') ? 'часа' : 'лв.') : ''}
+                      {tableValues[`${item + '_' + key}`] != 0 ?
+                        (key.startsWith('hours') ? 'часа' : 'лева') :
+                        (key.startsWith('hours') ? 'часа' : '')}
                     </Typography>
 
                   </TableCell>
