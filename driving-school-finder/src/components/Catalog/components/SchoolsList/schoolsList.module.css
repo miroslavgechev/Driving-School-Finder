@@ -53,6 +53,14 @@
     width: 100%;
 }
 
+.spinner {
+    height: 10vh !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
 @media screen and (min-width: 600px) {
     .cardMedia {
         height: 340px;
@@ -61,6 +69,10 @@
     .loadMoreBtnContainer {
         flex-direction: row;
         align-items: flex-start;
+    }
+
+    .spinner {
+        height: 50vh !important;
     }
 }
 
