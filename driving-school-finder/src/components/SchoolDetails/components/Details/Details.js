@@ -17,7 +17,7 @@ import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFi
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 
 import styles from './details.module.css';
-import { REGIONS } from 'CONSTANTS';
+import { REGIONS, USER_ROLES } from 'CONSTANTS';
 import { useAuthContext } from 'contexts/authContext';
 
 const Details = ({ school, rating }) => {
@@ -58,7 +58,7 @@ const Details = ({ school, rating }) => {
           {
             (rating && Object.keys(rating).length === 0)
               ?
-              user ? 'Дай първи отзив тук!' : 'Все още няма отзиви'
+              (user && user.role === USER_ROLES.student) ? 'Дай първи отзив тук!' : 'Все още няма отзиви'
               :
               `${rating?.ratingScore?.toFixed(1)} от ${rating?.reviewsCount} оценки`
           }
