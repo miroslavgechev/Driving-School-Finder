@@ -36,6 +36,7 @@ const SchoolDetails = () => {
           throw new Error('School not found');
         }
         setSchool(fetchedSchool);
+        console.log('fetchedSchool', fetchedSchool);
 
       } catch (error) {
         navigate('/notfound', { replace: true });
@@ -53,7 +54,7 @@ const SchoolDetails = () => {
         throw new Error(error);
       }
     };
-
+    
     fetchRating();
   }, [schoolUid, userCanEdit, user]);
 
@@ -95,7 +96,7 @@ const SchoolDetails = () => {
         <SpinnerFullPage />
       }
 
-      {school &&
+      {school && rating && reviews &&
         <>
           <Box bgcolor='alternate.main' sx={{ marginBottom: { xs: 2, sm: 2.5 } }}>
             <Container paddingY={{ xs: 2, sm: 2.5 }}>
