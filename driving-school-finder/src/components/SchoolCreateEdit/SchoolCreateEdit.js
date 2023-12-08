@@ -138,7 +138,7 @@ const SchoolCreateEdit = () => {
                 </Grid>
                 <Grid item xs={12} md={12}>
                   {
-                    school?.categoriesServed?.length > 0
+                    school && school?.categoriesServed?.length > 0
                       ?
                       <CoursesForm key={school?.categoriesServed?.length} />
                       :
