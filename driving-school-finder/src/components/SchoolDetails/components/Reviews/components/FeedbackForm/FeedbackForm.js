@@ -58,7 +58,7 @@ const FeedbackForm = ({ onClose, open, schoolUid, schoolName, setUserCanEdit }) 
         userId: user.uid,
       };
 
-      await addReviewToSchool(schoolUid, user.uid, review);
+      await addReviewToSchool(schoolUid, review);
 
       setSuccessState(SUCCESS_STATES.success);
 

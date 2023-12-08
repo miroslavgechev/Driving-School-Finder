@@ -100,13 +100,11 @@ export const getSchoolById = async (schoolId) => {
 
 export const addEmptyRatingsDirectoryIfNotExist = async (schoolUid) => {
   //Intentionally leaving out existing reviews and ratings, 
-  //so user cannor just reenter the school and delete all reviews
-
+  //so user cannot just reenter the school and delete all reviews
   const docRef = doc(db, 'ratings', schoolUid);
   const docSnap = await getDoc(docRef);
 
   try {
-
     if (docSnap.exists()) return;
     await setDoc(docRef, {});
   } catch (error) {
@@ -166,7 +164,7 @@ export const getRatingsBySchoolUid = async (schoolUid) => {
   }
 };
 
-export const addReviewToSchool = async (schoolUid, userUid, review) => {
+export const addReviewToSchool = async (schoolUid, review) => {
   const allReviewsCollection = collection(db, 'allReviews');
 
   try {
