@@ -29,6 +29,10 @@ const SchoolDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const fetchSchool = async () => {
       try {
         const fetchedSchool = await getSchoolById(schoolUid);
@@ -37,56 +41,25 @@ const SchoolDetails = () => {
         }
         setSchool(fetchedSchool);
 
+        const fetchedRating = await getRatingsBySchoolUid(schoolUid);
+        setRating(fetchedRating);
+
+        const fetchedReviews = await getReviewsBySchoolUid(schoolUid);
+        setReviews(fetchedReviews);
+
+        if (fetchedSchool &&
+          user &&
+          fetchedSchool.ownerUid !== user.uid &&
+          user.role !== USER_ROLES.school) {
+          const fetchCanEdit = await checkIfUserCanEdit(user.uid, schoolUid);
+          setUserCanEdit(fetchCanEdit);
+        }
+
       } catch (error) {
         navigate('/notfound', { replace: true });
       }
     };
-    fetchSchool();
-  }, [schoolUid, userCanEdit, user]);
-
-  useEffect(() => {
-    const fetchRating = async () => {
-      try {
-        const fetchedRating = await getRatingsBySchoolUid(schoolUid);
-        setRating(fetchedRating);
-      } catch (error) {
-        throw new Error(error);
-      }
-    };
-    
-    fetchRating();
-  }, [schoolUid, userCanEdit, user]);
-
-  useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const fetchedReviews = await getReviewsBySchoolUid(schoolUid);
-        setReviews(fetchedReviews);
-      } catch (error) {
-        throw new Error(error);
-      }
-    };
-
-    fetchReviews();
-  }, [schoolUid, userCanEdit, user]);
-
-  useEffect(() => {
-    const fetchCanEdit = async () => {
-      try {
-        const fetchCanEdit = await checkIfUserCanEdit(user.uid, schoolUid);
-        setUserCanEdit(fetchCanEdit);
-      } catch (error) {
-        throw new Error(error);
-      }
-    };
-
-    if (school &&
-      user &&
-      school.ownerUid !== user.uid &&
-      user.role !== USER_ROLES.school) {
-      fetchCanEdit();
-    }
-
+    user && fetchSchool();
   }, [schoolUid, userCanEdit, user]);
 
   return (
