@@ -32,14 +32,11 @@ const SchoolCreateEdit = () => {
 
   useEffect(() => {
     setCurrentLocation(location.pathname);
-    setSchool(null);
   }, [location]);
 
   useEffect(() => {
     const fetchSchool = async () => {
       try {
-        //eslint-disable-next-line no-debugger
-        debugger;
         const fetchedSchool = await getSchoolByOwnerUidAndSchoolId(user.uid, schoolUid);
 
         setSchool(fetchedSchool);
