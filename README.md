@@ -57,7 +57,7 @@ Driving School Finder
 13. Optimize Code
 14. ✅Move Static images to public
 15. Test
-16. Populate with real data
+16. ✅Populate with real data
 17. Deploy
 18. Update Documentation
 
@@ -129,27 +129,27 @@ Driving School Finder
 
 ## Pages
 
-1. **Home Page**:
+1. ❌**Home Page**:
 
-   - **Description**: A welcoming page that gives users a clear idea of the platform's purpose.
+   - ❌**Description**: A welcoming page that gives users a clear idea of the platform's purpose.
    - **Functionalities**:
-     - Search bar to search for driving schools by name, area, category, rating;
-     - Featured driving schools (based on user reviews or sponsored listings).
-     - Quick links or buttons for primary actions (e.g., "Find a Driving School", "Register as a Driving School", "Register as Driver", "Leave a Review" (one review every 4 months allowed)).
+     - ❌Search bar to search for driving schools by name, area, category, rating;
+     - ❌Featured driving schools (based on user reviews or sponsored listings).
+     - ❌Quick links or buttons for primary actions (e.g., "Find a Driving School", "Register as a Driving School", "Register as Driver", "Leave a Review" (one review every 4 months allowed)).
 
 2. **Catalog Page**:
 
-   - **Description**: Displays all the driving schools in the platform's database.
+   - ✅**Description**: Displays all the driving schools in the platform's database.
    - **Functionalities**:
-     - List of driving schools with photo/logo, basic details like name, average rating, and location.
-     - Pagination or infinite scroll for a large number of results.
+     - ✅List of driving schools with photo/logo, basic details like name, average rating, and location.
+     - ✅Pagination or infinite scroll for a large number of results.
 
-3. **Search Results Page**:
+3. ✅**Search Results Page**:
 
-   - **Description**: Displays the results of a user's search query. - search by name, area, category, rating;
-   - **Functionalities**:
-     - Built on top of catalogue page.
-     - Filters to narrow down results (e.g., location, services offered, ratings).
+- ✅**Description**: Displays the results of a user's search query. - search by name, area, category, rating;
+- **Functionalities**:
+  - ✅Built on top of catalogue page.
+  - ✅Filters to narrow down results (e.g., location, services offered, ratings).
 
 4. ✅**Driving School Details Page**:
 
