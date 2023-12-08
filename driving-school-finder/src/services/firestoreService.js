@@ -5,16 +5,19 @@ import firebaseConfig from 'config/firebaseConfig';
 import {
   getFirestore,
   collection,
-  getDocs,
+  addDoc,
   setDoc,
   getDoc,
+  getDocs,
   updateDoc,
   deleteDoc,
   doc,
   query,
   where,
-  addDoc,
+  limit,
 } from 'firebase/firestore';
+
+import { matchSchoolsWithRatings, sortDesc } from 'utils/schools';
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -265,27 +268,46 @@ export const deleteSchoolBySchoolId = async (schoolId) => {
   }
 };
 
-//TODO NEEDS FIX
-export const getSchools = async () => {
-  const schoolsCol = collection(db, 'schools');
-  const schoolsSnapshot = await getDocs(schoolsCol);
-  const schoolsList = schoolsSnapshot.docs.map(doc => ({
-    ...doc.data(),
-    id: doc.id,
-  }));
-  return schoolsList;
+export const getAllSchools = async () => {
+  //Function needs to change for more than 200 schools and make the filtering on the backend
+  try {
+    const schoolsCol = collection(db, 'schools');
+    const q = query(schoolsCol, limit(200));
+    const schoolsSnapshot = await getDocs(q);
+    const schoolsList = schoolsSnapshot.docs.map(doc => doc.data());
+    return Object.values(schoolsList);
+  } catch (error) {
+    throw Error(error);
+  }
 };
 
-//TODO NEEDS FIX
-export const getSpecificFieldOfAllSchools = async () => {
-  const schoolsCol = collection(db, 'schools');
-  const schoolsSnapshot = await getDocs(schoolsCol);
-  const schoolsList = schoolsSnapshot.docs.map(doc => {
-    const data = doc.data();
-    return {
-      name: data.name,
-      description: data.description,
-    };
-  });
-  return schoolsList;
+export const getAllRatings = async () => {
+  //Function needs to change for more than 200 schools and make the filtering on the backend
+  try {
+    const ratingsCol = collection(db, 'ratings');
+    const q = query(ratingsCol, limit(200));
+    const ratingsSnapshot = await getDocs(q);
+    const ratingsList = ratingsSnapshot.docs.map(doc => ({
+      ...doc.data(),
+      schoolId: doc.id,
+    }));
+    return Object.values(ratingsList);
+  } catch (error) {
+    throw Error(error);
+  }
 };
+
+export const getAllSchoolsWithRatingsSorted = async () => {
+  try {
+    const schools = await getAllSchools();
+    const ratings = await getAllRatings();
+
+    const schoolsWithRatings = matchSchoolsWithRatings(schools, ratings);
+    const schoolsWithRatingsSorted = sortDesc(schoolsWithRatings, 'reviewsCount');
+
+    return schoolsWithRatingsSorted;
+  } catch (error) {
+    throw Error(error);
+  }
+};
+
