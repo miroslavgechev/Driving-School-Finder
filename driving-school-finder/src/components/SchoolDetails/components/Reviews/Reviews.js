@@ -15,7 +15,7 @@ const Reviews = ({ schoolUid, schoolName, userCanEdit, rating, reviews, setUserC
 
   const [openToReview, setOpenToReview] = useState(false);
   const [openFeedbackList, setOpenFeedbackList] = useState(false);
-  
+
   return (
     <Box className={styles.mainContainer}>
       <Grid container spacing={4}>
@@ -24,7 +24,7 @@ const Reviews = ({ schoolUid, schoolName, userCanEdit, rating, reviews, setUserC
             Отзиви от курсисти
           </Typography>
 
-          {rating && reviews && (Object.keys(reviews).length === 0 || Object.keys(rating).length === 0)
+          {rating && reviews && (Object.keys(reviews)?.length === 0 || Object.keys(rating)?.length === 0)
             ?
             <Typography variant="h6" className={styles.noRatingParagraph}>
               Все още няма отзиви, можеш да дадеш първия!
@@ -53,7 +53,7 @@ const Reviews = ({ schoolUid, schoolName, userCanEdit, rating, reviews, setUserC
           }
 
           <Stack direction='row' spacing={2}>
-            {reviews && Object.keys(reviews).length !== 0 &&
+            {reviews && Object.keys(reviews)?.length !== 0 &&
               <Button
                 size='large'
                 variant='outlined'
@@ -77,7 +77,7 @@ const Reviews = ({ schoolUid, schoolName, userCanEdit, rating, reviews, setUserC
           </Stack>
         </Grid>
 
-        {Object.values(reviews).map((review, i) => (
+        {Object.values(reviews)?.map((review, i) => (
           <Grid key={i} xs={12} sm={6} item>
             <Box className={styles.ratingBox}>
               <Rating
