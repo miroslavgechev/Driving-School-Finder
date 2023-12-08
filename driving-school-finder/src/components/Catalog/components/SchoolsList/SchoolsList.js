@@ -20,20 +20,28 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import styles from './schoolsList.module.css';
 
-const SchoolsList = ({ schoolsForCatalog }) => {
+const SchoolsList = ({ schoolsFiltered }) => {
   const theme = useTheme();
-  console.log(schoolsForCatalog);
 
   return (
     <Box paddingTop={{ xs: 0, md: 4 }}>
-      {!schoolsForCatalog &&
+      {!schoolsFiltered &&
         <Box className={styles.spinner}>
           <CircularProgress />
         </Box>
       }
-      {schoolsForCatalog &&
+
+      {schoolsFiltered?.length === 0 &&
+        <Box className={styles.noSchoolFoundMessageContainer}>
+          <Typography variant='h6' className={styles.noSchoolFoundMessage}>
+            Няма автошкола, отговаряща на критериите.
+          </Typography>
+        </Box>
+      }
+
+      {schoolsFiltered &&
         <Grid container spacing={4}>
-          {schoolsForCatalog?.map((school, i) => (
+          {schoolsFiltered?.map((school, i) => (
             <Grid
               item
               xs={12}
