@@ -65,7 +65,12 @@ const SchoolsList = ({ schoolsForCatalog }) => {
                       boxShadow={1}
                       borderRadius={2}
                     >
-                      <Rating name='read-only' value={Number(school.ratingScore)} readOnly />
+                      <Rating
+                        name='read-only'
+                        value={Number(school.ratingScore)}
+                        precision={0.5}
+                        readOnly
+                      />
                     </Box>
 
                     {/* To use for add to favourites future functionality: */}
