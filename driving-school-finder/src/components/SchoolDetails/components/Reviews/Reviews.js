@@ -63,7 +63,6 @@ const Reviews = ({ schoolUid, schoolName, userCanEdit, rating, reviews, setUserC
                 Виж всички
               </Button>
             }
-
             {userCanEdit &&
               <Button
                 size='large'
