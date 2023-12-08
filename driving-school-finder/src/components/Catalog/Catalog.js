@@ -10,17 +10,22 @@ import Header from './components/Header/Header';
 import styles from './catalog.module.css';
 import { getAllSchoolsWithRatingsSorted } from 'services/firestoreService';
 import { useState, useEffect } from 'react';
+import { filterSchools } from 'utils/schools';
+
 
 const Catalogue = () => {
-  const [schoolsForCatalog, setSchoolsForCatalog] = useState(null);
+  const [schoolsInitial, setSchoolsInitial] = useState(null);
+  const [schoolsFiltered, setSchoolsFiltered] = useState(null);
+  const [filter, setFilter] = useState(null);
+
   const theme = useTheme();
 
   useEffect(() => {
     const getSchools = async () => {
-
       try {
         const schools = await getAllSchoolsWithRatingsSorted();
-        setSchoolsForCatalog(schools);
+        setSchoolsInitial(schools);
+        setSchoolsFiltered(schools);
       } catch (error) {
         console.log(error);
       }
@@ -28,6 +33,11 @@ const Catalogue = () => {
 
     getSchools();
   }, []);
+
+  useEffect(() => {
+    const filteredSchools = filterSchools(schoolsInitial, filter);
+    setSchoolsFiltered(filteredSchools);
+  }, [filter]);
 
   return (
     <>
@@ -47,7 +57,7 @@ const Catalogue = () => {
 
       <Header />
 
-      <FilterBar />
+      <FilterBar filter={filter} setFilter={setFilter} />
 
       <Box
         sx={{
@@ -55,7 +65,7 @@ const Catalogue = () => {
         }}
       >
         <Container>
-          <SchoolsList schoolsForCatalog={schoolsForCatalog} />
+          <SchoolsList schoolsFiltered={schoolsFiltered} />
         </Container>
       </Box>
     </>
