@@ -36,7 +36,6 @@ const SchoolDetails = () => {
           throw new Error('School not found');
         }
         setSchool(fetchedSchool);
-        console.log('fetchedSchool', fetchedSchool);
 
       } catch (error) {
         navigate('/notfound', { replace: true });
