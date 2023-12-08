@@ -8,9 +8,26 @@ import FilterBar from './components/FilterBar/FilterBar';
 import Header from './components/Header/Header';
 
 import styles from './catalog.module.css';
+import { getAllSchoolsWithRatingsSorted } from 'services/firestoreService';
+import { useState, useEffect } from 'react';
 
 const Catalogue = () => {
+  const [schoolsForCatalog, setSchoolsForCatalog] = useState(null);
   const theme = useTheme();
+
+  useEffect(() => {
+    const getSchools = async () => {
+
+      try {
+        const schools = await getAllSchoolsWithRatingsSorted();
+        setSchoolsForCatalog(schools);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getSchools();
+  }, []);
 
   return (
     <>
@@ -38,7 +55,7 @@ const Catalogue = () => {
         }}
       >
         <Container>
-          <SchoolsList />
+          <SchoolsList schoolsForCatalog={schoolsForCatalog} />
         </Container>
       </Box>
     </>
