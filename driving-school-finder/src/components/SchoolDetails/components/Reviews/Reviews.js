@@ -27,7 +27,8 @@ const Reviews = ({ schoolUid, schoolName, userCanEdit, rating, reviews, setUserC
           {rating && reviews && (Object.keys(reviews)?.length === 0 || Object.keys(rating)?.length === 0)
             ?
             <Typography variant="h6" className={styles.noRatingParagraph}>
-              Все още няма отзиви, можеш да дадеш първия!
+              {(userCanEdit) ? 'Все още няма отзиви, можеш да дадеш първия!' : 'Все още няма отзиви'}
+
             </Typography>
             :
             <Box className={styles.ratingBox} marginY={2}>
