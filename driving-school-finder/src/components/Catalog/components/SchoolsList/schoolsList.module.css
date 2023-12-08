@@ -61,6 +61,18 @@
     align-items: center !important;
 }
 
+.noSchoolFoundMessageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10em 1em;
+    height: 20vh;
+}
+
+.noSchoolFoundMessage {
+    text-align: center;
+}
+
 @media screen and (min-width: 600px) {
     .cardMedia {
         height: 340px;
@@ -73,6 +85,10 @@
 
     .spinner {
         height: 50vh !important;
+    }
+
+    .noSchoolFoundMessageContainer {
+        height: 90vh;
     }
 }
 
