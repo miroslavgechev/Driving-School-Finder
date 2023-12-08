@@ -107,6 +107,10 @@ export const SetSchoolProvider = ({ children }) => {
     }
   };
 
+  const resetSchool = () => {
+    setSchool(null);
+  };
+
   const contextValues = {
     setSchoolDescription,
     setSchoolContacts,
@@ -115,6 +119,7 @@ export const SetSchoolProvider = ({ children }) => {
     uploadSchool,
     setSchoolFiles,
     setSchool,
+    resetSchool,
     school,
     files,
   };
