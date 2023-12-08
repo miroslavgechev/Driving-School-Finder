@@ -32,26 +32,29 @@ const SchoolCreateEdit = () => {
 
   useEffect(() => {
     setCurrentLocation(location.pathname);
+    setSchool(null);
   }, [location]);
 
   useEffect(() => {
     const fetchSchool = async () => {
       try {
-
+        //eslint-disable-next-line no-debugger
+        debugger;
         const fetchedSchool = await getSchoolByOwnerUidAndSchoolId(user.uid, schoolUid);
+
+        setSchool(fetchedSchool);
 
         if (!fetchedSchool) {
           throw new Error('School not found or you are not the owner');
         }
 
-        setSchool(fetchedSchool);
       } catch (error) {
         navigate('/notfound', { replace: true });
       }
     };
     if (user && schoolUid) fetchSchool();
 
-  }, [user]);
+  }, [user, schoolUid]);
 
   return (
     <>
