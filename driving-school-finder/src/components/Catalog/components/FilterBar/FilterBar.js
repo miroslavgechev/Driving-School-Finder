@@ -7,14 +7,25 @@ import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
+import Rating from '@mui/material/Rating';
 
 import styles from './filterBar.module.css';
+import { CATEGORIES, REGIONS } from 'CONSTANTS';
+import { useState } from 'react';
 
-const areas = ['Всички', 'Слатина', 'Средец'];
-const categories = ['Всички', 'AM', 'A', 'A1', 'A2', 'B1', 'B', 'BA'];
-const ratings = ['Всички', '>=1', '>=2', '>=3', '>=4', '>=5'];
+const regions = ['Всички', ...REGIONS];
+const categories = ['Всички', ...CATEGORIES];
+const ratings = [
+  { label: 'Всички ', rating: 0 },
+  { label: 'Над 1 звезда ', rating: 1 },
+  { label: 'Над 2 звезди ', rating: 2 },
+  { label: 'Над 3 звезди ', rating: 3 },
+  { label: 'Над 4 звезди ', rating: 4 },
+  { label: '5 звезди ', rating: 5 }
+];
 
 const FilterBar = () => {
+  const [formRating, setFormRating] = useState(ratings[0]);
 
   return (
     <Box
@@ -89,7 +100,20 @@ const FilterBar = () => {
             >
               <Autocomplete
                 options={ratings}
-                defaultValue={ratings[0]}
+                getOptionLabel={(rating) => rating.label}
+                value={formRating}
+                onChange={(event, newValue) => {
+                  setFormRating(newValue);
+                }}
+                renderOption={(props, option) => (
+                  <li {...props}>
+                    <Rating
+                      name="read-only"
+                      value={option.rating}
+                      readOnly
+                    />
+                  </li>
+                )}
                 renderInput={(params) => (
                   <TextField {...params} label='Оценка' variant='outlined' className={styles.textField}
                     InputProps={{
@@ -116,7 +140,7 @@ const FilterBar = () => {
               marginBottom={{ xs: 2, md: 0 }}
             >
               <Autocomplete
-                options={areas}
+                options={regions}
                 defaultValue={ratings[0]}
                 renderInput={(params) => (
                   <TextField {...params} label='Район' variant='outlined' className={styles.textField}
