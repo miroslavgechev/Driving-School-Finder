@@ -90,9 +90,9 @@ const SchoolForm = () => {
     name: school?.name || '',
     logoUrl: school?.logoUrl || '',
     description: school?.description || '',
-    whyUs1: school?.whyUs[0] || '',
-    whyUs2: school?.whyUs[1] || '',
-    whyUs3: school?.whyUs[2] || '',
+    whyUs1: school?.whyUs?.[0] || '',
+    whyUs2: school?.whyUs?.[1] || '',
+    whyUs3: school?.whyUs?.[2] || '',
     regionsServed: school?.regionsServed || [],
     categoriesServed: school?.categoriesServed || [],
   };
