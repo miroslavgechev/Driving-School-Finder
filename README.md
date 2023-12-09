@@ -241,6 +241,9 @@ Driving School Finder
     - ❌Change the theme on sign-in and sign-up pages depending on the user role
     - ✅Add paralax effect to the home page and the about page
     - Add animation transition between pages / on start of page
+    - Secure Firebase further
+    - Add Reducer somewhere - e.g. setSchoolContext
+    - Make pages to start at the top
 
 15. **Global Error Handling**
     - Add a global error handler to catch all errors and display a friendly error message to the user.
