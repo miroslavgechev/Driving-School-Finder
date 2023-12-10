@@ -21,6 +21,7 @@ const auth = getAuth(app);
 
 const useAuth = () => {
   const [user, setUser] = useState(null);
+  const [userLoading, setUserLoading] = useState(true);
 
   const register = async ({ email, password, role, firstName, lastName }) => {
     try {
@@ -86,13 +87,16 @@ const useAuth = () => {
         } else {
           setUser(null);
         }
-      }
-    );
+        setUserLoading(false);
+      });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+      setUserLoading(true);
+    };
   }, []);
 
-  return { user, register, login, logout, updateCredentials };
+  return { user, userLoading, register, login, logout, updateCredentials };
 };
 
 export default useAuth;
