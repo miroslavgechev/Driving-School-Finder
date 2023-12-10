@@ -18,6 +18,7 @@ import ManageAccount from 'components/ManageAccount/ManagerAccount';
 import Faq from 'components/Faq/Faq';
 import About from 'components/About/About';
 import NotFound from 'components/NotFound/NotFound';
+import AuthGuard from 'components/shared/AuthGuard/AuthGuard';
 
 const App = () => {
   return (
@@ -29,10 +30,31 @@ const App = () => {
               <Routes>
                 <Route path='/' element={<Catalogue />} />
                 <Route path='/school/all' element={<Catalogue />} />
-                <Route path='/school/create' element={<SchoolCreateEdit />} />
-                <Route path='/school/:id/edit' element={<SchoolCreateEdit />} />
-                <Route path='/school/:id' element={<SchoolDetails />} />
-                <Route path='/account' element={<ManageAccount />} />
+
+                <Route path='/school/create' element={
+                  <AuthGuard>
+                    <SchoolCreateEdit />
+                  </AuthGuard>
+                } />
+
+                <Route path='/school/:id/edit' element={
+                  <AuthGuard>
+                    <SchoolCreateEdit />
+                  </AuthGuard>
+                } />
+
+                <Route path='/school/:id' element={
+                  <AuthGuard>
+                    <SchoolDetails />
+                  </AuthGuard>
+                } />
+
+                <Route path='/account' element={
+                  <AuthGuard>
+                    <ManageAccount />
+                  </AuthGuard>
+                } />
+
                 <Route path='/signin' element={<Signin />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/faq' element={<Faq />} />
