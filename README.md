@@ -286,3 +286,33 @@ TBA...
 14. Test
 15. Deploy
 16. Update Documentation
+    Move to separate component:
+
+    {successState === SUCCESS_STATES.success &&
+    <Alert
+                        className={styles.fullWidth}
+                        severity='success'>
+    Промените са запазени локално
+    </Alert>
+    }
+
+    {successState === SUCCESS_STATES.error &&
+    <Alert
+                        className={styles.fullWidth}
+                        severity='error'>
+    Промените не са запазени
+    </Alert>
+    }
+
+    <Button
+    size='large'
+    variant='contained'
+    type='submit'
+    disabled={isLoading}
+    startIcon={isLoading
+    ?
+    <CircularProgress size={22} />
+    :
+    <SaveOutlinedIcon />} >
+    Запази промените
+    </Button>
