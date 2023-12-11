@@ -14,6 +14,7 @@ import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
 import { useAuthContext } from 'contexts/authContext';
 import { SUCCESS_STATES, ALERT_SEVERITY } from 'CONSTANTS';
+import { updateCustomUserData } from 'services/firestoreService';
 import styles from './editPersonalDataForm.module.css';
 
 const validationSchema = yup.object({
@@ -37,7 +38,7 @@ const validationSchema = yup.object({
 });
 
 const EditPersonalDataForm = () => {
-  const { user, updateUserData } = useAuthContext();
+  const { user } = useAuthContext();
 
   const initialValues = {
     firstName: user?.firstName,
@@ -54,7 +55,7 @@ const EditPersonalDataForm = () => {
       formik.setStatus(null);
       setIsLoading(true);
 
-      await updateUserData(user.uid, values);
+      await updateCustomUserData(user.uid, values);
 
       setIsLoading(false);
       setSuccessState(SUCCESS_STATES.success);
