@@ -18,18 +18,8 @@ export const uploadFile = async (path, file) => {
 
     // Get the download URL
     const downloadURL = await getDownloadURL(snapshot.ref);
+
     return downloadURL;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-
-export const downloadFile = async (filePath) => {
-  const storageRef = ref(storage, filePath);
-
-  try {
-    const url = await getDownloadURL(storageRef);
-    return url;
   } catch (error) {
     throw new Error(error);
   }
