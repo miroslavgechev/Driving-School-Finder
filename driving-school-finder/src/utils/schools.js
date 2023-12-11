@@ -3,7 +3,9 @@ import { REGIONS } from 'CONSTANTS';
 export const matchSchoolsWithRatings = (schools, ratings) => {
   try {
     schools.forEach(school => {
-      const correspondingRating = ratings.find(r => r.schoolId === school.ownerUid);
+      const correspondingRating = ratings
+        .find(r => r.schoolId === school.ownerUid);
+
       if (correspondingRating) {
         school.ratingScore = correspondingRating.ratingScore || 0;
         school.reviewsCount = correspondingRating.reviewsCount || 0;
@@ -58,7 +60,10 @@ export const filterSchools = (schools, filter) => {
     if (!region || region === 'Всички') {
       isRegionMatch = true;
     } else {
-      isRegionMatch = school.regionsServed.includes(region) || school.regionsServed.includes('Всички');
+      isRegionMatch =
+        school.regionsServed.includes(region)
+        ||
+        school.regionsServed.includes('Всички');
     }
 
     return isNameMatch && isCategoryMatch && isRatingMatch && isRegionMatch;
