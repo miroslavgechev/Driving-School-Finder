@@ -6,14 +6,15 @@ import Typography from '@mui/material/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
 import { useState } from 'react';
 
-import { REGIONS, SUCCESS_STATES } from 'CONSTANTS';
+import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+
+import { REGIONS, SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
 import styles from './contacts.module.css';
 
@@ -209,18 +210,14 @@ const ContactsForm = () => {
             <Box className={styles.buttonBoxContainer}>
               <Box marginBottom={{ xs: 1, sm: 0 }}>
                 {successState === SUCCESS_STATES.success &&
-                  <Alert
-                    className={styles.fullWidth}
-                    severity='success'>
+                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
                     Промените са запазени локално
-                  </Alert>
+                  </CustomAlert>
                 }
                 {successState === SUCCESS_STATES.error &&
-                  <Alert
-                    className={styles.fullWidth}
-                    severity='error'>
+                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
                     Промените не са запазени
-                  </Alert>
+                  </CustomAlert>
                 }
               </Box>
               <Button

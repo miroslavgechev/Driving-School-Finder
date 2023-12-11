@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
 import FormHelperText from '@mui/material/FormHelperText';
 
 import { useFormik } from 'formik';
@@ -13,7 +12,9 @@ import * as yup from 'yup';
 
 import { useEffect, useState } from 'react';
 
-import { SUCCESS_STATES } from 'CONSTANTS';
+import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+
+import { SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
 import fileMapper from 'utils/fileMapper';
 import styles from './imgForm.module.css';
@@ -242,18 +243,14 @@ export const ImgForm = () => {
             <Box className={styles.buttonBoxContainer}>
               <Box marginBottom={{ xs: 1, sm: 0 }}>
                 {successState === SUCCESS_STATES.success &&
-                  <Alert
-                    className={styles.fullWidth}
-                    severity='success'>
+                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
                     Промените са запазени локално
-                  </Alert>
+                  </CustomAlert>
                 }
                 {successState === SUCCESS_STATES.error &&
-                  <Alert
-                    className={styles.fullWidth}
-                    severity='error'>
+                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
                     Промените не са запазени
-                  </Alert>
+                  </CustomAlert>
                 }
               </Box>
               <Button

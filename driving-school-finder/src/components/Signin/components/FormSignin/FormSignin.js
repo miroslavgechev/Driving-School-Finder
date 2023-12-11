@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
@@ -13,8 +12,10 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { useState } from 'react';
 
+import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+
 import { useAuthContext } from 'contexts/authContext';
-import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, ROUTES } from 'CONSTANTS';
+import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, ROUTES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import styles from './formSignin.module.css';
 
 const validationSchema = yup.object({
@@ -144,11 +145,9 @@ const SigninForm = () => {
               xs={12}
               className={styles.centeredGridContainer}
             >
-              <Alert
-                className={styles.fullWidth}
-                severity='error'>
+              <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
                 {formik.status}
-              </Alert>
+              </CustomAlert>
             </Grid>
           }
 
@@ -159,12 +158,9 @@ const SigninForm = () => {
               xs={12}
               className={styles.centeredGridContainer}
             >
-              <Alert
-                className={styles.fullWidth}
-                severity='success'
-              >
+              <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
                 Успя! Пренасочваме те...
-              </Alert>
+              </CustomAlert>
             </Grid>
           }
 

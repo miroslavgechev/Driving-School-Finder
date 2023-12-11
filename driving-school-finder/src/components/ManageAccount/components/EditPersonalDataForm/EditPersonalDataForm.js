@@ -5,15 +5,16 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
 import { useState } from 'react';
 
+import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+
 import { useAuthContext } from 'contexts/authContext';
-import { SUCCESS_STATES } from 'CONSTANTS';
+import { SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import { updateCustomUserData } from 'services/firestoreService';
 import styles from './editPersonalDataForm.module.css';
 
@@ -133,18 +134,14 @@ const EditPersonalDataForm = () => {
             <Box className={styles.buttonBoxContainer} >
               <Box marginBottom={{ xs: 1, sm: 0 }}>
                 {successState === SUCCESS_STATES.success &&
-                  <Alert
-                    className={styles.fullWidth}
-                    severity='success'>
+                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
                     Промените са запазени в системата
-                  </Alert>
+                  </CustomAlert>
                 }
                 {successState === SUCCESS_STATES.error &&
-                  <Alert
-                    className={styles.fullWidth}
-                    severity='error'>
+                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
                     Промените не са запазени
-                  </Alert>
+                  </CustomAlert>
                 }
               </Box>
               <Button

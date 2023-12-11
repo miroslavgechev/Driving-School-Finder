@@ -8,7 +8,6 @@ import Select from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
@@ -19,8 +18,10 @@ import { Link } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 
+import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+
 import { useAuthContext } from 'contexts/authContext';
-import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, ROUTES, USER_ROLES } from 'CONSTANTS';
+import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, ROUTES, USER_ROLES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import styles from './formSignup.module.css';
 
 const validationSchema = yup.object({
@@ -259,11 +260,9 @@ const SignupForm = () => {
               xs={12}
               className={styles.centeredGridContainer}
             >
-              <Alert
-                className={styles.fullWidth}
-                severity='error'>
+              <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
                 {formik.status}
-              </Alert>
+              </CustomAlert>
             </Grid>}
 
           {successState === SUCCESS_STATES.success &&
@@ -273,12 +272,9 @@ const SignupForm = () => {
               xs={12}
               className={styles.centeredGridContainer}
             >
-              <Alert
-                className={styles.fullWidth}
-                severity='success'
-              >
+              <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
                 Успя! Пренасочваме те...
-              </Alert>
+              </CustomAlert>
             </Grid>}
 
           <Grid item container xs={12}>

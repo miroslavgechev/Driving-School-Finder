@@ -13,14 +13,15 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
 import { useState } from 'react';
 
-import { TABLE_SUBTITLES, SUCCESS_STATES } from 'CONSTANTS';
+import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+
+import { TABLE_SUBTITLES, SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
 import styles from './courseForm.module.css';
 
@@ -183,18 +184,14 @@ const CoursesForm = () => {
             <Box className={styles.buttonBoxContainer} >
               <Box marginBottom={{ xs: 1, sm: 0 }}>
                 {successState === SUCCESS_STATES.success &&
-                  <Alert
-                    className={styles.fullWidth}
-                    severity='success'>
+                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
                     Промените са запазени локално
-                  </Alert>
+                  </CustomAlert>
                 }
                 {successState === SUCCESS_STATES.error &&
-                  <Alert
-                    className={styles.fullWidth}
-                    severity='error'>
+                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
                     Промените не са запазени
-                  </Alert>
+                  </CustomAlert>
                 }
               </Box>
               <Button

@@ -5,14 +5,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
 
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 
 import { useState } from 'react';
 
-import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES } from 'CONSTANTS';
+import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import { useAuthContext } from 'contexts/authContext';
 import styles from './changePasswordForm.module.css';
 
@@ -135,18 +135,14 @@ const ChangePasswordForm = () => {
             <Box className={styles.buttonBoxContainer} >
               <Box marginBottom={{ xs: 1, sm: 0 }}>
                 {successState === SUCCESS_STATES.success &&
-                  <Alert
-                    className={styles.fullWidth}
-                    severity='success'>
+                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
                     Промените са запазени в системата.
-                  </Alert>
+                  </CustomAlert>
                 }
                 {formik.status &&
-                  <Alert
-                    className={styles.fullWidth}
-                    severity='error'>
+                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
                     {formik.status}
-                  </Alert>
+                  </CustomAlert>
                 }
               </Box>
               <Button

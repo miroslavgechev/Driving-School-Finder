@@ -4,14 +4,15 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 
+import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
-import { ROUTES, SUCCESS_STATES } from 'CONSTANTS';
+import { ROUTES, SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import styles from './confirmForm.module.css';
 
 const ConfirmForm = () => {
@@ -80,26 +81,22 @@ const ConfirmForm = () => {
           </Button>
           <Box marginBottom={{ xs: 1, sm: 0 }}>
             {successState === SUCCESS_STATES.success &&
-              <Alert
-                className={styles.fullWidth}
-                severity='success'>
+              <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
                 {currentLocation === ROUTES.schoolCreate()
                   ?
                   'Автошколата е създадена успешно, пренасочваме те...'
                   :
                   'Автошколата е обновена успешно, пренасочваме те...'}
-              </Alert>
+              </CustomAlert>
             }
             {successState === SUCCESS_STATES.error &&
-              <Alert
-                className={styles.fullWidth}
-                severity='error'>
+              <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
                 {currentLocation === ROUTES.schoolCreate()
                   ?
                   'Нещо се счупи. Автошколата не е създадена...'
                   :
                   'Нещо се счупи. Автошколата не е обновена...'}
-              </Alert>
+              </CustomAlert>
             }
           </Box>
         </Box>
