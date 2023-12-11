@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Container from 'components/Container';
@@ -11,57 +11,76 @@ import { useTheme } from '@mui/material/styles';
 
 import Headline from '../shared/Headline/Headline';
 
-import { FAQ } from '../../dbTemp';
-
 import styles from './faq.module.css';
+import { getFaq } from '../../services/firestoreService';
+import SpinnerFullPage from 'components/shared/SpinnerFullPage/SpinnerFullPage';
 
 const Faq = () => {
+  const [faq, setFaq] = useState(null);
 
-  const mockContent = FAQ;
+  useEffect(() => {
+    const fetchFaq = async () => {
+      try {
+        const fethechedFaq = await getFaq();
+        setFaq(fethechedFaq);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchFaq();
+  }, []);
 
   const theme = useTheme();
 
   return (
     <>
-      <Box bgcolor='alternate.main' >
-        <Container paddingY={{ xs: 2, sm: 2.5 }}>
-          <Headline text='Често задавани въпроси' />
-        </Container>
-      </Box>
-      <Container>
-        {mockContent.map((faq, index) => (
-          <Fragment key={index}>
-            <Box marginBottom={2}>
-              <Typography className={styles.headerText} variant='h5'>
-                {faq.title}
-              </Typography>
-            </Box>
+      {!faq && <SpinnerFullPage />}
 
-            <Box marginBottom={6}>
-              {faq.content.map((item, i) => (
-                <Box
-                  component={Accordion}
-                  key={i}
-                  padding={1}
-                  marginBottom={i === item.length - 1 ? 0 : 2}
-                  borderRadius={`${theme.spacing(1)} !important`}
-                  className={styles.accordion}
-                >
-                  <Box
-                    component={AccordionSummary}
-                    expandIcon={<ExpandMoreIcon />}
-                  >
-                    <Typography className={styles.accordionHeader}>{item.title}</Typography>
-                  </Box>
-                  <AccordionDetails>
-                    <Typography className={styles.accordionText} color="text.secondary">{item.subtitle}</Typography>
-                  </AccordionDetails>
+      {faq &&
+        <>
+          <Box bgcolor='alternate.main' >
+
+            <Container paddingY={{ xs: 2, sm: 2.5 }}>
+              <Headline text='Често задавани въпроси' />
+            </Container>
+          </Box>
+          <Container>
+            {faq?.map((faqItem, index) => (
+              <Fragment key={index}>
+                <Box marginBottom={2}>
+                  <Typography className={styles.headerText} variant='h5'>
+                    {faqItem.categoryTitle}
+                  </Typography>
                 </Box>
-              ))}
-            </Box>
-          </Fragment>
-        ))}
-      </Container>
+
+                <Box marginBottom={6}>
+                  {faqItem?.content?.map((item, i) => (
+                    <Box
+                      component={Accordion}
+                      key={i}
+                      padding={1}
+                      marginBottom={i === item.length - 1 ? 0 : 2}
+                      borderRadius={`${theme.spacing(1)} !important`}
+                      className={styles.accordion}
+                    >
+                      <Box
+                        component={AccordionSummary}
+                        expandIcon={<ExpandMoreIcon />}
+                      >
+                        <Typography className={styles.accordionHeader}>{item.question}</Typography>
+                      </Box>
+                      <AccordionDetails>
+                        <Typography className={styles.accordionText} color="text.secondary">{item.answer}</Typography>
+                      </AccordionDetails>
+                    </Box>
+                  ))}
+                </Box>
+              </Fragment>
+            ))}
+          </Container>
+        </>
+      }
     </>
   );
 };
