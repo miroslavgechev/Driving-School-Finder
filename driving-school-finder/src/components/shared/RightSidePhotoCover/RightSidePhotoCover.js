@@ -1,5 +1,6 @@
 
 import Box from '@mui/material/Box';
+
 import styles from './rightSidePhotoCover.module.css';
 
 const RightSidePhotoCover = ({ imgSrc }) => {

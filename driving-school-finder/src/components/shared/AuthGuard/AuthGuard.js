@@ -1,22 +1,23 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuthContext } from 'contexts/authContext';
-import SpinnerFullPage from '../SpinnerFullPage/SpinnerFullPage';
 
+import { useEffect } from 'react';
+
+import SpinnerFullPage from '../SpinnerFullPage/SpinnerFullPage';
+import { useAuthContext } from 'contexts/authContext';
+import { ROUTES } from 'CONSTANTS';
 
 const AuthGuard = ({ children, authRequired = true }) => {
-
   const { user, userLoading } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!userLoading) {
       if (authRequired && !user) {
-        navigate('/signin', { replace: true });
+        navigate(ROUTES.signin(), { replace: true });
       }
 
       if (!authRequired && user) {
-        navigate('/notfound', { replace: true });
+        navigate(ROUTES.notFound(), { replace: true });
       }
     }
   }, [userLoading, user]);
@@ -26,7 +27,6 @@ const AuthGuard = ({ children, authRequired = true }) => {
   }
 
   return children ? children : null;
-
 };
 
 export default AuthGuard;
