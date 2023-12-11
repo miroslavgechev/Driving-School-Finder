@@ -92,8 +92,6 @@ const useAuth = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth,
       async (user) => {
-        //eslint-disable-next-line no-debugger
-        debugger;
         if (user) {
           const customUserData = user && await getCustomUserData(user?.uid);
           setUser({ ...user, ...customUserData });
