@@ -25,18 +25,18 @@ Driving School Finder
 - ✅Implement client-side routing
 - ✅Demonstrate use of programming concepts, specific to the React library: stateless and state full components, bound forms, synthetic events, Component Styling, etc.
 - ✅Apply error handling and data validation to avoid crashes when invalid data is entered.
-- The application should be divided into components with separate CSS files.
+- ✅The application should be divided into components with separate CSS files.
 - Brief documentation on the project and project architecture (as .md file)
-- Demonstrate use of programming concepts - React Hooks, Context API
+- ✅Demonstrate use of programming concepts - React Hooks, Context API
 
 ## SoftUni Bonuses:
 
-- Use a state management solution (React Redux) instead of Context API
+- ❌Use a state management solution (React Redux) instead of Context API
 - ❌Write Unit Tests for your code
 - ✅Good UI and UX
 - ✅Use a file storage cloud API, e.g., Dropbox, Google Drive, or other for storing the files
 - ❌Connect to an external API, like Google Maps, AccuWeather, etc.
-- Deploy the application in a cloud (Heroku, Firebase)
+- ❌Deploy the application in a cloud (Heroku, Firebase)
 - ✅Bonuses depend on the complexity of the implementation
 - ✅Anything that is not described in the assignment is a bonus if it has some practical use
 
@@ -51,7 +51,7 @@ Driving School Finder
 7. ✅Setup database
 8. ✅Setup storage
 9. ✅Setup authentication
-10. Develop App
+10. ✅Develop App
 11. ✅Connect to Backend
 12. ✅Refactor Code to css modules.
 13. Optimize Code
@@ -236,15 +236,15 @@ Driving School Finder
 
 14. **Nice to haves**
 
-    - Use moments.js for dates
+    - ✅Use moments.js for dates
     - ❌Add to favorites button
     - ❌Change the theme on sign-in and sign-up pages depending on the user role
     - ✅Add paralax effect to the home page and the about page
     - ✅Make pages to start at the top
-    - Add animation transition between pages / on start of page
+    - ❌Add animation transition between pages / on start of page
     - ✅Secure Firebase further
-    - Add Reducer somewhere - e.g. setSchoolContext
-    - Remember originally seeked page before signin/signup
+    - ❌Add Reducer somewhere - e.g. setSchoolContext
+    - ❌Remember originally seeked page before signin/signup
 
 15. ✅**Global Error Handling**
     - ❌Add a global error handler to catch all errors and display a friendly error message to the user.
@@ -275,3 +275,9 @@ TBA...
 ## Code Structure
 
 TBA...
+
+--TO ADD:
+
+- Add Reducer somewhere - e.g. setSchoolContext
+- Remember originally seeked page before signin/signup
+- Deploy the application in a cloud (Heroku, Firebase)
