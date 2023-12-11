@@ -1,9 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-import { useState } from 'react';
-
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -13,12 +7,15 @@ import Alert from '@mui/material/Alert';
 import CircularProgress from '@mui/material/CircularProgress';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useAuthContext } from '../../../../contexts/authContext';
-import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES } from 'CONSTANTS';
-import styles from './formSignin.module.css';
+import { useState } from 'react';
 
+import { useAuthContext } from 'contexts/authContext';
+import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, ROUTES } from 'CONSTANTS';
+import styles from './formSignin.module.css';
 
 const validationSchema = yup.object({
   email: yup
@@ -48,18 +45,19 @@ const SigninForm = () => {
     try {
       formik.setStatus(null);
       setIsLoading(true);
+
       await login(values);
+
       setSuccessState(SUCCESS_STATES.success);
-
-      navigate('/school/all');
+      navigate(ROUTES.schoolCatalogue());
       setIsLoading(false);
-
     } catch (error) {
       if (error.message.includes(ERROR_CODES.invalidCredential)) {
         formik.setStatus(ERROR_MESSAGES.invalidCredentials);
       } else {
         formik.setStatus(ERROR_MESSAGES.defaultError);
       }
+
       setIsLoading(false);
       setSuccessState(SUCCESS_STATES.error);
     }
@@ -74,27 +72,28 @@ const SigninForm = () => {
   return (
     <Box>
       <Box marginBottom={4}>
-
         <Typography
-          variant="h4"
+          variant='h4'
           className={styles.headerText}
         >
           Добре дошъл отново!
         </Typography>
-        <Typography color="text.secondary">
+
+        <Typography color='text.secondary'>
           Влез за пълен достъп до всички функционалности.
         </Typography>
       </Box>
 
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={4}>
+
           <Grid item xs={12}>
             <Typography variant='subtitle2' sx={{ marginBottom: 2 }}>
               Въведи своя имейл
             </Typography>
             <TextField
-              label="Имейл *"
-              variant="outlined"
+              label='Имейл *'
+              variant='outlined'
               name='email'
               fullWidth
               value={formik.values.email}
@@ -103,6 +102,7 @@ const SigninForm = () => {
               helperText={formik.touched.email && formik.errors.email}
             />
           </Grid>
+
           <Grid item xs={12}>
             <Box className={styles.passwordBox} marginBottom={2}>
               <Box marginBottom={{ xs: 1, sm: 0 }}>
@@ -110,8 +110,9 @@ const SigninForm = () => {
                   Въведи парола
                 </Typography>
               </Box>
-              <Typography variant='subtitle2'>
-                {/* //TODO Replace link */}
+
+              {/* //TODO Add functionality to reset password */}
+              {/* <Typography variant='subtitle2'>
                 <Link to='/signin' className={styles.link}>
                   <Typography
                     variant='text'
@@ -120,11 +121,12 @@ const SigninForm = () => {
                     Забравил си паролата?
                   </Typography>
                 </Link>
-              </Typography>
+              </Typography> */}
             </Box>
+
             <TextField
-              label="Парола *"
-              variant="outlined"
+              label='Парола *'
+              variant='outlined'
               name='password'
               type='password'
               fullWidth
@@ -142,8 +144,13 @@ const SigninForm = () => {
               xs={12}
               className={styles.centeredGridContainer}
             >
-              <Alert className={styles.fullWidth} severity="error">{formik.status}</Alert>
-            </Grid>}
+              <Alert
+                className={styles.fullWidth}
+                severity='error'>
+                {formik.status}
+              </Alert>
+            </Grid>
+          }
 
           {successState === SUCCESS_STATES.success &&
             <Grid
@@ -152,15 +159,21 @@ const SigninForm = () => {
               xs={12}
               className={styles.centeredGridContainer}
             >
-              <Alert className={styles.fullWidth} severity="success">Успя! Пренасочваме те...</Alert>
-            </Grid>}
+              <Alert
+                className={styles.fullWidth}
+                severity='success'
+              >
+                Успя! Пренасочваме те...
+              </Alert>
+            </Grid>
+          }
 
           <Grid item container xs={12}>
             <Box className={styles.bottomBox}>
               <Box marginBottom={{ xs: 1, sm: 0 }}>
                 <Typography variant='subtitle2'>
                   Нямаш профил?{' '}
-                  <Link to='/signup' className={styles.link}>
+                  <Link to={ROUTES.signup()} className={styles.link}>
                     <Typography
                       variant='text'
                       color='primary'
@@ -170,11 +183,21 @@ const SigninForm = () => {
                   </Link>
                 </Typography>
               </Box>
-              <Button size='large' variant='contained' type='submit' disabled={isLoading}
-                startIcon={isLoading ? <CircularProgress size={22} /> : <PersonOutlineOutlinedIcon />}
+
+              <Button
+                size='large'
+                variant='contained'
+                type='submit'
+                disabled={isLoading}
+                startIcon={isLoading
+                  ?
+                  <CircularProgress size={22} />
+                  :
+                  <PersonOutlineOutlinedIcon />}
               >
                 Влез
               </Button>
+
             </Box>
           </Grid>
         </Grid>
