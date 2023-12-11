@@ -69,5 +69,7 @@ export const ROUTES = {
   account: () => '/account',
   signin: () => '/signin',
   signup: () => '/signup',
+  faq: () => '/faq',
+  about: () => '/about',
   notFound: () => '/notfound',
 };
