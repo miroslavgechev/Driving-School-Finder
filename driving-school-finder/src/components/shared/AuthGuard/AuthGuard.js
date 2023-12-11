@@ -10,10 +10,6 @@ const AuthGuard = ({ children }) => {
 
   const navigate = useNavigate();
 
-  //!TODO - REVIEW COMPONENT!
-  //!TODO - add a proper Loading component
-  //!TODO return the user to the page he wants to go after signin
-
   useEffect(() => {
     if (!userLoading && !user) {
       navigate('/signin', { replace: true });
