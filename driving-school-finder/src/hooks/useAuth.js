@@ -67,7 +67,7 @@ const useAuth = () => {
       const user = auth.currentUser;
 
       // Re-authenticate the user
-      const credential = EmailAuthProvider.credential(user.email, oldPassword);
+      const credential = EmailAuthProvider.credential(user?.email, oldPassword);
       await reauthenticateWithCredential(user, credential);
 
       // If re-authentication is successful, update the password
@@ -82,7 +82,7 @@ const useAuth = () => {
     const unsubscribe = onAuthStateChanged(auth,
       async (user) => {
         if (user) {
-          const customUserData = user && await getCustomUserData(user.uid);
+          const customUserData = user && await getCustomUserData(user?.uid);
           setUser({ ...user, ...customUserData });
         } else {
           setUser(null);
