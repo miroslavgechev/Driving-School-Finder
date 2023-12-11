@@ -1,5 +1,5 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import { AuthProvider } from 'contexts/authContext';
 import { SetSchoolProvider } from 'contexts/setSchoolContext';
 
@@ -20,6 +20,8 @@ import About from 'components/About/About';
 import NotFound from 'components/NotFound/NotFound';
 import AuthGuard from 'components/shared/AuthGuard/AuthGuard';
 
+import { ROUTES } from 'CONSTANTS';
+
 const App = () => {
   return (
     <Page>
@@ -28,48 +30,48 @@ const App = () => {
           <SetSchoolProvider>
             <Main>
               <Routes>
-                <Route path='/' element={<Catalogue />} />
-                <Route path='/school/all' element={<Catalogue />} />
+                <Route path={ROUTES.home()} element={<Catalogue />} />
+                <Route path={ROUTES.schoolCatalogue()} element={<Catalogue />} />
 
-                <Route path='/school/create' element={
+                <Route path={ROUTES.schoolCreate()} element={
                   <AuthGuard authRequired={true}>
                     <SchoolCreateEdit />
                   </AuthGuard>
                 } />
 
-                <Route path='/school/:id/edit' element={
+                <Route path={ROUTES.schoolEditWithParams()} element={
                   <AuthGuard authRequired={true}>
                     <SchoolCreateEdit />
                   </AuthGuard>
                 } />
 
-                <Route path='/school/:id' element={
+                <Route path={ROUTES.schoolDetailsWithParams()} element={
                   <AuthGuard authRequired={true}>
                     <SchoolDetails />
                   </AuthGuard>
                 } />
 
-                <Route path='/account' element={
+                <Route path={ROUTES.account()} element={
                   <AuthGuard authRequired={true}>
                     <ManageAccount />
                   </AuthGuard>
                 } />
 
-                <Route path='/signin' element={
+                <Route path={ROUTES.signin()} element={
                   <AuthGuard authRequired={false}>
                     <Signin />
                   </AuthGuard>
                 } />
 
-                <Route path='/signup' element={
+                <Route path={ROUTES.signup()} element={
                   <AuthGuard authRequired={false}>
                     <Signup />
                   </AuthGuard>
                 } />
 
-                <Route path='/faq' element={<Faq />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/notfound' element={<NotFound />} />
+                <Route path={ROUTES.faq()} element={<Faq />} />
+                <Route path={ROUTES.about()} element={<About />} />
+                <Route path={ROUTES.notFound()} element={<NotFound />} />
                 <Route path='*' element={<NotFound />} />
               </Routes>
             </Main>
