@@ -15,6 +15,27 @@
     color: #000000;
 }
 
-.alignCenter {
+.nav {
+    display: none;
     align-items: center;
+}
+
+.menu {
+    display: block;
+    align-items: center;
+}
+
+.menuButton {
+    min-width: auto;
+}
+
+@media screen and (min-width: 900px) {
+    .nav {
+        display: flex;
+    }
+
+    .menu {
+        display: none;
+    }
+
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
@@ -9,15 +8,16 @@ const Footer = () => {
     <Grid item xs={12}>
       <Typography
         variant='subtitle2'
-        color="text.secondary"
+        color='text.secondary'
         gutterBottom
         className={styles.centerText}
       >
         &copy; Driving School Finder. 2023, Miroslav Gechev. All rights reserved
       </Typography>
+
       <Typography
         variant='caption'
-        color="text.secondary"
+        color='text.secondary'
         component={'p'}
         className={styles.centerText}
       >

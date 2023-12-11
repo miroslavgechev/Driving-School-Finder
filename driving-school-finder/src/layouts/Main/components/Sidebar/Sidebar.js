@@ -1,22 +1,27 @@
-import React from 'react';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
 import { Link } from 'react-router-dom';
 
-import styles from './sidebar.module.css';
-import { useAuthContext } from 'contexts/authContext';
 import LogoutButton from 'components/shared/LogoutButton/LogoutButton';
 import Divider from '@mui/material/Divider';
 import Logo from 'components/shared/Logo/Logo';
 
+import { useAuthContext } from 'contexts/authContext';
+import { ROUTES, USER_ROLES } from 'CONSTANTS';
+import styles from './sidebar.module.css';
+
 const Sidebar = ({ open, variant, onClose }) => {
   const { user } = useAuthContext();
-  const color = user?.role === 'student' ? 'primary.main' : 'secondary.main';
+  const color = user?.role === USER_ROLES.student
+    ?
+    'primary.main'
+    :
+    'secondary.main';
 
   return (
     <Drawer
@@ -41,7 +46,7 @@ const Sidebar = ({ open, variant, onClose }) => {
         <Box>
           <Box width={1} paddingX={2} paddingY={1}>
             <Box width={{ xs: 100, md: 120 }}>
-              <Link to='/' className={styles.link}>
+              <Link to={ROUTES.home()} className={styles.link}>
                 <Logo />
               </Link>
             </Box>
@@ -50,31 +55,38 @@ const Sidebar = ({ open, variant, onClose }) => {
           <Box paddingX={2} paddingY={2}>
 
             <Box paddingY={2}>
-              <Link to='/school/all' className={styles.link}>
-                <Typography color={'text.primary'}>Автошколи</Typography>
+              <Link to={ROUTES.schoolCatalogue()} className={styles.link}>
+                <Typography color='text.primary'>
+                  Автошколи
+                </Typography>
               </Link>
             </Box>
 
             <Box paddingY={2}>
-              <Link to='/faq' className={styles.link}>
-                <Typography color={'text.primary'}>ЧЗВ</Typography>
+              <Link to={ROUTES.faq()} className={styles.link}>
+                <Typography color='text.primary'>
+                  ЧЗВ
+                </Typography>
               </Link>
             </Box>
 
             <Box paddingY={2}>
-              <Link to='/about' className={styles.link}>
-                <Typography color={'text.primary'}>За нас</Typography>
+              <Link to={ROUTES.about()} className={styles.link}>
+                <Typography color='text.primary'>
+                  За нас
+                </Typography>
               </Link>
             </Box>
+
             {!user &&
               <>
                 <Box marginTop={2}>
                   <Button
-                    variant="contained"
-                    color="primary"
+                    variant='contained'
+                    color='primary'
                     component={Link}
-                    to='/signin'
-                    size="large"
+                    to={ROUTES.signin()}
+                    size='large'
                     fullWidth
                     startIcon={<PersonOutlineOutlinedIcon />}
                   >
@@ -84,11 +96,11 @@ const Sidebar = ({ open, variant, onClose }) => {
 
                 <Box marginTop={1}>
                   <Button
-                    variant="contained"
-                    color="secondary"
+                    variant='contained'
+                    color='secondary'
                     component={Link}
-                    to='/signup'
-                    size="large"
+                    to={ROUTES.signup()}
+                    size='large'
                     fullWidth
                     startIcon={<PersonAddAlt1OutlinedIcon />}
                   >
@@ -101,9 +113,12 @@ const Sidebar = ({ open, variant, onClose }) => {
             {user &&
               <>
                 <Divider sx={{ marginY: 1 }} />
+
                 <Box paddingY={2}>
-                  <Link to='/account' className={styles.link}>
-                    <Typography color={color}>Профил</Typography>
+                  <Link to={ROUTES.account()} className={styles.link}>
+                    <Typography color={color}>
+                      Профил
+                    </Typography>
                   </Link>
                 </Box>
               </>
@@ -119,7 +134,6 @@ const Sidebar = ({ open, variant, onClose }) => {
             }
 
           </Box>
-
         </Box>
       </Box>
     </Drawer >

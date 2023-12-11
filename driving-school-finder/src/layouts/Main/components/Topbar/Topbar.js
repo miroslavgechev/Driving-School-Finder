@@ -1,20 +1,20 @@
-import React from 'react';
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import { Typography } from '@mui/material';
-import { alpha, useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
+import { alpha, useTheme } from '@mui/material/styles';
 
 import { Link } from 'react-router-dom';
 
-import styles from './topbar.module.css';
 import UserAvatar from 'components/shared/UserAvatar/UserAvatar';
 import LogoutButton from 'components/shared/LogoutButton/LogoutButton';
 import Logo from 'components/shared/Logo/Logo';
+
 import { useAuthContext } from 'contexts/authContext';
+import { ROUTES } from 'CONSTANTS';
+import styles from './topbar.module.css';
 
 const Topbar = ({ onSidebarOpen = false }) => {
   const theme = useTheme();
@@ -22,46 +22,53 @@ const Topbar = ({ onSidebarOpen = false }) => {
 
   return (
     <Box className={styles.box}>
+
       <Box width={{ xs: 100, md: 120 }}>
-        <Link to='/' className={styles.link}>
+        <Link to={ROUTES.home()} className={styles.link}>
           <Logo />
         </Link>
       </Box>
 
-      <Box
-        sx={{ display: { xs: 'none', md: 'flex' } }}
-        className={styles.alignCenter}>
+      <Box className={styles.nav}>
+
         <Box marginLeft={4}>
-          <Link to='/school/all' className={styles.link}>
+          <Link to={ROUTES.schoolCatalogue()} className={styles.link}>
             <Typography
-              color={'text.primary'}
+              color='text.primary'
               sx={{
                 '&:hover': {
                   color: alpha(theme.palette.text.primary, 0.7),
                 }
-              }}>Автошколи</Typography>
+              }}>
+              Автошколи
+            </Typography>
           </Link>
         </Box>
 
         <Box marginLeft={4}>
-          <Link to='/faq' className={styles.link}>
+          <Link to={ROUTES.faq()} className={styles.link}>
             <Typography
-              color={'text.primary'}
+              color='text.primary'
               sx={{
                 '&:hover': {
                   color: alpha(theme.palette.text.primary, 0.7),
                 }
-              }}>ЧЗВ</Typography>
+              }}>
+              ЧЗВ
+            </Typography>
           </Link>
         </Box>
 
         <Box marginLeft={4}>
-          <Link to='/about' className={styles.link}>
-            <Typography color={'text.primary'} sx={{
-              '&:hover': {
-                color: alpha(theme.palette.text.primary, 0.7),
-              }
-            }}>За нас</Typography>
+          <Link to={ROUTES.about()} className={styles.link}>
+            <Typography
+              color='text.primary' sx={{
+                '&:hover': {
+                  color: alpha(theme.palette.text.primary, 0.7),
+                }
+              }}>
+              За нас
+            </Typography>
           </Link>
         </Box>
 
@@ -69,11 +76,11 @@ const Topbar = ({ onSidebarOpen = false }) => {
           <>
             <Box marginLeft={4}>
               <Button
-                variant="contained"
-                color="primary"
+                variant='contained'
+                color='primary'
                 component={Link}
-                to='/signin'
-                size="large"
+                to={ROUTES.signin()}
+                size='large'
                 startIcon={<PersonOutlineOutlinedIcon />}
               >
                 Влез
@@ -82,11 +89,11 @@ const Topbar = ({ onSidebarOpen = false }) => {
 
             <Box marginLeft={4}>
               <Button
-                variant="contained"
-                color="secondary"
+                variant='contained'
+                color='secondary'
                 component={Link}
-                to='/signup'
-                size="large"
+                to={ROUTES.signup()}
+                size='large'
                 startIcon={<PersonAddAlt1OutlinedIcon />}
               >
                 Регистрация
@@ -98,8 +105,13 @@ const Topbar = ({ onSidebarOpen = false }) => {
         {user &&
           <>
             <Box marginLeft={4}>
-              <UserAvatar firstName={user.firstName} lastName={user.lastName} role={user.role} />
+              <UserAvatar
+                firstName={user?.firstName}
+                lastName={user?.lastName}
+                role={user?.role}
+              />
             </Box>
+
             <Box marginLeft={4}>
               <LogoutButton />
             </Box>
@@ -108,15 +120,13 @@ const Topbar = ({ onSidebarOpen = false }) => {
 
       </Box>
 
-      <Box
-        sx={{ display: { xs: 'block', md: 'none' } }}
-        className={styles.alignCenter}>
+      <Box className={styles.menu}>
         <Button
           onClick={() => onSidebarOpen()}
-          variant={'outlined'}
+          variant='outlined'
+          className={styles.menuButton}
           sx={{
             borderRadius: 2,
-            minWidth: 'auto',
             padding: 1,
             borderColor: alpha(theme.palette.divider, 0.2),
           }}

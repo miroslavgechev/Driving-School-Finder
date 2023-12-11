@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import AppBar from '@mui/material/AppBar';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import AppBar from '@mui/material/AppBar';
+
+import { useState } from 'react';
 
 import Container from 'layouts/Container/Container';
 import Topbar from './components/Topbar/Topbar';
@@ -12,8 +13,8 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
 
 import { useAuthContext } from 'contexts/authContext';
-import styles from './main.module.css';
 import SpinnerFullPage from 'components/shared/SpinnerFullPage/SpinnerFullPage';
+import styles from './main.module.css';
 
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const theme = useTheme();
@@ -42,12 +43,15 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   return (
     <>
       {userLoading && <SpinnerFullPage />}
+
       {!userLoading &&
         <Box>
+
           <AppBar
             className={styles.appBar}
             sx={{
-              backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
+              backgroundColor:
+                trigger ? theme.palette.background.paper : bgcolor,
             }}
             elevation={trigger ? 1 : 0}
           >
@@ -58,18 +62,22 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
               />
             </Container>
           </AppBar>
+
           <Sidebar
             onClose={handleSidebarClose}
             open={open}
-            variant="temporary"
+            variant='temporary'
           />
+
           <main>
             {children}
             <Divider />
           </main>
+
           <Container paddingY={4}>
             <Footer />
           </Container>
+
         </Box>
       }
     </>
