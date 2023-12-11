@@ -54,7 +54,7 @@ Driving School Finder
 10. ✅Develop App
 11. ✅Connect to Backend
 12. ✅Refactor Code to css modules.
-13. Optimize Code
+13. ✅Optimize Code
 14. ✅Move Static images to public
 15. Test
 16. ✅Populate with real data
@@ -283,22 +283,6 @@ TBA...
 - Remember originally seeked page before signin/signup
 - Deploy the application in a cloud (Heroku, Firebase)
 
-13. Optimize Code
 14. Test
 15. Deploy
 16. Update Documentation
-
-    Move to separate component:
-
-    <Button
-    size='large'
-    variant='contained'
-    type='submit'
-    disabled={isLoading}
-    startIcon={isLoading
-    ?
-    <CircularProgress size={22} />
-    :
-    <SaveOutlinedIcon />} >
-    Запази промените
-    </Button>
