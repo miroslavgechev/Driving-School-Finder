@@ -1,4 +1,3 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -13,11 +12,10 @@ import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFi
 import EastRoundedIcon from '@mui/icons-material/EastRounded';
 import CircularProgress from '@mui/material/CircularProgress';
 // import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-
+import { useTheme } from '@mui/material/styles';
 
 import { Link } from 'react-router-dom';
 
-import { useTheme } from '@mui/material/styles';
 import styles from './schoolsList.module.css';
 
 const SchoolsList = ({ schoolsFiltered }) => {

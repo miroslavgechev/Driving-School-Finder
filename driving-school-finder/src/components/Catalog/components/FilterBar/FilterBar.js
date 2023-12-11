@@ -10,11 +10,13 @@ import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRena
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Rating from '@mui/material/Rating';
 
-import styles from './filterBar.module.css';
-import { CATEGORIES, REGIONS } from 'CONSTANTS';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+
 import { useEffect } from 'react';
+
+import { CATEGORIES, REGIONS } from 'CONSTANTS';
+import styles from './filterBar.module.css';
 
 const validationSchema = yup.object({});
 
@@ -78,7 +80,7 @@ const FilterBar = ({ setFilter }) => {
       <Box
         className={styles.formContainer}
         padding={{ xs: 3, sm: 6 }}
-        data-aos="fade-up"
+        data-aos='fade-up'
       >
         <form onSubmit={formik.handleSubmit} noValidate autoComplete='off'>
           <Box className={styles.formFieldsContainer}>
@@ -100,11 +102,9 @@ const FilterBar = ({ setFilter }) => {
                 helperText={formik.touched.name && formik.errors.name}
                 InputProps={{
                   startAdornment: (
-                    <>
-                      <InputAdornment position='start'>
-                        <DriveFileRenameOutlineRoundedIcon color='primary' />
-                      </InputAdornment>
-                    </>
+                    <InputAdornment position='start'>
+                      <DriveFileRenameOutlineRoundedIcon color='primary' />
+                    </InputAdornment>
                   ),
                 }}
               />
@@ -182,7 +182,6 @@ const FilterBar = ({ setFilter }) => {
                         <>
                           <InputAdornment position='start'>
                             <StarBorderRoundedIcon color='primary' />
-
                           </InputAdornment>
                           {params.InputProps.startAdornment}
                         </>
@@ -244,7 +243,6 @@ const FilterBar = ({ setFilter }) => {
             </Box>
           </Box>
         </form>
-
       </Box>
     </Box >
   );

@@ -1,6 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
-import React from 'react';
-
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -18,7 +15,7 @@ const Header = () => {
       className={styles.mainContainer}
       marginTop={-50}
     >
-      <Box data-aos="fade-up" >
+      <Box data-aos='fade-up' >
         <Typography
           variant='h3'
           gutterBottom
@@ -42,10 +39,7 @@ const Header = () => {
         </Typography>
       </Box>
     </Container>
-
   );
 };
 
 export default Header;
-
-
