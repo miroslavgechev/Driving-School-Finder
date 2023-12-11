@@ -17,7 +17,7 @@ const AuthGuard = ({ children, authRequired = true }) => {
       }
 
       if (!authRequired && user) {
-        navigate(ROUTES.notFound(), { replace: true });
+        navigate(ROUTES.schoolCatalogue(), { replace: true });
       }
     }
   }, [userLoading, user]);
