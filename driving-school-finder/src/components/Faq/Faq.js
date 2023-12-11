@@ -1,4 +1,3 @@
-import { Fragment, useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Container from 'layouts/Container/Container';
@@ -9,11 +8,13 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTheme } from '@mui/material/styles';
 
+import { Fragment, useEffect, useState } from 'react';
+
+import SpinnerFullPage from 'components/shared/SpinnerFullPage/SpinnerFullPage';
 import Headline from '../shared/Headline/Headline';
 
-import styles from './faq.module.css';
 import { getFaq } from '../../services/firestoreService';
-import SpinnerFullPage from 'components/shared/SpinnerFullPage/SpinnerFullPage';
+import styles from './faq.module.css';
 
 const Faq = () => {
   const [faq, setFaq] = useState(null);
@@ -52,7 +53,7 @@ const Faq = () => {
           </Box>
           <Container>
             {faq?.map((faqItem, index) => (
-              < Fragment key={index} >
+              <Fragment key={index} >
                 <Box marginBottom={2}>
                   <Typography className={styles.headerText} variant='h5'>
                     {faqItem.categoryTitle}
@@ -75,10 +76,19 @@ const Faq = () => {
                         component={AccordionSummary}
                         expandIcon={<ExpandMoreIcon />}
                       >
-                        <Typography className={styles.accordionHeader}>{item.question}</Typography>
+                        <Typography
+                          className={styles.accordionHeader}
+                        >
+                          {item.question}
+                        </Typography>
                       </Box>
                       <AccordionDetails>
-                        <Typography className={styles.accordionText} color="text.secondary">{item.answer}</Typography>
+                        <Typography
+                          className={styles.accordionText}
+                          color="text.secondary"
+                        >
+                          {item.answer}
+                        </Typography>
                       </AccordionDetails>
                     </Box>
                   ))}
