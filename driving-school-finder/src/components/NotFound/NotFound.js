@@ -2,15 +2,16 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+import { Link } from 'react-router-dom';
+
 import Container from 'layouts/Container/Container';
 import RightSidePhotoCover from 'components/shared/RightSidePhotoCover/RightSidePhotoCover';
 
-import { Link } from 'react-router-dom';
+import { ROUTES } from 'CONSTANTS';
 import styles from './notFound.module.css';
 
 const NotFound = () => {
 
-  
   return (
     <Box className={styles.boxContainer}>
       <Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
@@ -20,7 +21,7 @@ const NotFound = () => {
               <Box>
                 <Typography
                   variant='h1'
-                  component={'h1'}
+                  component='h1'
                   className={`${styles.textBox} ${styles.headerText}`}
                 >
                   Опааа!
@@ -39,7 +40,7 @@ const NotFound = () => {
                 >
                   <Button
                     component={Link}
-                    to='/'
+                    to={ROUTES.home}
                     variant='contained'
                     color='primary'
                     size='large'
