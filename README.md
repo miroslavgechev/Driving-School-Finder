@@ -53,7 +53,7 @@ Driving School Finder
 9. ✅Setup authentication
 10. Develop App
 11. ✅Connect to Backend
-12. Refactor Code to css modules.
+12. ✅Refactor Code to css modules.
 13. Optimize Code
 14. ✅Move Static images to public
 15. Test
@@ -240,14 +240,14 @@ Driving School Finder
     - ❌Add to favorites button
     - ❌Change the theme on sign-in and sign-up pages depending on the user role
     - ✅Add paralax effect to the home page and the about page
+    - Make pages to start at the top
     - Add animation transition between pages / on start of page
     - Secure Firebase further
     - Add Reducer somewhere - e.g. setSchoolContext
-    - Make pages to start at the top
     - Remember originally seeked page before signin/signup
 
-15. **Global Error Handling**
-    - Add a global error handler to catch all errors and display a friendly error message to the user.
+15. ✅**Global Error Handling**
+    - ❌Add a global error handler to catch all errors and display a friendly error message to the user.
     - ✅Add routeGuard to protect routes that require authentication / no authentication / to be owner?.
 
 ---- TO BE REVISED AFTER PROJECT COMPLETION---
