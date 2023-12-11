@@ -1,35 +1,32 @@
 import Grid from '@mui/material/Grid';
-
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import Skeleton from '@mui/material/Skeleton';
 
-import { useState, useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { getSchoolByOwnerUid } from '../../../../services/firestoreService';
-import { useAuthContext } from 'contexts/authContext';
+import { useState, useEffect } from 'react';
+
 import SchoolTableContainer from './components/SchoolTableContainer/SchoolTableContainer';
-
-
-import styles from './manageSchools.module.css';
 import DeleteSchoolForm from './components/DeleteSchoolForm/DeleteSchoolForm';
 
-const ManageSchools = () => {
+import { getSchoolByOwnerUid } from 'services/firestoreService';
+import { useAuthContext } from 'contexts/authContext';
+import { ROUTES } from 'CONSTANTS';
+import styles from './manageSchools.module.css';
 
+const ManageSchools = () => {
   const { user } = useAuthContext();
   const [school, setSchool] = useState(null);
   const [openToDelete, setOpenToDelete] = useState(false);
 
-
   useEffect(() => {
-
     const fetchSchool = async () => {
       try {
-        const fetchedSchool = await getSchoolByOwnerUid(user.uid);
+        const fetchedSchool = await getSchoolByOwnerUid(user?.uid);
         setSchool(fetchedSchool);
       } catch (error) {
         console.log(error.message);
@@ -37,9 +34,7 @@ const ManageSchools = () => {
     };
 
     if (user) fetchSchool();
-
   }, [user, openToDelete]);
-
 
   return (
     <Container>
@@ -49,15 +44,21 @@ const ManageSchools = () => {
 
             {school === null &&
               <Box className={styles.skeletonForm}>
-                <Skeleton variant="rectangular" className={styles.skeletonHeight} animation="wave" />
+                <Skeleton
+                  variant='rectangular'
+                  className={styles.skeletonHeight}
+                  animation='wave' />
               </Box>
             }
 
             {school === undefined &&
-              <Box marginBottom={{ xs: 1, sm: 0 }} className={styles.buttonBoxContainer}>
+              <Box
+                marginBottom={{ xs: 1, sm: 0 }}
+                className={styles.buttonBoxContainer}
+              >
                 <Button
                   component={Link}
-                  to='/school/create'
+                  to={ROUTES.schoolCreate()}
                   size='large'
                   variant='contained'
                   startIcon={<AddOutlinedIcon />}

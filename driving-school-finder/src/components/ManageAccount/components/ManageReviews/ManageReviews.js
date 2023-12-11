@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -13,13 +12,15 @@ import TableBody from '@mui/material/TableBody';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 
+import { useEffect, useState } from 'react';
+
 import EditFeedbackForm from './EditFeedbackForm/EditFeedbackForm';
 import DeleteFeedbackForm from './DeleteFeedbackForm/DeleteFeedbackForm';
 
-import styles from './manageReviews.module.css';
 import { formatDate } from 'utils/dateFormatter';
 import { useAuthContext } from 'contexts/authContext';
 import { getReviewsByUserId } from 'services/firestoreService';
+import styles from './manageReviews.module.css';
 
 const ManageReviews = () => {
   const [openToReview, setOpenToReview] = useState(false);
@@ -89,27 +90,30 @@ const ManageReviews = () => {
                         key={headCell.id}
                         className={styles.tableCell}
                       >
-
                         {headCell.label}
-
                       </TableCell>
                     )}
                   </TableRow>
                 </TableHead>
 
                 <TableBody>
-
                   {userReviews.map((review, index) => (
                     <TableRow
                       hover
                       key={index}
                       sx={{
-                        '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
+                        '&:last-child td, &:last-child th':
+                          { border: 0, bgcolor: 'text.alternate.dark' },
                         '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
                       }}
                       className={styles.cursor}
                     >
-                      <TableCell key={index + review.rating} className={styles.centerText} component='td' scope='row'>
+                      <TableCell
+                        key={index + review.rating}
+                        className={styles.centerText}
+                        component='td'
+                        scope='row'
+                      >
                         <Rating
                           name='text-feedback'
                           value={Number(review.rating)}
@@ -120,25 +124,41 @@ const ManageReviews = () => {
                         />
                       </TableCell>
 
-                      <TableCell key={index + review.feedback} component='td' scope='row'>
+                      <TableCell
+                        key={index + review.feedback}
+                        component='td'
+                        scope='row'
+                      >
                         <Typography variant='subtitle2'>
                           {review.feedback}
                         </Typography>
                       </TableCell>
 
-                      <TableCell key={index + review.schoolName} className={styles.centerText} component='td' scope='row'>
+                      <TableCell
+                        key={index + review.schoolName}
+                        className={styles.centerText}
+                        component='td'
+                        scope='row'
+                      >
                         <Typography variant='subtitle2'>
                           {review.schoolName}
                         </Typography>
                       </TableCell>
 
-                      <TableCell key={index + review.date} className={styles.centerText} component='td' scope='row'>
+                      <TableCell
+                        key={index + review.date}
+                        className={styles.centerText}
+                        component='td'
+                        scope='row'>
                         <Typography variant='subtitle2'>
                           {review?.date && formatDate(review?.date)}
                         </Typography>
                       </TableCell>
 
-                      <TableCell key={index + 'button'} className={styles.centerText}>
+                      <TableCell
+                        key={index + 'button'}
+                        className={styles.centerText}
+                      >
                         <Button
                           color='primary'
                           variant='text'
@@ -152,7 +172,11 @@ const ManageReviews = () => {
                         </Button>
                       </TableCell>
 
-                      <TableCell key={index + 'deleteButton'} variant='warning' className={styles.centerText}>
+                      <TableCell
+                        key={index + 'deleteButton'}
+                        variant='warning'
+                        className={styles.centerText}
+                      >
                         <Button
                           color='error'
                           variant='text'
@@ -178,12 +202,8 @@ const ManageReviews = () => {
             container
             xs={12}
             className={styles.gridItem}
-          >
-
-          </Grid>
+          />
         </Grid>
-
-
       </Container >
 
       {

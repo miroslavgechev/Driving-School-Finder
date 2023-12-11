@@ -8,8 +8,8 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 
 import { useState } from 'react';
 
-import styles from './deleteFeedbackForm.module.css';
 import { deleteReviewByReviewId } from 'services/firestoreService';
+import styles from './deleteFeedbackForm.module.css';
 
 const DeleteFeedbackForm = ({ reviewToDelete, setReviewToDelete, open, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,9 @@ const DeleteFeedbackForm = ({ reviewToDelete, setReviewToDelete, open, onClose }
   const handleDeleteReview = async () => {
     try {
       setIsLoading(true);
-      await deleteReviewByReviewId(reviewToDelete.id, reviewToDelete.schoolId);
+
+      await deleteReviewByReviewId(reviewToDelete?.id, reviewToDelete?.schoolId);
+
       setReviewToDelete(null);
       setIsLoading(false);
     } catch (error) {
@@ -41,7 +43,7 @@ const DeleteFeedbackForm = ({ reviewToDelete, setReviewToDelete, open, onClose }
       }}
     >
       <DialogContent>
-        <DialogContentTitle variant='h6' className={styles.headerText} >
+        <DialogContentTitle variant='h6' className={styles.headerText}>
           Искаш ли да изтриеш отзива?
         </DialogContentTitle>
       </DialogContent>

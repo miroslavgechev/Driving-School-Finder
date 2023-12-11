@@ -1,7 +1,3 @@
-import { useState } from 'react';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -11,10 +7,15 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+
+import { useState } from 'react';
+
 import { useAuthContext } from 'contexts/authContext';
 import { SUCCESS_STATES } from 'CONSTANTS';
-import styles from './editPersonalDataForm.module.css';
 import { updateCustomUserData } from 'services/firestoreService';
+import styles from './editPersonalDataForm.module.css';
 
 const validationSchema = yup.object({
   firstName: yup
@@ -49,17 +50,11 @@ const EditPersonalDataForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
 
-  //! Probably not needed anymore
-  useEffect(() => {
-    formik.setFieldValue('firstName', user?.firstName);
-    formik.setFieldValue('lastName', user?.lastName);
-    formik.setFieldValue('email', user?.email);
-  }, [user]);
-
   const handleSubmit = async (values) => {
     try {
       formik.setStatus(null);
       setIsLoading(true);
+
       await updateCustomUserData(user.uid, values);
 
       setIsLoading(false);
@@ -92,7 +87,7 @@ const EditPersonalDataForm = () => {
             <TextField
               label='Име *'
               variant='outlined'
-              name={'firstName'}
+              name='firstName'
               fullWidth
               value={formik.values.firstName}
               onChange={handleChange}
@@ -109,7 +104,7 @@ const EditPersonalDataForm = () => {
             <TextField
               label='Фамилия *'
               variant='outlined'
-              name={'lastName'}
+              name='lastName'
               fullWidth
               value={formik.values.lastName}
               onChange={handleChange}
@@ -125,7 +120,7 @@ const EditPersonalDataForm = () => {
               disabled
               label='Имейл *'
               variant='outlined'
-              name={'email'}
+              name='email'
               fullWidth
               value={formik.values.email}
               onChange={handleChange}
@@ -140,14 +135,14 @@ const EditPersonalDataForm = () => {
                 {successState === SUCCESS_STATES.success &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="success">
+                    severity='success'>
                     Промените са запазени в системата
                   </Alert>
                 }
                 {successState === SUCCESS_STATES.error &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="error">
+                    severity='error'>
                     Промените не са запазени
                   </Alert>
                 }
@@ -175,9 +170,7 @@ const EditPersonalDataForm = () => {
             xs={12}
             justifyContent={'center'}
             alignItems={'center'}
-          >
-
-          </Grid>
+          />
         </Grid>
       </form>
     </Box >

@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import { useFormik } from 'formik';
-import * as yup from 'yup';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
@@ -10,9 +7,14 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
-import styles from './changePasswordForm.module.css';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
+
+import { useState } from 'react';
+
 import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES } from 'CONSTANTS';
 import { useAuthContext } from 'contexts/authContext';
+import styles from './changePasswordForm.module.css';
 
 const validationSchema = yup.object({
   oldPassword: yup
@@ -31,7 +33,6 @@ const validationSchema = yup.object({
 });
 
 const ChangePasswordForm = () => {
-
   const { updateCredentials } = useAuthContext();
 
   const initialValues = {
@@ -47,7 +48,9 @@ const ChangePasswordForm = () => {
     try {
       formik.setStatus(null);
       setIsLoading(true);
+
       await updateCredentials(values);
+
       setIsLoading(false);
       setSuccessState(SUCCESS_STATES.success);
     } catch (error) {
@@ -84,7 +87,7 @@ const ChangePasswordForm = () => {
             <TextField
               label='Текуща парола *'
               variant='outlined'
-              name={'oldPassword'}
+              name='oldPassword'
               type='password'
               fullWidth
               value={formik.values.oldPassword}
@@ -101,7 +104,7 @@ const ChangePasswordForm = () => {
             <TextField
               label='Нова парола *'
               variant='outlined'
-              name={'password'}
+              name='password'
               type='password'
               fullWidth
               value={formik.values.password}
@@ -118,7 +121,7 @@ const ChangePasswordForm = () => {
             <TextField
               label='Нова парола *'
               variant='outlined'
-              name={'rePassword'}
+              name='rePassword'
               type='password'
               fullWidth
               value={formik.values.rePassword}
@@ -134,14 +137,14 @@ const ChangePasswordForm = () => {
                 {successState === SUCCESS_STATES.success &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="success">
+                    severity='success'>
                     Промените са запазени в системата.
                   </Alert>
                 }
                 {formik.status &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="error">
+                    severity='error'>
                     {formik.status}
                   </Alert>
                 }
@@ -166,26 +169,9 @@ const ChangePasswordForm = () => {
             item
             container
             xs={12}
-            justifyContent={'center'}
-            alignItems={'center'}
-          >
-
-            {/* <Typography
-              variant={'subtitle2'}
-              color={'text.secondary'}
-              align={'center'}
-            >
-              С натискането на бутона "Регистрация" съгласяваш с нашите{' '}
-              <Link
-                component={'a'}
-                color={'primary'}
-                href={'/company-terms'}
-                underline={'none'}
-              >
-                условия за ползване.
-              </Link>
-            </Typography> */}
-          </Grid>
+            justifyContent='center'
+            alignItems='center'
+          />
         </Grid>
       </form>
     </Box >

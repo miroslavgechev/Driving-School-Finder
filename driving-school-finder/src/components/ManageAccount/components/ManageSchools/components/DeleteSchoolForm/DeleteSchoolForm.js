@@ -8,8 +8,8 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 
 import { useState } from 'react';
 
-import styles from './deleteSchool.module.css';
 import { deleteSchoolBySchoolId } from 'services/firestoreService';
+import styles from './deleteSchool.module.css';
 
 const DeleteSchoolForm = ({ school, open, onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,9 @@ const DeleteSchoolForm = ({ school, open, onClose }) => {
   const handleDeleteReview = async () => {
     try {
       setIsLoading(true);
+
       await deleteSchoolBySchoolId(school.id);
+
       setIsLoading(false);
       onClose();
     } catch (error) {

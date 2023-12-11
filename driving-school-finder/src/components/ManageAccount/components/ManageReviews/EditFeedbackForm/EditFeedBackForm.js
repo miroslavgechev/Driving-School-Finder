@@ -10,13 +10,14 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
-import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import styles from './editFeedbackForm.module.css';
+import { useState } from 'react';
+
 import { SUCCESS_STATES } from 'CONSTANTS';
 import { updateReviewByReviewId } from 'services/firestoreService';
+import styles from './editFeedbackForm.module.css';
 
 const validationSchema = yup.object({
   rating: yup
@@ -38,8 +39,8 @@ const EditFeedbackForm = ({ onClose, open, reviewToEdit, setReviewToEdit }) => {
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
 
   const initialValues = {
-    rating: Number(reviewToEdit.rating),
-    feedback: reviewToEdit.feedback,
+    rating: Number(reviewToEdit?.rating),
+    feedback: reviewToEdit?.feedback,
   };
 
   const handleSubmit = async (values) => {
@@ -48,15 +49,15 @@ const EditFeedbackForm = ({ onClose, open, reviewToEdit, setReviewToEdit }) => {
       setIsLoading(true);
 
       const review = {
-        fullName: reviewToEdit.fullName,
-        schoolId: reviewToEdit.schoolId,
-        schoolName: reviewToEdit.schoolName,
-        userId: reviewToEdit.userId,
+        fullName: reviewToEdit?.fullName,
+        schoolId: reviewToEdit?.schoolId,
+        schoolName: reviewToEdit?.schoolName,
+        userId: reviewToEdit?.userId,
         date: new Date().toISOString(),
         ...values,
       };
 
-      await updateReviewByReviewId(reviewToEdit.id, review);
+      await updateReviewByReviewId(reviewToEdit?.id, review);
 
       setSuccessState(SUCCESS_STATES.success);
 
@@ -108,22 +109,29 @@ const EditFeedbackForm = ({ onClose, open, reviewToEdit, setReviewToEdit }) => {
           <form onSubmit={formik.handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Typography variant='subtitle1' className={styles.headerText} sx={{ marginBottom: 1 }}>
-                  Редактираш отзив за {reviewToEdit.schoolName}
+                <Typography
+                  variant='subtitle1'
+                  className={styles.headerText}
+                  sx={{ marginBottom: 1 }}
+                >
+                  Редактираш отзив за {reviewToEdit?.schoolName}
                 </Typography>
               </Grid>
 
               <Grid item xs={12}>
-                <Typography variant='subtitle2' sx={{ marginBottom: 1 }}>
+                <Typography
+                  variant='subtitle2'
+                  sx={{ marginBottom: 1 }}
+                >
                   Оценка
                 </Typography>
 
                 <Box className={styles.containerBox}>
                   <Rating
-                    name="rating"
+                    name='rating'
                     precision={1}
-                    fontSize="inherit"
-                    size="large"
+                    fontSize='inherit'
+                    size='large'
                     value={Number(formik.values.rating)}
                     onChange={handleChange}
                   />
@@ -169,7 +177,7 @@ const EditFeedbackForm = ({ onClose, open, reviewToEdit, setReviewToEdit }) => {
                     {successState === SUCCESS_STATES.success &&
                       <Alert
                         className={styles.fullWidth}
-                        severity="success">
+                        severity='success'>
                         Твоят отзив е получен!
                       </Alert>
                     }
@@ -177,7 +185,7 @@ const EditFeedbackForm = ({ onClose, open, reviewToEdit, setReviewToEdit }) => {
                     {successState === SUCCESS_STATES.error &&
                       <Alert
                         className={styles.fullWidth}
-                        severity="error">
+                        severity='error'>
                         Нещо се обърка, твоят отзив не е получен...
                       </Alert>
                     }
