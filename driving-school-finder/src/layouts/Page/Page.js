@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
 
 import { ThemeProvider } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import CssBaseline from '@mui/material/CssBaseline';
-import getTheme from 'theme';
 
 import AOS from 'aos';
+
+import { useEffect } from 'react';
+
+import getTheme from 'theme';
 
 export default function Page({ children }) {
   useEffect(() => {
