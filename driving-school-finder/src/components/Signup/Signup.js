@@ -7,6 +7,7 @@ import RightSidePhotoCover from '../shared/RightSidePhotoCover/RightSidePhotoCov
 import styles from './signup.module.css';
 
 const Signup = () => {
+  
   return (
     <Box className={styles.mainBox}>
       <Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
