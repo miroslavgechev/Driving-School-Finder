@@ -16,15 +16,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
 
-import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
+import { useState, useEffect } from 'react';
+
 import { REGIONS, CATEGORIES, SUCCESS_STATES } from 'CONSTANTS';
-import styles from './schoolForm.module.css';
-import fileMapper from 'utils/fileMapper';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
 import { useAuthContext } from 'contexts/authContext';
+import fileMapper from 'utils/fileMapper';
+import styles from './schoolForm.module.css';
 
 const validationSchema = yup.object({
   name: yup
@@ -76,6 +77,8 @@ const validationSchema = yup.object({
     .required('Поне една категория трябва да бъде избрана')
     .min(1, 'Поне една категория трябва да бъде избрана')
 });
+
+const regions = ['Всички', ...REGIONS];
 
 const SchoolForm = () => {
   const [logoUrl, setLogoUrl] = useState(null);
@@ -153,8 +156,8 @@ const SchoolForm = () => {
     onSubmit: handleSubmit,
   });
 
-  const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
-  const checkedIcon = <CheckBoxIcon fontSize="small" />;
+  const icon = <CheckBoxOutlineBlankIcon fontSize='small' />;
+  const checkedIcon = <CheckBoxIcon fontSize='small' />;
 
   return (
     <Box>
@@ -181,24 +184,22 @@ const SchoolForm = () => {
             />
           </Grid>
 
-          <Grid item container xs={12} sm={4} className={styles.gridContainer}
-          >
+          <Grid item container xs={12} sm={4} className={styles.gridContainer}>
             <Box
               className={styles.boxContainer}
               marginBottom={{ xs: 0, sm: 0.5 }}
             >
-
               {logoUrl
                 ?
                 <Box className={styles.imageBoxContainer}>
-                  <img src={logoUrl} alt="Main" className={styles.image} />
+                  <img src={logoUrl} alt='logo' className={styles.image} />
                   <Button onClick={() => handleLogoDelete()}>Изтрий</Button>
                 </Box>
                 :
                 <Grid item xs={12} sm={12}>
                   <Button
-                    variant="contained"
-                    component="label"
+                    variant='contained'
+                    component='label'
                     size='large'
                     startIcon={<AddPhotoAlternateOutlinedIcon />}
                     fullWidth
@@ -239,7 +240,7 @@ const SchoolForm = () => {
               variant='outlined'
               name='description'
               multiline
-              rows={3}
+              rows={4}
               fullWidth
               value={formik.values.description}
               onChange={handleChange}
@@ -309,9 +310,10 @@ const SchoolForm = () => {
               multiple
               disableCloseOnSelect
               color='primary'
-              options={['Всички', ...REGIONS]}
+              options={regions}
               value={formik.values.regionsServed}
-              onChange={(event, value) => handleAutocompleteChange('regionsServed', value)}
+              onChange={(event, value) =>
+                handleAutocompleteChange('regionsServed', value)}
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => (
                   <Chip
@@ -355,7 +357,8 @@ const SchoolForm = () => {
               disableCloseOnSelect
               options={CATEGORIES}
               value={formik.values.categoriesServed}
-              onChange={(event, value) => handleAutocompleteChange('categoriesServed', value)}
+              onChange={(event, value) =>
+                handleAutocompleteChange('categoriesServed', value)}
               color='secondary'
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => (
@@ -402,14 +405,14 @@ const SchoolForm = () => {
                 {successState === SUCCESS_STATES.success &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="success">
+                    severity='success'>
                     Промените са запазени локално
                   </Alert>
                 }
                 {successState === SUCCESS_STATES.error &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="error">
+                    severity='error'>
                     Промените не са запазени
                   </Alert>
                 }
@@ -429,8 +432,6 @@ const SchoolForm = () => {
               </Button>
             </Box>
           </Grid>
-
-
         </Grid>
       </form >
     </Box >

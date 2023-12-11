@@ -3,6 +3,10 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+
+import { useState, useEffect } from 'react';
+
 import Container from 'layouts/Container/Container';
 import Headline from '../shared/Headline/Headline';
 import SchoolForm from './components/SchoolForm/SchoolForm';
@@ -12,14 +16,11 @@ import CoursesForm from './components/CoursesForm/CoursesForm';
 import ConfirmForm from './components/ConfirmForm/ConfirmForm';
 import SpinnerFullPage from 'components/shared/SpinnerFullPage/SpinnerFullPage';
 
-import styles from './schoolCreateEdit.module.css';
-
-import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthContext } from 'contexts/authContext';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
-
 import { getSchoolByOwnerUidAndSchoolId } from 'services/firestoreService';
+import { ROUTES } from 'CONSTANTS';
+import styles from './schoolCreateEdit.module.css';
 
 const SchoolCreateEdit = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -46,30 +47,30 @@ const SchoolCreateEdit = () => {
         setSchool(fetchedSchool);
 
         if (!fetchedSchool) {
-          throw new Error('School not found or you are not the owner');
+          throw new Error('Автошколата не съществува или ти не си собственик');
         }
 
       } catch (error) {
-        navigate('/notfound', { replace: true });
+        navigate(ROUTES.notFound(), { replace: true });
       }
     };
-    if (user && schoolUid) fetchSchool();
 
+    if (user && schoolUid) fetchSchool();
   }, [user, schoolUid]);
 
   return (
     <>
-      {!school && currentLocation !== '/school/create' &&
+      {!school && currentLocation !== ROUTES.schoolCreate() &&
         <SpinnerFullPage />
       }
 
       {
-        ((!school && currentLocation === '/school/create') || (school)) &&
+        ((!school && currentLocation === ROUTES.schoolCreate()) || (school)) &&
         <>
           <Box bgcolor={'alternate.main'}>
             <Container paddingY={{ xs: 2, sm: 2.5 }}>
               <Headline text={
-                currentLocation === '/school/create'
+                currentLocation === ROUTES.schoolCreate()
                   ?
                   'Създай автошкола'
                   :
@@ -82,7 +83,11 @@ const SchoolCreateEdit = () => {
             <Box>
               <Grid container spacing={4}>
                 <Grid item xs={12} md={4}>
-                  <Typography variant="h6" gutterBottom className={styles.headerText}>
+                  <Typography
+                    variant='h6'
+                    gutterBottom
+                    className={styles.headerText}
+                  >
                     Данни за автошколата
                   </Typography>
                   <Typography variant='subtitle2' color='text.secondary'>
@@ -93,14 +98,16 @@ const SchoolCreateEdit = () => {
                 <Grid item xs={12} md={8}>
                   <SchoolForm />
                 </Grid>
-
               </Grid>
 
               <Divider sx={{ marginY: 4 }} />
 
               <Grid container spacing={4}>
                 <Grid item xs={12} md={4}>
-                  <Typography variant="h6" gutterBottom className={styles.headerText}>
+                  <Typography variant='h6'
+                    gutterBottom
+                    className={styles.headerText}
+                  >
                     Данни за контакт
                   </Typography>
                   <Typography variant='subtitle2' color='text.secondary'>
@@ -114,12 +121,17 @@ const SchoolCreateEdit = () => {
               </Grid>
 
               <Divider sx={{ marginY: 4 }} />
+
               <Grid container spacing={4}>
                 <Grid item xs={12} md={4}>
-                  <Typography variant="h6" gutterBottom className={styles.headerText}>
+                  <Typography
+                    variant='h6'
+                    gutterBottom
+                    className={styles.headerText}
+                  >
                     Снимки
                   </Typography>
-                  <Typography variant={'subtitle2'} color={'text.secondary'}>
+                  <Typography variant='subtitle2' color='text.secondary'>
                     Качи снимки с високо качество, показвайки възможностите на школата
                   </Typography>
                 </Grid>
@@ -127,26 +139,35 @@ const SchoolCreateEdit = () => {
                 <Grid item xs={12} md={8}>
                   <ImgForm />
                 </Grid>
-
               </Grid>
+
               <Divider sx={{ marginY: 4 }} />
 
               <Grid container spacing={4}>
                 <Grid item xs={12} md={4}>
-                  <Typography variant="h6" gutterBottom className={styles.headerText}>
+                  <Typography
+                    variant='h6'
+                    gutterBottom
+                    className={styles.headerText}
+                  >
                     Курсове
                   </Typography>
-                  <Typography variant={'subtitle2'} color={'text.secondary'}>
+                  <Typography variant='subtitle2' color='text.secondary'>
                     Опиши курсовете с тяхната продължителност и цени
                   </Typography>
                 </Grid>
+
                 <Grid item xs={12} md={12}>
                   {
                     school && school?.categoriesServed?.length > 0
                       ?
                       <CoursesForm key={school?.categoriesServed?.length} />
                       :
-                      <Typography variant="h6" gutterBottom className={`${styles.headerText} ${styles.centerText}`}>
+                      <Typography
+                        variant='h6'
+                        gutterBottom
+                        className={`${styles.headerText} ${styles.centerText}`}
+                      >
                         Все още не си избрал категории, които предлага автошколата
                       </Typography>
                   }
@@ -154,20 +175,17 @@ const SchoolCreateEdit = () => {
               </Grid>
 
               <Divider sx={{ marginY: 4 }} />
+
               <Grid container spacing={4}>
                 <Grid item xs={12} md={12}>
                   <ConfirmForm />
                 </Grid>
               </Grid>
-
-
             </Box>
           </Container>
         </>
       }
-
     </>
-
   );
 };
 

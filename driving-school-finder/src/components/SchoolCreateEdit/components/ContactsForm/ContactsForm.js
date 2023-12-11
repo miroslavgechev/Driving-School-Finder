@@ -8,15 +8,14 @@ import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
-import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import { REGIONS } from 'CONSTANTS';
-import styles from './contacts.module.css';
-import { SUCCESS_STATES } from 'CONSTANTS';
-import { useSetSchoolContext } from 'contexts/setSchoolContext';
+import { useState } from 'react';
 
+import { REGIONS, SUCCESS_STATES } from 'CONSTANTS';
+import { useSetSchoolContext } from 'contexts/setSchoolContext';
+import styles from './contacts.module.css';
 
 const validationSchema = yup.object({
   city: yup
@@ -66,6 +65,7 @@ const ContactsForm = () => {
       setIsLoading(true);
 
       setSchoolContacts(values);
+
       setTimeout(() => {
         setIsLoading(false);
         setSuccessState(SUCCESS_STATES.success);
@@ -107,7 +107,7 @@ const ContactsForm = () => {
               Град
             </Typography>
             <TextField
-              variant="outlined"
+              variant='outlined'
               name='city'
               fullWidth
               disabled
@@ -129,7 +129,8 @@ const ContactsForm = () => {
             <Autocomplete
               options={REGIONS}
               value={formik.values.region || null}
-              onChange={(event, value) => handleAutocompleteChange('region', value)}
+              onChange={(event, value) =>
+                handleAutocompleteChange('region', value)}
               renderInput={(params) => (
                 <TextField {...params}
                   label='Район'
@@ -142,7 +143,6 @@ const ContactsForm = () => {
                 />
               )}
             />
-
           </Grid>
 
           <Grid item xs={12}>
@@ -185,7 +185,6 @@ const ContactsForm = () => {
             />
           </Grid>
 
-
           <Grid item xs={12} sm={6}>
             <Typography
               variant='subtitle2'
@@ -212,14 +211,14 @@ const ContactsForm = () => {
                 {successState === SUCCESS_STATES.success &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="success">
+                    severity='success'>
                     Промените са запазени локално
                   </Alert>
                 }
                 {successState === SUCCESS_STATES.error &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="error">
+                    severity='error'>
                     Промените не са запазени
                   </Alert>
                 }

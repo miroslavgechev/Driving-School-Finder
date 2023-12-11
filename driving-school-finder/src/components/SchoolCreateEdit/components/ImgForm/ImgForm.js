@@ -8,14 +8,15 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import FormHelperText from '@mui/material/FormHelperText';
 
-import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import styles from './imgForm.module.css';
+
+import { useEffect, useState } from 'react';
 
 import { SUCCESS_STATES } from 'CONSTANTS';
-import fileMapper from 'utils/fileMapper';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
+import fileMapper from 'utils/fileMapper';
+import styles from './imgForm.module.css';
 
 const validationSchema = yup.object({
   mainImage: yup
@@ -70,7 +71,9 @@ export const ImgForm = () => {
     try {
       formik.setStatus(null);
       setIsLoading(true);
+
       setSchoolImages(images);
+
       setTimeout(() => {
         setIsLoading(false);
         setSuccessState(SUCCESS_STATES.success);
@@ -85,17 +88,25 @@ export const ImgForm = () => {
 
   const handleImageChange = async (event, name) => {
     setSuccessState(SUCCESS_STATES.error);
+
     if (name === 'mainImage') {
+
       setSchoolFiles(name, event.target.files[0]);
       formik.setFieldValue(name, event.target.files[0]);
+
       const url = await fileMapper([event.target.files[0]]);
       setImages(data => ({ ...data, mainImage: url[0] }));
+
     } else {
+
       const firstFourImages = Array.from(event.target.files).slice(0, 4);
+
       setSchoolFiles(name, firstFourImages);
       formik.setFieldValue(name, firstFourImages);
+
       const urlsArray = await fileMapper(firstFourImages);
       setImages(data => ({ ...data, supportImages: urlsArray }));
+
     }
   };
 
@@ -104,7 +115,11 @@ export const ImgForm = () => {
       setImages(data => ({ ...data, mainImage: null }));
       formik.setFieldValue('mainImage', '');
     } else {
-      const newImages = Array.from(images.supportImages).filter((_, i) => i !== prop);
+      const newImages =
+        Array
+          .from(images.supportImages)
+          .filter((_, i) => i !== prop);
+
       setImages(data => ({ ...data, supportImages: newImages }));
       formik.setFieldValue('supportImages', newImages);
     }
@@ -189,19 +204,38 @@ export const ImgForm = () => {
           <Grid item container xs={12} sm={12} className={styles.imageContainer}>
             {images?.mainImage &&
               <Box className={styles.imageListContainer}>
-                <img src={images.mainImage} alt="Main" className={styles.image} />
-                <Button onClick={() => handleImageDelete('mainImage')}>Изтрий</Button>
+                <img
+                  src={images.mainImage}
+                  alt="Main Image"
+                  className={styles.image}
+                />
+                <Button
+                  onClick={() => handleImageDelete('mainImage')}
+                >
+                  Изтрий
+                </Button>
               </Box>
             }
-            {images?.supportImages?.length > 0 && Array.from(images.supportImages).map((url, index) => (
-              <Box
-                key={index}
-                className={styles.imageListContainer}
-              >
-                <img src={url} alt={`Additional ${index}`} className={styles.image} />
-                <Button onClick={() => handleImageDelete(index)}>Изтрий</Button>
-              </Box>
-            ))}
+            {images?.supportImages?.length > 0 &&
+              Array
+                .from(images.supportImages)
+                .map((url, index) => (
+                  <Box
+                    key={index}
+                    className={styles.imageListContainer}
+                  >
+                    <img
+                      src={url}
+                      alt={`Support Image ${index}`}
+                      className={styles.image}
+                    />
+                    <Button
+                      onClick={() => handleImageDelete(index)}
+                    >
+                      Изтрий
+                    </Button>
+                  </Box>
+                ))}
           </Grid>
 
           <Grid item container xs={12}>
@@ -210,14 +244,14 @@ export const ImgForm = () => {
                 {successState === SUCCESS_STATES.success &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="success">
+                    severity='success'>
                     Промените са запазени локално
                   </Alert>
                 }
                 {successState === SUCCESS_STATES.error &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="error">
+                    severity='error'>
                     Промените не са запазени
                   </Alert>
                 }

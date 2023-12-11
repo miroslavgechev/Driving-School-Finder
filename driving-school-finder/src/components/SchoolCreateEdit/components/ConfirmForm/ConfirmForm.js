@@ -6,12 +6,13 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
-import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import styles from './confirmForm.module.css';
+
+import { useEffect, useState } from 'react';
 
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
-import { SUCCESS_STATES } from 'CONSTANTS';
+import { ROUTES, SUCCESS_STATES } from 'CONSTANTS';
+import styles from './confirmForm.module.css';
 
 const ConfirmForm = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -42,12 +43,13 @@ const ConfirmForm = () => {
   const handleClick = async () => {
     try {
       setIsLoading(true);
+
       await uploadSchool();
+
       setSuccessState(SUCCESS_STATES.success);
       setTimeout(() => {
-        navigate('/account');
+        navigate(ROUTES.account());
       }, 500);
-
     } catch (error) {
       setSuccessState(SUCCESS_STATES.error);
       setIsLoading(false);
@@ -70,7 +72,7 @@ const ConfirmForm = () => {
               :
               <CloudUploadOutlinedIcon />}
           >
-            {currentLocation === '/school/create'
+            {currentLocation === ROUTES.schoolCreate()
               ?
               'Създай автошколата'
               :
@@ -80,8 +82,8 @@ const ConfirmForm = () => {
             {successState === SUCCESS_STATES.success &&
               <Alert
                 className={styles.fullWidth}
-                severity="success">
-                {currentLocation === '/school/create'
+                severity='success'>
+                {currentLocation === ROUTES.schoolCreate()
                   ?
                   'Автошколата е създадена успешно, пренасочваме те...'
                   :
@@ -91,8 +93,8 @@ const ConfirmForm = () => {
             {successState === SUCCESS_STATES.error &&
               <Alert
                 className={styles.fullWidth}
-                severity="error">
-                {currentLocation === '/school/create'
+                severity='error'>
+                {currentLocation === ROUTES.schoolCreate()
                   ?
                   'Нещо се счупи. Автошколата не е създадена...'
                   :

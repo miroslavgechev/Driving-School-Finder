@@ -15,13 +15,14 @@ import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
-import { useState } from 'react';
-import styles from './courseForm.module.css';
-import { TABLE_SUBTITLES, SUCCESS_STATES } from 'CONSTANTS';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
+import { useState } from 'react';
+
+import { TABLE_SUBTITLES, SUCCESS_STATES } from 'CONSTANTS';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
+import styles from './courseForm.module.css';
 
 const subtitles = TABLE_SUBTITLES;
 
@@ -67,7 +68,13 @@ const CoursesForm = () => {
       let courses = [];
 
       school.categoriesServed?.forEach((item) => {
-        let course = Object.fromEntries(Object.entries(values).filter(([key]) => key.split('_')[0] === item));
+        let course =
+          Object
+            .fromEntries(
+              Object
+                .entries(values)
+                .filter(([key]) => key.split('_')[0] === item));
+
         courses.push(course);
       });
 
@@ -123,12 +130,20 @@ const CoursesForm = () => {
                   <TableRow
                     key={key}
                     sx={{
-                      '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
+                      '&:last-child td, &:last-child th':
+                        { border: 0, bgcolor: 'text.alternate.dark' },
                       '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
                     }}
                   >
-                    <TableCell className={styles.cellWidth} component="th" scope="row">
-                      <Typography variant='subtitle2' className={styles.headerText}>
+                    <TableCell
+                      className={styles.cellWidth}
+                      component='th'
+                      scope='row'
+                    >
+                      <Typography
+                        variant='subtitle2'
+                        className={styles.headerText}
+                      >
                         {value}
                       </Typography>
                     </TableCell>
@@ -161,7 +176,6 @@ const CoursesForm = () => {
                   </TableRow>
                 ))}
               </TableBody>
-
             </Table>
           </TableContainer>
 
@@ -171,14 +185,14 @@ const CoursesForm = () => {
                 {successState === SUCCESS_STATES.success &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="success">
+                    severity='success'>
                     Промените са запазени локално
                   </Alert>
                 }
                 {successState === SUCCESS_STATES.error &&
                   <Alert
                     className={styles.fullWidth}
-                    severity="error">
+                    severity='error'>
                     Промените не са запазени
                   </Alert>
                 }
@@ -198,7 +212,6 @@ const CoursesForm = () => {
               </Button>
             </Box>
           </Grid>
-
         </Grid>
       </form>
     </Container>
