@@ -21,6 +21,10 @@ const Catalogue = () => {
   const theme = useTheme();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const getSchools = async () => {
       try {
         const schools = await getAllSchoolsWithRatingsSorted();
