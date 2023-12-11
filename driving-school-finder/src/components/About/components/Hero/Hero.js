@@ -1,10 +1,8 @@
 import { alpha, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-
 import Typography from '@mui/material/Typography';
 
 import Container from 'layouts/Container/Container';
-
 import styles from './hero.module.css';
 
 const Hero = () => {
@@ -46,7 +44,7 @@ const Hero = () => {
               color: 'common.white',
             }}
           >
-            Какви ни докара до тук
+            Какви ни докара до тук?
           </Typography>
         </Box>
       </Container>
@@ -55,4 +53,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

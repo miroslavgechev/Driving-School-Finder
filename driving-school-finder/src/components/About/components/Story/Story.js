@@ -1,4 +1,5 @@
 import { useTheme } from '@mui/material/styles';
+
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -68,7 +69,7 @@ const Story = () => {
             bgcolor='alternate.main'
           >
             <CardContent sx={{ padding: 3 }}>
-              <ListItem component="div" disableGutters className={styles.listItem}>
+              <ListItem component='div' disableGutters className={styles.listItem}>
                 <ListItemAvatar sx={{ marginRight: 3 }}>
                   <Avatar
                     src={'/miroslav.jfif'}
@@ -98,7 +99,7 @@ const Story = () => {
                   <GitHubIcon fontSize='large' />
                 </IconButton>
               </Link>
-              <Typography variant={'body1'} className={styles.whiteSpace}>
+              <Typography variant='body1' className={styles.whiteSpace}>
                 {' '}
               </Typography>
               <Link href='mailto:miroslav.gechev@gmail.com'>
