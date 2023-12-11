@@ -115,7 +115,14 @@ export const addEmptyRatingsDirectoryIfNotExist = async (schoolUid) => {
   }
 };
 
-export const addSchool = async (school) => await setDoc(doc(db, 'schools', school.ownerUid), school);
+export const addSchool = async (school) => {
+  try {
+    await setDoc(doc(db, 'schools', school.ownerUid), school);
+
+  } catch (error) {
+    throw Error(error);
+  }
+};
 
 export const updateSchoolRating = async (schoolUid) => {
   const docRef = doc(db, 'ratings', schoolUid);
@@ -311,3 +318,13 @@ export const getAllSchoolsWithRatingsSorted = async () => {
   }
 };
 
+export const getFaq = async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, 'faq'));
+    const faq = querySnapshot.docs.map(doc => doc.data());
+    return faq;
+
+  } catch (error) {
+    throw new Error(error);
+  }
+};
