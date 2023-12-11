@@ -17,6 +17,7 @@ import EditFeedbackForm from './EditFeedbackForm/EditFeedbackForm';
 import DeleteFeedbackForm from './DeleteFeedbackForm/DeleteFeedbackForm';
 
 import styles from './manageReviews.module.css';
+import { formatDate } from 'utils/dateFormatter';
 import { useAuthContext } from 'contexts/authContext';
 import { getReviewsByUserId } from 'services/firestoreService';
 
@@ -32,6 +33,7 @@ const ManageReviews = () => {
     const fetchReviews = async () => {
       try {
         const reviews = await getReviewsByUserId(user.uid);
+        reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
         setUserReviews(reviews);
       } catch (error) {
         console.log(error);
@@ -132,7 +134,7 @@ const ManageReviews = () => {
 
                       <TableCell key={index + review.date} className={styles.centerText} component='td' scope='row'>
                         <Typography variant='subtitle2'>
-                          {review?.date?.slice(0, 10)}
+                          {review?.date && formatDate(review?.date)}
                         </Typography>
                       </TableCell>
 

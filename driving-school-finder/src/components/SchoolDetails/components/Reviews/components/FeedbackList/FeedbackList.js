@@ -15,8 +15,8 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { useTheme } from '@mui/material/styles';
+import { formatDate } from 'utils/dateFormatter';
 import styles from './feedbackList.module.css';
-import style from 'react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -135,7 +135,7 @@ const FeedbackList = ({ onClose, open, reviews }) => {
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       ),
-    [order, orderBy, page, rowsPerPage],
+    [order, orderBy, page, rowsPerPage, reviews],
   );
 
   return (
@@ -175,7 +175,7 @@ const FeedbackList = ({ onClose, open, reviews }) => {
                   }}
                   className={styles.tableRow}
                 >
-                  <TableCell key={index + row.rating} className={style.centerText} component='td' scope='row'>
+                  <TableCell key={index + row.rating} className={styles.centerText} component='td' scope='row'>
                     <Rating
                       name='text-feedback'
                       value={Number(row.rating)}
@@ -192,15 +192,16 @@ const FeedbackList = ({ onClose, open, reviews }) => {
                     </Typography>
                   </TableCell>
 
-                  <TableCell key={index + row.fullName} className={style.centerText} component='td' scope='row'>
+                  <TableCell key={index + row.fullName} className={styles.centerText} component='td' scope='row'>
                     <Typography variant='subtitle2'>
                       {row.fullName}
                     </Typography>
                   </TableCell>
 
-                  <TableCell key={index + row.date} className={style.centerText} component='td' scope='row'>
+                  <TableCell key={index + row.date} className={styles.centerText} component='td' scope='row'>
                     <Typography variant='subtitle2'>
-                      {row.date.slice(0, 10)}
+
+                      {formatDate(row.date)}
                     </Typography>
                   </TableCell>
 
@@ -227,6 +228,8 @@ const FeedbackList = ({ onClose, open, reviews }) => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        labelRowsPerPage='Редове на страница:'
+        labelDisplayedRows={({ from, to, count }) => `${from}-${to} от ${count}`}
       />
     </Dialog >
   );

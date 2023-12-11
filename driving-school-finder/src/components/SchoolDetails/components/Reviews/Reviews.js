@@ -9,6 +9,7 @@ import Rating from '@mui/material/Rating';
 import FeedbackForm from './components/FeedbackForm/FeedbackForm';
 import FeedbackList from './components/FeedbackList/FeedbackList';
 
+import { formatDate } from 'utils/dateFormatter';
 import styles from './reviews.module.css';
 
 const Reviews = ({ schoolUid, schoolName, userCanEdit, rating, reviews, setUserCanEdit }) => {
@@ -90,7 +91,7 @@ const Reviews = ({ schoolUid, schoolName, userCanEdit, rating, reviews, setUserC
               />
             </Box>
             <Typography variant='caption' color='text.secondary'>
-              {`от ${review.fullName}, ${review.date.slice(0, 10)}`}
+              {`от ${review.fullName}, ${formatDate(review.date)}`}
             </Typography>
             <Typography marginY={1}>{review?.feedback}</Typography>
           </Grid>
