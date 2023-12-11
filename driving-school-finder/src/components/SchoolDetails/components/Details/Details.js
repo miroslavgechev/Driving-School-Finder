@@ -9,19 +9,17 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Rating from '@mui/material/Rating';
 import Chip from '@mui/material/Chip';
-
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import PlaceOutlinedIcon from '@mui/icons-material/PlaceOutlined';
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined';
 import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 
-import styles from './details.module.css';
 import { REGIONS, USER_ROLES } from 'CONSTANTS';
 import { useAuthContext } from 'contexts/authContext';
+import styles from './details.module.css';
 
 const Details = ({ school, rating }) => {
-
   const { user } = useAuthContext();
 
   return (
@@ -42,9 +40,7 @@ const Details = ({ school, rating }) => {
         className={styles.ratingContainer}
         marginTop={1}
         marginBottom={1}>
-        <Box className={styles.ratingBox}
-          paddingBottom={1}
-        >
+        <Box className={styles.ratingBox} paddingBottom={1}>
           <Rating
             name='text-feedback'
             value={rating?.ratingScore || 0}
@@ -54,11 +50,11 @@ const Details = ({ school, rating }) => {
             size='large'
           />
         </Box>
-        <Link href={'#reviews'} className={styles.link} variant='subtitle1'>
+        <Link href='#reviews' className={styles.link} variant='subtitle1'>
           {
-            (rating && Object.keys(rating).length === 0)
+            (rating && Object.keys(rating)?.length === 0)
               ?
-              (user && user.role === USER_ROLES.student) ? 'Дай първи отзив тук!' : 'Все още няма отзиви'
+              (user && user?.role === USER_ROLES.student) ? 'Дай първи отзив тук!' : 'Все още няма отзиви'
               :
               `${rating?.ratingScore?.toFixed(1)} от ${rating?.reviewsCount} оценки`
           }
@@ -76,7 +72,7 @@ const Details = ({ school, rating }) => {
           color='text.secondary'
           marginTop={1}
         >
-          {school.description}
+          {school?.description}
         </Typography>
       </Box>
 
@@ -88,7 +84,7 @@ const Details = ({ school, rating }) => {
           {/* categoriesServed */}
           <Grid item xs={6}>
             <ListItem
-              component="div"
+              component='div'
               disableGutters
               className={styles.listItem}
             >
@@ -101,7 +97,7 @@ const Details = ({ school, rating }) => {
               <div>
                 <Typography variant='body1'>Категории</Typography>
                 <div>
-                  {school.categoriesServed.map((item) => (
+                  {school?.categoriesServed?.map((item) => (
                     <Chip
                       key={item}
                       label={item}
@@ -133,9 +129,9 @@ const Details = ({ school, rating }) => {
               <div>
                 <Typography variant='body1'>Обслужвани райони</Typography>
                 <div>
-                  {school.regionsServed.length < REGIONS.length
+                  {school?.regionsServed?.length < REGIONS.length
                     ?
-                    school.regionsServed.map((item) => (
+                    school?.regionsServed?.map((item) => (
                       <Chip
                         key={item}
                         label={item}
@@ -147,7 +143,7 @@ const Details = ({ school, rating }) => {
                     ))
                     :
                     <Chip
-                      label={'Всички'}
+                      label='Всички'
                       size='small'
                       color='primary'
                       clickable
@@ -168,7 +164,7 @@ const Details = ({ school, rating }) => {
         <Typography>Защо да избереш нас?</Typography>
         <Box marginTop={1}>
           <ul>
-            {school.whyUs.map((item, i) => (
+            {school?.whyUs?.map((item, i) => (
 
               item.length > 0
               &&
@@ -204,7 +200,7 @@ const Details = ({ school, rating }) => {
             sx={{
               color: 'text.secondary',
             }}
-            href={`tel:${school.phone}`}
+            href={`tel:${school?.phone}`}
             startIcon={
               <LocalPhoneRoundedIcon />
             }
@@ -216,7 +212,7 @@ const Details = ({ school, rating }) => {
             sx={{
               color: 'text.secondary',
             }}
-            href={`mailto:${school.email}`}
+            href={`mailto:${school?.email}`}
             startIcon={
               <EmailRoundedIcon />
             }
@@ -229,7 +225,7 @@ const Details = ({ school, rating }) => {
               color: 'text.secondary',
             }}
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-              `${school.city}, ${school.region}, ${school.street}`
+              `${school?.city}, ${school?.region}, ${school?.street}`
             )}`}
             target='_blank'
             startIcon={

@@ -37,7 +37,9 @@ const Courses = ({ school }) => {
         <Table id='courses' className={styles.table}>
           <TableHead sx={{ bgcolor: 'alternate.dark' }}>
             <TableRow>
+
               <TableCell />
+
               {school?.categoriesServed.map((item, i) => (
                 <TableCell key={i} className={styles.centerText}>
                   <Typography
@@ -48,20 +50,30 @@ const Courses = ({ school }) => {
                   </Typography>
                 </TableCell>
               ))}
+
             </TableRow>
           </TableHead>
 
           <TableBody>
+
             {Object.entries(subtitles).map(([key, value]) => (
               <TableRow
                 key={key}
                 sx={{
-                  '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
+                  '&:last-child td, &:last-child th':
+                    { border: 0, bgcolor: 'text.alternate.dark' },
                   '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
                 }}
               >
-                <TableCell className={styles.cellWidth} component="th" scope="row">
-                  <Typography variant='subtitle2' className={styles.headerText}>
+                <TableCell
+                  className={styles.cellWidth}
+                  component='th'
+                  scope='row'
+                >
+                  <Typography
+                    variant='subtitle2'
+                    className={styles.headerText}
+                  >
                     {value}
                   </Typography>
                 </TableCell>
@@ -69,19 +81,28 @@ const Courses = ({ school }) => {
                 {school.categoriesServed.map((item, i) => (
                   <TableCell key={i + item} className={styles.centerText}>
 
-                    <Typography color='text.secondary.contrastText' variant='subtitle2' fontWeight={key === 'coursePrice' ? 900 : undefined} >
-                      {(tableValues[`${item + '_' + key}`] == 0 && !key.startsWith('hours')) ?
+                    <Typography
+                      color='text.secondary.contrastText'
+                      variant='subtitle2'
+                      fontWeight={key === 'coursePrice' ? 900 : undefined}
+                    >
+                      {(tableValues[`${item + '_' + key}`] == 0
+                        && !key.startsWith('hours'))
+                        ?
                         'Безплатен' :
                         tableValues[`${item + '_' + key}`]}
+
                       {' '}
-                      {tableValues[`${item + '_' + key}`] != 0 ?
-                        (key.startsWith('hours') ? 'часа' : 'лева') :
+
+                      {tableValues[`${item + '_' + key}`] != 0
+                        ?
+                        (key.startsWith('hours') ? 'часа' : 'лева')
+                        :
                         (key.startsWith('hours') ? 'часа' : '')}
                     </Typography>
 
                   </TableCell>
                 ))}
-
               </TableRow>
             ))}
           </TableBody>
@@ -89,8 +110,6 @@ const Courses = ({ school }) => {
         </Table>
       </TableContainer>
     </Container>
-
-
   );
 };
 

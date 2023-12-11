@@ -1,4 +1,3 @@
-import { useState, useMemo } from 'react';
 
 import Dialog from '@mui/material/Dialog';
 import Typography from '@mui/material/Typography';
@@ -13,8 +12,10 @@ import Rating from '@mui/material/Rating';
 import TablePagination from '@mui/material/TablePagination';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import useMediaQuery from '@mui/material/useMediaQuery';
-
 import { useTheme } from '@mui/material/styles';
+
+import { useState, useMemo } from 'react';
+
 import { formatDate } from 'utils/dateFormatter';
 import styles from './feedbackList.module.css';
 
@@ -30,8 +31,10 @@ function descendingComparator(a, b, orderBy) {
 
 function getComparator(order, orderBy) {
   return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
+    ?
+    (a, b) => descendingComparator(a, b, orderBy)
+    :
+    (a, b) => -descendingComparator(a, b, orderBy);
 }
 
 function stableSort(array, comparator) {
@@ -128,13 +131,19 @@ const FeedbackList = ({ onClose, open, reviews }) => {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - Object.values(reviews).length) : 0;
+    page > 0
+      ?
+      Math.max(0, (1 + page) * rowsPerPage - Object.values(reviews).length)
+      :
+      0;
+
   const visibleRows = useMemo(
     () =>
-      stableSort(Object.values(reviews), getComparator(order, orderBy)).slice(
-        page * rowsPerPage,
-        page * rowsPerPage + rowsPerPage,
-      ),
+      stableSort(Object.values(reviews), getComparator(order, orderBy))
+        .slice(
+          page * rowsPerPage,
+          page * rowsPerPage + rowsPerPage,
+        ),
     [order, orderBy, page, rowsPerPage, reviews],
   );
 
@@ -170,12 +179,19 @@ const FeedbackList = ({ onClose, open, reviews }) => {
                   hover
                   key={index}
                   sx={{
-                    '&:last-child td, &:last-child th': { border: 0, bgcolor: 'text.alternate.dark' },
+                    '&:last-child td, &:last-child th':
+                      { border: 0, bgcolor: 'text.alternate.dark' },
                     '&:nth-of-type(2n)': { bgcolor: 'alternate.main' },
                   }}
                   className={styles.tableRow}
                 >
-                  <TableCell key={index + row.rating} className={styles.centerText} component='td' scope='row'>
+
+                  <TableCell
+                    key={index + row.rating}
+                    className={styles.centerText}
+                    component='td'
+                    scope='row'
+                  >
                     <Rating
                       name='text-feedback'
                       value={Number(row.rating)}
@@ -186,21 +202,33 @@ const FeedbackList = ({ onClose, open, reviews }) => {
                     />
                   </TableCell>
 
-                  <TableCell key={index + row.feedback} component='td' scope='row'>
+                  <TableCell
+                    key={index + row.feedback}
+                    component='td'
+                    scope='row'
+                  >
                     <Typography variant='subtitle2'>
                       {row.feedback}
                     </Typography>
                   </TableCell>
 
-                  <TableCell key={index + row.fullName} className={styles.centerText} component='td' scope='row'>
+                  <TableCell
+                    key={index + row.fullName}
+                    className={styles.centerText}
+                    component='td'
+                    scope='row'
+                  >
                     <Typography variant='subtitle2'>
                       {row.fullName}
                     </Typography>
                   </TableCell>
 
-                  <TableCell key={index + row.date} className={styles.centerText} component='td' scope='row'>
+                  <TableCell
+                    key={index + row.date}
+                    className={styles.centerText}
+                    component='td'
+                    scope='row'>
                     <Typography variant='subtitle2'>
-
                       {formatDate(row.date)}
                     </Typography>
                   </TableCell>
@@ -209,17 +237,16 @@ const FeedbackList = ({ onClose, open, reviews }) => {
               );
             })}
 
-            {emptyRows > 0 && (
-              <TableRow
-              >
+            {emptyRows > 0 &&
+              <TableRow>
                 <TableCell colSpan={6} />
               </TableRow>
-            )}
+            }
 
           </TableBody>
-
         </Table>
       </TableContainer>
+
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component='div'
@@ -229,7 +256,8 @@ const FeedbackList = ({ onClose, open, reviews }) => {
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
         labelRowsPerPage='Редове на страница:'
-        labelDisplayedRows={({ from, to, count }) => `${from}-${to} от ${count}`}
+        labelDisplayedRows={({ from, to, count }) =>
+          `${from}-${to} от ${count}`}
       />
     </Dialog >
   );

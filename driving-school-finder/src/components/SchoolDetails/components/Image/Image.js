@@ -1,4 +1,3 @@
-import React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
@@ -15,7 +14,7 @@ const Image = ({ mainImage, supportImages, name }) => {
 
   return (
     <Grid container spacing={2} className={styles.mainContainer}>
-      {images.map((item, i) => (
+      {images?.map((item, i) => (
         <Grid key={i} item xs={i === 0 ? 12 : 6}>
           <Box
             className={styles.imageContainer}

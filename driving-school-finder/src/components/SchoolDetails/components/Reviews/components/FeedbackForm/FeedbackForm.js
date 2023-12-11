@@ -10,14 +10,15 @@ import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 
-import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import styles from './feedbackForm.module.css';
+import { useState } from 'react';
+
 import { useAuthContext } from 'contexts/authContext';
 import { SUCCESS_STATES } from 'CONSTANTS';
 import { addReviewToSchool } from 'services/firestoreService';
+import styles from './feedbackForm.module.css';
 
 const validationSchema = yup.object({
   rating: yup
@@ -51,17 +52,16 @@ const FeedbackForm = ({ onClose, open, schoolUid, schoolName, setUserCanEdit }) 
 
       const review = {
         ...values,
-        fullName: `${user.firstName} ${user.lastName}`,
+        fullName: `${user?.firstName} ${user?.lastName}`,
         date: new Date().toISOString(),
         schoolId: schoolUid,
         schoolName,
-        userId: user.uid,
+        userId: user?.uid,
       };
 
       await addReviewToSchool(schoolUid, review);
 
       setSuccessState(SUCCESS_STATES.success);
-
       setTimeout(() => {
         setIsLoading(false);
         onClose();
@@ -88,7 +88,7 @@ const FeedbackForm = ({ onClose, open, schoolUid, schoolName, setUserCanEdit }) 
     <Dialog
       onClose={onClose}
       open={open}
-      maxWidth={'sm'}
+      maxWidth='sm'
       sx={{
         '& .MuiPaper-root': {
           borderRadius: 2,
@@ -110,7 +110,11 @@ const FeedbackForm = ({ onClose, open, schoolUid, schoolName, setUserCanEdit }) 
           <form onSubmit={formik.handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Typography variant='subtitle1' className={styles.headerText} sx={{ marginBottom: 1 }}>
+                <Typography
+                  variant='subtitle1'
+                  className={styles.headerText}
+                  sx={{ marginBottom: 1 }}
+                >
                   Даваш оценка като {user?.firstName} {user?.lastName}
                 </Typography>
               </Grid>
@@ -171,14 +175,14 @@ const FeedbackForm = ({ onClose, open, schoolUid, schoolName, setUserCanEdit }) 
                     {successState === SUCCESS_STATES.success &&
                       <Alert
                         className={styles.fullWidth}
-                        severity="success">
+                        severity='success'>
                         Твоят отзив е получен!
                       </Alert>
                     }
                     {successState === SUCCESS_STATES.error &&
                       <Alert
                         className={styles.fullWidth}
-                        severity="error">
+                        severity='error'>
                         Нещо се обърка, твоят отзив не е получен...
                       </Alert>
                     }
