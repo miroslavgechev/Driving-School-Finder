@@ -321,7 +321,10 @@ export const getAllSchoolsWithRatingsSorted = async () => {
 export const getFaq = async () => {
   try {
     const querySnapshot = await getDocs(collection(db, 'faq'));
-    const faq = querySnapshot.docs.map(doc => doc.data());
+    const faq = querySnapshot.docs.map(doc => ({
+      ...doc.data(),
+      id: doc.id
+    }));
     return faq;
 
   } catch (error) {
