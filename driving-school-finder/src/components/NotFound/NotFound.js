@@ -40,7 +40,7 @@ const NotFound = () => {
                 >
                   <Button
                     component={Link}
-                    to={ROUTES.home}
+                    to={ROUTES.home()}
                     variant='contained'
                     color='primary'
                     size='large'
