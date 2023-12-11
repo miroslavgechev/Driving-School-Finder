@@ -218,9 +218,9 @@ Driving School Finder
 
 11. **FAQ**:
 
-    - **Description**: Provides answers to frequently asked questions to users.
-    - **Functionalities**:
-      - FAQs. (e.g. how to choose a driving school. What documents are needed, etc.)
+    - ✅**Description**: Provides answers to frequently asked questions to users.
+    - ✅**Functionalities**:
+      - ✅FAQs. (e.g. how to choose a driving school. What documents are needed, etc.)
 
 12. ❌**Compare Schools** (optional)
 
@@ -244,6 +244,7 @@ Driving School Finder
     - Secure Firebase further
     - Add Reducer somewhere - e.g. setSchoolContext
     - Make pages to start at the top
+    - Remember originally seeked page before signin/signup
 
 15. **Global Error Handling**
     - Add a global error handler to catch all errors and display a friendly error message to the user.
