@@ -84,10 +84,8 @@ const SignupForm = () => {
       await register(values);
       setSuccessState(SUCCESS_STATES.success);
 
-      setTimeout(() => {
-        navigate('/school/all');
-        setIsLoading(false);
-      }, 1000);
+      navigate('/school/all');
+      setIsLoading(false);
 
     } catch (error) {
       if (error.message.includes(ERROR_CODES.emailTaken)) {
