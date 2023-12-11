@@ -248,7 +248,7 @@ Driving School Finder
 
 15. **Global Error Handling**
     - Add a global error handler to catch all errors and display a friendly error message to the user.
-    - Add routeGuard to protect routes that require authentication / no authentication / to be owner?.
+    - ✅Add routeGuard to protect routes that require authentication / no authentication / to be owner?.
 
 ---- TO BE REVISED AFTER PROJECT COMPLETION---
 
