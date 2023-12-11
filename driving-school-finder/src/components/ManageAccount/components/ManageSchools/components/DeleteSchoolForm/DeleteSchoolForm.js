@@ -23,7 +23,6 @@ const DeleteSchoolForm = ({ school, open, onClose }) => {
       setIsLoading(true);
       await deleteSchoolBySchoolId(school.id);
       setIsLoading(false);
-      console.log('success');
       onClose();
     } catch (error) {
       setIsLoading(false);
@@ -43,7 +42,7 @@ const DeleteSchoolForm = ({ school, open, onClose }) => {
     >
       <DialogContent>
         <DialogContentTitle variant='h6' className={styles.headerText} >
-          Искаш ли да изтриеш отзива?
+          Искаш ли да изтриеш автошколата?
         </DialogContentTitle>
       </DialogContent>
       <DialogActions className={styles.dialogActions}>
