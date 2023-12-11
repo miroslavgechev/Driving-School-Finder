@@ -10,9 +10,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -20,6 +18,7 @@ import * as yup from 'yup';
 import { useState } from 'react';
 
 import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
 import { TABLE_SUBTITLES, SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
@@ -194,19 +193,12 @@ const CoursesForm = () => {
                   </CustomAlert>
                 }
               </Box>
-              <Button
-                size='large'
-                variant='contained'
-                type='submit'
-                disabled={isLoading}
-                startIcon={isLoading
-                  ?
-                  <CircularProgress size={22} />
-                  :
-                  <SaveOutlinedIcon />}
+              <SubmitButton
+                isLoading={isLoading}
+                startIcon={<SaveOutlinedIcon />}
               >
                 Запази промените
-              </Button>
+              </SubmitButton>
             </Box>
           </Grid>
         </Grid>

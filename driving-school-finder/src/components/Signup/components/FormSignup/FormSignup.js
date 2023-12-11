@@ -1,14 +1,12 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-import CircularProgress from '@mui/material/CircularProgress';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 
 import { useFormik } from 'formik';
@@ -19,6 +17,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
 import { useAuthContext } from 'contexts/authContext';
 import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, ROUTES, USER_ROLES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
@@ -292,22 +291,12 @@ const SignupForm = () => {
                   </Link>
                 </Typography>
               </Box>
-
-              <Button
-                size='large'
-                variant='contained'
-                color={color}
-                type='submit'
-                disabled={isLoading}
-                startIcon={isLoading
-                  ?
-                  <CircularProgress size={22} color={color} />
-                  :
-                  <PersonAddAlt1OutlinedIcon />
-                }
+              <SubmitButton
+                isLoading={isLoading}
+                startIcon={<PersonAddAlt1OutlinedIcon />}
               >
                 Регистрация като {formik.values.role === USER_ROLES.student ? 'курсист' : 'автошкола'}
-              </Button>
+              </SubmitButton>
 
             </Box>
           </Grid>

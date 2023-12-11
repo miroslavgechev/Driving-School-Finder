@@ -1,10 +1,8 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import * as yup from 'yup';
 import { useFormik } from 'formik';
@@ -12,6 +10,8 @@ import { useFormik } from 'formik';
 import { useState } from 'react';
 
 import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
+
 import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import { useAuthContext } from 'contexts/authContext';
 import styles from './changePasswordForm.module.css';
@@ -145,19 +145,13 @@ const ChangePasswordForm = () => {
                   </CustomAlert>
                 }
               </Box>
-              <Button
-                size='large'
-                variant='contained'
-                type='submit'
-                disabled={isLoading}
-                startIcon={isLoading
-                  ?
-                  <CircularProgress size={22} />
-                  :
-                  <CloudUploadOutlinedIcon />}
+              <SubmitButton
+                isLoading={isLoading}
+                startIcon={<CloudUploadOutlinedIcon />}
               >
                 Запази промените
-              </Button>
+              </SubmitButton>
+
             </Box>
           </Grid>
 

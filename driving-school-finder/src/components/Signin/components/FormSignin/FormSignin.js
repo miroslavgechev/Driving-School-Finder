@@ -1,9 +1,7 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import CircularProgress from '@mui/material/CircularProgress';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 import { useFormik } from 'formik';
@@ -13,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
 import { useAuthContext } from 'contexts/authContext';
 import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, ROUTES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
@@ -180,19 +179,12 @@ const SigninForm = () => {
                 </Typography>
               </Box>
 
-              <Button
-                size='large'
-                variant='contained'
-                type='submit'
-                disabled={isLoading}
-                startIcon={isLoading
-                  ?
-                  <CircularProgress size={22} />
-                  :
-                  <PersonOutlineOutlinedIcon />}
+              <SubmitButton
+                isLoading={isLoading}
+                startIcon={<PersonOutlineOutlinedIcon />}
               >
                 Влез
-              </Button>
+              </SubmitButton>
 
             </Box>
           </Grid>

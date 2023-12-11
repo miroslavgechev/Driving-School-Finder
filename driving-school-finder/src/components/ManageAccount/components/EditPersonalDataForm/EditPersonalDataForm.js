@@ -1,10 +1,8 @@
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -12,6 +10,7 @@ import * as yup from 'yup';
 import { useState } from 'react';
 
 import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
 import { useAuthContext } from 'contexts/authContext';
 import { SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
@@ -144,19 +143,13 @@ const EditPersonalDataForm = () => {
                   </CustomAlert>
                 }
               </Box>
-              <Button
-                size='large'
-                variant='contained'
-                type='submit'
-                disabled={isLoading}
-                startIcon={isLoading
-                  ?
-                  <CircularProgress size={22} />
-                  :
-                  <CloudUploadOutlinedIcon />}
+
+              <SubmitButton
+                isLoading={isLoading}
+                startIcon={<CloudUploadOutlinedIcon />}
               >
                 Запази промените
-              </Button>
+              </SubmitButton>
             </Box>
           </Grid>
 

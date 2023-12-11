@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
-import CircularProgress from '@mui/material/CircularProgress';
 import FormHelperText from '@mui/material/FormHelperText';
 
 import { useFormik } from 'formik';
@@ -13,6 +12,7 @@ import * as yup from 'yup';
 import { useEffect, useState } from 'react';
 
 import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
 import { SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
@@ -253,19 +253,12 @@ export const ImgForm = () => {
                   </CustomAlert>
                 }
               </Box>
-              <Button
-                size='large'
-                variant='contained'
-                type='submit'
-                disabled={isLoading}
-                startIcon={isLoading
-                  ?
-                  <CircularProgress size={22} />
-                  :
-                  <SaveOutlinedIcon />}
+              <SubmitButton
+                isLoading={isLoading}
+                startIcon={<SaveOutlinedIcon />}
               >
                 Запази промените
-              </Button>
+              </SubmitButton>
             </Box>
           </Grid>
         </Grid>
