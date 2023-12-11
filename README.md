@@ -281,3 +281,8 @@ TBA...
 - Add Reducer somewhere - e.g. setSchoolContext
 - Remember originally seeked page before signin/signup
 - Deploy the application in a cloud (Heroku, Firebase)
+
+13. Optimize Code
+14. Test
+15. Deploy
+16. Update Documentation
