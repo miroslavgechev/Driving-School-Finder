@@ -84,7 +84,7 @@ export const COLLECTIONS = {
   faq: 'faq',
 };
 
-export const CUSTOM_ALERT_SEVERITY = {
+export const ALERT_SEVERITY = {
   success: 'success',
   error: 'error',
 };

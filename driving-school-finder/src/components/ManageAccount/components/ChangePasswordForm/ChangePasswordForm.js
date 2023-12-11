@@ -9,10 +9,10 @@ import { useFormik } from 'formik';
 
 import { useState } from 'react';
 
-import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import AlertMessage from 'components/shared/AlertMessage/AlertMessage';
 import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
-import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
+import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, ALERT_SEVERITY } from 'CONSTANTS';
 import { useAuthContext } from 'contexts/authContext';
 import styles from './changePasswordForm.module.css';
 
@@ -135,14 +135,14 @@ const ChangePasswordForm = () => {
             <Box className={styles.buttonBoxContainer} >
               <Box marginBottom={{ xs: 1, sm: 0 }}>
                 {successState === SUCCESS_STATES.success &&
-                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
+                  <AlertMessage severity={ALERT_SEVERITY.success}>
                     Промените са запазени в системата.
-                  </CustomAlert>
+                  </AlertMessage>
                 }
                 {formik.status &&
-                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
+                  <AlertMessage severity={ALERT_SEVERITY.error}>
                     {formik.status}
-                  </CustomAlert>
+                  </AlertMessage>
                 }
               </Box>
               <SubmitButton

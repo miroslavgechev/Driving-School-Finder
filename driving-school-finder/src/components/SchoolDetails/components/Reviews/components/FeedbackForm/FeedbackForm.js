@@ -12,11 +12,11 @@ import * as yup from 'yup';
 
 import { useState } from 'react';
 
-import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import AlertMessage from 'components/shared/AlertMessage/AlertMessage';
 import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
 import { useAuthContext } from 'contexts/authContext';
-import { SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
+import { SUCCESS_STATES, ALERT_SEVERITY } from 'CONSTANTS';
 import { addReviewToSchool } from 'services/firestoreService';
 import styles from './feedbackForm.module.css';
 
@@ -166,14 +166,14 @@ const FeedbackForm = ({ onClose, open, schoolUid, schoolName, setUserCanEdit }) 
 
                   <Box marginBottom={{ xs: 1, sm: 0 }}>
                     {successState === SUCCESS_STATES.success &&
-                      <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
+                      <AlertMessage severity={ALERT_SEVERITY.success}>
                         Твоят отзив е получен!
-                      </CustomAlert>
+                      </AlertMessage>
                     }
                     {successState === SUCCESS_STATES.error &&
-                      <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
+                      <AlertMessage severity={ALERT_SEVERITY.error}>
                         Нещо се обърка, твоят отзив не е получен...
-                      </CustomAlert>
+                      </AlertMessage>
                     }
                   </Box>
                 </Box>

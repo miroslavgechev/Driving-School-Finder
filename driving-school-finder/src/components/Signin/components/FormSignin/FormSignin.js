@@ -10,11 +10,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { useState } from 'react';
 
-import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import AlertMessage from 'components/shared/AlertMessage/AlertMessage';
 import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
 import { useAuthContext } from 'contexts/authContext';
-import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, ROUTES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
+import { SUCCESS_STATES, ERROR_MESSAGES, ERROR_CODES, ROUTES, ALERT_SEVERITY } from 'CONSTANTS';
 import styles from './formSignin.module.css';
 
 const validationSchema = yup.object({
@@ -144,9 +144,9 @@ const SigninForm = () => {
               xs={12}
               className={styles.centeredGridContainer}
             >
-              <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
+              <AlertMessage severity={ALERT_SEVERITY.error}>
                 {formik.status}
-              </CustomAlert>
+              </AlertMessage>
             </Grid>
           }
 
@@ -157,9 +157,9 @@ const SigninForm = () => {
               xs={12}
               className={styles.centeredGridContainer}
             >
-              <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
+              <AlertMessage severity={ALERT_SEVERITY.success}>
                 Успя! Пренасочваме те...
-              </CustomAlert>
+              </AlertMessage>
             </Grid>
           }
 

@@ -17,10 +17,10 @@ import * as yup from 'yup';
 
 import { useState } from 'react';
 
-import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import AlertMessage from 'components/shared/AlertMessage/AlertMessage';
 import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
-import { TABLE_SUBTITLES, SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
+import { TABLE_SUBTITLES, SUCCESS_STATES, ALERT_SEVERITY } from 'CONSTANTS';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
 import styles from './courseForm.module.css';
 
@@ -183,14 +183,14 @@ const CoursesForm = () => {
             <Box className={styles.buttonBoxContainer} >
               <Box marginBottom={{ xs: 1, sm: 0 }}>
                 {successState === SUCCESS_STATES.success &&
-                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
+                  <AlertMessage severity={ALERT_SEVERITY.success}>
                     Промените са запазени локално
-                  </CustomAlert>
+                  </AlertMessage>
                 }
                 {successState === SUCCESS_STATES.error &&
-                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
+                  <AlertMessage severity={ALERT_SEVERITY.error}>
                     Промените не са запазени
-                  </CustomAlert>
+                  </AlertMessage>
                 }
               </Box>
               <SubmitButton

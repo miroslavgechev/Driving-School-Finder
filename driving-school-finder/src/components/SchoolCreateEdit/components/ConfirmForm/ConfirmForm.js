@@ -9,10 +9,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 
-import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import AlertMessage from 'components/shared/AlertMessage/AlertMessage';
 
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
-import { ROUTES, SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
+import { ROUTES, SUCCESS_STATES, ALERT_SEVERITY } from 'CONSTANTS';
 import styles from './confirmForm.module.css';
 
 const ConfirmForm = () => {
@@ -81,22 +81,22 @@ const ConfirmForm = () => {
           </Button>
           <Box marginBottom={{ xs: 1, sm: 0 }}>
             {successState === SUCCESS_STATES.success &&
-              <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
+              <AlertMessage severity={ALERT_SEVERITY.success}>
                 {currentLocation === ROUTES.schoolCreate()
                   ?
                   'Автошколата е създадена успешно, пренасочваме те...'
                   :
                   'Автошколата е обновена успешно, пренасочваме те...'}
-              </CustomAlert>
+              </AlertMessage>
             }
             {successState === SUCCESS_STATES.error &&
-              <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
+              <AlertMessage severity={ALERT_SEVERITY.error}>
                 {currentLocation === ROUTES.schoolCreate()
                   ?
                   'Нещо се счупи. Автошколата не е създадена...'
                   :
                   'Нещо се счупи. Автошколата не е обновена...'}
-              </CustomAlert>
+              </AlertMessage>
             }
           </Box>
         </Box>

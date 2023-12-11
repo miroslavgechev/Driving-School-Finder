@@ -19,10 +19,10 @@ import * as yup from 'yup';
 
 import { useState, useEffect } from 'react';
 
-import CustomAlert from 'components/shared/CustomAlert/CustomAlert';
+import AlertMessage from 'components/shared/AlertMessage/AlertMessage';
 import SubmitButton from 'components/shared/SubmitButton/SubmitButton';
 
-import { REGIONS, CATEGORIES, SUCCESS_STATES, CUSTOM_ALERT_SEVERITY } from 'CONSTANTS';
+import { REGIONS, CATEGORIES, SUCCESS_STATES, ALERT_SEVERITY } from 'CONSTANTS';
 import { useSetSchoolContext } from 'contexts/setSchoolContext';
 import { useAuthContext } from 'contexts/authContext';
 import fileMapper from 'utils/fileMapper';
@@ -404,14 +404,14 @@ const SchoolForm = () => {
             <Box className={styles.buttonBoxContainer} >
               <Box marginBottom={{ xs: 1, sm: 0 }}>
                 {successState === SUCCESS_STATES.success &&
-                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.success}>
+                  <AlertMessage severity={ALERT_SEVERITY.success}>
                     Промените са запазени локално
-                  </CustomAlert>
+                  </AlertMessage>
                 }
                 {successState === SUCCESS_STATES.error &&
-                  <CustomAlert severity={CUSTOM_ALERT_SEVERITY.error}>
+                  <AlertMessage severity={ALERT_SEVERITY.error}>
                     Промените не са запазени
-                  </CustomAlert>
+                  </AlertMessage>
                 }
               </Box>
               <SubmitButton

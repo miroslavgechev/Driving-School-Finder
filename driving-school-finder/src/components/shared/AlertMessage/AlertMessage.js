@@ -1,8 +1,8 @@
 import Alert from '@mui/material/Alert';
 
-import styles from './customAlert.module.css';
+import styles from './alertMessage.module.css';
 
-const CustomAlert = ({ children, severity }) => {
+const AlertMessage = ({ children, severity }) => {
 
   return (
     <Alert
@@ -13,4 +13,4 @@ const CustomAlert = ({ children, severity }) => {
   );
 };
 
-export default CustomAlert;
+export default AlertMessage;
