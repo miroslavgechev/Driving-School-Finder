@@ -16,6 +16,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { Link } from 'react-router-dom';
 
+import { ROUTES } from 'CONSTANTS';
 import styles from './schoolsList.module.css';
 
 const SchoolsList = ({ schoolsFiltered }) => {
@@ -139,7 +140,7 @@ const SchoolsList = ({ schoolsFiltered }) => {
                   <CardActions className={styles.cardActions}>
                     <Button
                       component={Link}
-                      to={`/school/${school.ownerUid}`}
+                      to={ROUTES.schoolDetails(school.ownerUid)}
                       endIcon={
                         <EastRoundedIcon className={styles.itemIcon} />
                       }

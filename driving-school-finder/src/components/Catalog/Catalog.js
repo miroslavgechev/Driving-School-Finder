@@ -1,17 +1,16 @@
 import Box from '@mui/material/Box';
-
-import Container from 'layouts/Container/Container';
 import { alpha, useTheme } from '@mui/material/styles';
 
+import { useState, useEffect } from 'react';
+
+import Container from 'layouts/Container/Container';
 import SchoolsList from './components/SchoolsList/SchoolsList';
 import FilterBar from './components/FilterBar/FilterBar';
 import Header from './components/Header/Header';
 
-import styles from './catalog.module.css';
 import { getAllSchoolsWithRatingsSorted } from 'services/firestoreService';
-import { useState, useEffect } from 'react';
 import { filterSchools } from 'utils/schools';
-
+import styles from './catalog.module.css';
 
 const Catalogue = () => {
   const [schoolsInitial, setSchoolsInitial] = useState(null);
