@@ -75,3 +75,16 @@ export const ROUTES = {
   about: () => '/about',
   notFound: () => '/notfound',
 };
+
+export const COLLECTIONS = {
+  schools: 'schools',
+  users: 'users',
+  ratings: 'ratings',
+  allReviews: 'allReviews',
+  faq: 'faq',
+};
+
+export const CUSTOM_ALERT_SEVERITY = {
+  success: 'success',
+  error: 'error',
+};
