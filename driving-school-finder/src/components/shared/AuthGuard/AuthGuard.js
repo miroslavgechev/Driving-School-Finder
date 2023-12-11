@@ -4,15 +4,20 @@ import { useAuthContext } from 'contexts/authContext';
 import SpinnerFullPage from '../SpinnerFullPage/SpinnerFullPage';
 
 
-const AuthGuard = ({ children }) => {
+const AuthGuard = ({ children, authRequired = true }) => {
 
   const { user, userLoading } = useAuthContext();
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!userLoading && !user) {
-      navigate('/signin', { replace: true });
+    if (!userLoading) {
+      if (authRequired && !user) {
+        navigate('/signin', { replace: true });
+      }
+
+      if (!authRequired && user) {
+        navigate('/notfound', { replace: true });
+      }
     }
   }, [userLoading, user]);
 
