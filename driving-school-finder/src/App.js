@@ -32,31 +32,41 @@ const App = () => {
                 <Route path='/school/all' element={<Catalogue />} />
 
                 <Route path='/school/create' element={
-                  <AuthGuard>
+                  <AuthGuard authRequired={true}>
                     <SchoolCreateEdit />
                   </AuthGuard>
                 } />
 
                 <Route path='/school/:id/edit' element={
-                  <AuthGuard>
+                  <AuthGuard authRequired={true}>
                     <SchoolCreateEdit />
                   </AuthGuard>
                 } />
 
                 <Route path='/school/:id' element={
-                  <AuthGuard>
+                  <AuthGuard authRequired={true}>
                     <SchoolDetails />
                   </AuthGuard>
                 } />
 
                 <Route path='/account' element={
-                  <AuthGuard>
+                  <AuthGuard authRequired={true}>
                     <ManageAccount />
                   </AuthGuard>
                 } />
 
-                <Route path='/signin' element={<Signin />} />
-                <Route path='/signup' element={<Signup />} />
+                <Route path='/signin' element={
+                  <AuthGuard authRequired={false}>
+                    <Signin />
+                  </AuthGuard>
+                } />
+
+                <Route path='/signup' element={
+                  <AuthGuard authRequired={false}>
+                    <Signup />
+                  </AuthGuard>
+                } />
+
                 <Route path='/faq' element={<Faq />} />
                 <Route path='/about' element={<About />} />
                 <Route path='/notfound' element={<NotFound />} />
