@@ -11,8 +11,7 @@ import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined
 
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useState, useEffect } from 'react';
 
@@ -79,8 +78,9 @@ const SignupForm = () => {
 
       await register(values);
 
-      setSuccessState(SUCCESS_STATES.success);
       navigate(ROUTES.schoolCatalogue());
+
+      setSuccessState(SUCCESS_STATES.success);
       setIsLoading(false);
     } catch (error) {
       if (error.message.includes(ERROR_CODES.emailTaken)) {
@@ -293,6 +293,7 @@ const SignupForm = () => {
               </Box>
               <SubmitButton
                 isLoading={isLoading}
+                color={color}
                 startIcon={<PersonAddAlt1OutlinedIcon />}
               >
                 Регистрация като {formik.values.role === USER_ROLES.student ? 'курсист' : 'автошкола'}
