@@ -1,4 +1,5 @@
 import { useState, createContext, useContext } from 'react';
+
 import { uploadFile } from 'services/firebaseStorageService';
 import { addEmptyRatingsDirectoryIfNotExist, addSchool } from 'services/firestoreService';
 
@@ -72,7 +73,7 @@ export const SetSchoolProvider = ({ children }) => {
       await uploadImage('mainImage', files?.mainImage);
       await uploadImage('supportImages', files?.supportImages);
       await addSchool(school);
-      await addEmptyRatingsDirectoryIfNotExist(school.ownerUid);
+      await addEmptyRatingsDirectoryIfNotExist(school?.ownerUid);
       setFiles(null);
     } catch (error) {
       throw new Error(error);
@@ -82,20 +83,28 @@ export const SetSchoolProvider = ({ children }) => {
   const uploadImage = async (filename, filepath) => {
 
     try {
-      if (!filepath && !Array.isArray(school[filename]) && school[filename]?.startsWith('https')) {
+      if (!filepath && !Array.isArray(school[filename])
+        && school[filename]?.startsWith('https')) {
+
         return;
+
       } else if (filepath && Array.isArray(filepath)) {
+
         const fileLinks = await Promise.all(
           filepath.map(async (file, index) => {
             const fileLink = await uploadFile(`${school.ownerUid}/${filename}/${index}`, file);
             return fileLink;
           }));
+
         school[filename] = fileLinks;
 
       } else if (filepath && !Array.isArray(filepath)) {
+
         const fileLink = await uploadFile(`${school.ownerUid}/${filename}`, filepath);
         school[filename] = fileLink;
+
       } else if (!filepath) {
+
         if (Array.isArray(school[filename]) && school[filename].length > 0) {
           return;
         }
