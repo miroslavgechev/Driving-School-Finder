@@ -17,6 +17,7 @@ import SpinnerFullPage from 'components/shared/SpinnerFullPage/SpinnerFullPage';
 
 const Faq = () => {
   const [faq, setFaq] = useState(null);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const fetchFaq = async () => {
@@ -33,6 +34,10 @@ const Faq = () => {
 
   const theme = useTheme();
 
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
   return (
     <>
       {!faq && <SpinnerFullPage />}
@@ -47,7 +52,7 @@ const Faq = () => {
           </Box>
           <Container>
             {faq?.map((faqItem, index) => (
-              <Fragment key={index}>
+              < Fragment key={index} >
                 <Box marginBottom={2}>
                   <Typography className={styles.headerText} variant='h5'>
                     {faqItem.categoryTitle}
@@ -58,11 +63,13 @@ const Faq = () => {
                   {faqItem?.content?.map((item, i) => (
                     <Box
                       component={Accordion}
-                      key={i}
+                      key={faqItem?.id + i}
                       padding={1}
                       marginBottom={i === item.length - 1 ? 0 : 2}
                       borderRadius={`${theme.spacing(1)} !important`}
                       className={styles.accordion}
+                      expanded={expanded === `panel${faqItem?.id + i}`}
+                      onChange={handleChange(`panel${faqItem?.id + i}`)}
                     >
                       <Box
                         component={AccordionSummary}
