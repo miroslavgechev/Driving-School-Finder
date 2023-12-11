@@ -45,7 +45,6 @@ const FilterBar = ({ setFilter }) => {
   const handleSubmit = async (values) => {
     try {
       setFilter(values);
-      console.log(values);
       formik.setStatus(null);
     } catch (error) {
       console.log(error);
