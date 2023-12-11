@@ -1,5 +1,6 @@
 import { responsiveFontSizes } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
+
 import shadows from './shadows';
 import { light } from './palette';
 
