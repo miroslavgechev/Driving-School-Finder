@@ -240,9 +240,9 @@ Driving School Finder
     - ❌Add to favorites button
     - ❌Change the theme on sign-in and sign-up pages depending on the user role
     - ✅Add paralax effect to the home page and the about page
-    - Make pages to start at the top
+    - ✅Make pages to start at the top
     - Add animation transition between pages / on start of page
-    - Secure Firebase further
+    - ✅Secure Firebase further
     - Add Reducer somewhere - e.g. setSchoolContext
     - Remember originally seeked page before signin/signup
 
