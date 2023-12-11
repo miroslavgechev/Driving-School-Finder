@@ -4,17 +4,17 @@ Driving School Finder
 
 ## Technologies to Use:
 
-- React
-- Firebase Integration
-- Material UI
-- AJAX
-- Google Maps API - to show on map
-- Responsive Design
+- ✅React
+- ✅Firebase Integration
+- ✅Material UI
+- ✅AJAX
+- ❌Google Maps API - to show on map
+- ✅Responsive Design
 
 ## SoftUni Requirements:
 
 - ✅(>=3) dynamic pages
-- Catalog View - list of all created record
+- ✅Catalog View - list of all created record
 - ✅Details View - information about a specific record
   -✅ At least one collection with all CRUD operations
   ✅- Logged in users – create records and request to the REST API, interaction with the records (via Likes, Dislikes, Comments, etc.)
