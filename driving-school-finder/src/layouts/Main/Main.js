@@ -11,13 +11,16 @@ import Topbar from './components/Topbar/Topbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import Footer from './components/Footer/Footer';
 
+import { useAuthContext } from 'contexts/authContext';
 import styles from './main.module.css';
+import SpinnerFullPage from 'components/shared/SpinnerFullPage/SpinnerFullPage';
 
 const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'), {
     defaultMatches: true,
   });
+  const { userLoading } = useAuthContext();
 
   const [openSidebar, setOpenSidebar] = useState(false);
 
@@ -37,34 +40,39 @@ const Main = ({ children, colorInvert = false, bgcolor = 'transparent' }) => {
   });
 
   return (
-    <Box>
-      <AppBar
-        className={styles.appBar}
-        sx={{
-          backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
-        }}
-        elevation={trigger ? 1 : 0}
-      >
-        <Container paddingY={1}>
-          <Topbar
-            onSidebarOpen={handleSidebarOpen}
-            colorInvert={trigger ? false : colorInvert}
+    <>
+      {userLoading && <SpinnerFullPage />}
+      {!userLoading &&
+        <Box>
+          <AppBar
+            className={styles.appBar}
+            sx={{
+              backgroundColor: trigger ? theme.palette.background.paper : bgcolor,
+            }}
+            elevation={trigger ? 1 : 0}
+          >
+            <Container paddingY={1}>
+              <Topbar
+                onSidebarOpen={handleSidebarOpen}
+                colorInvert={trigger ? false : colorInvert}
+              />
+            </Container>
+          </AppBar>
+          <Sidebar
+            onClose={handleSidebarClose}
+            open={open}
+            variant="temporary"
           />
-        </Container>
-      </AppBar>
-      <Sidebar
-        onClose={handleSidebarClose}
-        open={open}
-        variant="temporary"
-      />
-      <main>
-        {children}
-        <Divider />
-      </main>
-      <Container paddingY={4}>
-        <Footer />
-      </Container>
-    </Box>
+          <main>
+            {children}
+            <Divider />
+          </main>
+          <Container paddingY={4}>
+            <Footer />
+          </Container>
+        </Box>
+      }
+    </>
   );
 };
 
