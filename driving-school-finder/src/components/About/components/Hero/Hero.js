@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 import Typography from '@mui/material/Typography';
 
-import Container from 'components/Container';
+import Container from 'layouts/Container/Container';
 
 import styles from './hero.module.css';
 

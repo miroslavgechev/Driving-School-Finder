@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
-import Container from 'components/Container';
+import Container from 'layouts/Container/Container';
 import Headline from '../shared/Headline/Headline';
 import SchoolForm from './components/SchoolForm/SchoolForm';
 import ContactsForm from './components/ContactsForm/ContactsForm';

@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
-import Container from 'components/Container';
+import Container from 'layouts/Container/Container';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';

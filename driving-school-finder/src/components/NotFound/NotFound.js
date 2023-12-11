@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-import Container from 'components/Container';
+import Container from 'layouts/Container/Container';
 import RightSidePhotoCover from 'components/shared/RightSidePhotoCover/RightSidePhotoCover';
 
 import { Link } from 'react-router-dom';

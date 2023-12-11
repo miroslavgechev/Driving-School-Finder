@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 
-import Container from 'components/Container';
+import Container from 'layouts/Container/Container';
 import { alpha, useTheme } from '@mui/material/styles';
 
 import SchoolsList from './components/SchoolsList/SchoolsList';

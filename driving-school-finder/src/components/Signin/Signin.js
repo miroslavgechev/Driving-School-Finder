@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 
-import Container from 'components/Container';
+import Container from 'layouts/Container/Container';
 import SigninForm from './components/FormSignin/FormSignin';
 import RightSidePhotoCover from '../shared/RightSidePhotoCover/RightSidePhotoCover';
 import styles from './signin.module.css';

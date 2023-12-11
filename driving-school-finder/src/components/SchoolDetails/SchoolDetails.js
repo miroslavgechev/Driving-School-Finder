@@ -9,7 +9,7 @@ import Reviews from './components/Reviews/Reviews';
 import Courses from './components/Courses/Courses';
 import SpinnerFullPage from 'components/shared/SpinnerFullPage/SpinnerFullPage';
 
-import Container from 'components/Container';
+import Container from 'layouts/Container/Container';
 
 import styles from './schoolDetails.module.css';
 import { useEffect, useState } from 'react';

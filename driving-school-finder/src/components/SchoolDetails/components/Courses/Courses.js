@@ -7,7 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 
-import Container from 'components/Container';
+import Container from 'layouts/Container/Container';
 
 import { TABLE_SUBTITLES } from 'CONSTANTS';
 import styles from './courses.module.css';

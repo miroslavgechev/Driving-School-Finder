@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Skeleton from '@mui/material/Skeleton';
 
-import Container from 'components/Container';
+import Container from 'layouts/Container/Container';
 import Headline from '../shared/Headline/Headline';
 import EditPersonalDataForm from './components/EditPersonalDataForm/EditPersonalDataForm';
 import ChangePasswordForm from './components/ChangePasswordForm/ChangePasswordForm';

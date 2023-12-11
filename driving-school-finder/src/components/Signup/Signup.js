@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 
-import Container from 'components/Container';
+import Container from 'layouts/Container/Container';
 import SignupForm from './components/FormSignup/FormSignup';
 import RightSidePhotoCover from '../shared/RightSidePhotoCover/RightSidePhotoCover';
 

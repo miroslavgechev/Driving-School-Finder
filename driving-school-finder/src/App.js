@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'aos/dist/aos.css';
 
-import Page from './components/Page';
+import Page from 'layouts/Page';
 import Main from 'layouts/Main/Main';
 import Catalogue from './components/Catalog/Catalog';
 import SchoolDetails from './components/SchoolDetails/SchoolDetails';
