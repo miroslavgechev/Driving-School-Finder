@@ -12,12 +12,17 @@ import ChangePasswordForm from './components/ChangePasswordForm/ChangePasswordFo
 import ManageReviews from './components/ManageReviews/ManageReviews';
 import ManageSchools from './components/ManageSchools/ManageSchools';
 
+import { useEffect } from 'react';
 import { useAuthContext } from 'contexts/authContext';
 import styles from './manageAccount.module.css';
 
 const ManageAccount = () => {
 
   const { user } = useAuthContext();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

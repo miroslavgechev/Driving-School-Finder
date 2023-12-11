@@ -31,6 +31,10 @@ const SchoolCreateEdit = () => {
   const location = useLocation();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     setCurrentLocation(location.pathname);
   }, [location]);
 

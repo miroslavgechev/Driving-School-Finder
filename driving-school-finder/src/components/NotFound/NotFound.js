@@ -10,6 +10,7 @@ import styles from './notFound.module.css';
 
 const NotFound = () => {
 
+  
   return (
     <Box className={styles.boxContainer}>
       <Container paddingX={0} paddingY={0} maxWidth={{ sm: 1, md: 1236 }}>
