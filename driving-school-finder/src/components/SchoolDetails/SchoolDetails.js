@@ -57,7 +57,7 @@ const SchoolDetails = () => {
         }
 
       } catch (error) {
-        navigate(ROUTES.notFound, { replace: true });
+        navigate(ROUTES.notFound(), { replace: true });
       }
     };
 
