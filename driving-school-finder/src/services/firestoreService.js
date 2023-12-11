@@ -53,6 +53,7 @@ export const updateCustomUserData = async (uid, { firstName, lastName }) => {
 
   try {
     await updateDoc(docRef, { firstName, lastName });
+    await updateReviewsOnUserDataUpdate(uid, { firstName, lastName });
   } catch (error) {
     throw new Error(error);
   }
@@ -243,6 +244,20 @@ export const updateReviewByReviewId = async (reviewId, updatedReview) => {
 
   } catch (error) {
     throw Error(error);
+  }
+};
+
+export const updateReviewsOnUserDataUpdate = async (userId, { firstName, lastName }) => {
+  try {
+    const newFullName = `${firstName} ${lastName}`;
+    const q = query(collection(db, COLLECTIONS.allReviews), where('userId', '==', userId));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(async (doc) => {
+      await updateDoc(doc.ref, { fullName: newFullName });
+    });
+  } catch (error) {
+    throw new Error(error.message);
   }
 };
 

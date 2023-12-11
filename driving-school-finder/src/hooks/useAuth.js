@@ -14,7 +14,7 @@ import { initializeApp } from 'firebase/app';
 import { useState, useEffect } from 'react';
 
 import { ERROR_MESSAGES, ERROR_CODES } from 'CONSTANTS';
-import { setCustomUserData, getCustomUserData } from 'services/firestoreService';
+import { setCustomUserData, getCustomUserData, updateCustomUserData } from 'services/firestoreService';
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -47,7 +47,6 @@ const useAuth = () => {
       const customUserData = await getCustomUserData(userCredential.user.uid);
 
       setUser({ ...userCredential.user, ...customUserData });
-
     } catch (error) {
       if (error.code === ERROR_CODES.invalidCredentials) {
         throw new Error(ERROR_MESSAGES.invalidCredentials);
@@ -81,9 +80,20 @@ const useAuth = () => {
     }
   };
 
+  const updateUserData = async (uid, { firstName, lastName }) => {
+    try {
+      await updateCustomUserData(uid, { firstName, lastName });
+      setUser({ ...user, firstName, lastName });
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth,
       async (user) => {
+        //eslint-disable-next-line no-debugger
+        debugger;
         if (user) {
           const customUserData = user && await getCustomUserData(user?.uid);
           setUser({ ...user, ...customUserData });
@@ -105,7 +115,8 @@ const useAuth = () => {
     register,
     login,
     logout,
-    updateCredentials
+    updateCredentials,
+    updateUserData
   };
 };
 
