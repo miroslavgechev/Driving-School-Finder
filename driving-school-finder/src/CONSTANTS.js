@@ -61,3 +61,13 @@ export const USER_ROLES = {
   school: 'school',
 };
 
+export const ROUTES = {
+  home: () => '/',
+  schoolCatalogue: () => '/school/all',
+  schoolDetails: (id) => `/school/${id}`,
+  schoolCreate: () => '/school/create',
+  account: () => '/account',
+  signin: () => '/signin',
+  signup: () => '/signup',
+  notFound: () => '/notfound',
+};
