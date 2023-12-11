@@ -92,6 +92,7 @@ const useAuth = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth,
       async (user) => {
+
         if (user) {
           const customUserData = user && await getCustomUserData(user?.uid);
           setUser({ ...user, ...customUserData });
