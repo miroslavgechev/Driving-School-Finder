@@ -1,8 +1,8 @@
 {
-  "name": "thefront-js--react-scripts",
-  "author": "maccarian",
-  "email": "hi@maccarianagency.com",
-  "version": "5.0.0",
+  "name": "driving-school-finder",
+  "author": "Miroslav Gechev",
+  "email": "miroslav.gechev@gmail.com",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
