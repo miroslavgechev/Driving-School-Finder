@@ -39,7 +39,7 @@ This platform is more than just a directory; it's a community-driven tool that e
 
 ## Installation
 
-1. Clone the repository to your local machine:
+1. Clone the repository to your local machine.
 2. Inside the project directory, install all required dependencies running `yarn install`.
 3. Launch a development server using `yarn start`.
 4. Set up your Firebase account, including Firestore, Firebase Storage, and Firebase Authentication services.
@@ -64,47 +64,44 @@ This platform is more than just a directory; it's a community-driven tool that e
 - **dotenv**: For managing environment variables, particularly in handling `.env` files for Firebase configuration.
 - **Other third-party libraries**: Additional libraries are used to enhance functionality, performance, and user experience.
 
-## Project Architecture
+### Project Architecture
 
-### Overview
+#### Overview
 
 The Driving School Finder application is structured following a modern React application architecture, designed for scalability, maintainability, and efficient data flow. The architecture is primarily client-side driven, utilizing Firebase services for backend functionalities.
 
-### Front-End Architecture
+#### Front-End Architecture
 
-- **React Components**: The application's user interface is built using React components, organized into reusable and modular units, allowing for efficient development and testing.
+- **React Components**: The application's user interface is built using React 18.2 components, organized into reusable and modular units, allowing for efficient development and testing.
 - **Routing**: Utilized `react-router-dom` for handling navigation and routing, ensuring seamless user experience across different views and states.
+- **JavaScript**: The primary programming language used for scripting and adding interactivity.
+- **HTML/CSS with modules**: HTML structures the web content while CSS modules provide styling in an encapsulated manner.
+- **jssStyles**: Enhances dynamic styling capabilities within the React components.
+- **AOS (Animate on Scroll)**: Adds smooth and visually appealing scroll animations to web elements.
 
-- **State Management**: State is managed locally within components and through React Contexts for global state management, allowing for efficient data handling and component reusability.
+#### Back-End and Database
 
-### Back-End and Database
-
-- **Firebase Firestore**: Serves as the primary database, providing real-time data storage and retrieval, enabling dynamic and responsive user interactions.
-
-- **Firebase Storage**: Used for handling storage and retrieval of user-uploaded files, like images.
-
+- **Firebase Firestore**: Serves as the primary database, providing real-time data storage and retrieval.
+- **Firebase Storage**: Handles storage and retrieval of user-uploaded files, like images.
 - **Firebase Authentication**: Manages user authentication, offering secure sign-up, sign-in, and profile management.
 
-### Data Flow
+#### Data Flow
 
-- Data interactions are handled using Firestore services, with real-time capabilities ensuring that the application data is always up-to-date.
-- User authentication data flows from Firebase Authentication, integrating seamlessly with the front-end for user sessions and profile management.
+- **Firestore Services**: Handle data interactions with real-time capabilities to keep the application data up-to-date.
+- **Firebase Authentication Integration**: Seamlessly integrates with the front-end for user sessions and profile management.
 
-### Styling and UI
+#### Styling and UI
 
-- **Material UI**: Adopted for consistent and modern UI design, complemented with custom CSS modules for component-specific styling.
-- **Responsive Design**: The application is designed to be responsive across various devices and screen sizes, providing an optimal user experience on desktops, tablets, and mobile phones.
+- **Material UI**: Provides a consistent and modern UI design, complemented with custom CSS modules for component-specific styling.
+- **CssBaseline**: Ensures cross-browser consistency in the baseline CSS.
+- **Responsive Design**: Guarantees optimal user experience on various devices, from desktops to mobile phones.
 
-### Utility and Additional Libraries
+#### Utility and Additional Libraries
 
-- **moment.js**: Used for handling date and time formatting.
-- **ESLint/Prettier**: Ensures code quality and consistency throughout the project.
-
-- **dotenv**: Manages environment variables, particularly for Firebase configuration.
-
-### Additional Third-Party Libraries
-
-- Various third-party libraries are integrated to enhance functionality, user experience, and performance.
+- **moment.js**: Parses, validates, manipulates, and displays dates and times.
+- **ESLint/Prettier**: Maintains code quality and consistency.
+- **dotenv**: Manages environment variables, especially for Firebase configuration.
+- **Other Third-Party Libraries**: Enhances functionality, performance, and user experience.
 
 ## Project Structure
 
