@@ -13,7 +13,6 @@ import Grid from '@mui/material/Grid';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 
 import { useFormik } from 'formik';
-import * as yup from 'yup';
 
 import { useState } from 'react';
 
@@ -26,30 +25,16 @@ import styles from './courseForm.module.css';
 
 const subtitles = TABLE_SUBTITLES;
 
-let validationSchema = yup.object();
-
 const CoursesForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [successState, setSuccessState] = useState(SUCCESS_STATES.none);
   const { setSchoolCourses, school } = useSetSchoolContext();
 
-  school?.categoriesServed?.forEach((item) => {
-    Object.entries(subtitles).forEach(([key]) => {
-      validationSchema = validationSchema.shape({
-        [item + '_' + key]:
-          yup
-            .number()
-            .typeError('Въведи валидно число')
-            .min(0)
-            .required('Полето е задължително'),
-      });
-    });
-  });
-
   let initialValues = {};
-  school?.categoriesServed?.forEach((key) => {
-    Object.entries(subtitles).forEach(([item]) => {
-      let combinedKey = key + '_' + item;
+
+  school?.categoriesServed?.forEach((category) => {
+    Object.entries(subtitles).forEach(([subtitleKey]) => {
+      let combinedKey = category + '_' + subtitleKey;
       initialValues[combinedKey] = '';
 
       school?.courses?.forEach(course => {
@@ -59,6 +44,26 @@ const CoursesForm = () => {
       });
     });
   });
+
+  const validate = (values) => {
+    let errors = {};
+
+    school?.categoriesServed?.forEach((category) => {
+      Object.entries(subtitles).forEach(([subtitleKey]) => {
+        const fieldName = `${category}_${subtitleKey}`;
+        if (!values[fieldName]) {
+          errors[fieldName] = 'Полето е задължително';
+        } else if (
+          !Number.isInteger(Number(values[fieldName]))
+          ||
+          Number(values[fieldName]) < 0
+        ) {
+          errors[fieldName] = 'Въведи цяло положително число';
+        }
+      });
+    });
+    return errors;
+  };
 
   const handleSubmit = async (values) => {
     try {
@@ -99,7 +104,7 @@ const CoursesForm = () => {
 
   const formik = useFormik({
     initialValues,
-    validationSchema,
+    validate,
     onSubmit: handleSubmit,
   });
 
