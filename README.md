@@ -278,9 +278,7 @@ TBA...
 
 --TO ADD:
 
-- Update Firestore services
 - Add Reducer somewhere - e.g. setSchoolContext
-- Remember originally seeked page before signin/signup
 - Deploy the application in a cloud (Heroku, Firebase)
 
 14. Test
