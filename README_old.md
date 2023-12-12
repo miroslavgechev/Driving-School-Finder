@@ -59,7 +59,7 @@ Driving School Finder
 15. Test
 16. ✅Populate with real data
 17. Deploy
-18. Update Documentation
+18. ✅Update Documentation
 
 ## Requirements
 
@@ -278,10 +278,4 @@ TBA...
 
 --TO ADD:
 
-- Add Reducer somewhere - e.g. setSchoolContext
 - Deploy the application in a cloud (Heroku, Firebase)
-
-13. Open Details to non-auth users
-14. Test
-15. Deploy
-16. Update Documentation
