@@ -225,7 +225,6 @@ const SchoolForm = () => {
                 </Grid>
               }
             </Box>
-
           </Grid>
 
           <Grid item xs={12}>
@@ -263,6 +262,7 @@ const SchoolForm = () => {
               variant='outlined'
               name='whyUs1'
               multiline
+              rows={2}
               fullWidth
               sx={{ marginBottom: 2 }}
               value={formik.values.whyUs1}
@@ -275,6 +275,7 @@ const SchoolForm = () => {
               variant='outlined'
               name='whyUs2'
               multiline
+              rows={2}
               fullWidth
               sx={{ marginBottom: 2 }}
               value={formik.values.whyUs2}
@@ -287,6 +288,7 @@ const SchoolForm = () => {
               variant='outlined'
               name='whyUs3'
               multiline
+              rows={2}
               fullWidth
               value={formik.values.whyUs3}
               onChange={handleChange}
