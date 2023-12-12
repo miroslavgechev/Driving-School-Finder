@@ -98,6 +98,8 @@ The Driving School Finder application is structured following a modern React app
 
 - **ESLint/Prettier**: Maintains code quality and consistency.
 - **dotenv**: Manages environment variables, especially for Firebase configuration.
+- **Formik**: Utilized for building and managing forms, providing a scalable way to handle form inputs, validation, and submissions.
+- **Yup**: Used in conjunction with Formik for schema-based form validation, ensuring data integrity and user input validation.
 - **moment.js**: Parses, validates, manipulates, and displays dates and times.
 - **Other Third-Party Libraries**: Enhances functionality, performance, and user experience.
 
@@ -227,5 +229,7 @@ The `components` directory is the heart of the React UI, structured into feature
 | Good UI and UX                                                       | ✓      |
 | Use of a cloud file storage API for storing files - Firebase Storage | ✓      |
 | Deployment of the application in the cloud (Firebase)                | ✓      |
+| Use of Formik to handle form inputs, validation, and submission      | ✓      |
+| Use of Yup for schema-based form validation                          | ✓      |
 | Use of AOS for scroll animations                                     | ✓      |
 | Use of third-party libraries                                         | ✓      |
