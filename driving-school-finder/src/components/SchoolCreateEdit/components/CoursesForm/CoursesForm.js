@@ -51,6 +51,7 @@ const CoursesForm = () => {
     school?.categoriesServed?.forEach((category) => {
       Object.entries(subtitles).forEach(([subtitleKey]) => {
         const fieldName = `${category}_${subtitleKey}`;
+
         if (!values[fieldName]) {
           errors[fieldName] = 'Полето е задължително';
         } else if (
