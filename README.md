@@ -17,6 +17,26 @@ Key Features:
 
 This platform is more than just a directory; it's a community-driven tool that empowers students to find their ideal driving school, while providing schools with a robust channel to showcase their offerings.
 
+## Screenshots
+
+- Catalog Page
+
+<img src="./screenshots/catalog.png" width="550" alt="Catalog"> | <img src="./screenshots/catalog-mobile-view.png" height="270" alt="Catalog-mobile-view">
+
+- Create-Edit Page
+
+<img src="./screenshots/create-edit.png" width="550" alt="Create-edit"> | <img src="./screenshots/create-edit-mobile-view.png" height="270" alt="Create-edit-mobile-view">
+
+<img src="./screenshots/create-edit2.png" width="550" alt="Create-edit-2"> | <img src="./screenshots/create-edit-mobile-view2.png" height="270" alt="Create-edit-mobile-view-2">
+
+- Details Page
+
+<img src="./screenshots/details.png" width="550" alt="Details"> | <img src="./screenshots/details-mobile-view.png" height="270" alt="Details-mobile-view">
+
+- Rating Page
+
+<img src="./screenshots/rating.png" width="550" alt="Rating"> | <img src="./screenshots/rating-mobile-view.png" height="270" alt="Rating-mobile-view">
+
 ## Installation
 
 1. Clone the repository to your local machine:
