@@ -45,24 +45,22 @@ This platform is more than just a directory; it's a community-driven tool that e
 4. Set up your Firebase account, including Firestore, Firebase Storage, and Firebase Authentication services.
 5. Create a `.env` file in the root directory of the project. Populate this file with your Firebase configuration details, ensuring that the variable names correspond with those in the app's `firebaseConfig.js`.
 
-## Technologies Used
+## Stack
 
-- **React 18.2**: Used as the core framework for building the user interface of the application.
-- **React Router Dom**: Utilized for managing navigation and routing in the application, enabling seamless transitions between different views and states.
-- **JavaScript**: The primary programming language used for scripting and adding interactivity to the web application.
-- **Material UI**: A UI framework for designing elegant and responsive user interfaces consistent with Material Design principles.
-- **HTML/CSS with modules**: HTML for structuring the web content and CSS modules for styling components in an encapsulated manner.
-- **Responsive Design**: Ensures that the application is accessible and user-friendly across various devices and screen sizes.
-- **AOS (Animate on Scroll)**: For adding smooth and visually appealing scroll animations to the web elements.
-- **jssStyles**: Used for defining CSS styles in JavaScript, enhancing the dynamic styling capabilities within the React components.
-- **CssBaseline**: Provides a consistent baseline CSS for ensuring cross-browser consistency.
-- **Firestore**: Utilized as a NoSQL database for storing and retrieving application data in real-time.
-- **Firebase Storage**: Used for storing and serving user-uploaded images.
-- **Firebase Authentication**: Implements authentication features, allowing users to sign up, log in, and manage their profiles securely.
-- **moment.js**: A library for parsing, validating, manipulating, and displaying dates and times in JavaScript.
-- **ESLint/Prettier**: Used for code linting and formatting to maintain code quality and consistency throughout the project.
-- **dotenv**: For managing environment variables, particularly in handling `.env` files for Firebase configuration.
-- **Other third-party libraries**: Additional libraries are used to enhance functionality, performance, and user experience.
+[![React](https://skillicons.dev/icons?i=react)](https://react.dev/)
+[![JavaScript](https://skillicons.dev/icons?i=js)](https://javascript.com/)
+[![MUI](https://skillicons.dev/icons?i=materialui)](https://mui.com/material-ui/)
+[![CSS3](https://skillicons.dev/icons?i=css)](https://www.w3.org/Style/CSS/Overview.en.html)
+[![HTML5](https://skillicons.dev/icons?i=html)](https://html.spec.whatwg.org/multipage/)
+[![Firebase](https://skillicons.dev/icons?i=firebase)](https://firebase.google.com/)
+
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
 
 ## Project Architecture
 
@@ -75,9 +73,6 @@ The Driving School Finder application is structured following a modern React app
 - **React Components**: The application's user interface is built using React 18.2 components, organized into reusable and modular units, allowing for efficient development and testing.
 - **Routing**: Utilized `react-router-dom` for handling navigation and routing, ensuring seamless user experience across different views and states.
 - **JavaScript**: The primary programming language used for scripting and adding interactivity.
-- **HTML/CSS with modules**: HTML structures the web content while CSS modules provide styling in an encapsulated manner.
-- **jssStyles**: Enhances dynamic styling capabilities within the React components.
-- **AOS (Animate on Scroll)**: Adds smooth and visually appealing scroll animations to web elements.
 
 ### Back-End and Database
 
@@ -93,7 +88,10 @@ The Driving School Finder application is structured following a modern React app
 ### Styling and UI
 
 - **Material UI**: Provides a consistent and modern UI design, complemented with custom CSS modules for component-specific styling.
+- **HTML/CSS with modules**: HTML structures the web content while CSS modules provide styling in an encapsulated manner.
 - **CssBaseline**: Ensures cross-browser consistency in the baseline CSS.
+- **jssStyles**: Enhances dynamic styling capabilities within the React components.
+- **AOS (Animate on Scroll)**: Adds smooth and visually appealing scroll animations to web elements.
 - **Responsive Design**: Guarantees optimal user experience on various devices, from desktops to mobile phones.
 
 ### Utility and Additional Libraries
