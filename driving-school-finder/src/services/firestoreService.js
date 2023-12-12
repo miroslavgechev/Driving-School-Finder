@@ -30,19 +30,22 @@ export const setCustomUserData = async (uid, { role, firstName, lastName }) => {
       firstName,
       lastName,
     });
+
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
 export const getCustomUserData = async (uid) => {
+  const docRef = doc(db, COLLECTIONS.users, uid);
+
   try {
-    const docRef = doc(db, COLLECTIONS.users, uid);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       return docSnap.data();
     }
+
   } catch (error) {
     throw new Error(error.message);
   }
@@ -54,6 +57,7 @@ export const updateCustomUserData = async (uid, { firstName, lastName }) => {
   try {
     await updateDoc(docRef, { firstName, lastName });
     await updateReviewsOnUserDataUpdate(uid, { firstName, lastName });
+
   } catch (error) {
     throw new Error(error);
   }
@@ -61,27 +65,30 @@ export const updateCustomUserData = async (uid, { firstName, lastName }) => {
 
 //School related services
 export const getSchoolByOwnerUid = async (ownerUid) => {
-  try {
-    const q = query(
-      collection(db, COLLECTIONS.schools),
-      where('ownerUid', '==', ownerUid)
-    );
+  const q = query(
+    collection(db, COLLECTIONS.schools),
+    where('ownerUid', '==', ownerUid)
+  );
 
+  try {
     const querySnapshot = await getDocs(q);
+
     const school = querySnapshot.docs.map(doc => ({
       ...doc.data(),
       id: doc.id,
     }))[0];
 
     return school;
+
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
 export const getSchoolById = async (schoolId) => {
+  const docRef = doc(db, COLLECTIONS.schools, schoolId);
+
   try {
-    const docRef = doc(db, COLLECTIONS.schools, schoolId);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
@@ -109,15 +116,18 @@ export const getSchoolByOwnerUidAndSchoolId = async (ownerUid, schoolId) => {
 };
 
 export const getAllSchools = async () => {
-  //Function needs to change for more than 200 schools and make the filtering on the backend
+  //Function needs to be altered for more than 200 schools and make the filtering on the backend
+  const schoolsCol = collection(db, COLLECTIONS.schools);
+  const q = query(schoolsCol, limit(200));
+
   try {
-    const schoolsCol = collection(db, COLLECTIONS.schools);
-    const q = query(schoolsCol, limit(200));
-    const schoolsSnapshot = await getDocs(q);
-    const schoolsList = schoolsSnapshot.docs.map(doc => doc.data());
+    const querySnapshot = await getDocs(q);
+    const schoolsList = querySnapshot.docs.map(doc => doc.data());
+
     return Object.values(schoolsList);
+
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
@@ -130,8 +140,9 @@ export const getAllSchoolsWithRatingsSorted = async () => {
     const schoolsWithRatingsSorted = sortDesc(schoolsWithRatings, 'reviewsCount');
 
     return schoolsWithRatingsSorted;
+
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
@@ -140,16 +151,18 @@ export const addSchool = async (school) => {
     await setDoc(doc(db, COLLECTIONS.schools, school.ownerUid), school);
 
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
 export const deleteSchoolBySchoolId = async (schoolId) => {
   const schoolDoc = doc(db, COLLECTIONS.schools, schoolId);
+
   try {
     await deleteDoc(schoolDoc);
+
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
@@ -158,22 +171,25 @@ export const addEmptyRatingsDirectoryIfNotExist = async (schoolUid) => {
   //Intentionally leaving out existing reviews and ratings, 
   //so user cannot just reenter the school and delete all reviews
   const docRef = doc(db, COLLECTIONS.ratings, schoolUid);
-  const docSnap = await getDoc(docRef);
 
   try {
+    const docSnap = await getDoc(docRef);
+
     if (docSnap.exists()) return;
     await setDoc(docRef, {});
+
   } catch (error) {
     throw new Error(error);
   }
 };
 
 export const getReviewsBySchoolUid = async (schoolUid) => {
+  const q = query(
+    collection(db, COLLECTIONS.allReviews),
+    where('schoolId', '==', schoolUid)
+  );
+
   try {
-    const q = query(
-      collection(db, COLLECTIONS.allReviews),
-      where('schoolId', '==', schoolUid)
-    );
     const querySnapshot = await getDocs(q);
 
     let reviews = [];
@@ -182,20 +198,21 @@ export const getReviewsBySchoolUid = async (schoolUid) => {
     });
 
     return reviews;
+
   } catch (error) {
     throw Error(error);
   }
 };
 
 export const getReviewsByUserId = async (userUid) => {
+  const q = query(
+    collection(db, COLLECTIONS.allReviews),
+    where('userId', '==', userUid)
+  );
 
   try {
-    const q = query(
-      collection(db, COLLECTIONS.allReviews),
-      where('userId', '==', userUid)
-    );
-
     const querySnapshot = await getDocs(q);
+
     let reviews = [];
     querySnapshot.forEach((doc) => {
       const review = doc.data();
@@ -207,15 +224,18 @@ export const getReviewsByUserId = async (userUid) => {
       reviews.map(
         async review => {
           const school = await getSchoolById(review.schoolId);
-          review.schoolName = school?.name
+          review.schoolName =
+            school?.name
             ||
             (review.schoolName && `${review.schoolName} (неактивна)`)
-            || 'Автошколата е неактивна';
+            ||
+            'Автошколата е неактивна';
 
           return review;
         }));
 
     return reviews;
+
   } catch (error) {
     throw new Error(error);
   }
@@ -226,11 +246,10 @@ export const addReviewToSchool = async (schoolUid, review) => {
 
   try {
     await addDoc(allReviewsCollection, review);
-
     await updateSchoolRating(schoolUid);
 
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
@@ -239,23 +258,26 @@ export const updateReviewByReviewId = async (reviewId, updatedReview) => {
 
   try {
     await updateDoc(reviewDoc, updatedReview);
-
     await updateSchoolRating(updatedReview.schoolId);
 
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
 export const updateReviewsOnUserDataUpdate = async (userId, { firstName, lastName }) => {
-  try {
-    const newFullName = `${firstName} ${lastName}`;
-    const q = query(collection(db, COLLECTIONS.allReviews), where('userId', '==', userId));
+  const newFullName = `${firstName} ${lastName}`;
+  const q = query(
+    collection(db, COLLECTIONS.allReviews),
+    where('userId', '==', userId)
+  );
 
+  try {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(async (doc) => {
       await updateDoc(doc.ref, { fullName: newFullName });
     });
+
   } catch (error) {
     throw new Error(error.message);
   }
@@ -266,11 +288,10 @@ export const deleteReviewByReviewId = async (reviewId, schoolId) => {
 
   try {
     await deleteDoc(reviewDoc);
-
     await updateSchoolRating(schoolId);
 
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
@@ -287,24 +308,27 @@ export const getRatingsBySchoolUid = async (schoolUid) => {
       throw new Error('Не е намерена директория за рейтинги за тази автошкола');
     }
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
 export const getAllRatings = async () => {
   //Function needs to change for more than 200 schools and make the filtering on the backend
-  try {
-    const ratingsCol = collection(db, COLLECTIONS.ratings);
-    const q = query(ratingsCol, limit(200));
-    const ratingsSnapshot = await getDocs(q);
+  const ratingsCol = collection(db, COLLECTIONS.ratings);
 
-    const ratingsList = ratingsSnapshot.docs.map(doc => ({
+  try {
+    const q = query(ratingsCol, limit(200));
+    const querySnapshot = await getDocs(q);
+
+    const ratingsList = querySnapshot.docs.map(doc => ({
       ...doc.data(),
       schoolId: doc.id,
     }));
+
     return Object.values(ratingsList);
+
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
@@ -325,20 +349,19 @@ export const updateSchoolRating = async (schoolUid) => {
     }, { merge: true });
 
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
 //Others
 export const checkIfUserCanEdit = async (userUid, schoolUid) => {
+  const q = query(
+    collection(db, COLLECTIONS.allReviews),
+    where('userId', '==', userUid),
+    where('schoolId', '==', schoolUid)
+  );
 
   try {
-    const q = query(
-      collection(db, COLLECTIONS.allReviews),
-      where('userId', '==', userUid),
-      where('schoolId', '==', schoolUid)
-    );
-
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
@@ -350,7 +373,6 @@ export const checkIfUserCanEdit = async (userUid, schoolUid) => {
   } catch (error) {
     throw new Error(error);
   }
-
 };
 
 export const getFaq = async () => {
@@ -360,6 +382,7 @@ export const getFaq = async () => {
       ...doc.data(),
       id: doc.id
     }));
+
     return faq;
 
   } catch (error) {
