@@ -64,13 +64,13 @@ This platform is more than just a directory; it's a community-driven tool that e
 - **dotenv**: For managing environment variables, particularly in handling `.env` files for Firebase configuration.
 - **Other third-party libraries**: Additional libraries are used to enhance functionality, performance, and user experience.
 
-### Project Architecture
+## Project Architecture
 
-#### Overview
+### Overview
 
 The Driving School Finder application is structured following a modern React application architecture, designed for scalability, maintainability, and efficient data flow. The architecture is primarily client-side driven, utilizing Firebase services for backend functionalities.
 
-#### Front-End Architecture
+### Front-End Architecture
 
 - **React Components**: The application's user interface is built using React 18.2 components, organized into reusable and modular units, allowing for efficient development and testing.
 - **Routing**: Utilized `react-router-dom` for handling navigation and routing, ensuring seamless user experience across different views and states.
@@ -79,24 +79,24 @@ The Driving School Finder application is structured following a modern React app
 - **jssStyles**: Enhances dynamic styling capabilities within the React components.
 - **AOS (Animate on Scroll)**: Adds smooth and visually appealing scroll animations to web elements.
 
-#### Back-End and Database
+### Back-End and Database
 
 - **Firebase Firestore**: Serves as the primary database, providing real-time data storage and retrieval.
 - **Firebase Storage**: Handles storage and retrieval of user-uploaded files, like images.
 - **Firebase Authentication**: Manages user authentication, offering secure sign-up, sign-in, and profile management.
 
-#### Data Flow
+### Data Flow
 
 - **Firestore Services**: Handle data interactions with real-time capabilities to keep the application data up-to-date.
 - **Firebase Authentication Integration**: Seamlessly integrates with the front-end for user sessions and profile management.
 
-#### Styling and UI
+### Styling and UI
 
 - **Material UI**: Provides a consistent and modern UI design, complemented with custom CSS modules for component-specific styling.
 - **CssBaseline**: Ensures cross-browser consistency in the baseline CSS.
 - **Responsive Design**: Guarantees optimal user experience on various devices, from desktops to mobile phones.
 
-#### Utility and Additional Libraries
+### Utility and Additional Libraries
 
 - **moment.js**: Parses, validates, manipulates, and displays dates and times.
 - **ESLint/Prettier**: Maintains code quality and consistency.
