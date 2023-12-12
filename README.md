@@ -108,6 +108,7 @@ The Driving School Finder application is organized into a well-structured and mo
 
 - **utils**: Contains utility functions, such as `dateFormatter.js` and `fileMapper.js`, for shared helper functionalities.
 
+<!--
 ### Component Details
 
 - **About, Catalog, Faq, NotFound, Signin, Signup**: Contain components for specific sections of the application, like the About page and catalog browsing.
@@ -115,28 +116,7 @@ The Driving School Finder application is organized into a well-structured and mo
 - **ManageAccount, SchoolCreateEdit, SchoolDetails**: Include components for managing user accounts, creating/editing school details, and displaying school information.
 
 - **Shared**: Holds reusable components like alerts, authentication guards, and common UI elements used throughout the application.
-
-## Project Structure
-
-The Driving School Finder application is organized into a well-structured and modular architecture, facilitating ease of navigation, development, and maintenance. Below is an overview of the key directories and their contents:
-
-### Main Directories
-
-- **components**: Houses all React components, each dedicated to specific features like `About`, `Catalog`, `Faq`, and functionalities such as `ManageAccount` and `SchoolDetails`.
-
-- **config**: Contains configuration files, such as `firebaseConfig.js`, essential for backend connectivity.
-
-- **contexts**: Includes React context files like `authContext.js` and `setSchoolContext.js` for global state management.
-
-- **hooks**: Features custom React hooks, e.g., `useAuth.js`, for encapsulating and reusing logic.
-
-- **layouts**: Comprises structural components like `Container`, `Main`, and `Page`, along with subcomponents like `Footer`, `Sidebar`, and `Topbar`.
-
-- **services**: Hosts service files, such as `firebaseStorageService.js` and `firestoreService.js`, for handling interactions with Firebase.
-
-- **theme**: Stores theming-related files for Material UI customization.
-
-- **utils**: Contains utility functions, such as `dateFormatter.js` and `fileMapper.js`, for shared helper functionalities.
+-->
 
 ### Component Details
 
