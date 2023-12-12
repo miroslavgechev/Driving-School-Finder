@@ -96,9 +96,9 @@ The Driving School Finder application is structured following a modern React app
 
 ### Utility and Additional Libraries
 
-- **moment.js**: Parses, validates, manipulates, and displays dates and times.
 - **ESLint/Prettier**: Maintains code quality and consistency.
 - **dotenv**: Manages environment variables, especially for Firebase configuration.
+- **moment.js**: Parses, validates, manipulates, and displays dates and times.
 - **Other Third-Party Libraries**: Enhances functionality, performance, and user experience.
 
 ## Project Structure
