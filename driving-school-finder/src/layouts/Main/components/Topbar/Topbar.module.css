@@ -26,7 +26,7 @@
 }
 
 .menuButton {
-    min-width: auto;
+    min-width: auto !important;
 }
 
 @media screen and (min-width: 900px) {
