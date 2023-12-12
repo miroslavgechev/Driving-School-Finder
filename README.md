@@ -224,6 +224,7 @@ The `components` directory is the heart of the React UI, structured into feature
 | Bonus Requirement                                                    | Status |
 | -------------------------------------------------------------------- | ------ |
 | Usage of Material UI for UI design                                   | ✓      |
+| Good UI and UX                                                       | ✓      |
 | Use of a cloud file storage API for storing files - Firebase Storage | ✓      |
 | Deployment of the application in the cloud (Firebase)                | ✓      |
 | Use of AOS for scroll animations                                     | ✓      |
