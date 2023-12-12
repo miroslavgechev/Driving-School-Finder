@@ -47,12 +47,12 @@ This platform is more than just a directory; it's a community-driven tool that e
 
 ## Stack
 
-[![React](https://skillicons.dev/icons?i=react)](https://react.dev/)
+<!-- [![React](https://skillicons.dev/icons?i=react)](https://react.dev/)
 [![JavaScript](https://skillicons.dev/icons?i=js)](https://javascript.com/)
 [![MUI](https://skillicons.dev/icons?i=materialui)](https://mui.com/material-ui/)
 [![CSS3](https://skillicons.dev/icons?i=css)](https://www.w3.org/Style/CSS/Overview.en.html)
 [![HTML5](https://skillicons.dev/icons?i=html)](https://html.spec.whatwg.org/multipage/)
-[![Firebase](https://skillicons.dev/icons?i=firebase)](https://firebase.google.com/)
+[![Firebase](https://skillicons.dev/icons?i=firebase)](https://firebase.google.com/) -->
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
