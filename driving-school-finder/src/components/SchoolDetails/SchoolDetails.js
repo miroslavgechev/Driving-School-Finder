@@ -61,7 +61,7 @@ const SchoolDetails = () => {
       }
     };
 
-    user && fetchSchool();
+    fetchSchool();
   }, [schoolUid, userCanEdit, user]);
 
   return (

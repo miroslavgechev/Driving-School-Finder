@@ -45,11 +45,7 @@ const App = () => {
                   </AuthGuard>
                 } />
 
-                <Route path={ROUTES.schoolDetailsWithParams()} element={
-                  <AuthGuard authRequired={true}>
-                    <SchoolDetails />
-                  </AuthGuard>
-                } />
+                <Route path={ROUTES.schoolDetailsWithParams()} element={<SchoolDetails />} />
 
                 <Route path={ROUTES.account()} element={
                   <AuthGuard authRequired={true}>
