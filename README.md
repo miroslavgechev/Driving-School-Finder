@@ -45,6 +45,8 @@ This platform is more than just a directory; it's a community-driven tool that e
 4. Set up your Firebase account, including Firestore, Firebase Storage, and Firebase Authentication services.
 5. Create a `.env` file in the root directory of the project. Populate this file with your Firebase configuration details, ensuring that the variable names correspond with those in the app's `firebaseConfig.js`.
 
+6. You can access a running version of the app at [https://driving-school-finder.web.app/](https://driving-school-finder.web.app/).
+
 ## Stack
 
 [![React](https://skillicons.dev/icons?i=react)](https://react.dev/)

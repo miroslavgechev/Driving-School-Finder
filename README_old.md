@@ -56,9 +56,9 @@ Driving School Finder
 12. ✅Refactor Code to css modules.
 13. ✅Optimize Code
 14. ✅Move Static images to public
-15. Test
+15. ✅Test
 16. ✅Populate with real data
-17. Deploy
+17. ✅Deploy
 18. ✅Update Documentation
 
 ## Requirements
@@ -275,7 +275,3 @@ TBA...
 ## Code Structure
 
 TBA...
-
---TO ADD:
-
-- Deploy the application in a cloud (Heroku, Firebase)
