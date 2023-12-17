@@ -46,7 +46,16 @@ const SigninForm = () => {
       formik.setStatus(null);
       setIsLoading(true);
 
-      await login(values);
+      let trimmedValues = { ...values };
+
+      if (values) {
+        trimmedValues = {
+          ...values,
+          email: values?.email?.trim()
+        };
+      }
+
+      await login(trimmedValues);
 
       setSuccessState(SUCCESS_STATES.success);
       navigate(ROUTES.schoolCatalogue());

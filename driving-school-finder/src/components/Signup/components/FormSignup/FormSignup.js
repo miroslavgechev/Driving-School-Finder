@@ -76,7 +76,18 @@ const SignupForm = () => {
       formik.setStatus(null);
       setIsLoading(true);
 
-      await register(values);
+      let trimmedValues = { ...values };
+
+      if (values) {
+        trimmedValues = {
+          ...values,
+          firstName: values?.firstName?.trim(),
+          lastName: values?.lastName?.trim(),
+          email: values?.email?.trim()
+        };
+      }
+
+      await register(trimmedValues);
 
       navigate(ROUTES.schoolCatalogue());
 

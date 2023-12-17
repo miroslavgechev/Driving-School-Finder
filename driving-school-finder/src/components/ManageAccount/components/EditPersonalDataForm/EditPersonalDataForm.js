@@ -54,7 +54,18 @@ const EditPersonalDataForm = () => {
       formik.setStatus(null);
       setIsLoading(true);
 
-      await updateUserData(user.uid, values);
+      let trimmedValues = { ...values };
+
+      if (values) {
+        trimmedValues = {
+          ...values,
+          firstName: values?.firstName?.trim(),
+          lastName: values?.lastName?.trim(),
+          email: values?.email?.trim(),
+        };
+      }
+
+      await updateUserData(user.uid, trimmedValues);
 
       setIsLoading(false);
       setSuccessState(SUCCESS_STATES.success);
