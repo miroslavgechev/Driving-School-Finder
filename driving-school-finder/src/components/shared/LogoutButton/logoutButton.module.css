@@ -1,3 +1,9 @@
 .logoutButton {
-    /* padding-left: 0 !important; */
+    padding-left: 0 !important;
+}
+
+@media screen and (min-width: 600px) {
+    .logoutButton {
+        padding-left: 11px !important;
+    }
 }
